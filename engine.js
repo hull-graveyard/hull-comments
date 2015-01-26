@@ -91,7 +91,8 @@ assign(Engine.prototype, Emitter.prototype, {
       isPosting: !!this._isPosting,
       isFavorite: !!this._isFavorite,
       comments: this.getComments(),
-      orderBy: this._orderBy
+      orderBy: this._orderBy,
+      isReady: !!this._isReady
     };
     return state;
   },
@@ -263,6 +264,7 @@ assign(Engine.prototype, Emitter.prototype, {
       });
       this._isFetching = Hull.api(this.entity_id + "/comments", prms);
       this._isFetching.then(function(comments) {
+        this._isReady = true;
         this._isFetching = false;
         this._comments = comments;
         this.emitChange('fetching ok');
@@ -409,6 +411,7 @@ assign(Engine.prototype, Emitter.prototype, {
 
     return m.format(data);
   }
+
 });
 
 module.exports = Engine;

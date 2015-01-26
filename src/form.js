@@ -156,18 +156,20 @@ var CommentForm = React.createClass({
   },
 
   renderButtons: function() {
-    var user = this.props.user || {};
-    if (this.props.mode === 'edit') {
-      return <div className="temp-post">
-        <a href="#" className="cancel" onClick={this.handleCancel}>Cancel</a>
-        <button className="btn" onClick={this.onSubmit}>Save Edit</button>
-      </div>;
-    } else {
-      return  <div className="temp-post" style={{textAlign: "right"}}>
-        <button className="btn" onClick={this.onSubmit}>
-          Post as <span data-role="username">{user.name}</span>
-        </button>
-      </div>;
+    var user = this.props.user;
+    if (user)  {
+      if (this.props.mode === 'edit') {
+        return <div className="temp-post">
+          <a href="#" className="cancel" onClick={this.handleCancel}>Cancel</a>
+          <button className="btn" onClick={this.onSubmit}>Save Edit</button>
+        </div>;
+      } else {
+        return  <div className="temp-post" style={{textAlign: "right"}}>
+          <button className="btn" onClick={this.onSubmit}>
+            Post as <span data-role="username">{user.name}</span>
+          </button>
+        </div>;
+      }
     }
   },
 

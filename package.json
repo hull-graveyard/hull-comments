@@ -4,7 +4,8 @@
   "description": "Comments Ship",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server -d --progress --colors --port 8084"
   },
   "author": "Stephane Bellity",
   "license": "MIT",

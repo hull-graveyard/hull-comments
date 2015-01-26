@@ -1,8 +1,7 @@
 var React = require('react');
-window.React = React;
 var assign = require('object-assign');
 var Engine = require('./engine');
-var Comments = require('./comments');
+var Comments = require('./src');
 
 var Context = React.createClass({
 
@@ -22,13 +21,16 @@ var Context = React.createClass({
 
   renderContent: function() {
     return <div>
-      <div id="my-styles">{this.props.stylesheets}</div>
+      {this.props.stylesheets}
       <this.props.component {...this.state} actions={this.props.engine.getActions()} />
     </div>;
   },
 
   componentDidMount: function() {
     this.renderFrameContents();
+    if (this.props.sandbox) {
+      this._autogrow = setInterval(this.autoGrow, 200);
+    }
   },
 
   componentDidUpdate: function() {
@@ -51,15 +53,27 @@ var Context = React.createClass({
       if (doc.readyState === 'complete') {
         this._rendered = true;
         React.render(this.renderContent(), doc.body);
+        this.autoGrow();
+      } else {
+        setTimeout(this.renderFrameContents, 0);
+      }
+    }
+  },
+
+  autoGrow: function() {
+    if (this.isMounted()) {
+      if (this.props.sandbox) {
+        var frame = this.getDOMNode();
+        var doc = frame.contentDocument;
         setTimeout(function() {
           doc.body.style.margin = 0;
           doc.body.style.padding = 0;
           var height = doc.body.firstChild.offsetHeight + 30;
           frame.style.height = height + "px";
         }, 10);
-      } else {
-        setTimeout(this.renderFrameContents, 0);
       }
+    } else {
+      if (this._autogrow) clearInterval(this._autogrow);
     }
   },
 
@@ -72,14 +86,17 @@ var Context = React.createClass({
   }
 });
 
-Hull.onEmbed(document, function(element, deploy_options) {
-  var options = assign({}, deploy_options, {
+Hull.onEmbed(document, function(element, deployment) {
+  var ship = deployment.deployable;
+  var options = assign({}, deployment, {
     entity_id: Hull.util.entity.encode(document.location.toString())
   });
 
+  var stylesheetUrl = ship.source_url + "style.css";
+
   var engine = new Engine(options);
   var stylesheets = [
-    <link key="1" rel="stylesheet" type="text/css" href="//ship.dev/style.css" />,
+    <link key="1" rel="stylesheet" type="text/css" href={stylesheetUrl} />,
   ];
   React.render(<Context engine={engine} sandbox={true} component={Comments} stylesheets={stylesheets} />, element);
 });
