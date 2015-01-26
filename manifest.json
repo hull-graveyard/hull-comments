@@ -1,0 +1,15 @@
+{
+  "name": "comments",
+  "version": "0.0.1",
+  "index": "index.html",
+  "locales": ["en"],
+  "settings": [
+    {
+      "name": "redirect_url",
+      "title": "Redirect URL",
+      "description": "Where to redirect when login has succeeded.",
+      "type": "string"
+    }
+  ]
+}
+
