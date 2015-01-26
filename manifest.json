@@ -1,5 +1,6 @@
 {
   "name": "comments",
+  "description" : "Comments for your content",
   "version": "0.0.1",
   "index": "index.html",
   "locales": ["en"],
