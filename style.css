@@ -1,0 +1,81 @@
+@import url('//a.disquscdn.com/next/styles/discovery.c1e44cf69908bda4c6512464e19f9675.css');
+@import url('//a.disquscdn.com/next/styles/lounge.ef6e958d7972d0eb2fdd10011f57ef0c.css');
+
+html {
+  overflow: hidden;
+}
+
+html, body {
+  overflow-y:scroll;
+}
+
+.not-supported body {
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+.not-supported ul, .not-supported li {
+  margin: 0;
+  padding: 0;
+}
+
+.not-supported li {
+  list-style-type: none;
+}
+
+.not-supported h4 a {
+  color: #000;
+  text-decoration: none;
+}
+
+.not-supported h4 {
+  margin: 0 0 5px;
+  padding: 5px 0;
+  border-bottom: dashed 1px #999;
+}
+
+.not-supported #notSupported {
+  display: block;
+  border: solid 1px red;
+  padding: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.not-supported #notSupported p {
+  margin-bottom: 10px;
+}
+
+.not-supported #notSupported ul {
+  margin-left: 20px;
+}
+
+.not-supported #notSupported ul li {
+  margin-bottom: 5px;
+}
+
+#notSupported, .legacy-mode, .old-browser {
+  display: none;
+}
+
+.not-supported.type-1 .old-browser {
+  display: block;
+}
+
+.not-supported.type-2 .legacy-mode {
+  display: block;
+}
+
+/* A trick to hide this container unless it is absolutely necessary */
+@media (max-width: 100000px) {
+  #postCompatContainer {
+    display: none;
+  }
+}
+
+.not-supported #postCompatContainer {
+  width: 500px;
+  margin-top: 20px;
+  display: block!important;
+}
+
