@@ -87,7 +87,7 @@ var Context = React.createClass({
 });
 
 Hull.onEmbed(document, function(element, deployment) {
-  var ship = deployment.deployable;
+  var ship = deployment.ship;
   var options = assign({}, deployment, {
     entity_id: Hull.util.entity.encode(document.location.toString())
   });
