@@ -100,6 +100,4 @@ var Conversation = React.createClass({
   }
 });
 
-
-
 module.exports = Conversation;

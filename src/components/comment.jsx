@@ -1,7 +1,8 @@
 var React = require('react');
 var cx = require('react/lib/cx');
-var CommentForm = require('./form');
 var moment = require('moment');
+
+var CommentForm = require('./form');
 var DropdownMenu = require('./dropdown-menu');
 var ShareMenu = require('./share-menu');
 

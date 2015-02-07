@@ -3,7 +3,7 @@ var React = require('react');
 var Header = require('./header');
 var Conversation = require('./conversation');
 
-module.exports = React.createClass({
+var Comments = React.createClass({
   render: function() {
     if (this.props.isReady) {
       return <div style={{ padding: 10, margin: 10 }}>
@@ -16,3 +16,4 @@ module.exports = React.createClass({
   }
 });
 
+module.exports = Comments

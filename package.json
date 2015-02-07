@@ -1,25 +1,89 @@
 {
   "name": "hull-comments",
   "version": "0.0.1",
-  "description": "Comments Ship",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server -d --progress --colors --port 8084"
+  "description": "A Miller Columns view built with React",
+  "author": {
+    "name": "Romain Dardour",
+    "email": "romain@hull.io",
+    "url": "https://github.com/unity"
   },
-  "author": "Stephane Bellity",
+  "bugs": {
+    "url": "https://github.com/unity/react-column-view/issues"
+  },
+  "homepage": "https://github.com/unity/react-column-view",
   "license": "MIT",
+  "main": "dist/react-column-view.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/unity/react-column-view"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "react-columns",
+    "react-columns-view",
+    "react-miller-columns",
+    "columns",
+    "columns-view",
+    "miller-columns"
+  ],
+  "scripts": {
+    "start": "./node_modules/.bin/gulp server",
+    "build": "./node_modules/.bin/gulp build",
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "./utils/jsx-preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "./node_modules/react"
+    ],
+    "testFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
   "dependencies": {
+    "gulp-webpack": "^1.2.0",
+    "html-webpack-plugin": "^1.1.0",
     "intl-messageformat": "^1.0.3",
     "moment": "^2.9.0",
     "object-assign": "^2.0.0",
     "react": "^0.12.1",
-    "react-dropdown": "^0.1.1"
+    "react-dropdown": "^0.1.1",
+    "react-frame-component": "^0.3.0",
+    "underscore": "^1.7.0",
+    "underscore-contrib": "^0.3.0",
+    "underscore.inflection": "^1.2.0",
+    "underscore.string": "^2.4.0"
   },
   "devDependencies": {
-    "css-loader": "^0.9.1",
+    "del": "^1.1.0",
+    "good": "^5.0.0",
+    "good-console": "^3.0.1",
+    "gulp": "^3.8.10",
+    "gulp-replace": "^0.5.0",
+    "gulp-util": "^3.0.1",
+    "jest-cli": "^0.1.18",
+    "react-tools": "^0.11.2",
+    "run-sequence": "^1.0.2",
+    "touch": "0.0.3",
+    "6to5": "^2.11.4",
+    "browser-sync": "^1.5.2",
+    "6to5-loader": "^2.0.0",
     "jsx-loader": "^0.12.2",
-    "style-loader": "^0.8.3",
-    "webpack": "^1.4.15"
+    "react-hot-loader": "^1.0.0-alpha.3",
+    "style-loader": "unity/style-loader",
+    "css-loader": "^0.9.0",
+    "autoprefixer-loader": "^1.1.0",
+    "image-webpack-loader": "^1.0.0",
+    "file-loader": "^0.8.1",
+    "extract-text-webpack-plugin": "^0.3.5",
+    "webpack": "^1.4.15",
+    "webpack-dev-server": "^1.6.6"
   }
 }

@@ -42,11 +42,11 @@ function isMobile() {
 };
 
 
-function Engine(options) {
-  this.entity_id = options.entity_id;
-  this._ship = options.ship || options.deployable;
-  this._platform = options.platform;
-  this._orderBy = options.orderBy || 'newest';
+function Engine(deployment) {
+  this.entity_id = deployment.settings.entity_id;
+  this._ship = deployment.ship || deployment.deployable;
+  this._platform = deployment.platform;
+  this._orderBy = deployment.settings.orderBy || 'newest';
   this.resetState();
 
   this.resetUser();
