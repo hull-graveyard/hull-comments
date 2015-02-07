@@ -21,6 +21,7 @@ var PUBLIC_PATH = config.PUBLIC_PATH;
 gulp.task('default', function(callback) {runSequence('clean', 'webpack:server', callback); });
 gulp.task('server', function(callback)  {runSequence('clean', 'webpack:build:dev', 'webpack:server', callback); });
 gulp.task('build', function(callback)   {runSequence('clean', 'webpack:build', callback); });
+gulp.task('deploy', function(callback)  {runSequence('clean', 'webpack:build', 'gh:deploy', callback); });
 
 gulp.task('clean', function(cb) {del(['./dist/**/*'], cb); });
 
@@ -45,7 +46,7 @@ gulp.task('webpack:build:dev', function(callback) {
   });
 });
 
-gulp.task('deploy', function () {
+gulp.task('gh:deploy', function () {
     return gulp.src('./dist/**/*')
         .pipe(deploy(options));
 });
