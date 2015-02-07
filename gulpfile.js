@@ -50,9 +50,9 @@ gulp.task('webpack:server', function(callback) {
     hot: true,
     stats: {colors: true }
   }).listen(8080, '0.0.0.0', function(err) {
-    if(err) throw new gutil.PluginError('webpack-dev-server', err);
+    if(err) throw new gutil.PluginError('webpack:server', err);
     // browserSync({proxy: 'localhost:8080'});
-    gutil.log('[server]', webpackConfig.development.browser.output.publicPath+'webpack-dev-server/index.html');
+    gutil.log('[webpack:server]', webpackConfig.development.browser.output.publicPath+'webpack-dev-server/index.html');
   });
 
 });
