@@ -11,6 +11,7 @@ var gulp_webpack = require('gulp-webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var webpackConfig = require('./webpack.config');
 var path = require('path');
+var deploy = require('gulp-gh-pages');
 // var browserSync = require('browser-sync');
 
 var config = require('./config');
@@ -42,6 +43,11 @@ gulp.task('webpack:build:dev', function(callback) {
     gutil.log('[webpack:build]', stats.toString({colors: true}));
     callback();
   });
+});
+
+gulp.task('deploy', function () {
+    return gulp.src('./dist/**/*')
+        .pipe(deploy(options));
 });
 
 gulp.task('webpack:server', function(callback) {

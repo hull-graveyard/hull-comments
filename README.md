@@ -23,15 +23,24 @@ Built with [React](http://facebook.github.io/react/).
 - Rename `env.json.sample` to `env.json` and enter a valid [Hull.io](http://hull.io) Ship ID and Org URL
 
 #### Dev Cycle
-- Run `webpack-dev-server --progress --colors` and visit [http://localhost:8080](http://localhost:8080).
+- Run `gulp server` and visit [http://localhost:8080/demo.html](http://localhost:8080/demo.html).
 - Write Code
 - Drink Coffee
 - Be nice to others
+- Repeat
 - Publish
 
 ## Publishing
 - When publishing, the manifest file and assets must be publicly available so Hull can use your ship.
+- run `gulp build`
 
 ## Deploying
 
-- Publish anywhere you like, as long as Hull can access a `manifest.json` file that describes all assets and configuration options. A good way to start is by publishing the built project to the `gh-pages` branch, and linking to the `github.io` public URL
+- Publish anywhere you like, as long the following files are public:
+- `manifest.json`
+- `index.html`
+- `ship.js`
+ 
+A good way to start is by publishing the built project to the `gh-pages` branch, and linking to the `github.io` public URL. 
+
+The included `gulp deploy` task will do this for you.
