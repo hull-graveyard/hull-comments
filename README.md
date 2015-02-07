@@ -9,12 +9,11 @@ Built with [React](http://facebook.github.io/react/).
 
     https://hull-ships.github.io/comments/manifest.json
 
-## Options
+## Ship Options
 
 [todo]
 
 ## Developing
-
 
 #### Setup
 - Ensure that [Node.js](http://nodejs.org), [Bower](http://bower.io/) and [Webpack](http://webpack.github.io) are installed.
@@ -22,7 +21,7 @@ Built with [React](http://facebook.github.io/react/).
 - Run `npm install && bower install` to ensure the required dependencies are installed.
 - Rename `env.json.sample` to `env.json` and enter a valid [Hull.io](http://hull.io) Ship ID and Org URL
 
-#### Dev Cycle
+#### Development
 - Run `gulp server` and visit [http://localhost:8080/demo.html](http://localhost:8080/demo.html).
 - Write Code
 - Drink Coffee
@@ -30,11 +29,11 @@ Built with [React](http://facebook.github.io/react/).
 - Repeat
 - Publish
 
-## Publishing
+## Build
 - When publishing, the manifest file and assets must be publicly available so Hull can use your ship.
 - run `gulp build`
 
-## Deploying
+## Deployment
 
 - Publish anywhere you like, as long the following files are public:
 - `manifest.json`
