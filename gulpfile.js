@@ -34,8 +34,7 @@ gulp.task('webpack:build', function(callback) {
 });
 
 // modify some webpack config options
-var webpackDevConfig = Object.create(webpackConfig.development.browser);
-var devCompiler = webpack(webpackDevConfig);
+var devCompiler = webpack(webpackConfig.development.browser);
 
 gulp.task('webpack:build:dev', function(callback) {
   // run webpack

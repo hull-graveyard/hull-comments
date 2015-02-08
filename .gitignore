@@ -4,3 +4,4 @@ node_modules/*
 .env
 bundle.js
 dist/*
+env.js

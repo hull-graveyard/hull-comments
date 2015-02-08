@@ -54,7 +54,10 @@ module.exports = {
       resolve: {extensions: config.extensions},
       module: {loaders: config.loaders},
       plugins: config.plugins.concat([
-        new webpack.DefinePlugin({PUBLIC_PATH: JSON.stringify(config.PUBLIC_PATH)}),
+        new webpack.DefinePlugin({
+          PUBLIC_PATH: JSON.stringify(config.PUBLIC_PATH),
+          HULL_CONFIG: JSON.stringify(config.HULL_CONFIG)
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
       ])

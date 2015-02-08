@@ -5,7 +5,7 @@ var _ = require('underscore');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var HULL_CONFIG = require('./env');
 
 // var banner = _.template([
 //   '',
@@ -46,6 +46,7 @@ var plugins = [
     template: 'src/index.html',
     filename: 'index.html'
   }),
+  new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')}}),
   new webpack.IgnorePlugin(/vertx/),
   new webpack.BannerPlugin(banner, { entryOnly: true }),
@@ -62,11 +63,12 @@ var externals = {}
 // var externals= /^[a-z\-0-9]+$/; // Every non-relative module is external,
 
 module.exports = {
-  LIB_NAME:LIB_NAME,
-  libName: libName,
   URL: URL,
   OUTPUT_FOLDER: OUTPUT_FOLDER,
   ASSETS_FOLDER:ASSETS_FOLDER,
+  HULL_CONFIG: HULL_CONFIG,
+  LIB_NAME:LIB_NAME,
+  libName: libName,
   extensions:extensions,
   entry: entry,
   plugins:plugins,

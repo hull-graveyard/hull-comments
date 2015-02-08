@@ -1,10 +1,5 @@
 var Hull = require('./lib/hull-init');
-
-Hull.init({
-  appId: "54d3992caa02d70086000013",
-  orgUrl: "https://ships-demos.hullbeta.io",
-  jsUrl: "https://hull-js.s3.amazonaws.com"
-}, function(hull, me, platform, org){
+Hull.init(HULL_CONFIG, function(hull, me, platform, org){
 
   // Clone the Ship so we're safely using it
   var platform = JSON.parse(JSON.stringify(platform));
