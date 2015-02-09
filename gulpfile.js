@@ -17,12 +17,11 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./config');
 var webpackConfig = require('./webpack.config');
 
-// The development server (the recommended option for development)
 gulp.task('default', function(callback) {runSequence('server',                                       callback); });
-gulp.task('server', function(callback)  {runSequence('clean', 'webpack:build:dev', 'webpack:server', callback); });
-gulp.task('build', function(callback)   {runSequence('clean', 'webpack:build',                       callback); });
-gulp.task('deploy', function(callback)  {runSequence('clean', 'webpack:build', 'gh:deploy',          callback); });
-gulp.task('clean', function(cb)         {del(['./'+config.outputFolder+'/**/*'], cb); });
+gulp.task('server',  function(callback) {runSequence('clean', 'webpack:build:dev', 'webpack:server', callback); });
+gulp.task('build',   function(callback) {runSequence('clean', 'webpack:build',                       callback); });
+gulp.task('deploy',  function(callback) {runSequence('clean', 'webpack:build', 'gh:deploy',          callback); });
+gulp.task('clean',   function(cb)       {del(['./'+config.outputFolder+'/**/*'], cb); });
 
 //Production Build. Minified, clean code. No demo keys inside.
 //demo.html WILL NOT WORK with this build.
