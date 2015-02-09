@@ -2,18 +2,18 @@ var path = require('path');
 var webpack = require('webpack');
 var config = require('./config');
 
-var FILESYSTEM_PATH = path.join(__dirname, config.OUTPUT_FOLDER);
-var ASSETS_PATH = path.join(FILESYSTEM_PATH,config.ASSETS_FOLDER,'/');
+var fileSystemPath = path.join(__dirname, config.outputFolder);
+var assetsPath =     path.join(__dirname, config.outputFolder,config.assetsFolder,'/');
 var devEntry = config.entry;
 
 devEntry.app = [
-  'webpack-dev-server/client?'+config.URL,
+  'webpack-dev-server/client?'+config.previewUrl,
   'webpack/hot/dev-server',
   devEntry.app
 ];
 
 devEntry.ship = [
-  'webpack-dev-server/client?'+config.URL,
+  'webpack-dev-server/client?'+config.previewUrl,
   'webpack/hot/dev-server',
   devEntry.ship
 ];
@@ -24,9 +24,9 @@ module.exports = {
       name: 'browser',
       entry: config.entry,
       output: {
-        path: FILESYSTEM_PATH,
+        path: fileSystemPath,
         publicPath: '/',
-        library: [config.libName, "[name]"],
+        library: [config.displayName, "[name]"],
         libraryTarget: "umd",
         filename: '[name].js'
       },
@@ -45,9 +45,9 @@ module.exports = {
       debug: true,
       entry   : devEntry,
       output: {
-        path: FILESYSTEM_PATH+'/',
-        publicPath: config.URL,
-        library: [config.libName, "[name]"],
+        path: fileSystemPath,
+        publicPath: config.previewUrl,
+        library: [config.displayName, "[name]"],
         libraryTarget: "umd",
         filename: '[name].js'
       },
@@ -55,7 +55,7 @@ module.exports = {
       module: {loaders: config.loaders},
       plugins: config.plugins.concat([
         new webpack.DefinePlugin({
-          PUBLIC_PATH: JSON.stringify(config.PUBLIC_PATH),
+          PUBLIC_PATH: JSON.stringify(config.publicPath),
           HULL_CONFIG: JSON.stringify(config.HULL_CONFIG)
         }),
         new webpack.HotModuleReplacementPlugin(),

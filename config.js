@@ -3,72 +3,80 @@
 var fs = require('fs');
 var _ = require('underscore');
 var webpack = require('webpack');
+var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HULL_CONFIG = require('./env');
+var pkg = require('./package.json');
 
-// var banner = _.template([
-//   '',
-//   ' React ColumnView - <%= pkg.description %>',
-//   ' @version v<%= pkg.version %>',
-//   ' @link <%= pkg.homepage %>',
-//   ' @license <%= pkg.license %>',
-//   ' @author <%= pkg.author.name %> (<%= pkg.author.url %>)',
-//   ''
-// ].join('\n'), {pkg: pkg})();
+var LIB_NAME = pkg.name;
+var displayName = pkg.hull.displayName||LIB_NAME;
 
-var banner ="";
-var LIB_NAME = 'hull-ship-comments';
-var libName = 'HullShipComments';
+var previewUrl   = 'http://localhost:8080/';
 
-var URL = 'http://localhost:8080/';
-var OUTPUT_FOLDER='dist';
-var ASSETS_FOLDER = 'assets';
-var extensions = ['', '.js', '.jsx', '.css'];
+// DO NOT CHANGE FOLDERS
+// WIHTOUT UPDATING PACKAGE.JSON TOO.
+var sourceFolder = 'src';
+var outputFolder = 'dist';
+var assetsFolder = 'assets';
+
+var gulpFiles    = {
+  source: ['package.json', 'locales/*'],
+  dest: outputFolder
+}
+
+// DO NOT CHANGE SHIP ENTRY
+// WITHOUT UPDATING PACKAGE.JSON TOO
+var entry = {
+  app:  './'+sourceFolder+'/app.js',
+  ship: './'+sourceFolder+'/ship.js'
+}
+
+var extensions   = ['', '.js', '.jsx', '.css', '.scss'];
+var sassIncludePaths=([
+  './bower_components','./node_modules'
+]).map(function(include){
+  return ("includePaths[]="+path.resolve(__dirname, include))
+}).join('&');
+
+
 
 var loaders = [
-  {test: /.*\.json$/, loader: 'json'},
   {test: /.*\.md$/, loader: 'file'},
-  {test: /\.jsx$/, loaders: ['react-hot', '6to5-loader']},
-  {test: /\.css$/, loaders: ['style/useable', 'css-loader', 'autoprefixer-loader?browsers=last 2 version']},
-  {test: /.*\.(gif|png|jpg)$/, loaders: ['file?hash=sha512&digest=hex&size=16&name=[hash].[ext]', 'image-webpack-loader?optimizationLevel=7&interlaced=false']},
-  {test: /.*\.(eot|woff|ttf|svg)/, loader: 'file?hash=sha512&digest=hex&size=16&name=cd [hash].[ext]'},
+  {test: /\.(jsx|js)$/, loaders: ['react-hot', '6to5-loader']},
+  {test: /\.(css|scss)$/, loaders: ['style/useable', 'css-loader', 'sass-loader?outputStyle=expanded&'+sassIncludePaths, 'autoprefixer-loader?browsers=last 2 version']},
+  {test: /.*\.(gif|png|jpg)$/, loaders: ['file', 'image-webpack-loader?optimizationLevel=7&interlaced=false']},
+  {test: /.*\.(eot|woff|ttf|svg)/, loader: 'file'},
 ];
 
 var plugins = [
   new HtmlWebpackPlugin({
-    title: libName+' Dev/Demo Page',
-    template: 'src/demo.html',
-    filename: 'demo.html'
+    title: displayName+' Dev/Demo Page',
+    template: path.join(sourceFolder,pkg.hull.demo),
+    filename: pkg.hull.demo
   }),
   new HtmlWebpackPlugin({
-    title: libName+ ' Ship',
-    template: 'src/index.html',
-    filename: 'index.html'
+    title: displayName+ ' Ship',
+    template: path.join(sourceFolder,pkg.hull.index),
+    filename: pkg.hull.index
   }),
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')}}),
-  new webpack.IgnorePlugin(/vertx/),
-  new webpack.BannerPlugin(banner, { entryOnly: true }),
-  new ExtractTextPlugin(LIB_NAME + '.css', {allChunks: true}),
+  // new webpack.IgnorePlugin(/vertx/),
+  new ExtractTextPlugin('[name].css', {allChunks: true}),
 ]
-
-
-var entry = {
-  app: './src/app.js',
-  ship: './src/ship.jsx'
-}
 
 var externals = {}
 // var externals= /^[a-z\-0-9]+$/; // Every non-relative module is external,
 
 module.exports = {
-  URL: URL,
-  OUTPUT_FOLDER: OUTPUT_FOLDER,
-  ASSETS_FOLDER:ASSETS_FOLDER,
+  previewUrl: previewUrl,
+  outputFolder: outputFolder,
+  assetsFolder:assetsFolder,
   HULL_CONFIG: HULL_CONFIG,
   LIB_NAME:LIB_NAME,
-  libName: libName,
+  files :gulpFiles,
+  displayName: displayName,
   extensions:extensions,
   entry: entry,
   plugins:plugins,

@@ -1,35 +1,51 @@
 {
   "name": "hull-comments",
   "version": "0.0.1",
-  "description": "A Miller Columns view built with React",
+  "description": "A Comments ship for Hull.io",
   "author": {
     "name": "Romain Dardour",
     "email": "romain@hull.io",
-    "url": "https://github.com/unity"
+    "url": "https://github.com/hull"
   },
   "bugs": {
-    "url": "https://github.com/unity/react-column-view/issues"
+    "url": "https://github.com/hull-ships/hull-comments/issues"
   },
-  "homepage": "https://github.com/unity/react-column-view",
+  "homepage": "https://github.com/hull-ships/hull-comments",
   "license": "MIT",
-  "main": "dist/react-column-view.js",
+  "main": "dist/ship.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/unity/react-column-view"
+    "url": "git://github.com/hull-ships/hull-comments"
   },
+
+  "hull" : {
+    "displayName": "HullComments",
+    "index": "index.html",
+    "demo": "demo.html",
+    "locales": ["en"],
+    "settings": [
+      {
+        "name": "redirect_url",
+        "title": "Redirect URL",
+        "description": "Where to redirect when login has succeeded.",
+        "type": "string"
+      }
+    ]
+  },
+
   "keywords": [
+    "hull",
+    "ship",
+    "hull-ship",
+    "comments",
+    "comment",
+    "component",
     "react",
-    "react-component",
-    "react-columns",
-    "react-columns-view",
-    "react-miller-columns",
-    "columns",
-    "columns-view",
-    "miller-columns"
+    "react-comments"
   ],
   "scripts": {
-    "start": "./node_modules/.bin/gulp server",
-    "build": "./node_modules/.bin/gulp build",
+    "start":  "./node_modules/.bin/gulp server",
+    "prepublish": "./node_modules/.bin/gulp build",
     "test": "jest"
   },
   "jest": {
@@ -54,9 +70,12 @@
     "intl-messageformat": "^1.0.3",
     "moment": "^2.9.0",
     "object-assign": "^2.0.0",
+    "open": "0.0.5",
     "react": "^0.12.1",
+    "react-contenteditable": "0.0.2",
     "react-dropdown": "^0.1.1",
     "react-frame-component": "^0.3.0",
+    "sass-loader": "^0.4.0-beta.1",
     "underscore": "^1.7.0",
     "underscore-contrib": "^0.3.0",
     "underscore.inflection": "^1.2.0",

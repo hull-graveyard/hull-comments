@@ -1,10 +1,6 @@
-@import url('http://a.disquscdn.com/next/styles/discovery.c1e44cf69908bda4c6512464e19f9675.css');
-@import url('http://a.disquscdn.com/next/styles/lounge.ef6e958d7972d0eb2fdd10011f57ef0c.css');
+@import './discovery';
+@import './lounge';
 
-h1{
-  color:red;
-  border: 10px solid red;
-}
 html {
   overflow: hidden;
 }
@@ -82,4 +78,3 @@ html, body {
   margin-top: 20px;
   display: block!important;
 }
-

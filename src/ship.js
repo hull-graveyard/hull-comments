@@ -5,7 +5,7 @@ var assign = require('object-assign');
 var Engine = require('./lib/engine');
 var Comments = require('./components/comments');
 var Frame = require('./components/iframe');
-var styles = require('./styles/main.css');
+var styles = require('./styles/main.scss');
 
 var Ship = React.createClass({
 

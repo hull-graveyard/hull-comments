@@ -19,12 +19,11 @@ Built with [React](http://facebook.github.io/react/).
 - Ensure that [Node.js](http://nodejs.org), [Bower](http://bower.io/) and [Webpack](http://webpack.github.io) are installed.
 - We recommend installing the webpack development server: `npm install webpack-dev-server -g`
 - Run `npm install && bower install` to ensure the required dependencies are installed.
-- If not done already, create ad Development Platform. To do this, go to "Platforms", create a new Web Platform, and enter `http://localhost:8080` as the URL.
-- Rename `env.js.sample` to `env.js` and enter the [Hull.io](http://hull.io) Platform ID and Org URL.
-- In the Hull Dashboard, click "Ships" > "Add Ship" > "From Manifest URL"
-- Enter the publicly visible URL to your `manifest.json`
-- In the Ship, click "Add to Platform" and pick your Dev platform.
-- Load `http://localhost:8080/demo.html`
+- Go to http://dashboard.hull.io/develop/new, click "Create Ship"
+- Rename `env.js.sample` to `env.js` and paste the generated `ID`.
+- Edit the the generated `manifest.json` to you heart's content. When done, download it and save it as `manifest.json`.
+- Preview the generated Ship and Deployment settings from this page and simulate events in the `Admin` tab.
+- Load `http://localhost:8080/demo.html`. Your ship should load. The main entry point is `ship.js`
 
 #### Development
 - Run `gulp server` and visit [http://localhost:8080/demo.html](http://localhost:8080/demo.html).
@@ -39,7 +38,6 @@ Built with [React](http://facebook.github.io/react/).
 - run `gulp build`
 
 ## Deployment
-
 - Publish anywhere you like, as long the following files are public:
 - `manifest.json`
 - `index.html`

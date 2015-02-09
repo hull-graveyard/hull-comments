@@ -153,7 +153,7 @@ function Deployment(deployment) {
   this.platform = deployment.platform;
   this.embedMode = deployment.settings.$fullpage ? "iframe" : "import";
   this.deployMode = deployment.settings.$multi ? "multi" : "single";
-  this.href = this.ship.homepage_url;
+  this.href = this.ship.index;
   this.targets = this.getTargets();
   this._elements = [];
   this._callbacks = [];

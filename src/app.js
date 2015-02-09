@@ -1,4 +1,5 @@
 var Hull = require('./lib/hull-init');
+
 Hull.init(HULL_CONFIG, function(hull, me, platform, org){
 
   // Clone the Ship so we're safely using it
@@ -13,7 +14,7 @@ Hull.init(HULL_CONFIG, function(hull, me, platform, org){
   deployment.platform = platform;
 
   // Fake the Homepage URL for the embedded ship
-  deployment.ship.homepage_url = '/index.html'
+  deployment.ship.index = deployment.ship.manifest.index
 
   // Fake deployment options to insert the ship in the test page.
   deployment.settings = {
