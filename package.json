@@ -45,23 +45,7 @@
   ],
   "scripts": {
     "start":  "./node_modules/.bin/gulp server",
-    "prepublish": "./node_modules/.bin/gulp build",
-    "test": "jest"
-  },
-  "jest": {
-    "scriptPreprocessor": "./utils/jsx-preprocessor.js",
-    "unmockedModulePathPatterns": [
-      "./node_modules/react"
-    ],
-    "testFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json"
-    ]
+    "prepublish": "./node_modules/.bin/gulp build"
   },
   "dependencies": {
     "gulp-gh-pages": "^0.4.0",
