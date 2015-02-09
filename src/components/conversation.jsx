@@ -52,7 +52,7 @@ var NavSecondary = React.createClass({
         <li className="favorite pull-right">
           <div className={cx({"thread-likes" : true, upvoted: !!this.props.isFavorite })}>
             <a href="#" onClick={this.toggleFavorite}>
-              <span className="label">Favorite</span> <span className="icon-star" />
+              <span className="label">Favorites</span> <span className="icon-star" />
             </a>
           </div>
         </li>

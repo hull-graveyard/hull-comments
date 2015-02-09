@@ -16,11 +16,19 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./config');
 var webpackConfig = require('./webpack.config');
 
-gulp.task('default', function(callback) {runSequence('server',                                       callback); });
-gulp.task('server',  function(callback) {runSequence('clean', 'webpack:build:dev', 'webpack:server', callback); });
-gulp.task('build',   function(callback) {runSequence('clean', 'webpack:build',                       callback); });
-gulp.task('deploy',  function(callback) {runSequence('clean', 'webpack:build', 'gh:deploy',          callback); });
+gulp.task('default', ['server']);
+gulp.task('serve', ['server']);
 gulp.task('clean',   function(cb)       {del(['./'+config.outputFolder+'/**/*'], cb); });
+
+gulp.task('server',  function(callback) {runSequence('clean', 'copy-files', 'webpack:server', callback); });
+gulp.task('build',   function(callback) {runSequence('clean', 'copy-files', 'webpack:build',                       callback); });
+gulp.task('deploy',  function(callback) {runSequence('build', 'gh:deploy', callback); });
+
+// Copy static files from the source to the destination
+gulp.task('copy-files', function () {
+  return gulp.src(config.files.source)
+    .pipe(gulp.dest(config.outputFolder))
+});
 
 //Production Build.
 //Minified, clean code. No demo keys inside.
@@ -29,8 +37,6 @@ gulp.task('clean',   function(cb)       {del(['./'+config.outputFolder+'/**/*'],
 //Webpack handles CSS/SCSS, JS, and HTML files.
 //Gulp copies a few more files such as manifest.json to the output folder
 gulp.task('webpack:build', function(callback) {
-  // First, copy static files from the source to the destination
-  gulp.src(config.files.source).pipe(gulp.dest(config.outputFolder))
 
   // Then, use Webpack to bundle all JS and html files to the destination folder 
   webpack(_.values(webpackConfig.production), function(err, stats) {
@@ -62,7 +68,7 @@ gulp.task('webpack:build:dev', function(callback) {
 // Launch webpack dev server.
 gulp.task('webpack:server', function(callback) {
   new WebpackDevServer(devCompiler, {
-    contentBase: config.outputFolder,
+    contentBase: '/',
     hot: true,
     stats: {colors: true }
   }).listen(8080, '0.0.0.0', function(err) {

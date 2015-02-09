@@ -109,7 +109,7 @@ Import.polyfill = function (cb) {
 
 Deployment.registry = {};
 
-resetDeployments = function() {
+var resetDeployments = function() {
   var dpl;
   for (var d in Deployment.registry) {
     if (Deployment.registry.hasOwnProperty(d)) {
@@ -122,7 +122,7 @@ resetDeployments = function() {
 
 
 // Embeds all deployments.
-embedDeployments = function(ships, reset, callback) {
+var embedDeployments = function(ships, reset, callback) {
   if (reset !== false) { resetDeployments() }
   var count = ships.length;
   var embeds = [];
