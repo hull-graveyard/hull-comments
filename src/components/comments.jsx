@@ -11,7 +11,7 @@ var Comments = React.createClass({
         <Conversation {...this.props} />
       </div>;
     } else {
-      return <div>...</div>;
+      return <small>Loading</small>;
     }
   }
 });
