@@ -12,7 +12,6 @@ var deploy = require('gulp-gh-pages');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 
-
 // Get our Config.
 var config = require('./config');
 var webpackConfig = require('./webpack.config');
@@ -23,7 +22,8 @@ gulp.task('build',   function(callback) {runSequence('clean', 'webpack:build',  
 gulp.task('deploy',  function(callback) {runSequence('clean', 'webpack:build', 'gh:deploy',          callback); });
 gulp.task('clean',   function(cb)       {del(['./'+config.outputFolder+'/**/*'], cb); });
 
-//Production Build. Minified, clean code. No demo keys inside.
+//Production Build.
+//Minified, clean code. No demo keys inside.
 //demo.html WILL NOT WORK with this build.
 //
 //Webpack handles CSS/SCSS, JS, and HTML files.
@@ -39,7 +39,6 @@ gulp.task('webpack:build', function(callback) {
     callback();
   });
 });
-
 
 // Dev Build
 // Create the webpack compiler here for caching and performance.
@@ -60,13 +59,6 @@ gulp.task('webpack:build:dev', function(callback) {
   });
 });
 
-// Deploy production bundle to gh-pages.
-gulp.task('gh:deploy', function () {
-    return gulp.src(outputBundle)
-        .pipe(deploy(options));
-});
-
-
 // Launch webpack dev server.
 gulp.task('webpack:server', function(callback) {
   new WebpackDevServer(devCompiler, {
@@ -82,3 +74,10 @@ gulp.task('webpack:server', function(callback) {
     open(url,'chrome');
   });
 });
+
+// Deploy production bundle to gh-pages.
+gulp.task('gh:deploy', function () {
+    return gulp.src(outputBundle)
+        .pipe(deploy(options));
+});
+
