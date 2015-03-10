@@ -1,7 +1,7 @@
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):"object"==typeof exports?exports["Hull Comments"]=t():e["Hull Comments"]=t()}(this,function(){return function(e){function t(o){if(n[o])return n[o].exports;var r=n[o]={exports:{},id:o,loaded:!1};return e[o].call(r.exports,r,r.exports,t),r.loaded=!0,r.exports}var n={};return t.m=e,t.c=n,t.p="/",t(0)}([/*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-function(e,t,n){"use strict";var o=function(e){return e&&e.__esModule?e["default"]:e},r=o(n(/*! ./components/app */178));Hull.init({appId:"54a3f0802df1f316aa000003",orgUrl:"https://ships-demos.hullbeta.io",jsUrl:"https://hull-js.s3.amazonaws.com/cc8cc2924ecb9e6c8ae12bf7070ee410b220a781/hull.debug.js"});var i=function(e,t,n){r.start(document.getElementById("ship"),n.deployments[0])};Hull.ready(i)},/*!****************************!*\
+function(e,t,n){"use strict";{var o=function(e){return e&&e.__esModule?e["default"]:e};o(n(/*! ./components/app */178))}Hull.init({appId:"54a3f0802df1f316aa000003",orgUrl:"https://ships-demos.hullbeta.io",jsUrl:"https://hull-js.s3.amazonaws.com/cc8cc2924ecb9e6c8ae12bf7070ee410b220a781/hull.debug.js"});var r=function(e,t,n){e.embed(n.deployments)};Hull.ready(r)},/*!****************************!*\
   !*** ./~/moment/moment.js ***!
   \****************************/
 function(e,t,n){var o;(function(e,r){//! moment.js
