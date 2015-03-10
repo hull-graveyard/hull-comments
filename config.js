@@ -1,104 +1,127 @@
-'use strict';
+"use strict";
 
-var fs = require('fs');
-var _ = require('underscore');
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HULL_CONFIG = require('./env');
-var pkg = require('./package.json');
-
-var LIB_NAME = pkg.name;
-var displayName = pkg.hull.displayName||LIB_NAME;
-
+/*global module, require, process, __dirname */
+var webpack = require("webpack");
+var path = require("path");
+var pkg = require("./package.json");
+var manifest = require("./manifest.json");
+var hullConfig = require("./hull-config.json");
+var moment = require("moment");
 
 // DO NOT CHANGE FOLDERS
 // WIHTOUT UPDATING PACKAGE.JSON TOO.
-var sourceFolder = 'src';
-var outputFolder = 'dist';
-var previewUrl   = 'http://localhost:8080/';
+var sourceFolder = "src";
+var outputFolder = "dist";
+var assetsFolder = "";
+var serverPort   = process.env.PORT||8081;
+var previewUrl   = "http://localhost:"+serverPort;
 
-var outputPath = path.join(__dirname, outputFolder);
+var hotReload = true;
 
 // DO NOT CHANGE SHIP ENTRY
 // WITHOUT UPDATING PACKAGE.JSON TOO
+// THESE ARE THE JS FILES USED AS ENTRY POINTS TO COMPILE YOUR APP
+
 var entry = {
-  ship: './'+sourceFolder+'/ship.js',
-  demo:  './'+sourceFolder+'/demo.js'
+  ship:  "./"+sourceFolder+"/ship.js",
+  index: "./"+sourceFolder+"/index.js"
+};
+
+// ADDITIONAL FILES TO BE COPIED BY GULP
+function gulpDest(out){
+  return path.join(outputFolder,assetsFolder,out);
 }
+
+var files = {
+  "src/vendors/**/*" : gulpDest("vendors/"),
+  "src/images/**/*"  : gulpDest("images/"),
+  "manifest.json"    : outputFolder,
+  "src/*.html"       : outputFolder,
+  "CNAME"            : outputFolder,
+};
+
+var libName = pkg.name;
+var displayName = manifest.name||libName;
+
+
+// ------------------------------------------------
+// ------------------------------------------------
+// NO NEED TO TOUCH ANYTHING BELOW THIS
+// ------------------------------------------------
+// ------------------------------------------------
+
+var outputPath = path.join(__dirname, outputFolder);
+
 var output = {
-  path: outputPath,
-  publicPath: '/'+outputFolder+'/',
-  library: [displayName, '[name]'],
-  libraryTarget: 'umd',
-  chunkFileName: '[id].chunk.js',
-  filename: '[name].js'
-}
+  path: path.join(outputPath,assetsFolder,"/"),
+  pathinfo: true,
+  filename: "[name].js",
+  chunkFileName: "[name].chunk.js",
+  libraryTarget: "umd",
+  library: displayName,
+  publicPath: assetsFolder+"/"
+};
 
-var gulpFiles    = {
-  source: ['locales'],
-  dest: outputFolder
-}
+var extensions         = ["", ".js", ".jsx", ".css", ".scss"];
+
+var modulesDirectories = ["node_modules", "bower_components", "src/vendor"];
+
+var sassIncludePaths   = modulesDirectories.map(function(include){
+  return ("includePaths[]="+path.resolve(__dirname, include));
+}).join("&");
 
 
-var extensions   = ['', '.js', '.jsx', '.css', '.scss'];
+// https://github.com/webpack/react-starter/blob/master/make-webpack-config.js
+// "imports?define=>false": Yeah, we"re going big and disabling AMD completely. F**k it.
+// This is because webpack strips the `this` context when requiring those, while they expect it.
+// Basically, this fixes all of our problems with badly constructed AMD modules.
+// Among which: vex, datepicker, underscore-contrib
+var loaders = [
+  {test: /\.json$/,                loaders: ["json-loader"] },
+  {test: /\.js$/,                  loaders: ["babel-loader"], exclude: /node_modules|bower_components/},
+  {test: /\.jsx$/,                 loaders: ["react-hot", "babel-loader"]},
+  {test: /\.(css|scss)$/,          loaders: ["style/useable", "css-loader", "autoprefixer-loader?browsers=last 2 version", "sass-loader?outputStyle=expanded&"+sassIncludePaths]},
+  {test: /\.jpe?g$|\.gif$|\.png$/, loaders: ["file"]},
+  {test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: "file" },
+];
 
-var sassIncludePaths=([
-  './bower_components','./node_modules'
-]).map(function(include){
-  return ("includePaths[]="+path.resolve(__dirname, include))
-}).join('&');
-
-var ldrs={
-  react: {test: /\.(jsx|js)$/, loaders: ['react-hot', '6to5-loader']},
-  style:    {test: /\.(css|scss)$/, loaders: ['style/useable', 'css-loader', 'sass-loader?outputStyle=expanded&'+sassIncludePaths, 'autoprefixer-loader?browsers=last 2 version']},
-  image:    {test: /.*\.(gif|png|jpg)$/, loaders: ['file', 'image-webpack-loader?optimizationLevel=7&interlaced=false']},
-  font:     {test: /.*\.(eot|woff|ttf|svg)/, loader: 'file'},
-}
-
-var loaders = {
-  development:[ldrs.react,ldrs.style,ldrs.image,ldrs.font],
-  production: [ldrs.react,ldrs.style,ldrs.image,ldrs.font]
-}
-
-// We remove the 'dist' from the filenames for demo and index.html in package.json
+// We remove the "dist" from the filenames for demo and index.html in package.json
 // Package.json expects our files to be addressable from the same repo
 // We put them in `dist` to have a clean structure but then we need to build them in the right place
-var demoFileName  = pkg.hull.demo.replace(outputFolder+'/','');
-var indexFileName = pkg.hull.index.replace(outputFolder+'/','');
-
 var plugins = [
-  new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')}}),
-  new HtmlWebpackPlugin({
-    title: displayName+' Dev/Demo Page',
-    template: path.join(sourceFolder,demoFileName),
-    filename: demoFileName
+  new webpack.DefinePlugin({
+    "BUILD_DATE" : JSON.stringify(moment().format("MMMM, DD, YYYY, HH:mm:ss")),
+    "PUBLIC_PATH": JSON.stringify(output.publicPath),
+    "hullConfig" : JSON.stringify(hullConfig)
   }),
-  new HtmlWebpackPlugin({
-    title: displayName+ ' Ship',
-    template: path.join(sourceFolder,indexFileName),
-    filename: indexFileName
-  }),
-  new webpack.optimize.OccurenceOrderPlugin(),
-]
+  new webpack.ResolverPlugin(
+    new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+  ),
+  new webpack.optimize.OccurenceOrderPlugin()
+];
 
-
-var externals = {}
-// var externals= /^[a-z\-0-9]+$/; // Every non-relative module is external,
+var externals = {};
 
 module.exports = {
-  LIB_NAME:LIB_NAME,
-  displayName: displayName,
-  HULL_CONFIG: HULL_CONFIG,
+  hotReload          : hotReload,
+  libName            : libName,
+  displayName        : displayName,
 
-  entry: entry,
-  output: output,
-  files :gulpFiles,
-  outputFolder: outputFolder,
-  previewUrl: previewUrl,
+  hullConfig         : hullConfig,
+  files              : files,
 
-  extensions:extensions,
-  plugins:plugins,
-  loaders:loaders,
-  externals:externals
-}
+  outputFolder       : outputFolder,
+  assetsFolder       : assetsFolder,
+  serverPort         : serverPort,
+  previewUrl         : previewUrl,
+
+  entry              : entry,
+  output             : output,
+  extensions         : extensions,
+  modulesDirectories : modulesDirectories,
+  plugins            : plugins,
+  loaders            : loaders,
+  externals          : externals,
+
+  pkg                : pkg
+};

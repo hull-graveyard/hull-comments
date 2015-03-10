@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var Header = require('./header');
-var Conversation = require('./conversation');
+import Header from './header';
+import Conversation from './conversation';
 
 var Comments = React.createClass({
   render: function() {

@@ -1,12 +1,12 @@
-var React = require('react');
-var cx = require('react/lib/cx');
+import React from 'react';
+import cx from 'react/lib/cx';
 
 
 function capitalize(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-var DropdownMenu = require('./dropdown-menu');
+import DropdownMenu from './dropdown-menu';
 
 var UserMenu = React.createClass({
 

@@ -1,5 +1,5 @@
-var React = require('react');
-var cx = require('react/lib/cx');
+import React from 'react';
+import cx from 'react/lib/cx';
 
 var DropdownMenu = React.createClass({
 

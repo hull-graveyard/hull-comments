@@ -1,94 +1,70 @@
 {
   "name": "hull-comments",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Comments ship for Hull.io",
-  "author": {
-    "name": "Romain Dardour",
-    "email": "romain@hull.io",
-    "url": "https://github.com/hull"
-  },
-  "bugs": {
-    "url": "https://github.com/hull-ships/hull-comments/issues"
-  },
   "homepage": "https://github.com/hull-ships/hull-comments",
   "license": "MIT",
-  "main": "dist/ship.js",
+  "main": "dist/assets/ship.js",
+  "author": {
+    "name": "Hull",
+    "email": "contact@hull.io",
+    "url": "https://github.com/hull"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/hull-ships/hull-comments"
   },
-  "hull": {
-    "displayName": "HullComments",
-    "index": "dist/index.html",
-    "demo": "dist/demo.html",
-    "locales": [
-      "en"
-    ],
-    "settings": [
-      {
-        "name": "redirect_url",
-        "title": "Redirect URL",
-        "description": "Where to redirect when login has succeeded.",
-        "type": "string"
-      }
-    ]
+  "bugs": {
+    "url": "https://github.com/hull-ships/hull-comments/issues"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/gulp server",
+    "prepublish": "./node_modules/.bin/gulp build"
   },
   "keywords": [
     "hull",
     "ship",
     "hull-ship",
-    "comments",
-    "comment",
-    "component",
-    "react",
-    "react-comments"
+    "react"
   ],
-  "scripts": {
-    "start": "./node_modules/.bin/gulp server",
-    "prepublish": "./node_modules/.bin/gulp build"
-  },
+
+
+
+
   "dependencies": {
-    "gulp-gh-pages": "^0.4.0",
-    "gulp-webpack": "^1.2.0",
-    "html-webpack-plugin": "^1.1.0",
-    "intl-messageformat": "^1.0.3",
-    "jsx-loader": "^0.12.2",
-    "moment": "^2.9.0",
+    "color": "^0.7.3",
     "object-assign": "^2.0.0",
-    "open": "0.0.5",
-    "react": "^0.12.1",
-    "react-contenteditable": "0.0.2",
-    "react-dropdown": "^0.1.1",
-    "react-frame-component": "^0.3.0",
-    "sass-loader": "^0.4.0-beta.1",
+    "react": ">=0.12.2",
+    "react-router": "^0.12.4",
     "underscore": "^1.7.0",
-    "underscore-contrib": "^0.3.0",
-    "underscore.inflection": "^1.2.0",
-    "underscore.string": "^2.4.0"
+    "underscore-contrib": "^0.3.0"
   },
   "devDependencies": {
+    "babel": "^4.4.5",
+    "babel-core": "^4.4.5",
+    "babel-loader": "^4.0.0",
+    "node-notifier": "^4.1.0",
     "del": "^1.1.0",
-    "good": "^5.0.0",
-    "good-console": "^3.0.1",
-    "gulp": "^3.8.10",
-    "gulp-replace": "^0.5.0",
+    "autoprefixer-loader": "^1.1.0",
+    "css-loader": "^0.9.0",
+    "file-loader": "^0.8.1",
+    "gulp": "^3.8.11",
+    "gulp-gh-pages": "^0.4.0",
+    "gulp-notify": "^2.2.0",
     "gulp-util": "^3.0.1",
-    "jest-cli": "^0.1.18",
+    "json-loader": "^0.5.1",
+    "jsx": "^0.9.89",
+    "jsx-loader": "^0.12.2",
+    "open": "0.0.5",
+    "react-hot-loader": "^1.0.0-alpha.3",
     "react-tools": "^0.11.2",
     "run-sequence": "^1.0.2",
-    "touch": "0.0.3",
-    "6to5": "^2.11.4",
-    "browser-sync": "^1.5.2",
-    "6to5-loader": "^2.0.0",
-    "jsx-loader": "^0.12.2",
-    "react-hot-loader": "^1.0.0-alpha.3",
+    "sass-loader": "^0.4.0-beta.1",
+    "stats-webpack-plugin": "0.0.1",
     "style-loader": "unity/style-loader",
-    "css-loader": "^0.9.0",
-    "autoprefixer-loader": "^1.1.0",
-    "image-webpack-loader": "^1.0.0",
-    "file-loader": "^0.8.1",
-    "extract-text-webpack-plugin": "^0.3.5",
+    "touch": "0.0.3",
     "webpack": "^1.4.15",
     "webpack-dev-server": "^1.6.6"
   }
+
 }

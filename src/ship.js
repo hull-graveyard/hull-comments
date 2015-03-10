@@ -1,78 +1,31 @@
-'use strict';
-var _ = require('underscore');
-var React = require('react');
-var assign = require('object-assign');
-var Engine = require('./lib/engine');
-var Comments = require('./components/comments');
-var Frame = require('./components/iframe');
-var styles = require('./styles/main.scss');
+import App from './components/app';
 
-var Ship = React.createClass({
+// This is the entry point for the Ship when it's used as an HTML Import.
+// It's standalone and boots when Hull exists and calls onEmbed
 
-  propTypes: {
-    engine: React.PropTypes.object.isRequired,
-    sandbox: React.PropTypes.bool,
-  },
+// Yes. You can do this with Webpack.
+// import MainStyles from './styles/main.scss';
 
-  getInitialState: function() {
-    return this.props.engine.getState();
-  },
+//// Now you can embed CSS like this.
+//// Gives you reference-counted files;
+// MainStyles.use(document.getElementsByTagName('head')[0]);
 
-  componentWillMount: function() {
-    this.props.engine.addChangeListener(this._onChange);
-  },
-  componentDidMount: function() {
-    this.props.styles.use(this.getStyleContainer());
-  },
-  componentWillUnmount: function() {
-    this.props.styles.unuse(this.getStyleContainer());
-    this.props.engine.removeChangeListener(this._onChange);
-  },
+//// To remove the style: 
+// MainStyles.unuse();
 
-  getStyleContainer: function(){
-    if(this.refs && this.refs.frame){
-      return this.refs.frame.getDOMNode().contentDocument.head
-    }
-    return document.getElementsByTagName('head')[0];
-  },
-  _onChange: function() {
-    this.setState(this.props.engine.getState());
-  },
+if (Hull){
 
-  renderStyles: function(){
-    var styles = this.props.styles
-    return styles.map(function(style){
-      return <style>{style[1]}</style>
-    });
-  },
-  renderContent: function() {
-    // return <div><p>+++_</p><h1>Cool</h1></div>;
-    return <Comments {...this.state} actions={this.props.engine.getActions()} />
-  },
+  // This is called when the ship has been embedded in the page.
+  Hull.onEmbed(document, App.start);
 
-  render: function() {
-    if (this.props.sandbox) {
-      return <Frame ref='frame'>{this.renderContent()}</Frame>;
-    } else {
-      return this.renderContent();
-    }
+  // Automatically resize the frame to match the Ship Content
+  // Call the method once to know if we're in a sandbox or not
+  if(Hull.setShipSize()){
+    setInterval(function(){
+      var height = document.getElementById('ship').offsetHeight
+      Hull.setShipSize({height:height});
+    } , 500)
   }
-});
-
-
-Hull.onEmbed(document, function(element, deployment){
-  Ship.start(element, deployment);
-});
-
-
-Ship.start = function(element, deployment){
-  deployment.settings = _.defaults({}, deployment.settings, {
-    entity_id: Hull.util.entity.encode(document.location.toString())
-  });
-
-  var engine = new Engine(deployment);
-
-  React.render(<Ship engine={engine} sandbox={true} styles={styles} />, element);
 }
 
-module.exports = Ship;
+module.exports=App

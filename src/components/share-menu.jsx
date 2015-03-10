@@ -1,5 +1,5 @@
-var React = require('react');
-var DropdownMenu = require('./dropdown-menu');
+import React from 'react';
+import DropdownMenu from './dropdown-menu';
 
 var ShareMenu = React.createClass({
 

@@ -1,7 +1,7 @@
-var React = require('react');
-var ContentEditable = require("./contenteditable");
-var cx = require('react/lib/cx');
-var LoginForm = require('./login-form');
+import React from 'react';
+import ContentEditable from "./contenteditable";
+import cx from 'react/lib/cx';
+import LoginForm from './login-form';
 
 var CommentForm = React.createClass({
 

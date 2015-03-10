@@ -1,8 +1,32 @@
 <html>
-  <head>
-    <title>Ship</title>
-    <script src="https://cdn.polyfill.io/v1/polyfill.min.js"></script>
-    <script src="{%=o.htmlWebpackPlugin.assets.ship%}"></script>
-  </head>
-  <body></body>
+<head>
+  <title>Ship Boilerplate</title>
+  <script src="https://hull-js.s3.amazonaws.com/cc8cc2924ecb9e6c8ae12bf7070ee410b220a781/hull.debug.js"></script>
+  <!--
+    This page will start the ship directly, skipping html embeds.
+    It will use the keys from manifest.json.
+    That's usually what you need to display a demo and develop locally.
+  -->
+  <style>
+    body{
+      color: #3f4547;
+      font-family: "Helvetica Neue", arial, sans-serif;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      background-color: white;
+      padding: 24px;
+    }
+    h1{
+      font-weight: 200;
+      color:#303030;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Host Page</h1>
+  <div class="main" id='ship'></div>
+  <script src="index.js"></script>
+</body>
 </html>

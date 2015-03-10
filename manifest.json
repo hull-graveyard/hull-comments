@@ -1,7 +1,9 @@
 {
-  "name": "comments",
-  "version": "0.0.1",
-  "index": "index.html",
+  "name": "Hull Comments",
+  "description": "Hull Comments Ship",
+  "picture": "picture.png",
+  "index": "ship.html",
+  "version": "0.0.2",
   "locales": ["en"],
   "settings": [
     {
@@ -10,6 +12,6 @@
       "description": "Where to redirect when login has succeeded.",
       "type": "string"
     }
-  ]
+  ],
+  "resources": []
 }
-

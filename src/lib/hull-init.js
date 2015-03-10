@@ -152,7 +152,7 @@ function Deployment(deployment) {
   this.settings = deployment.settings;
   this.platform = deployment.platform;
   this.embedMode = deployment.settings.$fullpage ? "iframe" : "import";
-  this.deployMode = deployment.settings.$multi ? "multi" : "single";
+  this.multi = !!deployment.settings.$multi;
   this.href = this.ship.index;
   this.targets = this.getTargets();
   this._elements = [];
@@ -166,7 +166,7 @@ Deployment.prototype.getTargets = function(refreshTargets) {
   if (this.targets && !refreshTargets) {
     return this.targets;
   } else {
-    if (this.deployMode === 'multi') {
+    if (this.multi) {
       targets = document.querySelectorAll(selector);
     } else {
       var target = document.querySelector(selector);

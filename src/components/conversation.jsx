@@ -1,10 +1,10 @@
-var React = require('react');
-var cx = require('react/lib/cx');
+import React from 'react';
+import cx from 'react/lib/cx';
 
-var Comment = require('./comment');
-var CommentForm = require('./comment-form');
-var DropdownMenu = require('./dropdown-menu');
-var ShareMenu = require('./share-menu');
+import Comment from './comment';
+import CommentForm from './comment-form';
+import DropdownMenu from './dropdown-menu';
+import ShareMenu from './share-menu';
 
 function capitalize(string){
   return string.charAt(0).toUpperCase() + string.slice(1);

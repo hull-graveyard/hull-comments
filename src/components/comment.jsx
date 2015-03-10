@@ -1,10 +1,10 @@
-var React = require('react');
-var cx = require('react/lib/cx');
-var moment = require('moment');
+import React from 'react';
+import cx from 'react/lib/cx';
+import moment from 'moment';
 
-var CommentForm = require('./comment-form');
-var DropdownMenu = require('./dropdown-menu');
-var ShareMenu = require('./share-menu');
+import CommentForm from './comment-form';
+import DropdownMenu from './dropdown-menu';
+import ShareMenu from './share-menu';
 
 var Comment = React.createClass({
 
