@@ -1,10 +1,11 @@
 import App from './components/app';
 
 Hull.ready(function(hull, me, platform, org){
-  if(platform.type==='ship'){
-    var deployment= { ship:platform, settings: {selector:'#ship'} }
-  } else {
-    var deployment = platform.deployments[0];
-  }
-  App.start(document.querySelector(deployment.settings.selector),deployment);
+  //// When developing on localhost, skip the embed process and start the ship directly
+  // App.start(document.querySelector(deployment.settings.selector),deployment);
+
+  //// When embedded by Hull. this is how the app will be booted automatically.
+  //// You don't have to call this yourself. Hull will do it for you
+  // hull.embed(platform.deployments)
+
 })
