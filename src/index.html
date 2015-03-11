@@ -1,7 +1,15 @@
 <html>
 <head>
   <title>Ship Boilerplate</title>
-  <script src="https://hull-js.s3.amazonaws.com/cc8cc2924ecb9e6c8ae12bf7070ee410b220a781/hull.debug.js"></script>
+  <script
+    id='hull-js-sdk'
+    src="https://hull-js.s3.amazonaws.com/b2ec13003969151cc857ed82e66a8b13b2a1b9c7/hull.js"
+    platform-id='54fefc94d421d53e2d000015'
+    org-url='https://ships-demos.hullbeta.io'
+    debug='true'
+    proxy-mode='true'
+    embed='false'
+    ></script>
   <!--
     This page will start the ship directly, skipping html embeds.
     It will use the keys from manifest.json.
@@ -27,6 +35,5 @@
 <body>
   <h1>Host Page</h1>
   <div class="main" id='ship'></div>
-  <script src="index.js"></script>
 </body>
 </html>
