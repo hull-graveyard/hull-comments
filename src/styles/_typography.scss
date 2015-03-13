@@ -1,3 +1,14 @@
+.pr-0{
+  padding-right: 0 !important;
+}
+.pl-0{
+  padding-left: 0 !important;
+}
+.ps-0{
+  @extend .pl-0;
+  @extend .pr-0;
+}
+
 .strong{
   font-weight: bold;
 }

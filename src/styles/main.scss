@@ -37,11 +37,6 @@
 // @import "foundation/components/offcanvas";
 @import "foundation/components/visibility";
 
-// @import './discovery';
-// @import './lounge';
-// @import './not_supported';
-
-
 @import './animations';
 @import './typography';
 @import './dropdowns';
@@ -50,19 +45,3 @@
 @import './spinner';
 @import './comment_form';
 @import './comment';
-
-// .comment-container, .comment{
-//   width: 100%;
-// }
-
-
-.pr-0{
-  padding-right: 0 !important;
-}
-.pl-0{
-  padding-left: 0 !important;
-}
-.ps-0{
-  @extend .pl-0;
-  @extend .pr-0;
-}
