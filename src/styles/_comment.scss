@@ -36,11 +36,17 @@
   }
   .comment-header{
     margin-bottom: 1rem;
+    @media #{$small-only}{
+      .avatar{
+        width: 1.5rem;
+        margin-top: 0.3rem;
+      }
+    }
+    .avatar{
+      position: absolute;
+    }
     @media #{$medium-up}{
       margin-bottom: 0rem;
-      .avatar{
-        position: absolute;
-      }
     }
   }
   .comment-message, .comment-footer{

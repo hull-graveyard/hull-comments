@@ -62,10 +62,10 @@ var Comment = React.createClass({
     return <div className={cx({ row:true, comment: true, collapsed: this.state.isCollapsed })}>
       <div className="small-12 columns">
         <div className="row comment-header">
-          <div className="small-2 medium-1 pr-0 columns">
+          <div className="small-1 pr-0 columns">
             <Avatar {...this.props.comment.user}/>
           </div>
-          <div className="small-10 medium-11 columns">
+          <div className="small-11 columns">
             <CommentMeta
               {...this.props}
               isCurrentUser={isCurrentUser}
