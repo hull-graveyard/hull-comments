@@ -1,7 +1,3 @@
-.avatar{
-  margin-top: .3rem;
-}
-
 .avatar, .small-avatar{
   img{
     border-radius: $global-rounded;
@@ -27,12 +23,25 @@
 
 
 .comment{
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   .comment-container{
     @extend %comment-content
   }
   .comment-meta{
+    margin-top: .5rem;
     margin-bottom: .5rem;
+    @media #{$medium-up}{
+      margin-top: 0rem;
+    }
+  }
+  .comment-header{
+    margin-bottom: 1rem;
+    @media #{$medium-up}{
+      margin-bottom: 0rem;
+      .avatar{
+        position: absolute;
+      }
+    }
   }
   .comment-message, .comment-footer{
     animation: downAndShow .2s forwards $easeOutQuint;
@@ -41,6 +50,10 @@
     transition: all .3s $easeOutQuint;
   }
   &.collapsed {
+    margin-bottom: 0;
+    @media #{$medium-up}{
+      margin-bottom: 2rem;
+    }
     .comment-message, .comment-footer{
       display: none;
       animation: upAndHide .2s forwards $easeOutQuint;
@@ -50,7 +63,12 @@
       opacity: .3;
     }
     .comment-meta{
-      padding-top: 13px;
+      @media #{$medium-up}{
+        margin-top: 1.1rem;
+      }
+    }
+    .comment-time, .comment-actions{
+      opacity: 1;
     }
   }
   .share-menu, .comment-time, .comment-actions{
@@ -65,9 +83,11 @@
 }
 
 
+
 .comment-meta .comment-actions{
   @extend .menubar-list;
   margin-left: .5rem;
+  padding: 0;
   display: inline-block;
 }
 
@@ -79,10 +99,14 @@
   margin-top: .5rem;
 }
 
-.comment-footer .share-menu,
-.comment-footer .edit,
 .comment-meta .comment-time{
   &:before{
     content: ' • ';
+  }
+}
+
+.comment-footer .menubar-list{
+  li{
+    margin-right: 1rem;
   }
 }

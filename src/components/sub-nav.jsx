@@ -13,7 +13,7 @@ var SubHeader = React.createClass({
         </ul>
         <ul className="left">
           <FavoritesButton {...this.props}/>
-          <ShareMenu {...this.props} />
+          <ShareMenu {...this.props} right={false} />
         </ul>
       </section>
     </nav>;

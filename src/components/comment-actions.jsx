@@ -36,7 +36,7 @@ var CommentActions = React.createClass({
   render: function() {
 
     return (
-      <ul className="comment-actions">
+      <ul className="comment-actions menubar-list">
         <li className={this.props.isCollapsed ? "expand" : "collapse"}>
           <a href="#" onClick={this.props.onToggleCollapse} title="Collapse"><strong>{this.props.isCollapsed ? "+" : "−"}</strong></a>
         </li>

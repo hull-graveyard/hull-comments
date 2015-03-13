@@ -33,7 +33,9 @@
         }
         &.dropdown-container{
           > a{
-            margin-right: 2rem;
+            @media #{$small-only}{
+              margin-right: 2rem;
+            }
           }
         }
       }

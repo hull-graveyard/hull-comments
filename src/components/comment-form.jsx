@@ -101,6 +101,7 @@ var CommentForm = React.createClass({
 
   renderTextarea: function() {
     var user = this.props.user || {};
+    var placeholder = "<span class='light-text'>What do you think?</span>"
     return (
       <div className="comment-form-editor">
         <ContentEditable
@@ -108,7 +109,7 @@ var CommentForm = React.createClass({
           className="textarea"
           html={this.state.text}
           tabIndex="0"
-          placeholder='What do you think?'
+          placeholder={placeholder}
           onFocus={this.expandForm}
           onBlur={this.contractForm}
           onChange={this.handleChange}/>
