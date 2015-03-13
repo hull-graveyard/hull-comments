@@ -7,3 +7,10 @@
     margin-right: .5rem;
   }
 }
+.comment-footer{
+  .menubar-list{
+    @media #{$medium-up}{
+      float: left;
+    }
+  }
+}

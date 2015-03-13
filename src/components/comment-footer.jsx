@@ -46,17 +46,20 @@ var CommentFooter = React.createClass({
     var ns = this.getNegativeScore();
     var downColor = (!!ns)?"#FF6600":null
     var upColor = (!!ps)?"#FFCC00":null
-    items.push(
-      <li className="voting">
-        <a href="#" title="Vote up" className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} {...this.props.settings} color={upColor}/></a>
-      </li>
-    );
 
-    items.push(
-      <li className="voting">
-        <a href="#" title="Vote down" className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} {...this.props.settings} color={downColor}/> {ns}</a>
-      </li>
-    );
+    if (this.props.comment && this.props.comment.id){
+      items.push(
+        <li className="voting">
+          <a href="#" title="Vote up" className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} {...this.props.settings} color={upColor}/></a>
+        </li>
+      );
+
+      items.push(
+        <li className="voting">
+          <a href="#" title="Vote down" className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} {...this.props.settings} color={downColor}/> {ns}</a>
+        </li>
+      );
+    }
 
     if (this.props.isCurrentUser) {
       items.push(
