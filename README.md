@@ -5,7 +5,7 @@ A Comments [Ship](http://hull.io/ships) you can embed in your site built with [R
 
 ## Manifest URL
 
-    https://hull-ships.github.io/comments/manifest.json
+    https://hull-ships.github.io/hull-comments/manifest.json
 
 ## Ship Options
 
