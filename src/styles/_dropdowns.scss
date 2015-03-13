@@ -1,0 +1,110 @@
+// .nav-bar{
+//   .dropdown-container{
+//     .dropdown, .f-dropdown{
+//       position: static;
+//       border: none;
+//       width: 100%;
+//       box-shadow: none;
+//       opacity: .7;
+//       display: none;
+//       left: 15px;
+//       &:before, &:after{
+//         display: none;
+//       }
+//     }
+//     &.open{
+//       .dropdown, .f-dropdown{
+//         display: block;
+//       }
+//     }
+//   }
+// }
+// 
+
+
+.dropdown-container{
+  position: relative;
+  a{ outline: none; }
+  .dropdown, .f-dropdown{
+    display: none;
+    left: 15px;
+    top: 100%;
+    min-width: 10rem;
+    animation: upAndHide .2s forwards $easeOutQuint;
+  }
+  .dropdown-right{
+    right: 15px;
+    left: auto;
+  }
+  &.open {
+    .dropdown, .f-dropdown{
+      display: block;
+      animation: downAndShow .2s forwards $easeOutQuint;
+    }
+  }
+}
+
+.dropdown, .f-dropdown{
+  border-radius: $global-radius;
+  box-shadow: 0 0 0 2px $filet-color;
+  &.dropdown-right{
+    &:before, &:after{
+      left: auto;
+    }
+    &:before{
+      right: 10px;
+    }
+    &:after{
+      right: 9px;
+    }
+  }
+}
+
+
+
+.comment-footer .dropdown-container {
+  .f-dropdown{
+    width: 200px;
+    left: 100%;
+    margin-left: 1rem;
+    box-shadow: none;
+    top:0;
+    li a {
+      display: inline;
+    }
+  }
+  &.open{
+    .f-dropdown{
+      display: block;
+      // animation: rightAndShow .2s forwards $easeOutQuint;
+    }
+  }
+}
+
+.top-bar-section .dropdown li:not(.has-form) {
+  a:not(.button){
+    line-height: $base-line-height*1.5;
+  }
+  &:not(.active):hover{
+    > a:not(.button){
+      background: $filet-color;
+      color: $primary-color;
+    }
+  }
+}
+
+
+.top-bar .dropdown {
+  background: transparentize(white,.02);
+}
+
+.top-bar.expanded .dropdown-container,
+.comment-footer .dropdown-container{
+  &:before, &:after{
+    display: none;
+  }
+}
+
+.user-menu .dropdown-right{
+  right: 26px;
+}

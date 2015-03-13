@@ -1,0 +1,73 @@
+@media #{$medium-up}{
+  .top-form{
+    margin-bottom: 2.5rem;
+    .comment-form-actions{
+      margin-top: .3rem;
+      margin-right: .3rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 0;
+      animation: upAndHide .2s .1s forwards $easeOutQuint;
+      transition:all .2s $easeOutQuint;
+      .button{
+        margin: 0.47rem; 
+        & + .button{
+          margin-left: .25rem;
+        }
+      }
+    }
+    .comment-form.expanded {
+      .comment-form-actions{
+        opacity: .5;
+        animation: downAndShow .2s forwards $easeOutQuint;
+        display:block;
+        &:hover{
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.comment-form-editor{
+  overflow: auto;
+  position: relative;
+  .top-form &{
+    @extend %comment-content;
+  }
+}
+
+
+.textarea{
+  -webkit-appearance: none;
+  outline:none;
+  position: relative;
+  padding: 1rem $column-gutter/2;
+  background: #fff;
+  border: 2px solid $filet-color;
+  border-radius: $global-radius;
+  overflow: auto;
+  width: 100%;
+  max-height: 8rem;
+  transition:all .2s $easeOutQuint;
+  margin-bottom: 1rem;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="color"], textarea{
+ border-radius: $global-radius; 
+}

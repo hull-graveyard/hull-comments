@@ -1,18 +1,21 @@
 import React from 'react';
 import DropdownMenu from './dropdown-menu';
+import Icons from './icons';
 
 var ShareMenu = React.createClass({
 
   getTitle: function() {
     return this.props.title || <span>
-      <span className="label">Share</span> <span className="icon-export" />
+      Share <Icons.Share {...this.props.settings} size={13}/>
     </span>;
   },
 
   getOptions: function() {
+    var fb = <span> <Icons.Facebook {...this.props.settings} size={13}/> Facebook</span>
+    var tw = <span> <Icons.Twitter {...this.props.settings} size={13}/> Twitter</span>
     return [
-      { label: 'Facebook', value: 'facebook' },
-      { label: 'Twitter', value: 'twitter' }
+      { label: fb, value: 'facebook' },
+      { label: tw, value: 'twitter' }
     ];
   },
 
@@ -21,12 +24,13 @@ var ShareMenu = React.createClass({
   },
 
   render: function() {
-    return <DropdownMenu className="share-menu"
-              caret={false}
-              component="li"
-              options={this.getOptions()}
-              title={this.getTitle()}
-              onSelect={this.handleShare} />;
+    return <DropdownMenu
+      className="share-menu"
+      component="li"
+      right
+      options={this.getOptions()}
+      title={this.getTitle()}
+      onSelect={this.handleShare} />;
   }
 });
 

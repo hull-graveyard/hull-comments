@@ -1,80 +1,70 @@
-@import './discovery';
-@import './lounge';
+// @import "./reset";
+@import "settings";
+// @import "foundation";
 
-html {
-  overflow: hidden;
+// Or selectively include components
+@import
+  "foundation/components/accordion",
+  "foundation/components/alert-boxes",
+  "foundation/components/block-grid",
+  "foundation/components/breadcrumbs",
+  "foundation/components/button-groups",
+  "foundation/components/buttons",
+  "foundation/components/clearing",
+  "foundation/components/dropdown",
+  "foundation/components/dropdown-buttons",
+  "foundation/components/flex-video",
+  "foundation/components/forms",
+  "foundation/components/grid",
+  "foundation/components/inline-lists",
+  "foundation/components/joyride",
+  "foundation/components/keystrokes",
+  "foundation/components/labels",
+  "foundation/components/magellan",
+  "foundation/components/orbit",
+  "foundation/components/pagination",
+  "foundation/components/panels",
+  "foundation/components/pricing-tables",
+  "foundation/components/progress-bars",
+  "foundation/components/reveal",
+  "foundation/components/side-nav",
+  "foundation/components/split-buttons",
+  "foundation/components/sub-nav",
+  "foundation/components/tables",
+  "foundation/components/tabs",
+  "foundation/components/thumbs",
+  "foundation/components/tooltips",
+  "foundation/components/top-bar",
+  "foundation/components/type",
+  "foundation/components/offcanvas",
+  "foundation/components/visibility";
+
+// @import './discovery';
+// @import './lounge';
+// @import './not_supported';
+
+
+@import './animations';
+@import './typography';
+@import './dropdowns';
+@import './navbar';
+@import './list';
+@import './spinner';
+@import './comment_form';
+@import './comment';
+
+// .comment-container, .comment{
+//   width: 100%;
+// }
+
+
+.pr-0{
+  padding-right: 0 !important;
 }
-
-html, body {
-  overflow-y:scroll;
+.pl-0{
+  padding-left: 0 !important;
 }
-
-.not-supported body {
-  font-family: Arial, sans-serif;
-  font-size: 10pt;
-}
-
-.not-supported ul, .not-supported li {
-  margin: 0;
-  padding: 0;
-}
-
-.not-supported li {
-  list-style-type: none;
-}
-
-.not-supported h4 a {
-  color: #000;
-  text-decoration: none;
-}
-
-.not-supported h4 {
-  margin: 0 0 5px;
-  padding: 5px 0;
-  border-bottom: dashed 1px #999;
-}
-
-.not-supported #notSupported {
-  display: block;
-  border: solid 1px red;
-  padding: 10px;
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-
-.not-supported #notSupported p {
-  margin-bottom: 10px;
-}
-
-.not-supported #notSupported ul {
-  margin-left: 20px;
-}
-
-.not-supported #notSupported ul li {
-  margin-bottom: 5px;
-}
-
-#notSupported, .legacy-mode, .old-browser {
-  display: none;
-}
-
-.not-supported.type-1 .old-browser {
-  display: block;
-}
-
-.not-supported.type-2 .legacy-mode {
-  display: block;
-}
-
-/* A trick to hide this container unless it is absolutely necessary */
-@media (max-width: 100000px) {
-  #postCompatContainer {
-    display: none;
-  }
-}
-
-.not-supported #postCompatContainer {
-  width: 500px;
-  margin-top: 20px;
-  display: block!important;
+.ps-0{
+  @extend .pl-0;
+  @extend .pr-0;
 }

@@ -1,17 +1,19 @@
-import React from 'react';
-
-import Header from './header';
+import React        from 'react';
+import MainNav      from './main-nav';
+import SubNav       from './sub-nav';
 import Conversation from './conversation';
+import Icons        from './icons';
 
 var Comments = React.createClass({
   render: function() {
     if (this.props.isReady) {
-      return <div style={{ padding: 10, margin: 10 }}>
-        <Header {...this.props} />
+      return <div>
+        <MainNav {...this.props} />
+        <SubNav {...this.props} />
         <Conversation {...this.props} />
       </div>;
     } else {
-      return <small>Loading</small>;
+      return <Icons.Spinner size="64" centered/>;
     }
   }
 });

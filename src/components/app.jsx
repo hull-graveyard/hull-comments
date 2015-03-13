@@ -1,9 +1,16 @@
-import _         from 'underscore';
+import _            from 'underscore';
+import inflections  from 'underscore.inflections'; 
+_.mixin(inflections);
+import underscore_string  from 'underscore.string'; 
+_.mixin(underscore_string.exports());
+
+
 import React     from 'react';
 import Comments  from './comments';
 
 import Engine    from '../lib/engine';
 import styles    from '../styles/main.scss';
+import HullStyle from './hull-style';
 
 var App = React.createClass({
 
@@ -37,16 +44,11 @@ var App = React.createClass({
     this.setState(this.props.engine.getState());
   },
 
-  renderContent: function() {
-    return <Comments {...this.state} actions={this.props.engine.getActions()} />
-  },
-
   render: function() {
-    if (this.props.sandbox) {
-      return <Frame ref='frame'>{this.renderContent()}</Frame>;
-    } else {
-      return this.renderContent();
-    }
+    return <div>
+      <HullStyle {...this.state.settings}/>
+      <Comments {...this.state} actions={this.props.engine.getActions()} />
+    </div>
   },
 
   statics:{

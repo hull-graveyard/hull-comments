@@ -1,6 +1,7 @@
 import assign from 'object-assign';
 var Emitter = require('events').EventEmitter;
 import IntlMessageFormat from 'intl-messageformat';
+import sanitize from 'sanitize-caja';
 
 var ACTIONS = [
   'signup',
@@ -70,6 +71,7 @@ assign(Engine.prototype, Emitter.prototype, {
 
   getState: function() {
     var state = {
+      settings: this._ship.settings,
       user: this._user ? this._user : undefined,
       identities: this._identities,
       providers: this.getProviders(),
@@ -282,7 +284,7 @@ assign(Engine.prototype, Emitter.prototype, {
         this._isFetching = false;
         this.emitChange('fetching error: ' + err);
       })
-      .fail(function(err){
+      .fail((err)=>{
         console.log(err.stack);
       })
       .done();
@@ -303,14 +305,14 @@ assign(Engine.prototype, Emitter.prototype, {
       if (comment && comment.id === id) {
         found = comment;
         comment._isDeleting = true;
-        Hull.api(comment.id, 'delete', { description: "[deleted]" }).then(function(res) {
+        Hull.api(comment.id, 'delete', { description: "[deleted]" }).then((res)=> {
           found = res;
           this._comments = this._comments.filter(function(c) { return c.id != id; });
           this.emitChange('deleted ok');
-        }.bind(this), function(err) {
+        }, (err)=> {
           found._isDeleting = false;
           this.emitChange("error deleting comment: ", err.toString());
-        }.bind(this)).done();
+        }).done();
       }
       return comment;
     }, this);
@@ -318,21 +320,22 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   postComment: function(text, inReplyTo) {
+    text = sanitize(text);
     if (this._isPosting) return false;
     if (this._user) {
       this._comments = this._comments || [];
       var comment = { description: text, extra: { }, created_at: new Date() };
       this._comments.push({ description: text, user: this._user, created_at: new Date() });
-      this._isPosting = Hull.api(this.entity_id + "/comments", 'post', comment).done();
-      this._isPosting.then(function() {
+      this._isPosting = Hull.api(this.entity_id + "/comments", 'post', comment);
+      this._isPosting.then(()=>{
         this.emitChange('comment is now posted, refetching to be sure...');
         this._isPosting = false;
         this.fetchComments();
-      }.bind(this), function() {
+      }, ()=>{
         this._isPosting = false;
         this._comments.pop();
         this.emitChange();
-      });
+      }).done();
       this.emitChange('stared posting a comment...');
     } else {
       return false;

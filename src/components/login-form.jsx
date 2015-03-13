@@ -1,53 +1,63 @@
 import React from 'react';
 import cx from 'react/lib/cx';
+import Icons from './icons';
+import _ from 'underscore';
 
 var LoginForm = React.createClass({
 
-  getInitialState: function() {
+  getInitialState() {
     return { newUser: {} };
   },
 
-  login: function(providerName) {
+  login(providerName) {
     this.props.actions.login(providerName);
   },
 
-  signup: function(e) {
+  signup(e) {
     e.preventDefault();
     this.props.actions.signup(this.state.newUser);
   },
 
-  handleChange: function(e) {
+  handleChange(e) {
     var newUser = this.state.newUser || {};
     newUser[e.target.name] = e.target.value;
     console.warn('change: ', newUser);
     this.setState({ newUser: newUser });
   },
 
-  render: function() {
-
+  renderSocialLogin(){
     var providers = this.props.providers;
-
-    return <div data-role="login-form"><div><section className="auth-section logged-out">
-      <div className="connect">
-        <h6>Sign in with</h6>
-        <ul data-role="login-menu" className="services login-buttons">
-          {this.props.providers.map(function(provider) {
-            return <li className={"auth-" + provider.name}>
-              <button type="button" onClick={this.login.bind(this, provider.name)}>
-                <i className={"icon-" + provider.name + "-circle"} />
-              </button>
-            </li>;
-          }, this)}
-        </ul>
-      </div>
-      <div className="guest">
-        <h6 className="guest-form-title">
-        or register
-        </h6>
+    if(providers.length){
+      var gridClassName=`small-block-grid-${providers.length}`
+    }
+    return <div className="connect">
+      <p className='light-text text-center'><strong><small className='light-text'>SIGN IN WITH</small></strong></p>
+      <ul className={gridClassName}>
+        {this.props.providers.map(function(provider) {
+          var providerName = _.str.titleize(provider.name)
+          var btnClasses = {
+            'button':true,
+            'expand':true,
+            'round':true,
+            [provider.name]:true
+          }
+          var Icon = Icons[providerName]
+          return <li className={"auth-" + provider.name}>
+            <a href="#" className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}><Icon {...this.props.settings} color="#FFFFFF"/> <strong>{providerName}</strong></a>
+          </li>;
+        }, this)}
+      </ul>
+    </div>;
+  },
+  renderEmailLogin(){
+    return <div>
+      <div className="register">
+        <p className='light-text text-center'><strong><small> OR REGISTER:</small></strong></p>
         <p className="input-wrapper">
           <input dir="auto" type="text" placeholder="Name" name="name" value={this.state.newUser.name} maxLength="30" onChange={this.handleChange} />
         </p>
-        <div className="guest-details  expanded" data-role="guest-details">
+
+        <div className="register-details">
           <p className="input-wrapper">
             <input dir="auto" type="email" placeholder="Email" name="email" value={this.state.newUser.email} onChange={this.handleChange}  />
           </p>
@@ -57,10 +67,19 @@ var LoginForm = React.createClass({
         </div>
       </div>
       <div className="proceed">
-        <button type="submit" className="btn submit" aria-label="Next" onClick={this.signup}><span className="icon-proceed"></span></button>
+        <button className="small button round expand success" onClick={this.signup}>
+          <Icons.Check {...this.props.settings} color="#FFFFFF"/>
+        </button>
       </div>
-    </section>
-    </div></div>;
+      </div>
+  },
+
+  render() {
+
+    return <section className="auth-section logged-out">
+      {this.renderSocialLogin()}
+      {this.renderEmailLogin()}
+    </section>;
   }
 });
 

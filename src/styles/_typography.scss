@@ -1,0 +1,84 @@
+.strong{
+  font-weight: bold;
+}
+
+.button.transparent, button.transparent{
+  background: transparent;
+  color: $primary-color;
+}
+
+.button{
+  &.facebook, &.twitter, &.google{
+    color: white;
+  }
+}
+
+.button.facebook{
+  background: #3b5998;
+  &:hover{
+    background: #1d315b;
+  }
+}
+.button.twitter{
+  background: #55acee;
+  &:hover{
+    background: #006daa;
+  }
+}
+.button.google{
+  background: #dd4b39;
+}
+
+.text-primary   {
+  color: $primary-color;
+  &.button.transparent{
+    color: $primary-color;
+  }
+}
+.text-text      {
+  color: $text-color;
+  &.button.transparent{
+    color: $text-color;
+  }
+}
+.text-filet     {
+  color: $filet-color;
+  &.button.transparent{
+    color: $filet-color;
+  }
+}
+.text-secondary {
+  color: $secondary-color;
+  &.button.transparent{
+    color: $secondary-color;
+  }
+}
+.text-alert     {
+  color: $alert-color;
+  &.button.transparent{
+    color: $alert-color;
+  }
+}
+.text-success   {
+  color: $success-color;
+  &.button.transparent{
+    color: $success-color;
+  }
+}
+.text-warning   {
+  color: $warning-color;
+  &.button.transparent{
+    color: $warning-color;
+  }
+}
+.text-info      {
+  color: $info-color;
+  &.button.transparent{
+    color: $info-color;
+  }
+}
+
+button, .button{
+  outline:none;
+}
+

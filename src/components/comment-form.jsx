@@ -64,22 +64,14 @@ var CommentForm = React.createClass({
     }
   },
 
-  renderAvatar: function() {
-    if (this.props.mode !== 'edit') {
-      var picture = this.props.user ? this.props.user.picture : "http://hull.s3.amazonaws.com/avatar.png"
-      return (
-        <div className="avatar">
-          <a className="user">
-            <img src={picture} />
-          </a>
-        </div>
-      );
+  expandForm: function(e) {
+    if (this.props.expanded || !this.state.isExpanded) {
+      this.setState({ isExpanded: true });
     }
   },
-
-  expandForm: function(e) {
-    if (!this.state.isExpanded) {
-      this.setState({ isExpanded: true });
+  contractForm: function(e) {
+    if (!this.props.expanded && this.state.isExpanded) {
+      this.setState({ isExpanded: false });
     }
   },
 
@@ -94,36 +86,35 @@ var CommentForm = React.createClass({
     var user = this.props.user;
     if (user)  {
       if (this.props.mode === 'edit') {
-        return <div className="temp-post">
-          <a href="#" className="cancel" onClick={this.handleCancel}>Cancel</a>
-          <button className="btn" onClick={this.onSubmit}>Save Edit</button>
-        </div>;
+        var actions = [
+          <a href="#" className="tiny button radius transparent text-text" onClick={this.handleCancel}>Cancel</a>,
+          <button className="tiny button radius strong" onClick={this.onSubmit}>Update</button>
+        ]
       } else {
-        return  <div className="temp-post" style={{textAlign: "right"}}>
-          <button className="btn" onClick={this.onSubmit}>
-            Post as <span data-role="username">{user.name}</span>
-          </button>
-        </div>;
+        var actions=[
+          <button className="tiny button radius" onClick={this.onSubmit}><strong>Post as {user.name}</strong></button>
+        ]
       }
     }
+    return actions
   },
 
   renderTextarea: function() {
     var user = this.props.user || {};
     return (
-      <div className="textarea-wrapper" data-role="textarea" dir="auto">
+      <div className="comment-form-editor">
         <ContentEditable
           ref="textarea"
           className="textarea"
           html={this.state.text}
           tabIndex="0"
-          style={{overflow: "auto", maxHeight: 350 }}
-          placeholder='Join the discussion...'
+          placeholder='What do you think?'
           onFocus={this.expandForm}
+          onBlur={this.contractForm}
           onChange={this.handleChange}/>
-        <div className="post-actions">
-          <div className={cx({"logged-in" : !!this.props.user, "auth-section": !this.props.user })}>
-            <section>{this.renderButtons()}</section>
+        <div className="comment-form-actions">
+          <div className={cx({"logged-in" : !!this.props.user, "right":true, "auth-section": !this.props.user })}>
+            {this.renderButtons()}
           </div>
         </div>
       </div>
@@ -140,18 +131,16 @@ var CommentForm = React.createClass({
     var editMode = this.props.mode === 'edit';
 
     var className = cx({
-      reply: !editMode,
-      edit: editMode,
-      authenticated: !!this.props.user,
-      expanded: this.state.isExpanded
+      'comment-form' : true,
+      'edit'         : editMode,
+      'reply'        : !editMode,
+      'authenticated': !!this.props.user,
+      'expanded'     : this.state.isExpanded
     });
     return <form className={className}>
       {this.renderError()}
-      <div className={cx({ postbox: !editMode })}>
-        {this.renderAvatar()}
-        {this.renderTextarea()}
-        {this.renderLoginForm()}
-      </div>
+      {this.renderTextarea()}
+      {this.renderLoginForm()}
     </form>;
   }
 });

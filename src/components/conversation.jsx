@@ -2,68 +2,7 @@ import React from 'react';
 import cx from 'react/lib/cx';
 
 import Comment from './comment';
-import CommentForm from './comment-form';
-import DropdownMenu from './dropdown-menu';
-import ShareMenu from './share-menu';
-
-function capitalize(string){
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-var SortMenu = React.createClass({
-
-  handleChange: function(val) {
-    this.props.actions.orderBy(val.value);
-  },
-
-  getTitle: function() {
-    return capitalize(this.props.orderBy);
-  },
-
-  getOptions: function() {
-    return ['newest', 'oldest', 'best'].map(function(opt) {
-      return { value: opt, label: capitalize(opt) }
-    });
-  },
-
-  render: function() {
-    return <DropdownMenu
-      className="sorting"
-      component="li"
-      options={this.getOptions()}
-      title={this.getTitle()}
-      value={this.props.orderBy}
-      onSelect={this.handleChange} />
-  }
-});
-
-
-var NavSecondary = React.createClass({
-
-  toggleFavorite: function(e) {
-    e.preventDefault();
-    this.props.actions.toggleFavorite();
-  },
-
-  render: function() {
-    return <div className="nav nav-secondary">
-      <ul>
-        <SortMenu {...this.props} />
-        <li className="favorite pull-right">
-          <div className={cx({"thread-likes" : true, upvoted: !!this.props.isFavorite })}>
-            <a href="#" onClick={this.toggleFavorite}>
-              <span className="label">Favorites</span> <span className="icon-star" />
-            </a>
-          </div>
-        </li>
-        <ShareMenu {...this.props} />
-      </ul>
-    </div>;
-  }
-
-});
-
-
+import TopForm from './top-form';
 
 var Posts = React.createClass({
 
@@ -73,13 +12,14 @@ var Posts = React.createClass({
   },
 
   render: function() {
+    var comments = this.props.comments.map(function(comment, i) {
+        return  <Comment key={"comment-" + (comment.id || i)} {...this.props} comment={comment} />;
+      }, this)
     return <div>
-      <div style={{ marginBottom: 24 }}><CommentForm {...this.props} /></div>
-      <ul className="post-list">
-        {this.props.comments.map(function(comment, i) {
-          return  <Comment key={"comment-" + (comment.id || i)} {...this.props} comment={comment} />;
-        }, this)}
-      </ul>
+      <TopForm {...this.props}/>
+
+      {comments}
+
       <div className="load-more hide" data-role="more">
         <a onClick={this.loadMore} className="btn">Load more comments</a>
       </div>
@@ -91,12 +31,7 @@ var Posts = React.createClass({
 var Conversation = React.createClass({
 
   render: function() {
-    return (
-      <section>
-        <NavSecondary {...this.props} />
-        <Posts {...this.props} />
-      </section>
-    );
+    return <Posts {...this.props}/>
   }
 });
 
