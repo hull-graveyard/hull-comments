@@ -45,3 +45,7 @@
 @import './spinner';
 @import './comment_form';
 @import './comment';
+
+body{
+  -webkit-font-smoothing: antialiased;
+}
