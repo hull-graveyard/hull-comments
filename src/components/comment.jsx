@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'react/lib/cx';
 import moment from 'moment';
-
 import CommentForm from './comment-form';
 import ShareMenu from './share-menu';
 import CommentMeta from './comment-meta';
@@ -10,7 +9,6 @@ import CommentFooter from './comment-footer';
 import sanitize from 'sanitize-caja';
 
 var Comment = React.createClass({
-
   propTypes: {
     comment: React.PropTypes.object.isRequired,
     onDelete: React.PropTypes.func,
@@ -32,7 +30,6 @@ var Comment = React.createClass({
     e.preventDefault();
     this.setState({ isCollapsed: !this.state.isCollapsed });
   },
-
 
   isCurrentUser: function() {
     var commentUser = (this.props.comment || {}).user || {};

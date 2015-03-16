@@ -41,13 +41,16 @@ var CommentFooter = React.createClass({
   },
 
   render: function() {
+    if (this.props.comment == null || this.props.comment.id == null) {
+      return <div className='comment-footer light-text'>Posting comment...</div>;
+    }
+
     var items = [], separator = <li className="bullet">•</li>;
     var ps = this.getPositiveScore();
     var ns = this.getNegativeScore();
     var downColor = (!!ns)?"#FF6600":null
     var upColor = (!!ps)?"#FFCC00":null
 
-    if (this.props.comment && this.props.comment.id){
       items.push(
         <li className="voting">
           <a href="#" title="Vote up" className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} {...this.props.settings} color={upColor}/></a>
@@ -59,7 +62,6 @@ var CommentFooter = React.createClass({
           <a href="#" title="Vote down" className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} {...this.props.settings} color={downColor}/> {ns}</a>
         </li>
       );
-    }
 
     if (this.props.isCurrentUser) {
       items.push(
@@ -73,10 +75,9 @@ var CommentFooter = React.createClass({
 
     items.push(<ShareMenu {...this.props} />);
 
-
     return <div className='comment-footer light-text'><div className='menubar-list'>{items}</div></div>;
   }
-
 });
 
 module.exports = CommentFooter;
+
