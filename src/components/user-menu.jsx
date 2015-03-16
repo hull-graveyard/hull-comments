@@ -4,13 +4,10 @@ import capitalize from '../lib/capitalize';
 import DropdownMenu from './dropdown-menu';
 
 var UserMenu = React.createClass({
-
   handleChange: function(item) {
     switch(item.value) {
       case 'logout':
         this.props.actions.logout();
-        break;
-      case 'profile':
         break;
     }
   },
@@ -20,21 +17,24 @@ var UserMenu = React.createClass({
   },
 
   render: function() {
+    var user = this.props.user;
 
-    var options, title, action;
-    if(this.props.user){
-      var user = this.props.user;
-      title = <span className='small-avatar'>
-        <img src={user.picture}/>
-        <span className="show-for-medium-up">{user.name || user.email}</span>
-      </span>
+    var title;
+    var options;
+    var action;
+    if (user) {
+      title = (
+        <span className='small-avatar'>
+          <img src={user.picture}/>
+          <span className="show-for-medium-up">{user.name || user.email || 'logged in as Guest'}</span>
+        </span>
+      );
       options = [
-        { label: "Your Profile", value: "profile" },
         { label: "Logout", value: "logout" }
-      ]
+      ];
       action = this.handleChange;
     } else {
-      title = 'Login'
+      title = 'Login';
       options = this.props.providers.map(function(provider) {
         return { label: capitalize(provider.name), value: provider.name };
       }, this);
@@ -49,7 +49,6 @@ var UserMenu = React.createClass({
       onSelect={action}
       title={title} />;
   }
-
 });
-
 module.exports = UserMenu;
+

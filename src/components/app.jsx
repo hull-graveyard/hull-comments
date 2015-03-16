@@ -1,7 +1,7 @@
 import _            from 'underscore';
-import inflections  from 'underscore.inflections'; 
+import inflections  from 'underscore.inflections';
 _.mixin(inflections);
-import underscore_string  from 'underscore.string'; 
+import underscore_string  from 'underscore.string';
 _.mixin(underscore_string.exports());
 
 
@@ -13,7 +13,6 @@ import styles    from '../styles/main.scss';
 import HullStyle from './hull-style';
 
 var App = React.createClass({
-
   propTypes: {
     engine: React.PropTypes.object.isRequired,
   },

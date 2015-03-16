@@ -321,12 +321,17 @@ assign(Engine.prototype, Emitter.prototype, {
 
   postComment: function(text, inReplyTo) {
     text = sanitize(text);
+
     if (this._isPosting) return false;
-    if (this._user) {
+
+    // TODO add anonymous settings
+    if (true || this._user) {
       this._comments = this._comments || [];
+
       var comment = { description: text, extra: { }, created_at: new Date() };
-      this._comments.push({ description: text, user: this._user, created_at: new Date() });
-      this._isPosting = Hull.api(this.entity_id + "/comments", 'post', comment);
+      this._comments.push({ description: text, user: (this._user || {}), created_at: new Date() });
+
+      this._isPosting = Hull.api(this.entity_id + '/comments', 'post', comment);
       this._isPosting.then(()=>{
         this.emitChange('comment is now posted, refetching to be sure...');
         this._isPosting = false;
@@ -336,6 +341,7 @@ assign(Engine.prototype, Emitter.prototype, {
         this._comments.pop();
         this.emitChange();
       }).done();
+
       this.emitChange('stared posting a comment...');
     } else {
       return false;

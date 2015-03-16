@@ -52,7 +52,7 @@ var Comment = React.createClass({
     var comment = this.props.comment;
 
     if (this.isCurrentUser() && this.state.isEditing) {
-      return <CommentForm mode="edit" {...this.props} onCancel={this.toggleEdit} onSubmit={this.toggleEdit} />;
+      return <CommentForm mode='edit' {...this.props} onCancel={this.toggleEdit} onSubmit={this.toggleEdit} />;
     } else {
       return <div dangerouslySetInnerHTML={{__html: sanitize(comment.description) }} />;
     }
@@ -64,12 +64,12 @@ var Comment = React.createClass({
     var isCurrentUser = this.isCurrentUser();
     var canEdit = comment.user.id === (this.props.user || {}).id;
     return <div className={cx({ row:true, comment: true, collapsed: this.state.isCollapsed })}>
-      <div className="small-12 columns">
-        <div className="row comment-header">
-          <div className="small-1 medium-1 pr-0 columns">
+      <div className='small-12 columns'>
+        <div className='row comment-header'>
+          <div className='small-1 medium-1 pr-0 columns'>
             <Avatar {...this.props.comment.user}/>
           </div>
-          <div className="small-11 columns">
+          <div className='small-11 columns'>
             <CommentMeta
               {...this.props}
               isCurrentUser={isCurrentUser}
@@ -78,9 +78,8 @@ var Comment = React.createClass({
           </div>
         </div>
       </div>
-      <div className="small-12 medium-11 medium-offset-1 columns comment-container">
-
-        <div className="comment-message">{this.renderMessageContent()}</div>
+      <div className='small-12 medium-11 medium-offset-1 columns comment-container'>
+        <div className='comment-message'>{this.renderMessageContent()}</div>
 
         <CommentFooter
           {...this.props}
@@ -90,8 +89,7 @@ var Comment = React.createClass({
       </div>
     </div>;
   }
-
 });
 
-
 module.exports = Comment;
+

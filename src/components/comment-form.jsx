@@ -84,19 +84,17 @@ var CommentForm = React.createClass({
 
   renderButtons: function() {
     var user = this.props.user;
-    if (user)  {
-      if (this.props.mode === 'edit') {
-        var actions = [
-          <a href="#" className="tiny button radius transparent text-text" onClick={this.handleCancel}>Cancel</a>,
-          <button className="tiny button radius strong" onClick={this.onSubmit}>Update</button>
-        ]
-      } else {
-        var actions=[
-          <button className="tiny button radius" onClick={this.onSubmit}><strong>Post as {user.name}</strong></button>
-        ]
-      }
+
+    if (user && this.props.mode === 'edit') {
+      return [
+        <a href='#' className='tiny button radius transparent text-text' onClick={this.handleCancel}>Cancel</a>,
+        <button className='tiny button radius strong' onClick={this.onSubmit}>Update</button>
+      ];
+    } else if (this.props.settings.allow_guest || user) {
+      return [
+        <button className='tiny button radius' onClick={this.onSubmit}><strong>Post as {user.name || user.email || 'Guest'}</strong></button>
+      ];
     }
-    return actions
   },
 
   renderTextarea: function() {
@@ -138,11 +136,14 @@ var CommentForm = React.createClass({
       'authenticated': !!this.props.user,
       'expanded'     : this.state.isExpanded
     });
-    return <form className={className}>
-      {this.renderError()}
-      {this.renderTextarea()}
-      {this.renderLoginForm()}
-    </form>;
+
+    return (
+      <form className={className}>
+        {this.renderError()}
+        {this.renderTextarea()}
+        {this.renderLoginForm()}
+      </form>
+    );
   }
 });
 
