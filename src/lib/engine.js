@@ -324,8 +324,7 @@ assign(Engine.prototype, Emitter.prototype, {
 
     if (this._isPosting) return false;
 
-    // TODO add anonymous settings
-    if (true || this._user) {
+    if (!!deployment.settings.allow_guest || this._user) {
       this._comments = this._comments || [];
 
       var comment = { description: text, extra: { }, created_at: new Date() };
