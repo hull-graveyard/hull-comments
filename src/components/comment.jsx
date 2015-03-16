@@ -42,12 +42,16 @@ var Comment = React.createClass({
 
   toggleEdit: function(e) {
     if (e && e.preventDefault) e.preventDefault();
-    this.setState({ isEditing: !this.state.isEditing });
+
+    this.setState({
+      isEditing: !this.state.isEditing
+    });
   },
 
   renderMessageContent: function() {
     var comment = this.props.comment;
-    if (this.state.isEditing) {
+
+    if (this.isCurrentUser() && this.state.isEditing) {
       return <CommentForm mode="edit" {...this.props} onCancel={this.toggleEdit} onSubmit={this.toggleEdit} />;
     } else {
       return <div dangerouslySetInnerHTML={{__html: sanitize(comment.description) }} />;
