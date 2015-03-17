@@ -12,7 +12,7 @@ var CommentMeta = React.createClass({
       <header className='comment-meta light-text'>
 
         <strong className="comment-author">
-          <a>{user.name || 'Anonymous'}</a> { user.is_admin ? <span className='admin'>Admin</span> : undefined }
+          <a>{user.name || 'Guest'}</a> { user.is_admin ? <span className='admin'>Admin</span> : undefined }
         </strong>
 
         <span className="comment-time">
