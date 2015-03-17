@@ -55,6 +55,23 @@ var Comment = React.createClass({
     }
   },
 
+  renderModerationStatus: function() {
+    var s = this.props.comment.moderation_status;
+
+    if (s === 'approved') { return; }
+
+    var m;
+    if (s === 'pending') {
+      m = 'Your comment is awaiting moderation';
+    } else {
+      m = 'Your comment has been marked as ' + s;
+    }
+
+    return (
+      <p className='comment-moderation-status'>{m}</p>
+    );
+  },
+
   render: function() {
     var comment = this.props.comment;
     var user = comment.user;
@@ -76,6 +93,8 @@ var Comment = React.createClass({
         </div>
       </div>
       <div className='small-12 medium-11 medium-offset-1 columns comment-container'>
+        {this.renderModerationStatus()}
+
         <div className='comment-message'>{this.renderMessageContent()}</div>
 
         <CommentFooter

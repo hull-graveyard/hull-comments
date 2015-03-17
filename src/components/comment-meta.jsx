@@ -10,20 +10,18 @@ var CommentMeta = React.createClass({
 
     return (
       <header className='comment-meta light-text'>
-
-        <strong className="comment-author">
+        <strong className='comment-author'>
           <a>{user.name || 'Guest'}</a> { user.is_admin ? <span className='admin'>Admin</span> : undefined }
         </strong>
 
-        <span className="comment-time">
-          <a href={"#comment-" + comment.id}>{moment(comment.created_at).fromNow()}</a>
+        <span className='comment-time'>
+          <a href={'#comment-' + comment.id}>{moment(comment.created_at).fromNow()}</a>
         </span>
 
         <CommentActions {...this.props}/>
       </header>
     );
   }
-
 });
 
 module.exports = CommentMeta;
