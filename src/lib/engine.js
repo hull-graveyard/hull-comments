@@ -42,6 +42,7 @@ function Engine(deployment) {
   this._ship = deployment.ship || deployment.deployable;
   this._platform = deployment.platform;
   this._orderBy = deployment.settings.orderBy || 'newest';
+  this._settings = deployment.settings;
   this.resetState();
 
   this.resetUser();
@@ -324,7 +325,7 @@ assign(Engine.prototype, Emitter.prototype, {
 
     if (this._isPosting) return false;
 
-    if (!!deployment.settings.allow_guest || this._user) {
+    if (!!this._settings.allow_guest || this._user) {
       this._comments = this._comments || [];
 
       var comment = { description: text, extra: { }, created_at: new Date() };
