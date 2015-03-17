@@ -7,6 +7,13 @@
   "locales": ["en"],
   "settings": [
     {
+      "name": "allow_guest",
+      "title": "Allow Guest",
+      "description": "Allow guest user to post comments.",
+      "type": "boolean",
+      "default": false
+    },
+    {
       "name": "redirect_url",
       "title": "Redirect URL",
       "description": "Where to redirect when login has succeeded.",
@@ -40,6 +47,5 @@
       "type": "string",
       "format": "color"
     }
-  ],
-  "resources": []
+  ]
 }
