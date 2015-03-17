@@ -18,11 +18,11 @@ var HullStyle = React.createClass({
         color: ${props.text_color};
         backround-color: ${props.background_color};
       }
-      a{
-        color: ${props.light_color};
+      a, .top-bar-section ul li > a, .top-bar .name h1 a, .top-bar .name h2 a, .top-bar .name h3 a, .top-bar .name h4 a, .top-bar .name p a, .top-bar .name span a{
+        color: ${props.link_color};
       }
-      a:active, a:hover{
-        color: ${Color(props.light_color).darken(.3)};
+      a:hover, a:active, .top-bar-section ul li:hover:not(.has-form) > a, .top-bar-section ul li > a:hover, .top-bar-section ul li > a:active, .top-bar .name h1 a:hover, .top-bar .name h1 a:active, .top-bar .name h2 a:hover, .top-bar .name h2 a:active, .top-bar .name h3 a:hover, .top-bar .name h3 a:active, .top-bar .name h4 a:hover, .top-bar .name h4 a:active, .top-bar .name p a:hover, .top-bar .name p a:active, .top-bar .name span a{
+        color: ${Color(props.link_color).darken(.3).hslString()};
       }
       .light-text{
         color: ${props.light_color};
