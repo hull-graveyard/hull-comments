@@ -53,13 +53,13 @@ var CommentFooter = React.createClass({
 
       items.push(
         <li className="voting">
-          <a href="#" title="Vote up" className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} {...this.props.settings} color={upColor}/></a>
+          <a href="#" title="Vote up" className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></a>
         </li>
       );
 
       items.push(
         <li className="voting">
-          <a href="#" title="Vote down" className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} {...this.props.settings} color={downColor}/> {ns}</a>
+          <a href="#" title="Vote down" className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
         </li>
       );
 

@@ -18,7 +18,7 @@ var FavoritesButton = React.createClass({
     }
     return (
       <li>
-        <a href="#" onClick={this.toggleFavorite} style={style}>{this.props.isFavorite?'Liked':'Like'} <Icons.Heart {...this.props.settings} size={13} color={color}/></a>
+        <a href="#" onClick={this.toggleFavorite} style={style}>{this.props.isFavorite?'Liked':'Like'} <Icons.Heart settings={this.props.settings} size={13} color={color}/></a>
       </li>
     );
   }

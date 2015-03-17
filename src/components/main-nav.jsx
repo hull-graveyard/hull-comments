@@ -2,6 +2,9 @@ import _            from 'underscore';
 import React        from 'react';
 import cx           from 'react/lib/cx';
 import UserMenu     from './user-menu';
+import SortMenu from './sort-menu';
+import ShareMenu from './share-menu';
+import FavoritesButton from './favorites-button';
 
 var MainHeader = React.createClass({
 
@@ -47,6 +50,13 @@ var MainHeader = React.createClass({
               </a>
             </h1>
           </li>
+        </ul>
+        <ul className="left">
+          <SortMenu {...this.props} />
+        </ul>
+        <ul className="left">
+          <FavoritesButton {...this.props}/>
+          <ShareMenu {...this.props} right={false} />
         </ul>
         <ul className="right">
           <UserMenu {...this.props} />

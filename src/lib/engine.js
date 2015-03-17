@@ -374,11 +374,9 @@ assign(Engine.prototype, Emitter.prototype, {
   share: function(provider) {
     Hull.share({
       provider: provider,
-      method: 'share',
       anonymous: true,
       params: {
-        display: 'popup',
-        href: document.location.toString()
+        display: 'popup'
       }
     });
   },

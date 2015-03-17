@@ -43,7 +43,7 @@ var LoginForm = React.createClass({
           }
           var Icon = Icons[providerName]
           return <li className={"auth-" + provider.name}>
-            <a href="#" className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}><Icon {...this.props.settings} color="#FFFFFF"/> <strong>{providerName}</strong></a>
+            <a href="#" className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}><Icon settings={this.props.settings} color="#FFFFFF"/> <strong>{providerName}</strong></a>
           </li>;
         }, this)}
       </ul>
@@ -68,7 +68,7 @@ var LoginForm = React.createClass({
       </div>
       <div className="proceed">
         <button className="small button round expand success" onClick={this.signup}>
-          <Icons.Check {...this.props.settings} color="#FFFFFF"/>
+          <Icons.Check settings={this.props.settings} color="#FFFFFF"/>
         </button>
       </div>
       </div>

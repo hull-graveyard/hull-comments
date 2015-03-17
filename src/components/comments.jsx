@@ -10,11 +10,10 @@ var Comments = React.createClass({
     if (this.props.isReady) {
       return <div>
         <MainNav {...this.props} />
-        <SubNav {...this.props} />
         <Conversation {...this.props} />
       </div>;
     } else {
-      return <Icons.Spinner size="64" centered/>;
+      return <Icons.Spinner size={32} centered/>;
     }
   }
 });

@@ -20,8 +20,10 @@ var Posts = React.createClass({
 
       {comments}
 
-      <div className="load-more hide" data-role="more">
-        <a onClick={this.loadMore} className="btn">Load more comments</a>
+      <div className="load-more row">
+        <div className="small-12 columns">
+          <a onClick={this.loadMore} className="tiny button round transparent">Load more comments</a>
+        </div>
       </div>
     </div>
   }
