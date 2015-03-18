@@ -58,7 +58,7 @@ var Comment = React.createClass({
   renderModerationStatus: function() {
     var s = this.props.comment.moderation_status;
 
-    if (s === 'approved') { return; }
+    if (s == null || s === 'approved') { return; }
 
     var m;
     if (s === 'pending') {
