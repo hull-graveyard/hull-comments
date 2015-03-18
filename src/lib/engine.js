@@ -88,7 +88,9 @@ assign(Engine.prototype, Emitter.prototype, {
       isFavorite: !!this._isFavorite,
       comments: this.getComments(),
       orderBy: this._orderBy,
-      isReady: !!this._isReady
+      isReady: !!this._isReady,
+      hasMore: this._hasMore,
+      commentsCount: this._commentsCount
     };
     return state;
   },
@@ -130,6 +132,9 @@ assign(Engine.prototype, Emitter.prototype, {
     this.resetTranslations();
     this.resetUser();
 
+    this._page = 1;
+    this._comments = [];
+    this._hasMore = true;
     this._error = null;
     this._isLogingIn = false;
     this._isLogingOut = false;
@@ -250,52 +255,50 @@ assign(Engine.prototype, Emitter.prototype, {
 
   fetchComments: function(params) {
     if (!this._isFetching) {
-      this._lastPage = 0;
-      var prms = assign({}, params, {
+      params = assign({}, params, {
+        wrapped: true,
+        page: this._page,
+        per_page: 50,
         order_by: SORT_OPTIONS[this._orderBy]
       });
-      this._isFetching = Hull.api(this.entity_id + "/comments", prms);
-      this._isFetching.then((comments)=> {
+
+      this._isFetching = Hull.api(this.entity_id + '/comments', params);
+
+      this._isFetching.then(function(r) {
         this._isReady = true;
         this._isFetching = false;
-        this._comments = comments;
+        this._hasMore = !!r.pagination.next_url;
+        this._comments = this._comments.concat(r.data);
+        this._commentsCount = r.pagination.total;
         this.emitChange('fetching ok');
-      }, (err)=> {
+      }.bind(this), function(e) {
         this._isFetching = false;
-        this.emitChange('fetching error: ' + err.message);
-      }).done();
+        this.emitChange('fetching error: ' + e.message);
+      }.bind(this)).done();
+
       this.emitChange('start fetching');
     }
+
     return this._isFetching;
   },
 
   fetchMore: function(params) {
-    this._lastPage = this._lastPage ? (this._lastPage + 1) : 2;
+    if (!this._hasMore) { return; }
+
     if (!this._isFetching) {
-      var prms = assign({}, params, { order_by: SORT_OPTIONS[this._orderBy], page: this._lastPage });
+      this._page = this._page + 1;
+      console.log('FETCH MORE', this._page);
 
-      this._isFetching = Hull.api(this.entity_id + "/comments", prms)
-
-      this._isFetching.then((comments)=>{
-        this._isFetching = false;
-        this._comments = (this._comments || []).concat(comments);
-        this.emitChange('fetching ok');
-      })
-      .fail((err)=>{
-        this._isFetching = false;
-        this.emitChange('fetching error: ' + err);
-      })
-      .fail((err)=>{
-        console.log(err.stack);
-      })
-      .done();
-
-      this.emitChange('start fetching');
+      this.fetchComments();
     }
   },
 
   orderBy: function(sortKey) {
     this._orderBy = SORT_OPTIONS[sortKey] ? sortKey : 'newest';
+
+    this._page = 1;
+    this._comments = [];
+
     this.fetchComments();
   },
 
