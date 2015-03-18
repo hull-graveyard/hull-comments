@@ -42,8 +42,9 @@ var LoginForm = React.createClass({
             [provider.name]:true
           }
           var Icon = Icons[providerName]
-          return <li className={"auth-" + provider.name}>
-            <a href="#" className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}><Icon settings={this.props.settings} color="#FFFFFF"/> <strong>{providerName}</strong></a>
+          var icon = Icon ? <Icon settings={this.props.settings} color="#FFFFFF"/> : null;
+          return <li key={provider.name} className={"auth-" + provider.name}>
+            <a href="#" className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}>{icon} <strong>{providerName}</strong></a>
           </li>;
         }, this)}
       </ul>
