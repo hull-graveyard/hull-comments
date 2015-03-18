@@ -53,7 +53,10 @@ var App = React.createClass({
   statics:{
     // Expose a static entry point to boot the ship
     start : function(element, deployment, target={}){
-      var entity = Hull.entity.encode(Hull.findUrl());
+      var entity = Hull.entity.encode(Hull.findUrl())
+        .replace(/\+/g, '-') // Convert '+' to '-'
+        .replace(/\//g, '_') // Convert '/' to '_'
+        .replace(/=+$/, ''); // Remove ending '='
 
       deployment.settings = _.defaults({}, deployment.settings, {
         entity_id: entity
