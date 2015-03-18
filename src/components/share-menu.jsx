@@ -20,8 +20,9 @@ var ShareMenu = React.createClass({
     var networks = ['Facebook', 'Twitter', 'LinkedIn', 'Google', 'Email']
     return _.map(networks, (value)=>{
       var Icon = Icons[value]
+      var icon = Icon ? <Icon settings={this.props.settings} size={13}/> : null
       return {
-        label: <span className='share-icon'><Icon settings={this.props.settings} size={13}/> </span>,
+        label: <span className='share-icon'>{icon}</span>,
         value: value.toLowerCase()
       }
     });
