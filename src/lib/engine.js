@@ -124,9 +124,8 @@ assign(Engine.prototype, Emitter.prototype, {
 
   emitChange: function(message) {
     if (Hull.config().debug){
-
+      console.log(message);
     }
-    console.log(message);
     this.emit(EVENT);
   },
 

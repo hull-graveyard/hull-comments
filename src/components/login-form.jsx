@@ -21,7 +21,6 @@ var LoginForm = React.createClass({
   handleChange(e) {
     var newUser = this.state.newUser || {};
     newUser[e.target.name] = e.target.value;
-    console.warn('change: ', newUser);
     this.setState({ newUser: newUser });
   },
 
