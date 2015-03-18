@@ -6,7 +6,6 @@ import Icons        from './icons';
 
 var Comments = React.createClass({
   render: function() {
-    console.log('LES PROPS', this.props);
     if (this.props.isReady) {
       return <div>
         <MainNav {...this.props} />

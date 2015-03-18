@@ -7,14 +7,13 @@ import ShareMenu from './share-menu';
 import FavoritesButton from './favorites-button';
 
 var MainHeader = React.createClass({
-
   propTypes: {
     orderBy: React.PropTypes.string
   },
 
   getInitialState() {
     return {
-      expanded:false 
+      expanded:false
     };
   },
   getDefaultProps() {
@@ -25,28 +24,24 @@ var MainHeader = React.createClass({
     this.setState({expanded:!this.state.expanded});
   },
 
-  toggleProfile() {
-    debugger
-  },
-
   renderMenuToggle(){
     return <li className="toggle-topbar menu-icon"><a href="#" onClick={this.toggleNavBar}><span>Menu</span></a></li>
   },
 
   render() {
     var navClasses = {
-      'nav-bar':true,
-      'top-bar':true,
-      'expanded':true
-      // 'expanded':this.state && this.state.expanded
-    }
+      'nav-bar': true,
+      'top-bar': true,
+      'expanded': true
+    };
+
     return <nav className={cx(navClasses)}>
       <section className="top-bar-section">
         <ul className="title-area">
           <li className="name">
             <h1>
               <a href="">
-                {_('Comment').pluralize(this.props.comments.length, true)}
+                {_('Comment').pluralize(this.props.commentsCount, true)}
               </a>
             </h1>
           </li>
@@ -65,6 +60,5 @@ var MainHeader = React.createClass({
     </nav>;
   }
 });
-
 
 module.exports = MainHeader;

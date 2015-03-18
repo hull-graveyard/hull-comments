@@ -4,7 +4,6 @@ import ShareMenu from './share-menu';
 import FavoritesButton from './favorites-button';
 
 var SubHeader = React.createClass({
-
   render: function() {
     return <nav className="secondary-bar nav-bar">
       <section className="top-bar-section">
@@ -18,7 +17,6 @@ var SubHeader = React.createClass({
       </section>
     </nav>;
   }
-
 });
 
 module.exports = SubHeader;

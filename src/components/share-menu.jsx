@@ -4,7 +4,6 @@ import DropdownMenu from './dropdown-menu';
 import Icons from './icons';
 
 var ShareMenu = React.createClass({
-
   getTitle: function() {
     return this.props.title || <span>
       Share <Icons.Share settings={this.props.settings} size={13}/>
@@ -42,6 +41,5 @@ var ShareMenu = React.createClass({
       onSelect={this.handleShare} />;
   }
 });
-
 
 module.exports = ShareMenu;
