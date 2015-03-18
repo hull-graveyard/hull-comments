@@ -97,8 +97,9 @@ assign(Engine.prototype, Emitter.prototype, {
 
   getComments: function() {
     var orderBy = this._orderBy;
+
     var comments = (this._comments || []).slice();
-    var myComments = comments.sort(function(a, b) {
+    comments.sort(function(a, b) {
       var da = new Date(a.created_at);
       var db = new Date(b.created_at);
       var ret = 0;
@@ -109,7 +110,8 @@ assign(Engine.prototype, Emitter.prototype, {
         return ret;
       }
     });
-    return myComments;
+
+    return comments;
   },
 
   addChangeListener: function(listener) {
@@ -287,7 +289,6 @@ assign(Engine.prototype, Emitter.prototype, {
 
     if (!this._isFetching) {
       this._page = this._page + 1;
-      console.log('FETCH MORE', this._page);
 
       this.fetchComments();
     }
@@ -329,16 +330,14 @@ assign(Engine.prototype, Emitter.prototype, {
     if (this._isPosting) return false;
 
     if (!!this._settings.allow_guest || this._user) {
-      this._comments = this._comments || [];
-
       var comment = { description: text, extra: { }, created_at: new Date() };
-      this._comments.push({ description: text, user: (this._user || {}), created_at: new Date() });
+      var i = this._comments.push({ description: text, user: (this._user || {}), created_at: new Date() }) - 1;
 
       this._isPosting = Hull.api(this.entity_id + '/comments', 'post', comment);
-      this._isPosting.then(()=>{
-        this.emitChange('comment is now posted, refetching to be sure...');
+      this._isPosting.then((r)=>{
+        this._comments[i] = r;
         this._isPosting = false;
-        this.fetchComments();
+        this.emitChange('comment is now posted');
       }, ()=>{
         this._isPosting = false;
         this._comments.pop();
@@ -414,7 +413,6 @@ assign(Engine.prototype, Emitter.prototype, {
 
     return m.format(data);
   }
-
 });
 
 module.exports = Engine;
