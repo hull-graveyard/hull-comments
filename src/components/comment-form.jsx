@@ -92,7 +92,7 @@ var CommentForm = React.createClass({
       ];
     } else if (this.props.settings.allow_guest || user) {
       return [
-        <button className='tiny button radius' onClick={this.onSubmit}><strong>Post as {user.name || user.email || 'Guest'}</strong></button>
+        <button className='tiny button radius' onClick={this.onSubmit}><strong>Post as {(user && (user.name || user.email)) || 'Guest'}</strong></button>
       ];
     }
   },
