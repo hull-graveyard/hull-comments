@@ -53,14 +53,15 @@ var App = React.createClass({
   statics:{
     // Expose a static entry point to boot the ship
     start : function(element, deployment, target={}){
+      var entity = Hull.entity.encode(Hull.findUrl());
 
-      var entity = Hull.entity.encode(document.location.toString());
       deployment.settings = _.defaults({}, deployment.settings, {
         entity_id: entity
       });
 
       var engine = new Engine(deployment);
-      React.render(<App engine={engine} styles={styles} />, element);
+      var app = <App engine={engine} styles={styles} />;
+      React.render(app, element);
     }
   }
 });
