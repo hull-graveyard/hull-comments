@@ -20,6 +20,11 @@
 .nav-bar{
   @extend .clearfix;
   .top-bar-section{
+    .dropdown, .f-dropdown{
+      li {
+        float: none;
+      }
+    }
     > ul{
       width: auto;
       display: inline-block;

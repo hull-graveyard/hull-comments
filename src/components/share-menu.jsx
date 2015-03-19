@@ -22,7 +22,7 @@ var ShareMenu = React.createClass({
       var Icon = Icons[value]
       var icon = Icon ? <Icon settings={this.props.settings} size={13}/> : null
       return {
-        label: <span className='share-icon'>{icon}</span>,
+        label: <span className='share-icon'>{icon}&nbsp;<span className='show-for-medium-up'>{value}</span></span>,
         value: value.toLowerCase()
       }
     });

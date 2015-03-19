@@ -5,7 +5,13 @@
     display: none;
     left: 15px;
     top: 100%;
-    min-width: 10rem;
+    a{
+      padding: 1rem;
+    }
+    width: auto;
+    @media #{$medium-up}{
+      min-width: 10rem;
+    }
     animation: upAndHide .2s forwards $easeOutQuint;
   }
   .dropdown-right{
