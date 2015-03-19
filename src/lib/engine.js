@@ -42,7 +42,7 @@ function Engine(deployment) {
   this._ship = deployment.ship || deployment.deployable;
   this._platform = deployment.platform;
   this._orderBy = deployment.settings.orderBy || 'newest';
-  this._settings = deployment.settings;
+  this._deployment = deployment;
   this.resetState();
 
   this.resetUser();
@@ -328,13 +328,14 @@ assign(Engine.prototype, Emitter.prototype, {
 
     if (this._isPosting) return false;
 
-    if (!!this._settings.allow_guest || this._user) {
+    if (!!this._deployment.ship.settings.allow_guest || this._user) {
       var comment = { description: text, extra: { }, created_at: new Date() };
       var i = this._comments.push({ description: text, user: (this._user || {}), created_at: new Date() }) - 1;
 
       this._isPosting = Hull.api(this.entity_id + '/comments', 'post', comment);
       this._isPosting.then((r)=>{
         this._comments[i] = r;
+        this._commentsCount++;
         this._isPosting = false;
         this.emitChange('comment is now posted');
       }, ()=>{
