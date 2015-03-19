@@ -10,6 +10,8 @@ var FavoritesButton = React.createClass({
   },
 
   render: function() {
+    if (this.props.user == null) { return null; }
+
     if (this.props.isFavorite){
       var color = '#FFCC00';
       var style={color:color}
