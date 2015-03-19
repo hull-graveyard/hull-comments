@@ -5,7 +5,6 @@ var webpack = require("webpack");
 var path = require("path");
 var pkg = require("./package.json");
 var manifest = require("./manifest.json");
-var hullConfig = require("./hull-config.json");
 var moment = require("moment");
 
 // DO NOT CHANGE FOLDERS
@@ -91,8 +90,7 @@ var loaders = [
 var plugins = [
   new webpack.DefinePlugin({
     "BUILD_DATE" : JSON.stringify(moment().format("MMMM, DD, YYYY, HH:mm:ss")),
-    "PUBLIC_PATH": JSON.stringify(output.publicPath),
-    "hullConfig" : JSON.stringify(hullConfig)
+    "PUBLIC_PATH": JSON.stringify(output.publicPath)
   }),
   new webpack.ResolverPlugin(
     new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
@@ -107,7 +105,6 @@ module.exports = {
   libName            : libName,
   displayName        : displayName,
 
-  hullConfig         : hullConfig,
   files              : files,
 
   outputFolder       : outputFolder,
