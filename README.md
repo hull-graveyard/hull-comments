@@ -12,21 +12,34 @@ A Comments [Ship](http://hull.io/ships) you can embed in your site built with [R
 [todo]
 
 
+
 ## Building Ships
 
 You can use the tooling of your choice to build Ships, they're technology-agnostic. However, after spending months building them, we've settled on a stack that's a combination of sheer power and ease of use. We recommend it strongly.
 
+##### Setting up your development environment
+
+- First, Create a Platform with URL you will use to demo your ship. For instance, this ship is hosted at `http://hull-ships.github.io/hull-comments`.
+- Copy the snippet, paste it in `index.html`
+- In the dashboard, click `Add Ship > From URL`.
+- Enter the url of the `manifest.json` (it must be publicly accessible), give a name to your ship.
+
+
+##### Ship Architecture
+```
+/index.html //Demo Page. Contains Hull.js library
+/index.js   // Manual Ship embed, optional.
+/ship.html  // Ship HTML Import, Embedded by Hull.js on boot
+/ship.js    // Ship entry point. Loaded from ship.html.
+```
+
+Ships are loaded as `deployments` inside a `platform`.
+
+
 ##### Read about:
-
-- How to easily handle dependency management in [Ships Boot Sequence](HULL_BOOT_README.md) with HTML Imports
-- [How to get Scoped Styles](STYLES_SANDBOX.md) in every browser by rendering the component into a lightweight Iframe
-
-
 Using this setup, You get [Scoped Styles](STYLES_SANDBOX.md), [React Hot Code Replacement](https://github.com/gaearon/react-hot-loader), [Webpack](http://webpack.github.io/) with Automatic Reloading of all assets, and [React](http://facebook.github.io/react/), for free, baked in and ready to use.
 
 __Enjoy the future__.
-
-
 
 ## Setup
 - Install [Node.js](http://nodejs.org), [Bower](http://bower.io/), [Webpack](http://webpack.github.io) [Gulp](http://gulpjs.com/) if not done already, and project dependencies:
@@ -34,19 +47,16 @@ __Enjoy the future__.
 ```sh
 # First, install node+npm from http://nodejs.org/download/
 npm install -g bower gulp webpack
-npm install && bower install
+npm install
+npm start
 ```
 
-- Go to http://dashboard.hull.io/develop/new, click "Create Ship"
-- Rename `env.js.sample` to `env.js`, paste the generated `ID`.
-- Save the the generated `manifest.json` to your project's root, edit it to heart's content. Upload back to dahsboard.
-- Preview Ship and Deployment settings, simulate events in the `Admin` tab.
 - Run `gulp server`
 - Load `http://localhost:8080/demo.html`. Your ship should load. The main entry point is `ship.js`
 
 ## Development
 
-- Run `gulp server` and visit [http://localhost:8080/demo.html](http://localhost:8080/demo.html).
+- Run `gulp server` and visit [http://localhost:8081/demo.html](http://localhost:8080/demo.html).
 - Write Code
 - Drink Coffee
 - Be nice to others
@@ -60,6 +70,7 @@ npm install && bower install
 ## Deployment
 - Publish anywhere you like, as long the following files are public:
 - `manifest.json`
+- `locales` folder with `en.json` at least
 - `index.html`
 - `ship.js`
  
