@@ -19,7 +19,7 @@ You can use the tooling of your choice to build Ships, they're technology-agnost
 
 ##### Setting up your development environment
 
-- First, Create a Platform with URL you will use to demo your ship. For instance, this ship is hosted at `http://hull-ships.github.io/hull-comments`.
+- First, Create a Platform with URL you will use to demo your ship. For instance, this ship is hosted at `http://hull-ships.github.io/hull-login`.
 - Copy the snippet, paste it in `index.html`
 - In the dashboard, click `Add Ship > From URL`.
 - Enter the url of the `manifest.json` (it must be publicly accessible), give a name to your ship.
@@ -48,11 +48,11 @@ __Enjoy the future__.
 # First, install node+npm from http://nodejs.org/download/
 npm install -g bower gulp webpack
 npm install
-npm start
 ```
 
 - Run `gulp server`
-- Load `http://localhost:8080/demo.html`. Your ship should load. The main entry point is `ship.js`
+- Open `http://localhost:8081/demo.html`. Your ship should load. The main entry point is `ship.js`
+- [Ngrok](https://ngrok.com/) will start and serve `http://[NAME_IN_PACKAGE_JSON)].ngrok.com` - For now we don't do any checking, so ensure no one else is using this subdomain at the time.
 
 ## Development
 
