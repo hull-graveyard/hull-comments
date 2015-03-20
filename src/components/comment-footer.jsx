@@ -23,20 +23,18 @@ var CommentFooter = React.createClass({
     this.props.actions.share(provider);
   },
 
-  getScore: function() {
-    var stats = this.props.comment && this.props.comment.stats || {};
-    return stats.reviews && stats.reviews.sum;
-  },
   getPositiveScore: function() {
-    var s  =this.getScore();
-    return s>0 && s;
+    if (this.props.comment.votes == null) { return; }
+
+    var s = this.props.comment.votes.up;
+    if (s > 0){ return s; }
   },
+
   getNegativeScore: function() {
-    var s  =this.getScore();
-    if(s<0){
-      return -s;
-    }
-    return null;
+    if (this.props.comment.votes == null) { return; }
+
+    var s = this.props.comment.votes.down;
+    if (s > 0){ return s; }
   },
 
   render: function() {
@@ -45,22 +43,22 @@ var CommentFooter = React.createClass({
     }
 
     var items = [], separator = <li className="bullet">•</li>;
+
     var ps = this.getPositiveScore();
     var ns = this.getNegativeScore();
-    var downColor = (!!ns)?"#FF6600":null
-    var upColor = (!!ps)?"#FFCC00":null
-
-      items.push(
-        <li key='vote-down' className="voting">
-          <a href="#" title="Vote up" className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></a>
-        </li>
-      );
-
-      items.push(
-        <li key='vote-up' className="voting">
-          <a href="#" title="Vote down" className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
-        </li>
-      );
+    var downColor = (!!ns) ? "#FF6600" : null;
+    var upColor = (!!ps) ? "#FFCC00" : null;
+    var up;
+    var down;
+    if (this.props.user == null) {
+      up = <span className={cx({'text-warning':!!ps})}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></span>
+      down = <span className={cx({'text-alert':!!ns})}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</span>
+    } else {
+      up = <a href="#" title="Vote up" className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></a>
+      down = <a href="#" title="Vote down" className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
+    }
+    items.push(<li key='vote-down' className="voting">{up}</li>);
+    items.push(<li key='vote-up' className="voting">{down}</li>);
 
     if (this.props.isCurrentUser) {
       items.push(

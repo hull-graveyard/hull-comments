@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import assign from 'object-assign';
 var Emitter = require('events').EventEmitter;
 import IntlMessageFormat from 'intl-messageformat';
@@ -36,6 +37,23 @@ var SORT_OPTIONS = {
 };
 
 var EVENT = 'CHANGE';
+
+function processCommentVotes(distribution) {
+  return _.reduce(distribution, function(m, v, k) {
+    k = parseInt(k, 10);
+
+    if (k > 0) { m.up += v }
+    if (k < 0) { m.down += v }
+
+    return m;
+  }, { up: 0, down: 0 });
+}
+
+function processComment(raw) {
+  raw.votes = processCommentVotes((raw.stats.reviews && raw.stats.reviews.distribution) || {});
+
+  return raw;
+}
 
 function Engine(deployment) {
   this.entity_id = deployment.settings.entity_id;
@@ -135,6 +153,7 @@ assign(Engine.prototype, Emitter.prototype, {
 
     this._page = 1;
     this._comments = [];
+    this._commentsById = {};
     this._hasMore = true;
     this._error = null;
     this._isLogingIn = false;
@@ -219,8 +238,6 @@ assign(Engine.prototype, Emitter.prototype, {
       options.redirect_url = document.location.origin + '/a/hull-callback';
     }
 
-    // TODO add redirect to options
-
     var promise = Hull[method](options);
     promise.then(function() {
       this.resetUser();
@@ -269,8 +286,13 @@ assign(Engine.prototype, Emitter.prototype, {
         this._isReady = true;
         this._isFetching = false;
         this._hasMore = !!r.pagination.next_url;
-        this._comments = this._comments.concat(r.data);
         this._commentsCount = r.pagination.total;
+        this._comments = this._comments.concat(r.data);
+        this._commentsById = _.reduce(r.data, function(m, c) {
+          m[c.id] = processComment(c);
+          return m;
+        }, {});
+
         this.emitChange('fetching ok');
       }.bind(this), function(e) {
         this._isFetching = false;
@@ -297,6 +319,7 @@ assign(Engine.prototype, Emitter.prototype, {
     this._orderBy = SORT_OPTIONS[sortKey] ? sortKey : 'newest';
 
     this._page = 1;
+    this._commentsById = {};
     this._comments = [];
 
     this.fetchComments();
@@ -350,27 +373,33 @@ assign(Engine.prototype, Emitter.prototype, {
     }
   },
 
-  updateComment: function(text, commentId) {
-    if (commentId && text) {
+  updateComment: function(text, id) {
+    if (id && text) {
+      var c = this._commentsById[id];
+
       var self = this;
-      return Hull.api(commentId, 'put', { description: text }).then(function() {
-        self.fetchComments();
+      return Hull.api(id, 'put', { description: text }).then(function(r) {
+        assign(c, r);
+        self.emitChange();
       }).done();
     }
   },
 
+  vote: function(id, rating) {
+    var c = this._commentsById[id];
+
+    Hull.api(id + '/reviews', 'post', { rating: rating }).then(function(r) {
+      c.votes = processCommentVotes(r.ratings.distribution);
+      this.emitChange('Update comment score');
+    }.bind(this)).done();
+  },
+
   upVote: function(id) {
-    var self = this;
-    Hull.api(id + '/reviews', 'post', { rating: 1 }).then(function(res) {
-      self.fetchComments();
-    }).done();
+    this.vote(id, 1);
   },
 
   downVote: function(id) {
-    var self = this;
-    Hull.api(id + '/reviews', 'post', { rating: -1 }).then(function(res) {
-      self.fetchComments();
-    }).done();
+    this.vote(id, -1);
   },
 
   share: function(provider) {
