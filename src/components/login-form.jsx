@@ -27,7 +27,7 @@ var LoginForm = React.createClass({
   renderSocialLogin(){
     var providers = this.props.providers;
     if(providers.length){
-      var gridClassName=`small-block-grid-${providers.length}`
+      var gridClassName=`small-block-grid-${Math.min(providers.length,3)}`
     }
     return <div className="connect">
       <p className='light-text text-center'><strong><small className='light-text'>SIGN IN WITH</small></strong></p>
@@ -36,6 +36,7 @@ var LoginForm = React.createClass({
           var providerName = _.str.titleize(provider.name)
           var btnClasses = {
             'button':true,
+            'tiny':true,
             'expand':true,
             'round':true,
             [provider.name]:true
@@ -43,7 +44,7 @@ var LoginForm = React.createClass({
           var Icon = Icons[providerName]
           var icon = Icon ? <Icon settings={this.props.settings} color="#FFFFFF"/> : null;
           return <li key={provider.name} className={"auth-" + provider.name}>
-            <a href="#" className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}>{icon} <strong className='show-for-large-up'>{providerName}</strong></a>
+            <a href="#" className={cx(btnClasses)} style={{margin:0}} onClick={this.login.bind(this, provider.name)}>{icon} <strong className='show-for-small-up'>{providerName}</strong></a>
           </li>;
         }, this)}
       </ul>

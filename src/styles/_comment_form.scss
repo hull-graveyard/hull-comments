@@ -61,26 +61,28 @@
   transition:all .2s $easeOutQuint;
   margin-bottom: 1rem;
 }
-.comment-form-editor{
-  $caret-size : 11px;
-  &:before, &:after{
-    content:" ";
-    position: absolute;
-    top: 50%;
-  }
-  &:before{
-    left: -$caret-size*2;
-    margin-top: -$caret-size;
-    border: inset $caret-size+1;
-    border-color: transparent;
-    border-right-color: rgba(143, 156, 163, 0.2);
-  }
-  &:after{
-    left: -$caret-size*2 + 4;
-    margin-top: -($caret-size - 2);
-    border: inset $caret-size - 1;
-    border-color: transparent;
-    border-right-color: white;
+ @media #{$medium-up}{
+    .comment-form-editor{
+    $caret-size : 11px;
+    &:before, &:after{
+      content:" ";
+      position: absolute;
+      top: 50%;
+    }
+    &:before{
+      left: -$caret-size*2;
+      margin-top: -$caret-size;
+      border: inset $caret-size+1;
+      border-color: transparent;
+      border-right-color: rgba(143, 156, 163, 0.2);
+    }
+    &:after{
+      left: -$caret-size*2 + 4;
+      margin-top: -($caret-size - 2);
+      border: inset $caret-size - 1;
+      border-color: transparent;
+      border-right-color: white;
+    }
   }
 }
 
