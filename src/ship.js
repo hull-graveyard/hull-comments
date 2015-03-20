@@ -10,7 +10,7 @@ import App from './components/app';
 //// Gives you reference-counted files;
 // MainStyles.use(document.getElementsByTagName('head')[0]);
 
-//// To remove the style: 
+//// To remove the style:
 // MainStyles.unuse();
 
 if (Hull){

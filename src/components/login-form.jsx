@@ -2,9 +2,9 @@ import React from 'react';
 import cx from 'react/lib/cx';
 import Icons from './icons';
 import _ from 'underscore';
+import { translate } from '../lib/i18n';
 
 var LoginForm = React.createClass({
-
   getInitialState() {
     return { newUser: {} };
   },
@@ -30,7 +30,7 @@ var LoginForm = React.createClass({
       var gridClassName=`small-block-grid-${Math.min(providers.length,3)}`
     }
     return <div className="connect">
-      <p className='light-text text-center'><strong><small className='light-text'>SIGN IN WITH</small></strong></p>
+      <p className='light-text text-center text-uppercase'><strong><small className='light-text'>{translate('Sign in with')}</small></strong></p>
       <ul className={gridClassName}>
         {this.props.providers.map(function(provider) {
           var providerName = _.str.titleize(provider.name)
@@ -50,20 +50,21 @@ var LoginForm = React.createClass({
       </ul>
     </div>;
   },
+
   renderEmailLogin(){
     return <div>
       <div className="register">
-        <p className='light-text text-center'><strong><small> OR REGISTER:</small></strong></p>
+        <p className='light-text text-center text-uppercase'><strong><small>{translate('Or register:')}</small></strong></p>
         <p className="input-wrapper">
-          <input dir="auto" type="text" placeholder="Name" name="name" value={this.state.newUser.name} maxLength="30" onChange={this.handleChange} />
+          <input dir="auto" type="text" placeholder={translate('Name')} name="name" value={this.state.newUser.name} maxLength="30" onChange={this.handleChange} />
         </p>
 
         <div className="register-details">
           <p className="input-wrapper">
-            <input dir="auto" type="email" placeholder="Email" name="email" value={this.state.newUser.email} onChange={this.handleChange}  />
+            <input dir="auto" type="email" placeholder={translate('Email')} name="email" value={this.state.newUser.email} onChange={this.handleChange}  />
           </p>
           <p className="input-wrapper">
-            <input dir="auto" type="password" placeholder="Password" name="password" value={this.state.newUser.password}  onChange={this.handleChange}  />
+            <input dir="auto" type="password" placeholder={translate('Password')} name="password" value={this.state.newUser.password}  onChange={this.handleChange}  />
           </p>
         </div>
       </div>

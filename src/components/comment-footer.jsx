@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'react/lib/cx';
 import ShareMenu from './share-menu';
 import Icons from './icons';
+import { translate } from '../lib/i18n';
 
 var CommentFooter = React.createClass({
   upVote: function(e) {
@@ -39,7 +40,7 @@ var CommentFooter = React.createClass({
 
   render: function() {
     if (this.props.comment == null || this.props.comment.id == null) {
-      return <div className='comment-footer light-text'>Posting comment...</div>;
+      return <div className='comment-footer light-text'>{translate('Posting comment...')}</div>;
     }
 
     var items = [], separator = <li className="bullet">•</li>;
@@ -54,8 +55,8 @@ var CommentFooter = React.createClass({
       up = <span className={cx({'text-warning':!!ps})}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></span>
       down = <span className={cx({'text-alert':!!ns})}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</span>
     } else {
-      up = <a href="#" title="Vote up" className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></a>
-      down = <a href="#" title="Vote down" className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
+      up = <a href="#" title={translate("Vote up")} className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></a>
+      down = <a href="#" title={translate("Vote down")} className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
     }
     items.push(<li key='vote-down' className="voting">{up}</li>);
     items.push(<li key='vote-up' className="voting">{down}</li>);
@@ -64,7 +65,7 @@ var CommentFooter = React.createClass({
       items.push(
         <li key='edit' className={cx({ edit: true, active: this.props.isEditing })}>
           <a href="#" onClick={this.props.onToggleEdit}>
-            <i className="icon icon-mobile icon-pencil" /> Edit
+            <i className="icon icon-mobile icon-pencil" /> {translate('Edit')}
           </a>
         </li>
       );

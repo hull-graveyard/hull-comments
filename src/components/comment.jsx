@@ -7,6 +7,7 @@ import CommentMeta from './comment-meta';
 import Avatar from './avatar';
 import CommentFooter from './comment-footer';
 import sanitize from 'sanitize-caja';
+import { translate } from '../lib/i18n';
 
 var Comment = React.createClass({
   propTypes: {
@@ -62,9 +63,9 @@ var Comment = React.createClass({
 
     var m;
     if (s === 'pending') {
-      m = 'Your comment is awaiting moderation';
+      m = translate('Your comment is awaiting moderation');
     } else {
-      m = 'Your comment has been marked as ' + s;
+      m = translate('Your comment has been marked as {status}', { status: s });
     }
 
     return (

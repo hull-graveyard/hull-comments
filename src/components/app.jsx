@@ -1,16 +1,15 @@
-import _            from 'underscore';
-import inflections  from 'underscore.inflections';
-_.mixin(inflections);
-import underscore_string  from 'underscore.string';
-_.mixin(underscore_string.exports());
-
-
-import React     from 'react';
-import Comments  from './comments';
-
-import Engine    from '../lib/engine';
-import styles    from '../styles/main.scss';
+import React from 'react';
+import _ from 'underscore';
+import inflections from 'underscore.inflections';
+import underscoreString from 'underscore.string';
+import Comments from './comments';
+import Engine from '../lib/engine';
+import { setTranslations } from '../lib/i18n';
+import styles from '../styles/main.scss';
 import HullStyle from './hull-style';
+
+_.mixin(inflections);
+_.mixin(underscoreString.exports());
 
 var App = React.createClass({
   propTypes: {
@@ -24,10 +23,12 @@ var App = React.createClass({
   componentWillMount: function() {
     this.props.engine.addChangeListener(this._onChange);
   },
+
   componentDidMount: function() {
     // This is more robust than embedding the styles in the Iframe's Head using the head="" property
     this.props.styles.use(this.getStyleContainer());
   },
+
   componentWillUnmount: function() {
     this.props.styles.unuse();
     this.props.engine.removeChangeListener(this._onChange);
@@ -39,6 +40,7 @@ var App = React.createClass({
     }
     return document.getElementsByTagName('head')[0];
   },
+
   _onChange: function() {
     this.setState(this.props.engine.getState());
   },
@@ -50,10 +52,12 @@ var App = React.createClass({
     </div>
   },
 
-  statics:{
+  statics: {
     // Expose a static entry point to boot the ship
-    start : function(element, deployment, target={}){
+    start : function(element, deployment){
       var entity = Hull.entity.encode(Hull.findUrl())
+
+      setTranslations(deployment.ship.translations);
 
       deployment.settings = _.defaults({}, deployment.settings, {
         entity_id: entity

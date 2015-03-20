@@ -5,6 +5,7 @@ import UserMenu     from './user-menu';
 import SortMenu from './sort-menu';
 import ShareMenu from './share-menu';
 import FavoritesButton from './favorites-button';
+import { translate } from '../lib/i18n';
 
 var MainHeader = React.createClass({
   propTypes: {
@@ -16,6 +17,7 @@ var MainHeader = React.createClass({
       expanded:false
     };
   },
+
   getDefaultProps() {
     return { orderBy: 'newest' };
   },
@@ -35,13 +37,14 @@ var MainHeader = React.createClass({
       'expanded': true
     };
 
+
     return <nav className={cx(navClasses)}>
       <section className="top-bar-section">
         <ul className="title-area">
           <li className="name">
             <h1>
-              <a href="">
-                {_('Comment').pluralize(this.props.commentsCount, true)}
+              <a href="#">
+                {translate('{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}', { count: this.props.commentsCount })}
               </a>
             </h1>
           </li>

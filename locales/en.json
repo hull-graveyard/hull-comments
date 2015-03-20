@@ -1,0 +1,22 @@
+{
+  "actions": "actions",
+  "Cancel": "Cancel",
+  "Collapse": "Collapse",
+  "Delete": "Delete",
+  "Edit": "Edit",
+  "Email": "Email",
+  "Like": "Like",
+  "Log out": "Log out",
+  "Mark as spam": "Mark as spam",
+  "Name": "Name",
+  "Or register:": "Or register:",
+  "Password": "Password",
+  "Post as {name}": "Post as {name}",
+  "Sign in with": "Sign in with",
+  "Update": "Update",
+  "Vote down": "Vote down",
+  "Vote up": "Vote up",
+  "What do you think?": "What do you think?",
+  "{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}": "{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}"
+}
+

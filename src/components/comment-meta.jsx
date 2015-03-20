@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'react/lib/cx';
 import moment from 'moment';
 import CommentActions from './comment-actions';
+import { translate } from '../lib/i18n';
 
 var CommentMeta = React.createClass({
   render: function() {
@@ -11,7 +12,7 @@ var CommentMeta = React.createClass({
     return (
       <header className='comment-meta light-text'>
         <strong className='comment-author'>
-          <a>{user.name || 'Guest'}</a> { user.is_admin ? <span className='admin'>Admin</span> : undefined }
+          <a>{user.name || translate('Guest')}</a> { user.is_admin ? <span className='admin'>{translate('Admin')}</span> : undefined }
         </strong>
 
         <span className='comment-time'>

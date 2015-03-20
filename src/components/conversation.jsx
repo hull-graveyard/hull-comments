@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'react/lib/cx';
 import Comment from './comment';
 import TopForm from './top-form';
+import { translate } from '../lib/i18n';
 
 var Conversation = React.createClass({
   loadMore: function(e) {
@@ -16,7 +17,7 @@ var Conversation = React.createClass({
     return (
       <div className="load-more row">
         <div className="small-12 columns">
-          <a onClick={this.loadMore} className="tiny button round transparent">Load more comments</a>
+          <a onClick={this.loadMore} className="tiny button round transparent">{translate('Load more comments')}</a>
         </div>
       </div>
     );

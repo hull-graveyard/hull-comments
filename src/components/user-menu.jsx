@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'react/lib/cx';
 import capitalize from '../lib/capitalize';
 import DropdownMenu from './dropdown-menu';
+import { translate } from '../lib/i18n';
 
 var UserMenu = React.createClass({
   handleChange: function(item) {
@@ -26,11 +27,11 @@ var UserMenu = React.createClass({
       title = (
         <span className='small-avatar'>
           <img src={user.picture}/>
-          <span className="show-for-medium-up">{user.name || user.email || 'logged in as Guest'}</span>
+          <span className="show-for-medium-up">{user.name || user.email || translate('logged in as guest')}</span>
         </span>
       );
       options = [
-        { label: "Logout", value: "logout" }
+        { label: translate('Log out'), value: "logout" }
       ];
       action = this.handleChange;
     } else {
@@ -50,5 +51,6 @@ var UserMenu = React.createClass({
       title={title} />;
   }
 });
+
 module.exports = UserMenu;
 

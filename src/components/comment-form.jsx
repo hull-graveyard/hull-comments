@@ -2,9 +2,9 @@ import React from 'react';
 import ContentEditable from "./contenteditable";
 import cx from 'react/lib/cx';
 import LoginForm from './login-form';
+import { translate } from '../lib/i18n';
 
 var CommentForm = React.createClass({
-
   propTypes: {
     user: React.PropTypes.object,
     onSubmit: React.PropTypes.func,
@@ -51,14 +51,10 @@ var CommentForm = React.createClass({
     this.setState({ text: text });
   },
 
-  dismissError: function() {
-    // debugger
-  },
-
   renderError: function() {
     if (this.props.errorMessage) {
       return <div className="alert error" role="alert">
-        <a className="close" onClick={this.dismissError} title="Dismiss">×</a>
+        <a className="close" onClick={this.dismissError} title={translate('Dismiss')}>×</a>
         <span>{this.props.errorMessage}</span>
       </div>
     }
@@ -69,6 +65,7 @@ var CommentForm = React.createClass({
       this.setState({ isExpanded: true });
     }
   },
+
   contractForm: function(e) {
     if (!this.props.expanded && this.state.isExpanded) {
       this.setState({ isExpanded: false });
@@ -87,19 +84,21 @@ var CommentForm = React.createClass({
 
     if (user && this.props.mode === 'edit') {
       return [
-        <a href='#' className='tiny button radius transparent text-text' onClick={this.handleCancel}>Cancel</a>,
-        <button className='tiny button radius strong' onClick={this.onSubmit}>Update</button>
+        <a key='cancel' href='#' className='tiny button radius transparent text-text' onClick={this.handleCancel}>{translate('Cancel')}</a>,
+        <button key='update' className='tiny button radius strong' onClick={this.onSubmit}>{translate('Update')}</button>
       ];
     } else if (this.props.settings.allow_guest || user) {
-      return [
-        <button className='tiny button radius' onClick={this.onSubmit}><strong>Post as {(user && (user.name || user.email)) || 'Guest'}</strong></button>
-      ];
+      var name = (user && (user.name || user.email)) || translate('Guest');
+      var t = translate('Post as {name}', { name: name });
+
+      return <button className='tiny button radius' onClick={this.onSubmit}><strong>{t}</strong></button>;
     }
   },
 
   renderTextarea: function() {
     var user = this.props.user || {};
-    var placeholder = "<span class='light-text'>What do you think?</span>"
+    var w = translate('What do you think?');
+    var placeholder = "<span class='light-text'>" + w + "</span>";
     return (
       <div className="comment-form-editor">
         <ContentEditable
