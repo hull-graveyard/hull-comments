@@ -32,6 +32,7 @@
     "color": "^0.7.3",
     "extend": "^2.0.0",
     "gulp": "^3.8.11",
+    "intl": "^0.1.4",
     "intl-messageformat": "^1.1.0",
     "moment": "^2.9.0",
     "object-assign": "^2.0.0",

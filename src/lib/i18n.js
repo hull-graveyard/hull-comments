@@ -1,3 +1,4 @@
+import Intl from 'intl';
 import IntlMessageFormat from 'intl-messageformat';
 
 var _translations = {};
