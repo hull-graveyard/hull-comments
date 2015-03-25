@@ -6,7 +6,7 @@ import Icons from './icons';
 var ShareMenu = React.createClass({
   getTitle: function() {
     return this.props.title || <span>
-      Share <Icons.Share settings={this.props.settings} size={13}/>
+      {translate('Share')} <Icons.Share settings={this.props.settings} size={13}/>
     </span>;
   },
 
