@@ -1,6 +1,6 @@
 {
-  "name": "Hull Comments",
-  "description": "Hull Comments Ship",
+  "name": "Classic Comments",
+  "description": "A clean comments widget, with Social login, likes and upvotes",
   "picture": "picture.png",
   "index": "ship.html",
   "version": "0.0.2",
