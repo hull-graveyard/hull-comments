@@ -2,6 +2,7 @@ import _ from 'underscore';
 import React from 'react';
 import DropdownMenu from './dropdown-menu';
 import Icons from './icons';
+import { translate } from '../lib/i18n';
 
 var ShareMenu = React.createClass({
   getTitle: function() {
