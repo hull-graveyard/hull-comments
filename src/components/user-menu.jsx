@@ -35,7 +35,7 @@ var UserMenu = React.createClass({
       ];
       action = this.handleChange;
     } else {
-      title = 'Login';
+      title = translate('Log in');
       options = this.props.providers.map(function(provider) {
         return { label: capitalize(provider.name), value: provider.name };
       }, this);
