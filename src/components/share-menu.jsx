@@ -1,13 +1,13 @@
 import _ from 'underscore';
 import React from 'react';
 import DropdownMenu from './dropdown-menu';
-import Icons from './icons';
+import Icon from './icon';
 import { translate } from '../lib/i18n';
 
 var ShareMenu = React.createClass({
   getTitle: function() {
     return this.props.title || <span>
-      {translate('Share')} <Icons.Share settings={this.props.settings} size={13}/>
+      {translate('Share')} <Icon name="share" settings={this.props.settings} size={13}/>
     </span>;
   },
 
@@ -18,10 +18,9 @@ var ShareMenu = React.createClass({
   },
 
   getOptions: function() {
-    var networks = ['Facebook', 'Twitter', 'LinkedIn', 'Google', 'Email']
+    var networks = ['facebook', 'twitter', 'linkedin', 'google', 'email']
     return _.map(networks, (value)=>{
-      var Icon = Icons[value]
-      var icon = Icon ? <Icon settings={this.props.settings} size={13}/> : null
+      var icon = <Icon name={value} settings={this.props.settings} size={13}/>;
       return {
         label: <span className='share-icon'>{icon}&nbsp;<span className='show-for-medium-up'>{value}</span></span>,
         value: value.toLowerCase()

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'react/lib/cx';
-import Icons from './icons';
+import Icon from './icon';
 import { translate } from '../lib/i18n';
 
 var FavoritesButton = React.createClass({
@@ -20,7 +20,7 @@ var FavoritesButton = React.createClass({
     }
     return (
       <li>
-        <a href="#" onClick={this.toggleFavorite} style={style}>{this.props.isFavorite ? translate('Liked') : translate('Like')} <Icons.Heart settings={this.props.settings} size={13} color={color}/></a>
+        <a href="#" onClick={this.toggleFavorite} style={style}>{this.props.isFavorite ? translate('Liked') : translate('Like')} <Icon name='heart' settings={this.props.settings} size={13} color={color}/></a>
       </li>
     );
   }

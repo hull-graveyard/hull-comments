@@ -2,17 +2,17 @@ import React        from 'react';
 import MainNav      from './main-nav';
 import SubNav       from './sub-nav';
 import Conversation from './conversation';
-import Icons        from './icons';
+import Icon from './icon';
 
 var Comments = React.createClass({
   render: function() {
     if (this.props.isReady) {
-      return <div>
+      return <div className='row'>
         <MainNav {...this.props} />
         <Conversation {...this.props} />
       </div>;
     } else {
-      return <Icons.Spinner size={32} centered/>;
+      return <Icon name='spinner' size={32} centered/>;
     }
   }
 });

@@ -9,6 +9,11 @@ var DropdownMenu = React.createClass({
     options: React.PropTypes.array,
     value: React.PropTypes.string
   },
+  getDefaultProps: function() {
+    return {
+      component : 'li'
+    };
+  },
 
   getInitialState: function() {
     return { opened: this.props.open }
@@ -39,13 +44,12 @@ var DropdownMenu = React.createClass({
   },
 
   getTitle: function() {
-    var title;
     if (this.props.title) {
-      title = this.props.title;
+      return this.props.title;
     } else if (this.props.value) {
-      title = this.props.value.label;
+      return this.props.value.label;
     }
-    return title;
+    return null;
   },
 
   renderOptions(){
@@ -66,11 +70,18 @@ var DropdownMenu = React.createClass({
   },
 
   render: function() {
-    var Component = this.props.component || "li";
+    if(this.props.component=='button'){
+      var Component = 'span';
+      var ButtonComponent = 'button'
+      this.props.btnClass=`${this.props.btnClass} dropdown`
+    } else {
+      var ButtonComponent = 'a';
+      var Component = this.props.component;
+    }
     var parentClass = (typeof this.props.className === 'string')?{[this.props.className]:true}:this.props.className
     var className = assign({open:this.state.opened, 'dropdown-container':true}, parentClass);
     return <Component {...this.props} className={cx(className)} onClick={this.onSelfClick}>
-      <a href='#' className={this.props.btnClass} onClick={this.toggle}>{this.getTitle()}</a>
+      <ButtonComponent href='#' className={this.props.btnClass} onClick={this.toggle}>{this.getTitle()}</ButtonComponent>
       {this.renderOptions()}
       {this.props.children}
     </Component>;

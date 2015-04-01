@@ -31,7 +31,6 @@
     "better-console": "^0.2.4",
     "color": "^0.7.3",
     "extend": "^2.0.0",
-    "gulp": "^3.8.11",
     "intl": "^0.1.4",
     "intl-messageformat": "^1.1.0",
     "moment": "^2.9.0",
@@ -40,6 +39,7 @@
     "react-router": "^0.12.4",
     "sanitize-caja": "^0.1.2",
     "underscore": "^1.8.2",
+    "json-svg-icons":"hull/json-svg-icons#master",
     "underscore-contrib": "^0.3.0",
     "underscore.inflections": "^0.2.1",
     "underscore.string": "^3.0.3"

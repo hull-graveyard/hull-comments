@@ -1,7 +1,7 @@
-import Icons from './icons';
 import React from 'react';
 import { translate } from '../lib/i18n';
 import DropdownMenu from './dropdown-menu';
+import Icon from './icon';
 
 const EmailLogin = React.createClass({
   getInitialState() {
@@ -20,8 +20,12 @@ const EmailLogin = React.createClass({
   },
 
   render() {
-    return <DropdownMenu component="li" className={this.props.className} title="Email Login" btnClass='button tiny expand round success'>
-        <div className="register dropdown" style={{padding:".6rem 1rem"}}>
+    var title = [
+      <Icon name='email' color="#FFFFFF" size="16"/>,
+      translate("Email")
+    ];
+    return <DropdownMenu component="button" className={this.props.className} title={title} btnClass='button tiny round email left'>
+        <div className="register f-dropdown" style={{padding:".6rem 1rem"}}>
           <p className="light-text">Register: </p>
           <p className="input-wrapper">
             <input type="text" placeholder={translate('Name')} name="name" value={this.state.newUser.name} onChange={this.handleChange} />
@@ -35,8 +39,8 @@ const EmailLogin = React.createClass({
             <input type="password" placeholder={translate('Password')} name="password" value={this.state.newUser.password}  onChange={this.handleChange}  />
           </p>
 
-          <button className="small button round expand success" onClick={this.signup}>
-            <Icons.Check settings={this.props.settings} color="#FFFFFF"/>
+          <button className="tiny button round expand success" onClick={this.signup}>
+            <Icon name='check' settings={this.props.settings} color="#FFFFFF"/>
           </button>
         </div>
       </DropdownMenu>;

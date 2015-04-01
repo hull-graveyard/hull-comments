@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'react/lib/cx';
 import ShareMenu from './share-menu';
-import Icons from './icons';
+import Icon from './icon';
 import { translate } from '../lib/i18n';
 
 var CommentFooter = React.createClass({
@@ -52,11 +52,11 @@ var CommentFooter = React.createClass({
     var up;
     var down;
     if (this.props.user == null) {
-      up = <span className={cx({'text-warning':!!ps})}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></span>
-      down = <span className={cx({'text-alert':!!ns})}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</span>
+      up = <span className={cx({'text-warning':!!ps})}>{ps} <Icon name='arrow_up' size={13} settings={this.props.settings} color={upColor}/></span>
+      down = <span className={cx({'text-alert':!!ns})}><Icon name='arrow_down' size={13} settings={this.props.settings} color={downColor}/> {ns}</span>
     } else {
-      up = <a href="#" title={translate("Vote up")} className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icons.ArrowUp size={13} settings={this.props.settings} color={upColor}/></a>
-      down = <a href="#" title={translate("Vote down")} className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icons.ArrowDown size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
+      up = <a href="#" title={translate("Vote up")} className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icon name='arrow_up' size={13} settings={this.props.settings} color={upColor}/></a>
+      down = <a href="#" title={translate("Vote down")} className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icon name='arrow_down' size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
     }
     items.push(<li key='vote-down' className="voting">{up}</li>);
     items.push(<li key='vote-up' className="voting">{down}</li>);

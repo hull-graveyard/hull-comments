@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'react/lib/cx';
-import Icons from './icons';
+import Icon from './icon';
 import EmailLogin from './email-login';
 import titleize from 'underscore.string/titleize';
 import { translate } from '../lib/i18n';
@@ -13,30 +13,26 @@ var LoginForm = React.createClass({
 
   renderSocialLogin(){
     return this.props.providers.map(function(provider) {
-      var providerName = titleize(provider.name)
-      var btnClasses = {'button':true, 'tiny':true, 'expand':true, 'round':true, [provider.name]:true }
-      var Icon = Icons[providerName]
-      var icon = Icon ? <Icon settings={this.props.settings} color="#FFFFFF"/> : null;
-      return <li key={provider.name} className={"auth-" + provider.name}>
-        <a href="#" className={cx(btnClasses)} style={{margin:0}} onClick={this.login.bind(this, provider.name)}>
-          {icon} <strong className='show-for-small-up'>{providerName}</strong>
+      var btnClasses = {'button':true, 'tiny':true, 'expand':false, 'round':true, 'login':true, [provider.name]:true, "left":true }
+      return <a href="#" key={provider.name} className={cx(btnClasses)} style={{marginTop:0,marginBottom:10,marginRight:10}} onClick={this.login.bind(this, provider.name)}>
+          <Icon name={provider.name.toLowerCase()} size='16' settings={this.props.settings} color="#FFFFFF"/>
+          <strong className='hide-for-large-up show-for-large-up'>{titleize(provider.name)}</strong>
         </a>
-      </li>;
     }, this);
   },
 
   render() {
     var providers = this.props.providers;
     if(providers.length){
-      var gridClassName=`small-block-grid-1 medium-block-grid-2 large-block-grid-${Math.min(providers.length+1,4)}`
+      var gridClassName=`row`
     }
     return <section className="auth-section logged-out">
       <div className="connect">
         <p className='light-text text-center text-uppercase'><strong><small className='light-text'>{translate('Sign in with')}</small></strong></p>
-        <ul className={gridClassName}>
+        <div className={gridClassName}>
           {this.renderSocialLogin(providers)}
-          <EmailLogin {...this.props} className='auth-email'/>
-        </ul>
+          <EmailLogin {...this.props} className='auth-email left'/>
+        </div>
       </div>
     </section>;
   }

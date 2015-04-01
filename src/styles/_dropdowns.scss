@@ -1,43 +1,49 @@
 .dropdown-container{
   position: relative;
   a{ outline: none; }
-  .dropdown, .f-dropdown{
-    display: none;
-    left: 15px;
-    top: 100%;
-    a{
-      padding: 1rem;
+  div, ul{
+    &.dropdown, &.f-dropdown{
+      display: none;
+      left: 15px;
+      top: 100%;
+      a{
+        padding: 1rem;
+      }
+      width: auto;
+      @media #{$medium-up}{
+        min-width: 10rem;
+      }
+      animation: upAndHide .2s forwards $easeOutQuint;
     }
-    width: auto;
-    @media #{$medium-up}{
-      min-width: 10rem;
+    &.dropdown-right{
+      right: 15px;
+      left: auto;
     }
-    animation: upAndHide .2s forwards $easeOutQuint;
-  }
-  .dropdown-right{
-    right: 15px;
-    left: auto;
   }
   &.open {
-    .dropdown, .f-dropdown{
-      display: block;
-      animation: downAndShow .2s forwards $easeOutQuint;
+    div, ul{
+      &.dropdown, &.f-dropdown{
+        display: block;
+        animation: downAndShow .2s forwards $easeOutQuint;
+      }
     }
   }
 }
 
-.dropdown, .f-dropdown{
-  border-radius: $global-radius;
-  box-shadow: 0 0 0 2px $filet-color;
-  &.dropdown-right{
-    &:before, &:after{
-      left: auto;
-    }
-    &:before{
-      right: 10px;
-    }
-    &:after{
-      right: 9px;
+div, ul{
+  &.dropdown, &.f-dropdown{
+    border-radius: $global-radius;
+    box-shadow: 0 0 0 2px $filet-color;
+    &.dropdown-right{
+      &:before, &:after{
+        left: auto;
+      }
+      &:before{
+        right: 10px;
+      }
+      &:after{
+        right: 9px;
+      }
     }
   }
 }
@@ -62,8 +68,10 @@
     }
   }
   &.open{
-    .f-dropdown{
-      animation: rightAndShow .2s forwards $easeOutQuint;
+    div, ul{
+      &.f-dropdown{
+        animation: rightAndShow .2s forwards $easeOutQuint;
+      }
     }
   }
 }
