@@ -32,6 +32,7 @@ var MainHeader = React.createClass({
 
   render() {
     var navClasses = {
+      'main-bar': true,
       'nav-bar': true,
       'top-bar': true,
       'expanded': true

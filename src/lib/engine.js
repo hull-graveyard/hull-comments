@@ -24,8 +24,8 @@ var ACTIONS = [
 ];
 
 var STATUS = {
-  login: '_isLogingIn',
-  logout: '_isLogingOut',
+  login: '_isLoggingIn',
+  logout: '_isLoggingOut',
   linkIdentity: '_isLinking',
   unlinkIdentity: '_isUnlinking'
 };
@@ -96,9 +96,9 @@ assign(Engine.prototype, Emitter.prototype, {
       providers: this.getProviders(),
       error: this._error,
       isInitializing: this._isInitializing,
-      isWorking: this._isLogingIn || this._isLogingOut || this._isLinking || this._isUnlinking,
-      isLogingIn: this._isLogingIn,
-      isLogingOut: this._isLogingOut,
+      isWorking: this._isLoggingIn || this._isLoggingOut || this._isLinking || this._isUnlinking,
+      isLogingIn: this._isLoggingIn,
+      isLogingOut: this._isLoggingOut,
       isLinking: this._isLinking,
       isUnlinking: this._isUnlinking,
       isFetching: !!this._isFetching,
@@ -156,8 +156,8 @@ assign(Engine.prototype, Emitter.prototype, {
     this._commentsById = {};
     this._hasMore = true;
     this._error = null;
-    this._isLogingIn = false;
-    this._isLogingOut = false;
+    this._isLoggingIn = false;
+    this._isLoggingOut = false;
     this._isLinking = false;
     this._isUnlinking = false;
     this._isFavorite = null;
@@ -205,8 +205,8 @@ assign(Engine.prototype, Emitter.prototype, {
     return providers;
   },
 
-  login: function(provider) {
-    this.perform('login', provider);
+  login: function(options) {
+    this.perform('login', options);
   },
 
   logout: function() {
@@ -214,26 +214,25 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   linkIdentity: function(provider) {
-    this.perform('linkIdentity', provider);
+    this.perform('linkIdentity', {provider});
   },
 
   unlinkIdentity: function(provider) {
-    this.perform('unlinkIdentity', provider);
+    this.perform('unlinkIdentity', {provider});
   },
 
   signup: function(user) {
     return Hull.signup(user);
   },
 
-  perform: function(method, provider) {
+  perform: function(method, options={}) {
     var s = STATUS[method];
 
-    this[s] = provider;
+    this[s] = options.provider || 'email';
     this._error = null;
 
     this.emitChange();
 
-    var options = { provider: provider };
     if (this._platform.type === 'platforms/shopify') {
       options.redirect_url = document.location.origin + '/a/hull-callback';
     }

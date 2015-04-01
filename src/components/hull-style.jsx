@@ -14,11 +14,13 @@ var HullStyle = React.createClass({
     // Here's where you inject your user-configurable CSS.
     // ES6 template literals (http://updates.html5rocks.com/2015/01/ES6-Template-Strings) make this a fun moment.
     var style = `
+      a {
+        color: ${props.link_color};
+      }
       body {
         color: ${props.text_color};
         backround-color: ${props.background_color};
       }
-      a,
       .top-bar-section ul li > a,
       .top-bar .name h1 a,
       .top-bar .name h2 a,
@@ -28,8 +30,7 @@ var HullStyle = React.createClass({
       .top-bar .name span a{
         color: ${props.link_color};
       }
-      a:hover,
-      a:active,
+      a:hover, a:active,
       .top-bar-section ul li:hover:not(.has-form) > a,
       .top-bar-section ul li > a:hover,
       .top-bar-section ul li > a:active,

@@ -98,6 +98,29 @@ div, ul{
   &:before, &:after{
     display: none;
   }
+  &.open{
+    .f-dropdown{
+      display: inline;
+    }
+  }
+}
+.dropdown-container.auth-email .f-dropdown{
+  min-width: 330px;
+  @media #{$medium-up}{
+    right: 0;
+    left: auto;
+    &:before{
+      left: auto;
+      right: 10px;
+    }
+    &:after{
+      left: auto;
+      right: 9px;
+    }
+  }
+}
+.dropdown-container .top-bar li {
+  line-height: 2.8125rem;
 }
 
 .user-menu {

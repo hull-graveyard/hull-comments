@@ -1,4 +1,9 @@
 @import "settings";
+*{
+  margin:0;
+  padding:0;
+}
+
 // @import "foundation";
 
 // Or selectively include components
@@ -29,7 +34,7 @@
 // @import "foundation/components/split-buttons";
 @import "foundation/components/sub-nav";
 // @import "foundation/components/tables";
-// @import "foundation/components/tabs";
+@import "foundation/components/tabs";
 // @import "foundation/components/thumbs";
 // @import "foundation/components/tooltips";
 @import "foundation/components/top-bar";

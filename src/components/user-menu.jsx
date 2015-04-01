@@ -14,7 +14,7 @@ var UserMenu = React.createClass({
   },
 
   login: function(selected) {
-    this.props.actions.login(selected.value);
+    this.props.actions.login({provider:selected.value});
   },
 
   render: function() {

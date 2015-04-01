@@ -8,7 +8,7 @@ import { translate } from '../lib/i18n';
 var LoginForm = React.createClass({
 
   login(providerName) {
-    this.props.actions.login(providerName);
+    this.props.actions.login({provider:providerName});
   },
 
   renderSocialLogin(){
@@ -23,13 +23,10 @@ var LoginForm = React.createClass({
 
   render() {
     var providers = this.props.providers;
-    if(providers.length){
-      var gridClassName=`row`
-    }
     return <section className="auth-section logged-out">
       <div className="connect">
         <p className='light-text text-center text-uppercase'><strong><small className='light-text'>{translate('Sign in with')}</small></strong></p>
-        <div className={gridClassName}>
+        <div>
           {this.renderSocialLogin(providers)}
           <EmailLogin {...this.props} className='auth-email left'/>
         </div>
