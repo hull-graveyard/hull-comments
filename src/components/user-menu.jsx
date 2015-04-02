@@ -3,6 +3,7 @@ import cx from 'react/lib/cx';
 import capitalize from '../lib/capitalize';
 import DropdownMenu from './dropdown-menu';
 import { translate } from '../lib/i18n';
+import EmailLogin from './email-login';
 
 var UserMenu = React.createClass({
   handleChange: function(item) {
@@ -48,7 +49,8 @@ var UserMenu = React.createClass({
       right={true}
       options={options}
       onSelect={action}
-      title={title} />;
+      title={title}>
+      </DropdownMenu>;
   }
 });
 

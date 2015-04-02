@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from './icon';
 import cx from 'react/lib/cx';
 import DropdownMenu from './dropdown-menu';
 import { translate } from '../lib/i18n';
@@ -32,8 +33,8 @@ var CommentActions = React.createClass({
     }
 
     if (actions.length == 0) { return; }
-
-    return <DropdownMenu component='li' options={actions} title={translate('actions')} />;
+    var title = <Icon name='italic' size={13} {...this.props}/>
+    return <DropdownMenu component='li' options={actions} title={title} />;
   },
 
   render: function() {

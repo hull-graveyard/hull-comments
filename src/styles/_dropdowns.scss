@@ -1,7 +1,7 @@
 .dropdown-container{
   position: relative;
   a{ outline: none; }
-  div, ul{
+  > div, > ul{
     &.dropdown, &.f-dropdown{
       display: none;
       left: 15px;
@@ -21,7 +21,7 @@
     }
   }
   &.open {
-    div, ul{
+    > div, > ul{
       &.dropdown, &.f-dropdown{
         display: block;
         animation: downAndShow .2s forwards $easeOutQuint;
@@ -51,7 +51,7 @@ div, ul{
 
 
 .comment-footer .dropdown-container {
-  .f-dropdown{
+  > .f-dropdown{
     width: auto;
     max-width: none;
     position: relative;
@@ -68,7 +68,7 @@ div, ul{
     }
   }
   &.open{
-    div, ul{
+    > div, > ul{
       &.f-dropdown{
         animation: rightAndShow .2s forwards $easeOutQuint;
       }
@@ -123,6 +123,10 @@ div, ul{
   line-height: 2.8125rem;
 }
 
+.comment-actions.menubar-list .dropdown-container .f-dropdown{
+  left: -10px;
+  top: 23px;
+}
 .user-menu {
   a{margin-right: 0;}
   .small-avatar span{

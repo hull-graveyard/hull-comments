@@ -16,11 +16,13 @@ var FavoritesButton = React.createClass({
       var color = '#FFCC00';
       var style={color:color}
     } else {
-      var style={}
+      var style={
+        color:"currentColor"
+      }
     }
     return (
       <li>
-        <a href="#" onClick={this.toggleFavorite} style={style}>{this.props.isFavorite ? translate('Liked') : translate('Like')} <Icon name='heart' settings={this.props.settings} size={13} color={color}/></a>
+        <a href="#" onClick={this.toggleFavorite} style={style}>{this.props.isFavorite ? translate('Liked') : translate('Like')} <Icon name='heart' settings={this.props.settings} colorize={true} size={13} color={color}/></a>
       </li>
     );
   }

@@ -6,7 +6,7 @@ import assign from "object-assign";
 import _ from "underscore";
 import Icons from "json-svg-icons";
 
-function parseLevel(level, opts){
+function parseLevel(level, opts, colorize){
   var [tag, attributes, ...children] = level;
   if(_.isArray(children) && children.length){
     children = children.map(function(child){
@@ -15,7 +15,7 @@ function parseLevel(level, opts){
   }
   if(attributes){
     var attrs = _.reduce(opts, function(memo, value, key){
-      if(attributes[key] && attributes[key]!=='none'){
+      if(colorize || (attributes[key] && attributes[key]!=='none')){
         memo[key]=value;
       }
       return memo;
@@ -34,7 +34,7 @@ var icons = _.reduce(Icons, function(memo, icon, name){
     },
     render(){
       var size  = this.props.size;
-      var color = this.props.color||this.props.settings.light_color||"currentColor";
+      var color = this.props.color||this.props.settings.light_color;
       // Apply some values to the root tag
       icon[1] = assign(icon[1],{
         width: `${size}`,
@@ -43,7 +43,7 @@ var icons = _.reduce(Icons, function(memo, icon, name){
         style: this.props.style
       });
 
-      return parseLevel(icon, {fill: color, stroke:color});
+      return parseLevel(icon, {fill: color, stroke:color}, this.props.colorize);
     }
   });
   return memo;
