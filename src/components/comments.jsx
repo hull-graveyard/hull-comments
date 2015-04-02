@@ -7,7 +7,7 @@ import Icon from './icon';
 var Comments = React.createClass({
   render: function() {
     if (this.props.isReady) {
-      return <div className='row'>
+      return <div className=''>
         <MainNav {...this.props} />
         <Conversation {...this.props} />
       </div>;

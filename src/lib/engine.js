@@ -8,6 +8,8 @@ var ACTIONS = [
   'signup',
   'login',
   'logout',
+  'resetPassword',
+  'clearErrors',
   'linkIdentity',
   'unlinkIdentity',
   'fetchComments',
@@ -95,10 +97,11 @@ assign(Engine.prototype, Emitter.prototype, {
       identities: this._identities,
       providers: this.getProviders(),
       error: this._error,
+      status: this._status,
       isInitializing: this._isInitializing,
       isWorking: this._isLoggingIn || this._isLoggingOut || this._isLinking || this._isUnlinking,
-      isLogingIn: this._isLoggingIn,
-      isLogingOut: this._isLoggingOut,
+      isLoggingIn: this._isLoggingIn,
+      isLoggingOut: this._isLoggingOut,
       isLinking: this._isLinking,
       isUnlinking: this._isUnlinking,
       isFetching: !!this._isFetching,
@@ -156,6 +159,7 @@ assign(Engine.prototype, Emitter.prototype, {
     this._commentsById = {};
     this._hasMore = true;
     this._error = null;
+    this._status = {};
     this._isLoggingIn = false;
     this._isLoggingOut = false;
     this._isLinking = false;
@@ -205,8 +209,28 @@ assign(Engine.prototype, Emitter.prototype, {
     return providers;
   },
 
-  login: function(options) {
+  login: function(options, source) {
     this.perform('login', options);
+  },
+
+  resetPassword: function(options={}){
+    Hull.api("/users/request_password_reset", "post", options, function(r) {
+      this._error=null,
+      this._status.resetPassword={
+        message:this.translate("Email sent to {email}. Check your inbox!",options)
+      }
+      this.emitChange()
+    }.bind(this), function(error) {
+      this._error=error
+      delete this._status.resetPassword;
+      this.emitChange()
+    }.bind(this));
+  },
+
+  clearErrors: function() {
+    this._error=null;
+    this._status={};
+    this.emitChange()
   },
 
   logout: function() {
@@ -222,13 +246,13 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   signup: function(user) {
-    return Hull.signup(user);
+    this.perform('signup', user);
   },
 
   perform: function(method, options={}) {
     var s = STATUS[method];
-
-    this[s] = options.provider || 'email';
+    var provider = options.provider || 'email'
+    this[s] = provider;
     this._error = null;
 
     this.emitChange();
@@ -238,19 +262,15 @@ assign(Engine.prototype, Emitter.prototype, {
     }
 
     var promise = Hull[method](options);
-    promise.then(function() {
+    promise.then(function(){
       this.resetUser();
-
       this[s] = false;
       this._error = null;
-
       this.emitChange();
-    }.bind(this), function(error) {
+    }.bind(this), function(error){
       this[s] = false;
-
       error.provider = provider;
       this._error = error;
-
       this.emitChange();
     }.bind(this));
 

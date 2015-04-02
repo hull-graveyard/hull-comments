@@ -38,7 +38,7 @@
 // @import "foundation/components/thumbs";
 // @import "foundation/components/tooltips";
 @import "foundation/components/top-bar";
-// @import "foundation/components/type";
+@import "foundation/components/type";
 // @import "foundation/components/offcanvas";
 @import "foundation/components/visibility";
 
@@ -54,4 +54,10 @@
 
 body{
   -webkit-font-smoothing: antialiased;
+}
+
+.error-block{
+  color: $red;
+  font-size: .8rem;
+  font-weight: 600;
 }

@@ -6,11 +6,11 @@ var TopForm = React.createClass({
 
   render: function() {
     return (
-      <div className="">
-        <div className="show-for-medium-up">
+      <div className="row">
+        <div className="medium-1 columns show-for-medium-up pl-0">
           <Avatar {...this.props.user}/>
         </div>
-        <div className="">
+        <div className="medium-11 columns ps-0">
           <CommentForm {...this.props} />
         </div>
       </div>

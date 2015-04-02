@@ -79,7 +79,7 @@ var Comment = React.createClass({
     var isCurrentUser = this.isCurrentUser();
     var canEdit = comment.user.id === (this.props.user || {}).id;
     return <div className={cx({ row:true, comment: true, collapsed: this.state.isCollapsed })}>
-      <div className='small-12 columns'>
+      <div className='small-12 columns ps-0'>
         <div className='row comment-header'>
           <div className='small-1 medium-1 pr-0 columns'>
             <Avatar {...this.props.comment.user}/>
@@ -93,7 +93,7 @@ var Comment = React.createClass({
           </div>
         </div>
       </div>
-      <div className='small-12 medium-11 medium-offset-1 columns comment-container'>
+      <div className='small-12 medium-11 medium-offset-1 columns comment-container ps-0'>
         {this.renderModerationStatus()}
 
         <div className='comment-message'>{this.renderMessageContent()}</div>
