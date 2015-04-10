@@ -82,18 +82,26 @@ const EmailLogin = React.createClass({
       </section>
     </nav>
   },
-  render() {
-    var title = [ <Icon name='email' color="#FFFFFF" size="16"/>, translate("Email") ];
+
+  toggleForm(e) {
+    e.preventDefault();
+
+    this.setState({ formIsOpen: !this.state.formIsOpen });
+  },
+
+  renderForm() {
+    if (!this.state.formIsOpen) { return; }
 
     var isLogin = this.state.tab=='login';
     var isRegister = this.state.tab=='register';
     var isRecover = this.state.tab=='recover';
 
     if(this.props.error && this.props.error.provider=='email'){
-      var error  = <p className="error-block text-center">{this.props.error.message}</p>
+      var error = <p className="error-block text-center">{this.props.error.message}</p>;
     }
-    return <DropdownMenu component="button" className={this.props.className} title={title} btnClass='button tiny round email left'>
-      <div className="register f-dropdown">
+
+    return (
+      <div className="register" style={{clear: 'both'}}>
         {this.renderNavBar()}
         <div className="tabs-content" style={{padding:"0 1rem"}}>
           <div className={cx({'content':true, 'active':isLogin})} id="loginTab">
@@ -112,9 +120,19 @@ const EmailLogin = React.createClass({
           {error}
         </div>
       </div>
-    </DropdownMenu>;
-  }
+    );
+  },
 
+  render() {
+    var title = [ <Icon name='email' color="#FFFFFF" size="16"/>, translate("Email") ];
+
+    return (
+      <span>
+        <button className='button tiny round email left' onClick={this.toggleForm}>{title}</button>
+        {this.renderForm()}
+      </span>
+    );
+  }
 });
 
 module.exports = EmailLogin;
