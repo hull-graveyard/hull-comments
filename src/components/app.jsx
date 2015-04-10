@@ -46,7 +46,11 @@ var App = React.createClass({
   },
 
   render: function() {
-    return <div>
+    var s = {
+      minHeight: 350
+    };
+
+    return <div style={s}>
       <HullStyle {...this.state.settings}/>
       <Comments {...this.state} actions={this.props.engine.getActions()} />
     </div>

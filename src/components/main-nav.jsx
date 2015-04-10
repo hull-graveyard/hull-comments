@@ -27,7 +27,7 @@ var MainHeader = React.createClass({
   },
 
   renderMenuToggle(){
-    return <li className="toggle-topbar menu-icon"><a href="#" onClick={this.toggleNavBar}><span>Menu</span></a></li>
+    return <li className="toggle-topbar menu-icon"><a href="#" onClick={this.toggleNavBar}><span>{translate('Menu')}</span></a></li>
   },
 
   render() {
@@ -37,7 +37,6 @@ var MainHeader = React.createClass({
       'top-bar': true,
       'expanded': true
     };
-
 
     return <nav className={cx(navClasses)}>
       <section className="top-bar-section">

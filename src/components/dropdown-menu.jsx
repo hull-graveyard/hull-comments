@@ -80,7 +80,8 @@ var DropdownMenu = React.createClass({
     }
     var parentClass = (typeof this.props.className === 'string')?{[this.props.className]:true}:this.props.className
     var className = assign({open:this.state.opened, 'dropdown-container':true}, parentClass);
-    return <Component {...this.props} className={cx(className)} onClick={this.onSelfClick}>
+
+    return <Component className={cx(className)} onClick={this.onSelfClick}>
       <ButtonComponent href='#' className={this.props.btnClass} onClick={this.toggle}>{this.getTitle()}</ButtonComponent>
       {this.renderOptions()}
       {this.props.children}

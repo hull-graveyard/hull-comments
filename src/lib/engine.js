@@ -5,6 +5,7 @@ import IntlMessageFormat from 'intl-messageformat';
 import sanitize from 'sanitize-caja';
 
 var ACTIONS = [
+  'toggleForm',
   'signup',
   'login',
   'logout',
@@ -111,7 +112,8 @@ assign(Engine.prototype, Emitter.prototype, {
       orderBy: this._orderBy,
       isReady: !!this._isReady,
       hasMore: this._hasMore,
-      commentsCount: this._commentsCount
+      commentsCount: this._commentsCount,
+      formIsOpen: !!this._formIsOpen
     };
     return state;
   },
@@ -207,6 +209,12 @@ assign(Engine.prototype, Emitter.prototype, {
     }
 
     return providers;
+  },
+
+  toggleForm: function() {
+    this._formIsOpen = !this._formIsOpen;
+
+    this.emitChange();
   },
 
   login: function(options, source) {
@@ -377,6 +385,8 @@ assign(Engine.prototype, Emitter.prototype, {
       this._isPosting = Hull.api(this.entity_id + '/comments', 'post', comment);
       this._isPosting.then((r)=>{
         this._comments[i] = r;
+        r.votes = { up: 0, down: 0 };
+        this._commentsById[r.id]= r;
         this._commentsCount++;
         this._isPosting = false;
         this.emitChange('comment is now posted');

@@ -49,6 +49,7 @@ const EmailLogin = React.createClass({
       </button>
     ]
   },
+
   renderRecoverForm(){
     if(this.props.status && this.props.status.resetPassword){
       var message  = <p className="message-block text-center">
@@ -63,11 +64,13 @@ const EmailLogin = React.createClass({
       {message}
     ]
   },
+
   renderEmailField(){
     return <p className="input-wrapper">
       <input type="email" placeholder={translate('Email')} name="email" value={this.state.newUser.email} onChange={this.handleChange}  />
     </p>
   },
+
   renderNavBar(){
     var isLogin = this.state.tab=='login';
     var isRegister = this.state.tab=='register';
@@ -76,8 +79,8 @@ const EmailLogin = React.createClass({
     return <nav className="top-bar expanded nav-bar">
       <section className="top-bar-section">
         <ul className='left'>
-          <li className={cx({'tab-title':true,'active':isLogin})}><a onClick={this.showTab.bind(this,'login')}>Login</a></li>
-          <li className={cx({'tab-title':true,'active':isRegister})}><a onClick={this.showTab.bind(this,'register')}>Register</a></li>
+          <li className={cx({'tab-title':true,'active':isLogin})}><a onClick={this.showTab.bind(this,'login')}>{translate('Log in')}</a></li>
+          <li className={cx({'tab-title':true,'active':isRegister})}><a onClick={this.showTab.bind(this,'register')}>{translate('Sign up')}</a></li>
         </ul>
       </section>
     </nav>
@@ -86,11 +89,11 @@ const EmailLogin = React.createClass({
   toggleForm(e) {
     e.preventDefault();
 
-    this.setState({ formIsOpen: !this.state.formIsOpen });
+    this.props.actions.toggleForm();
   },
 
   renderForm() {
-    if (!this.state.formIsOpen) { return; }
+    if (!this.props.formIsOpen) { return; }
 
     var isLogin = this.state.tab=='login';
     var isRegister = this.state.tab=='register';
