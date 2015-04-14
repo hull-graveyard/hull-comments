@@ -13,7 +13,8 @@ const EmailLogin = React.createClass({
     };
   },
 
-  showTab: function(tab){
+  showTab: function(tab, e){
+    e.preventDefault();
     this.setState({tab:tab});
   },
 
