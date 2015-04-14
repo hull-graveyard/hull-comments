@@ -3,6 +3,7 @@ import cx from 'react/lib/cx';
 import { translate } from '../lib/i18n';
 import DropdownMenu from './dropdown-menu';
 import Icon from './icon';
+import _ from 'underscore';
 
 const EmailLogin = React.createClass({
   getInitialState() {
@@ -92,29 +93,41 @@ const EmailLogin = React.createClass({
     this.props.actions.toggleForm();
   },
 
+  getTabStyle() {
+    var tab = this.state.tab;
+    return _.reduce(['login', 'register', 'recover'], function(m, t) {
+      m[t] = { display: t == tab ? 'block' : 'none' }
+
+      return m;
+    }, {});
+  },
+
   renderForm() {
     if (!this.props.formIsOpen) { return; }
 
-    var isLogin = this.state.tab=='login';
-    var isRegister = this.state.tab=='register';
-    var isRecover = this.state.tab=='recover';
+    var isLogin = this.state.tab == 'login';
+    var isRegister = this.state.tab == 'register';
+    var isRecover = this.state.tab == 'recover';
 
     if(this.props.error && this.props.error.provider=='email'){
       var error = <p className="error-block text-center">{this.props.error.message}</p>;
     }
 
+    var styles = this.getTabStyle();
     return (
       <div className="register" style={{clear: 'both'}}>
         {this.renderNavBar()}
         <div className="tabs-content" style={{padding:"0 1rem"}}>
-          <div className={cx({'content':true, 'active':isLogin})} id="loginTab">
+          <div className={cx({'content':true, 'active':isLogin})} style={styles.login}>
             {this.renderEmailPasswordForm(this.login)}
             <strong  className='text-center'><small><a href="#" onClick={this.showTab.bind(this,'recover')}>{translate('Forgot Password?')}</a></small></strong>
           </div>
-          <div className={cx({'content':true, 'active':isRecover})} id="loginTab">
+
+          <div className={cx({'content':true, 'active':isRecover})} style={styles.recover}>
             {this.renderRecoverForm()}
           </div>
-          <div className={cx({'content':true, 'active':isRegister})} id="registerTab">
+
+          <div className={cx({'content':true, 'active':isRegister})} style={styles.register}>
             <p className="input-wrapper">
               <input type="text" placeholder={translate('Name')} name="name" value={this.state.newUser.name} onChange={this.handleChange} />
             </p>
