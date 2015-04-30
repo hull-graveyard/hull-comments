@@ -373,18 +373,29 @@ assign(Engine.prototype, Emitter.prototype, {
     this.emitChange('marked as deleting');
   },
 
-  postComment: function(text, inReplyTo) {
+  postComment: function(text, parentId) {
     text = sanitize(text);
 
     if (this._isPosting) return false;
 
     if (!!this._deployment.ship.settings.allow_guest || this._user) {
-      var comment = { description: text, extra: { }, created_at: new Date() };
-      var i = this._comments.push({ description: text, user: (this._user || {}), created_at: new Date() }) - 1;
+      var d = new Date();
+      var comment = { description: text, extra: { }, created_at: d };
+      var c = { description: text, user: (this._user || {}), created_at: d }
+      if (parentId == null) {
+        var i = this._comments.push(c) - 1;
+      } else {
+        comment['parent_id'] = parentId;
+        var i = this._commentsById[parentId].children.push(c) - 1;
+      }
 
       this._isPosting = Hull.api(this.entity_id + '/comments', 'post', comment);
       this._isPosting.then((r)=>{
-        this._comments[i] = r;
+        if (parentId == null) {
+          this._comments[i] = r;
+        } else {
+          this._commentsById[parentId].children[i] = r;
+        }
         r.votes = { up: 0, down: 0 };
         this._commentsById[r.id]= r;
         this._commentsCount++;

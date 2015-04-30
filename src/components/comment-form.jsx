@@ -8,7 +8,7 @@ var CommentForm = React.createClass({
   propTypes: {
     user: React.PropTypes.object,
     onSubmit: React.PropTypes.func,
-    inReplyToId: React.PropTypes.string,
+    parentId: React.PropTypes.string,
     text: React.PropTypes.string,
     expanded: React.PropTypes.bool,
     mode: React.PropTypes.string,
@@ -16,8 +16,14 @@ var CommentForm = React.createClass({
   },
 
   getInitialState: function() {
-    var text = this.props.comment ? this.props.comment.description : "";
-    return { text: text || "", isExpanded: this.props.expanded };
+    var t;
+    if (this.props.mode === 'reply') {
+      t = '';
+    } else {
+      t = this.props.comment ? this.props.comment.description : '';
+    }
+
+    return { text: t, isExpanded: this.props.expanded };
   },
 
   componentDidMount: function() {
@@ -33,7 +39,7 @@ var CommentForm = React.createClass({
       if (this.props.mode === 'edit') {
         this.props.actions.updateComment(text, this.props.comment.id);
       } else {
-        this.props.actions.postComment(text, this.props.inReplyToId);
+        this.props.actions.postComment(text, this.props.parentId);
       }
       if (this.props.onSubmit) { this.props.onSubmit(text); }
     }
@@ -97,8 +103,8 @@ var CommentForm = React.createClass({
 
   renderTextarea: function() {
     var user = this.props.user || {};
-    var w = translate('What do you think?');
-    var placeholder = "<span class='light-text'>" + w + "</span>";
+    var w = this.props.mode === 'reply' ? 'Reply...' : 'What do you think?';
+    var placeholder = "<span class='light-text'>" + translate(w) + "</span>";
     return (
       <div className="comment-form-editor">
         <ContentEditable

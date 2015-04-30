@@ -8,6 +8,7 @@ import Avatar from './avatar';
 import CommentFooter from './comment-footer';
 import sanitize from 'sanitize-caja';
 import { translate } from '../lib/i18n';
+import _ from 'underscore';
 
 var Comment = React.createClass({
   propTypes: {
@@ -46,6 +47,16 @@ var Comment = React.createClass({
     });
   },
 
+  toggleReply: function(e) {
+    e && e.preventDefault();
+    this.setState({ isReplying: !this.state.isReplying });
+  },
+
+  closeReply: function(e) {
+    e && e.preventDefault();
+    this.setState({ isReplying: false });
+  },
+
   renderMessageContent: function() {
     var comment = this.props.comment;
 
@@ -73,38 +84,61 @@ var Comment = React.createClass({
     );
   },
 
-  render: function() {
-    var comment = this.props.comment;
+  renderReplyForm: function() {
+    if (!this.state.isReplying) { return; }
+
+    return <CommentForm mode='reply' {...this.props} onCancel={this.closeReply} onSubmit={this.closeReply} parentId={this.props.comment.id} />;
+  },
+
+  renderComment(comment, depth) {
+    depth = depth || 0;
     var user = comment.user;
     var isCurrentUser = this.isCurrentUser();
     var canEdit = comment.user.id === (this.props.user || {}).id;
-    return <div className={cx({ row:true, comment: true, collapsed: this.state.isCollapsed })}>
-      <div className='small-12 columns ps-0'>
-        <div className='row comment-header'>
-          <div className='small-1 medium-1 pr-0 columns'>
-            <Avatar {...this.props.comment.user}/>
-          </div>
-          <div className='small-11 columns'>
-            <CommentMeta
-              {...this.props}
-              isCurrentUser={isCurrentUser}
-              isCollapsed={this.state.isCollapsed}
-              onToggleCollapse={this.toggleCollapse}/>
+
+    var replies = _.map(comment.children, function(c) {
+      return this.renderComment(c, depth + 1);
+    }, this);
+
+    return (
+      <div key={comment.id} className={cx({ row:true, comment: true, collapsed: this.state.isCollapsed })}>
+        <div className='small-12 columns ps-0'>
+          <div className='row comment-header'>
+            <div className='small-1 medium-1 pr-0 columns'>
+              <Avatar {...this.props.comment.user}/>
+            </div>
+            <div className='small-11 columns'>
+              <CommentMeta
+                {...this.props}
+                isCurrentUser={isCurrentUser}
+                isCollapsed={this.state.isCollapsed}
+                onToggleCollapse={this.toggleCollapse}/>
+            </div>
           </div>
         </div>
-      </div>
-      <div className='small-12 medium-11 medium-offset-1 columns comment-container ps-0'>
-        {this.renderModerationStatus()}
+        <div className='small-12 medium-11 medium-offset-1 columns comment-container ps-0'>
+          {this.renderModerationStatus()}
 
-        <div className='comment-message'>{this.renderMessageContent()}</div>
+          <div className='comment-message'>{this.renderMessageContent()}</div>
 
-        <CommentFooter
-          {...this.props}
-          isCurrentUser={isCurrentUser}
-          onToggleEdit={this.toggleEdit}
-          isEditing={this.state.isEditing}/>
+          <CommentFooter
+            {...this.props}
+            isCurrentUser={isCurrentUser}
+            onToggleEdit={this.toggleEdit}
+            isEditing={this.state.isEditing}
+            onToggleReply={this.toggleReply}
+            isReplying={this.state.isReplying} />
+
+          {this.renderReplyForm()}
+
+          {replies}
+        </div>
       </div>
-    </div>;
+    );
+  },
+
+  render: function() {
+    return this.renderComment(this.props.comment);
   }
 });
 

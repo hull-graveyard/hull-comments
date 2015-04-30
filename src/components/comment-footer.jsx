@@ -71,6 +71,12 @@ var CommentFooter = React.createClass({
       );
     }
 
+    items.push(
+      <li key='reply'>
+        <a href='javascript: void 0;' onClick={this.props.onToggleReply}>{translate('Reply')}</a>
+      </li>
+    );
+
     items.push(<ShareMenu key='share' {...this.props} />);
 
     return <div className='comment-footer light-text'><div className='menubar-list'>{items}</div></div>;
