@@ -93,6 +93,11 @@ var CommentForm = React.createClass({
         <a key='cancel' href='#' className='tiny button radius transparent text-text' onClick={this.handleCancel}>{translate('Cancel')}</a>,
         <button key='update' className='tiny button radius strong' onClick={this.onSubmit}>{translate('Update')}</button>
       ];
+    } else if (user && this.props.mode === 'reply') {
+      return [
+        <a key='cancel' href='#' className='tiny button radius transparent text-text' onClick={this.handleCancel}>{translate('Cancel')}</a>,
+        <button key='reply' className='tiny button radius strong' onClick={this.onSubmit}>{translate('Reply')}</button>
+      ];
     } else if (this.props.settings.allow_guest || user) {
       var name = (user && (user.name || user.email)) || translate('Guest');
       var t = translate('Post as {name}', { name: name });
