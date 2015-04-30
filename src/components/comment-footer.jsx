@@ -43,23 +43,7 @@ var CommentFooter = React.createClass({
       return <div className='comment-footer light-text'>{translate('Posting comment...')}</div>;
     }
 
-    var items = [], separator = <li className="bullet">•</li>;
-
-    var ps = this.getPositiveScore();
-    var ns = this.getNegativeScore();
-    var downColor = (!!ns) ? "#FF6600" : null;
-    var upColor = (!!ps) ? "#FFCC00" : null;
-    var up;
-    var down;
-    if (this.props.user == null) {
-      up = <span className={cx({'text-warning':!!ps})}>{ps} <Icon name='arrow_up' size={13} settings={this.props.settings} color={upColor}/></span>
-      down = <span className={cx({'text-alert':!!ns})}><Icon name='arrow_down' size={13} settings={this.props.settings} color={downColor}/> {ns}</span>
-    } else {
-      up = <a href="#" title={translate("Vote up")} className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icon name='arrow_up' size={13} settings={this.props.settings} color={upColor}/></a>
-      down = <a href="#" title={translate("Vote down")} className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icon name='arrow_down' size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
-    }
-    items.push(<li key='vote-down' className="voting">{up}</li>);
-    items.push(<li key='vote-up' className="voting">{down}</li>);
+    var items = [];
 
     if (this.props.isCurrentUser) {
       items.push(
