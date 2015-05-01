@@ -10,14 +10,7 @@ import sanitize from 'sanitize-caja';
 import { translate } from '../lib/i18n';
 import _ from 'underscore';
 
-var Comment = React.createClass({
-  propTypes: {
-    comment: React.PropTypes.object.isRequired,
-    onDelete: React.PropTypes.func,
-    currentUser: React.PropTypes.object,
-    onReply: React.PropTypes.func
-  },
-
+var SingleComment = React.createClass({
   getInitialState: function() {
     return { showReplyForm: false, isCollapsed: false };
   },
@@ -26,7 +19,6 @@ var Comment = React.createClass({
     e.preventDefault();
     this.setState({ showReplyForm: !this.state.showReplyForm });
   },
-
 
   toggleCollapse: function(e) {
     e.preventDefault();
@@ -90,15 +82,11 @@ var Comment = React.createClass({
     return <CommentForm mode='reply' {...this.props} onCancel={this.closeReply} onSubmit={this.closeReply} parentId={this.props.comment.id} />;
   },
 
-  renderComment(comment, depth) {
-    depth = depth || 0;
+  render() {
+    let comment = this.props.comment;
     var user = comment.user;
     var isCurrentUser = this.isCurrentUser();
     var canEdit = comment.user.id === (this.props.user || {}).id;
-
-    var replies = _.map(comment.children, function(c) {
-      return this.renderComment(c, depth + 1);
-    }, this);
 
     return (
       <div key={comment.id} className={cx({ row:true, comment: true, collapsed: this.state.isCollapsed })}>
@@ -130,15 +118,42 @@ var Comment = React.createClass({
             isReplying={this.state.isReplying} />
 
           {this.renderReplyForm()}
-
-          {replies}
         </div>
       </div>
     );
-  },
+  }
+});
 
+function renderComment(properties, depth) {
+  let user = properties.user;
+  let comment = properties.comment;
+  let depth = properties.depth || 0;
+  let settings = properties.settings;
+  let providers = properties.providers;
+
+  let replies = _.map(comment.children, function(c) {
+    let p = {
+      user,
+      comment: c,
+      depth: depth + 1,
+      settings,
+      providers
+    };
+
+    return renderComment(p);
+  });
+
+  return (
+    <div key={comment.id}>
+      <SingleComment user={user} comment={comment} depth={depth} settings={settings} providers={providers} />
+      {replies}
+    </div>
+  );
+}
+
+var Comment = React.createClass({
   render: function() {
-    return this.renderComment(this.props.comment);
+    return renderComment(this.props);
   }
 });
 
