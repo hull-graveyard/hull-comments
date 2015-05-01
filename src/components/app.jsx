@@ -47,7 +47,7 @@ var App = React.createClass({
 
   render: function() {
     var s = {
-      minHeight: 350
+      paddingBottom: 200
     };
 
     return <div style={s}>
