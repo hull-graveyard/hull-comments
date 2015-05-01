@@ -2,8 +2,20 @@ import React from 'react';
 import cx from 'react/lib/cx';
 import assign from 'object-assign';
 
-var DropdownMenu = React.createClass({
+const dropdownItemStyle = {
+  lineHeight: 1,
+  padding: 0
+};
 
+const dropdownAnchorStyle = {
+  lineHeight: 1,
+  paddingTop: 8,
+  paddingRight: 10,
+  paddingBottom: 8,
+  paddingLeft: 10
+};
+
+var DropdownMenu = React.createClass({
   propTypes: {
     onSelect: React.PropTypes.func,
     options: React.PropTypes.array,
@@ -58,10 +70,11 @@ var DropdownMenu = React.createClass({
       'f-dropdown':true,
       'dropdown-right':!!this.props.right
     };
+
     return <ul className={cx(dropdownClass)}>
       {this.props.options.map(function(opt, i) {
-        return <li key={opt.value} className={cx({ selected: this.props.value === opt.value })}>
-          <a href="#" onClick={this.handleSelect.bind(this, opt)}>
+        return <li key={opt.value} style={dropdownItemStyle} className={cx({ selected: this.props.value === opt.value })}>
+          <a href='javascript: void 0;' style={dropdownAnchorStyle} onClick={this.handleSelect.bind(this, opt)}>
             {opt.label || opt.value}
           </a>
         </li>;

@@ -23,7 +23,6 @@
 
 
 .comment{
-  margin-bottom: 2rem;
   .comment-container{
     @extend %comment-content
   }
@@ -85,12 +84,12 @@
       opacity: 1;
     }
   }
-  .share-menu, .comment-time, .comment-actions{
+  .comment-time, .comment-actions{
     opacity: 0;
     transition:all .2s $easeOutQuint;
   }
   &:hover {
-    .share-menu, .comment-time, .comment-actions{
+    .comment-time, .comment-actions{
       opacity: 1;
     }
   }

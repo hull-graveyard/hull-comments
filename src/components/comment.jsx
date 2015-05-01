@@ -40,12 +40,12 @@ var SingleComment = React.createClass({
   },
 
   toggleReply: function(e) {
-    e && e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     this.setState({ isReplying: !this.state.isReplying });
   },
 
   closeReply: function(e) {
-    e && e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     this.setState({ isReplying: false });
   },
 
@@ -79,7 +79,9 @@ var SingleComment = React.createClass({
   renderReplyForm: function() {
     if (!this.state.isReplying) { return; }
 
-    return <CommentForm mode='reply' {...this.props} onCancel={this.closeReply} onSubmit={this.closeReply} parentId={this.props.comment.id} />;
+    const s = { marginTop: 10 };
+
+    return <CommentForm {...this.props} style={s} mode='reply' onCancel={this.closeReply} onSubmit={this.closeReply} parentId={this.props.comment.id} />;
   },
 
   render() {
@@ -88,8 +90,10 @@ var SingleComment = React.createClass({
     var isCurrentUser = this.isCurrentUser();
     var canEdit = comment.user.id === (this.props.user || {}).id;
 
+    const s = { marginBottom: 20 }
+
     return (
-      <div key={comment.id} className={cx({ row:true, comment: true, collapsed: this.state.isCollapsed })}>
+      <div style={s} className={cx({ row:true, comment: true, collapsed: this.state.isCollapsed })}>
         <div className='small-12 columns ps-0'>
           <div className='row comment-header'>
             <div className='small-1 medium-1 pr-0 columns'>
@@ -125,27 +129,29 @@ var SingleComment = React.createClass({
 });
 
 function renderComment(properties, depth) {
-  let user = properties.user;
-  let comment = properties.comment;
-  let depth = properties.depth || 0;
-  let settings = properties.settings;
-  let providers = properties.providers;
+  const user = properties.user;
+  const comment = properties.comment;
+  const depth = properties.depth || 0;
+  const settings = properties.settings;
+  const providers = properties.providers;
+  const actions = properties.actions;
 
   let replies = _.map(comment.children, function(c) {
-    let p = {
+    return renderComment({
       user,
       comment: c,
       depth: depth + 1,
       settings,
-      providers
-    };
-
-    return renderComment(p);
+      providers,
+      actions
+    });
   });
 
+  const s = { marginLeft: depth * 10 };
+
   return (
-    <div key={comment.id}>
-      <SingleComment user={user} comment={comment} depth={depth} settings={settings} providers={providers} />
+    <div key={comment.id} style={s}>
+      <SingleComment user={user} comment={comment} depth={depth} settings={settings} providers={providers} actions={actions} />
       {replies}
     </div>
   );
