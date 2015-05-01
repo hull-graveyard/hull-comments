@@ -35,7 +35,7 @@ var ShareMenu = React.createClass({
 
   render: function() {
     return <DropdownMenu
-      component='span'
+      component={this.props.component || 'span'}
       right={this.props.right}
       options={this.getOptions()}
       title={this.getTitle()}

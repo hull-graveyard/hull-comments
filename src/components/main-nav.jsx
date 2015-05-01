@@ -54,7 +54,7 @@ var MainHeader = React.createClass({
         </ul>
         <ul className="left">
           <FavoritesButton {...this.props}/>
-          <ShareMenu {...this.props} right={false} />
+          <ShareMenu {...this.props} component='li' right={false} />
         </ul>
         <ul className="right">
           <UserMenu {...this.props} />
