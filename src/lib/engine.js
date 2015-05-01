@@ -313,12 +313,9 @@ assign(Engine.prototype, Emitter.prototype, {
         this._isReady = true;
         this._isFetching = false;
         this._hasMore = !!r.pagination.next_url;
-        this._commentsCount = r.pagination.total;
+        this._commentsCount = r.tree.total;
         this._comments = this._comments.concat(r.data);
-        this._commentsById = _.reduce(r.data, function(m, c) {
-          m[c.id] = processComment(c);
-          return m;
-        }, {});
+        this._processComments(r.data);
 
         this.emitChange('fetching ok');
       }.bind(this), function(e) {
@@ -481,6 +478,14 @@ assign(Engine.prototype, Emitter.prototype, {
     if (m == null) { return message; }
 
     return m.format(data);
+  },
+
+  _processComments(comments) {
+    _.each(comments, function(raw) {
+      let c = processComment(raw);
+      this._commentsById[c.id] = c;
+      this._processComments(c.children);
+    }, this);
   }
 });
 
