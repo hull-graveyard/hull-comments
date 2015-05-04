@@ -54,15 +54,15 @@ const EmailLogin = React.createClass({
 
   renderRecoverForm(){
     if(this.props.status && this.props.status.resetPassword){
-      var message  = <p className="message-block text-center">
+      var message = <p className="message-block text-center">
         <small>
-          {translate(this.props.status.resetPassword.message,{email:this.state.newUser.email})}
+          {translate(this.props.status.resetPassword.message, { email:this.state.newUser.email })}
         </small>
       </p>
     }
     return [
       this.renderEmailField(),
-      <button className="tiny button round expand success" onClick={this.recover}><strong>Send reset link</strong></button>,
+      <button className="tiny button round expand success" onClick={this.recover}><strong>{translate('Send reset link')}</strong></button>,
       {message}
     ]
   },

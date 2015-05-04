@@ -1,6 +1,5 @@
-import React        from 'react';
-import MainNav      from './main-nav';
-import SubNav       from './sub-nav';
+import React from 'react';
+import MainNav from './main-nav';
 import Conversation from './conversation';
 import Icon from './icon';
 

@@ -1,7 +1,6 @@
 var React = require('react');
 
 var CommentAvatar = React.createClass({
-
   render: function() {
     var comment = this.props.comment;
     var user = comment.user;
@@ -11,7 +10,6 @@ var CommentAvatar = React.createClass({
       </div>
     );
   }
-
 });
 
 module.exports = CommentAvatar;
