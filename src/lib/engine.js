@@ -302,6 +302,7 @@ assign(Engine.prototype, Emitter.prototype, {
     if (!this._isFetching) {
       params = assign({}, params, {
         wrapped: true,
+        nested: true,
         page: this._page,
         per_page: 50,
         order_by: SORT_OPTIONS[this._orderBy]
