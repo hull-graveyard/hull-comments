@@ -384,7 +384,9 @@ assign(Engine.prototype, Emitter.prototype, {
         var i = this._comments.push(c) - 1;
       } else {
         comment['parent_id'] = parentId;
-        var i = this._commentsById[parentId].children.push(c) - 1;
+        var p = this._commentsById[parentId];
+        p.children = p.children || [];
+        var i = p.children.push(c) - 1;
       }
 
       this._isPosting = Hull.api(this.entity_id + '/comments', 'post', comment);
