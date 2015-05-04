@@ -50,12 +50,14 @@ var SingleComment = React.createClass({
   },
 
   renderMessageContent: function() {
-    var comment = this.props.comment;
+    let c = this.props.comment;
 
     if (this.isCurrentUser() && this.state.isEditing) {
       return <CommentForm mode='edit' {...this.props} onCancel={this.toggleEdit} onSubmit={this.toggleEdit} />;
+    } else if (c.deleted_at) {
+      return translate('Comment has been deleted.');
     } else {
-      return <div dangerouslySetInnerHTML={{__html: sanitize(comment.description) }} />;
+      return <div dangerouslySetInnerHTML={{__html: sanitize(c.description) }} />;
     }
   },
 
@@ -82,6 +84,19 @@ var SingleComment = React.createClass({
     const s = { marginTop: 10 };
 
     return <CommentForm {...this.props} style={s} mode='reply' onCancel={this.closeReply} onSubmit={this.closeReply} parentId={this.props.comment.id} />;
+  },
+
+  renderFooter() {
+    if (this.props.comment.deleted_at == null) {
+      return (
+        <CommentFooter {...this.props}
+          isCurrentUser={this.isCurrentUser()}
+          onToggleEdit={this.toggleEdit}
+          isEditing={this.state.isEditing}
+          onToggleReply={this.toggleReply}
+          isReplying={this.state.isReplying} />
+      );
+    }
   },
 
   render() {
@@ -113,14 +128,7 @@ var SingleComment = React.createClass({
 
           <div className='comment-message'>{this.renderMessageContent()}</div>
 
-          <CommentFooter
-            {...this.props}
-            isCurrentUser={isCurrentUser}
-            onToggleEdit={this.toggleEdit}
-            isEditing={this.state.isEditing}
-            onToggleReply={this.toggleReply}
-            isReplying={this.state.isReplying} />
-
+          {this.renderFooter()}
           {this.renderReplyForm()}
         </div>
       </div>
