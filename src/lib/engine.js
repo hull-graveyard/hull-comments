@@ -351,24 +351,14 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   deleteComment: function(id) {
-    if (!id) return false;
-    var found = false;
-    this._comments = this._comments.map(function(comment) {
-      if (comment && comment.id === id) {
-        found = comment;
-        comment._isDeleting = true;
-        Hull.api(comment.id, 'delete', { description: "[deleted]" }).then((res)=> {
-          found = res;
-          this._comments = this._comments.filter(function(c) { return c.id != id; });
-          this.emitChange('deleted ok');
-        }, (err)=> {
-          found._isDeleting = false;
-          this.emitChange("error deleting comment: ", err.toString());
-        }).done();
-      }
-      return comment;
-    }, this);
-    this.emitChange('marked as deleting');
+    let c = this._commentsById[id];
+
+    if (c == null) { return; }
+
+    c['deleted_at'] = new Date();
+    Hull.api(c.id, 'delete');
+
+    this.emitChange();
   },
 
   postComment: function(text, parentId) {
