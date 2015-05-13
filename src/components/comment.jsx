@@ -1,6 +1,5 @@
 import React from 'react';
 import cx from 'react/lib/cx';
-import moment from 'moment';
 import CommentForm from './comment-form';
 import ShareMenu from './share-menu';
 import CommentMeta from './comment-meta';
