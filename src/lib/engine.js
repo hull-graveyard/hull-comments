@@ -294,7 +294,7 @@ assign(Engine.prototype, Emitter.prototype, {
       }, function(err) {
         self._isFavorite = false;
         self.emitChange('fetched _isFavorite');
-      }).done();
+      });
     }
   },
 
@@ -322,7 +322,7 @@ assign(Engine.prototype, Emitter.prototype, {
       }.bind(this), function(e) {
         this._isFetching = false;
         this.emitChange('fetching error: ' + e.message);
-      }.bind(this)).done();
+      }.bind(this));
 
       this.emitChange('start fetching');
     }
@@ -395,7 +395,7 @@ assign(Engine.prototype, Emitter.prototype, {
         this._isPosting = false;
         this._comments.pop();
         this.emitChange();
-      }).done();
+      });
 
       this.emitChange('stared posting a comment...');
     } else {
@@ -411,7 +411,7 @@ assign(Engine.prototype, Emitter.prototype, {
       return Hull.api(id, 'put', { description: text }).then(function(r) {
         assign(c, r);
         self.emitChange();
-      }).done();
+      });
     }
   },
 
@@ -421,7 +421,7 @@ assign(Engine.prototype, Emitter.prototype, {
     Hull.api(id + '/reviews', 'post', { rating: rating }).then(function(r) {
       c.votes = processCommentVotes(r.ratings.distribution);
       this.emitChange('Update comment score');
-    }.bind(this)).done();
+    }.bind(this));
   },
 
   upVote: function(id) {
@@ -450,10 +450,10 @@ assign(Engine.prototype, Emitter.prototype, {
       }
       if (this._isFavorite) {
         this._isFavorite = false;
-        Hull.api(this.entity_id + '/likes','delete').then(refresh, refresh).done();
+        Hull.api(this.entity_id + '/likes','delete').then(refresh, refresh);
       } else {
         this._isFavorite = true;
-        Hull.api(this.entity_id + '/likes','post').then(refresh, refresh).done();
+        Hull.api(this.entity_id + '/likes','post').then(refresh, refresh);
       }
       this.emitChange()
     }
@@ -461,7 +461,7 @@ assign(Engine.prototype, Emitter.prototype, {
 
   flag: function(commentId) {
     if (commentId) {
-      return Hull.api(commentId + '/flag', 'post').done();
+      return Hull.api(commentId + '/flag', 'post');
     }
   },
 
