@@ -102,7 +102,6 @@ var SingleComment = React.createClass({
     let comment = this.props.comment;
     var user = comment.user;
     var isCurrentUser = this.isCurrentUser();
-    var canEdit = comment.user.id === (this.props.user || {}).id;
 
     const s = { marginBottom: 20 }
 

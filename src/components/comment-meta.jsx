@@ -7,7 +7,7 @@ import relativeTime from '../lib/relative-time';
 var CommentMeta = React.createClass({
   render: function() {
     var comment = this.props.comment;
-    var user = comment.user;
+    var user = comment.user || {};
 
     return (
       <header className='comment-meta light-text'>
