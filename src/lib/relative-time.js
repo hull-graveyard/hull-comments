@@ -18,7 +18,6 @@ function relativeTime(time) {
   for (let unit in UNITS) {
     if (UNITS.hasOwnProperty(unit) && delta >= UNITS[unit]) {
       const n = Math.floor(delta / UNITS[unit]);
-      console.log(delta, delta / UNITS[unit], n);
 
       return translate('{number, plural, one {# ' + unit + '} other {# ' + (unit + 's') + '}} ago', { number: n });
     }
