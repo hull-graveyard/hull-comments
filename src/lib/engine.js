@@ -146,9 +146,6 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   emitChange: function(message) {
-    if (Hull.config().debug){
-      console.log(message);
-    }
     this.emit(EVENT);
   },
 
@@ -276,6 +273,9 @@ assign(Engine.prototype, Emitter.prototype, {
       this._error = null;
       this.emitChange();
     }.bind(this), function(error){
+      // Quick fix...
+      if (error.response != null) { error = error.response; }
+
       this[s] = false;
       error.provider = provider;
       this._error = error;
