@@ -30,7 +30,7 @@
   "Your comment has been marked as {status}": "Your comment has been marked as {status}",
   "Your comment is awaiting moderation": "Your comment is awaiting moderation",
   "actions": "actions",
-  "{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}": "{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}"
+  "{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}": "{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}",
   "{number, plural, one {# year} other {# years}} ago": "{number, plural, one {# year} other {# years}} ago",
   "{number, plural, one {# month} other {# months}} ago": "{number, plural, one {# month} other {# months}} ago",
   "{number, plural, one {# week} other {# weeks}} ago": "{number, plural, one {# week} other {# weeks}} ago",
