@@ -32,6 +32,7 @@ function gulpDest(out){
 }
 
 var files = {
+  "src/locales/**/*" : gulpDest("locales/"),
   "src/vendors/**/*" : gulpDest("vendors/"),
   "src/images/**/*"  : gulpDest("images/"),
   "manifest.json"    : outputFolder,
