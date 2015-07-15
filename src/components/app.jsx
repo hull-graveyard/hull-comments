@@ -50,7 +50,7 @@ var App = React.createClass({
       paddingBottom: 200
     };
 
-    return <div className='hull-comments-root' style={s}>
+    return <div style={s}>
       <HullStyle {...this.state.settings}/>
       <Comments {...this.state} actions={this.props.engine.getActions()} />
     </div>
