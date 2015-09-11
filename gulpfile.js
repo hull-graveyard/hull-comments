@@ -10,6 +10,8 @@ var gulp = require("gulp");
 var gutil = require("gulp-util");
 var ghpages = require("gh-pages");
 var notifier = require("node-notifier");
+var sass = require('gulp-sass');
+var rename = require('gulp-rename');
 
 var ngrok = require('ngrok');
 
@@ -25,9 +27,11 @@ var webpackConfig = require("./webpack.config");
 // Task Bundles
 gulp.task("default", ["server"]);
 gulp.task("serve",   ["server"]);
+gulp.task('prepare', ["clean", "copy-files", "sass"])
+gulp.task('watch', ["copy-files:watch", "sass:watch"])
 
-gulp.task("server",  function(callback) {runSequence("clean", "copy-files:watch", "webpack:server", callback); });
-gulp.task("build",   function(callback) {runSequence("clean", "copy-files", "webpack:build", callback); });
+gulp.task("server",  function(callback) {runSequence("prepare", "watch", "webpack:server", callback); });
+gulp.task("build",   function(callback) {runSequence("prepare", "webpack:build", callback); });
 gulp.task("deploy",  function(callback) {runSequence("build", "gh:deploy", callback); });
 
 
@@ -97,9 +101,26 @@ var ngrokServe = function(subdomain){
  * GULP TASKS START HERE
 */
 
+gulp.task('sass', function () {
+  gulp.src('./src/styles/foundation.scss')
+    .pipe(sass({
+      includePaths:['node_modules']
+    }).on('error', sass.logError))
+    .pipe(rename({basename:'foundation-flat'}))
+    .pipe(gulp.dest('./src/styles'));
+});
+ 
+gulp.task('sass:watch', function () {
+  gulp.watch('./src/styles/foundation.scss', ['sass']);
+});
+
 
 // Cleanup build folder
-gulp.task("clean",   function(cb)       {del(["./"+config.outputFolder+"/**/*"], cb); });
+gulp.task("clean",   function(cb)       {
+  del(["./"+config.outputFolder+"/**/*"]).then(function(){
+    cb()
+  });
+});
 
 // One-time file copy
 gulp.task("copy-files", copyFiles);

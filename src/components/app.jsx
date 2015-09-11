@@ -26,7 +26,8 @@ var App = React.createClass({
 
   componentDidMount: function() {
     // This is more robust than embedding the styles in the Iframe's Head using the head="" property
-    this.props.styles.use(this.getStyleContainer());
+    var style = this.props.styles.use(this.getStyleContainer());
+    this.setState({cls:style.locals.ship})
   },
 
   componentWillUnmount: function() {
@@ -50,16 +51,16 @@ var App = React.createClass({
       paddingBottom: 200
     };
 
-    return <div style={s}>
+    return <div style={s} className={this.state.cls}>
       <HullStyle {...this.state.settings}/>
-      <Comments {...this.state} actions={this.props.engine.getActions()} />
+      <Comments {...this.state}actions={this.props.engine.getActions()} />
     </div>
   },
 
   statics: {
     // Expose a static entry point to boot the ship
-    start : function(element, deployment){
-      var entity = Hull.entity.encode(Hull.findUrl())
+    start : function(element, deployment, hull){
+      var entity = hull.entity.encode(Hull.findUrl())
 
       setTranslations(deployment.ship.translations);
 
@@ -67,7 +68,8 @@ var App = React.createClass({
         entity_id: entity
       });
 
-      var engine = new Engine(deployment);
+
+      var engine = new Engine(deployment, hull);
       var app = <App engine={engine} styles={styles} />;
       React.render(app, element);
     }
