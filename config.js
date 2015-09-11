@@ -7,6 +7,8 @@ var pkg = require("./package.json");
 var manifest = require("./manifest.json");
 var moment = require("moment");
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 // DO NOT CHANGE FOLDERS
 // WIHTOUT UPDATING PACKAGE.JSON TOO.
 var sourceFolder = "src";
@@ -35,6 +37,8 @@ var files = {
   "src/vendors/**/*" : gulpDest("vendors/"),
   "src/images/**/*"  : gulpDest("images/"),
   "manifest.json"    : outputFolder,
+  "src/*.ico"        : outputFolder,
+  "src/*.jpg"        : outputFolder,
   "src/*.png"        : outputFolder,
   "src/*.html"       : outputFolder,
   "CNAME"            : outputFolder,
@@ -64,7 +68,7 @@ var output = {
 
 var extensions         = ["", ".js", ".jsx", ".css", ".scss"];
 
-var modulesDirectories = ["node_modules", "bower_components", "bower_components/foundation/scss/", "src/vendor"];
+var modulesDirectories = ["node_modules", "src/vendor"];
 
 var cssIncludes   = modulesDirectories.map(function(include){
   return ("includePaths[]="+path.resolve(__dirname, include));
@@ -77,10 +81,11 @@ var cssIncludes   = modulesDirectories.map(function(include){
 // Basically, this fixes all of our problems with badly constructed AMD modules.
 // Among which: vex, datepicker, underscore-contrib
 var loaders = [
-  {test: /\.json$/,                loaders: ["json-loader"] },
-  {test: /\.js$/,                  loaders: ["babel-loader"], exclude: /node_modules|bower_components/},
-  {test: /\.jsx$/,                 loaders: ["react-hot", "babel-loader"], exclude: /node_modules/},
-  {test: /\.(css|scss)$/,          loaders: ["style/useable", "css-loader", "autoprefixer-loader?browsers=last 2 version", "sass-loader?outputStyle=expanded&"+cssIncludes]},
+  {test: /\.json$/,                loaders: ["json"] },
+  {test: /\.js$/,                  loaders: ["babel"], exclude: /node_modules|bower_components/},
+  {test: /\.jsx$/,                 loaders: ["react-hot", "babel"], exclude: /node_modules/},
+  {test: /\.(css|scss)$/,          loaders: ['style/useable', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&'+cssIncludes]
+  },
   {test: /\.jpe?g$|\.gif$|\.png$/, loaders: ["file"]},
   {test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: "file" },
 ];
@@ -89,6 +94,7 @@ var loaders = [
 // Package.json expects our files to be addressable from the same repo
 // We put them in `dist` to have a clean structure but then we need to build them in the right place
 var plugins = [
+  new ExtractTextPlugin('style.css', { allChunks: true }),
   new webpack.DefinePlugin({
     "BUILD_DATE" : JSON.stringify(moment().format("MMMM, DD, YYYY, HH:mm:ss")),
     "PUBLIC_PATH": JSON.stringify(output.publicPath)

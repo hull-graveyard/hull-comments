@@ -2,7 +2,7 @@
   "name": "Classic Comments",
   "description": "A clean comments widget, with Social login, likes and upvotes",
   "picture": "picture.png",
-  "index": "ship.html",
+  "index": "ship.js",
   "version": "0.0.2",
   "locales": ["en"],
   "settings": [

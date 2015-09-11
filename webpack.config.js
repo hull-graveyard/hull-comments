@@ -26,9 +26,13 @@ module.exports = {
       devServer: true,
       entry    : devEntry,
       output   : devOutput,
+      postcss: [
+        require('autoprefixer-core'),
+      ],
       resolve  : {
         root: [path.join(__dirname, "bower_components")],
-        extensions: config.extensions
+        extensions: config.extensions,
+        moduleDirectories: config.moduleDirectories
       },
       module   : {loaders: config.loaders},
       plugins:  config.plugins.concat([
@@ -41,9 +45,13 @@ module.exports = {
       name    : 'browser',
       entry   : config.entry,
       output  : config.output,
+      postcss: [
+        require('autoprefixer-core'),
+      ],
       resolve : {
         root: [path.join(__dirname, "bower_components")],
-        extensions: config.extensions
+        extensions: config.extensions,
+        moduleDirectories: config.moduleDirectories
       },
       module  : {loaders: config.loaders},
       plugins : config.plugins.concat([

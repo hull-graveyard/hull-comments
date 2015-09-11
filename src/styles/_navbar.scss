@@ -1,3 +1,5 @@
+$topbar-height: rem-calc(45);
+
 .nav-bar{
   overflow: visible;
   border-bottom:1px solid $filet-color;
@@ -19,8 +21,17 @@
   }
 }
 
+
+
 .nav-bar{
-  @extend .clearfix;
+  &:before,   &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+
   .top-bar-section{
     .dropdown, .f-dropdown{
       li {

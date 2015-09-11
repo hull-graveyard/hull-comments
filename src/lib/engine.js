@@ -4,6 +4,10 @@ var Emitter = require('events').EventEmitter;
 import IntlMessageFormat from 'intl-messageformat';
 import sanitize from 'sanitize-caja';
 
+var throwErr = function(err){
+  console.log(err)
+}
+
 var ACTIONS = [
   'signup',
   'login',
@@ -57,7 +61,8 @@ function processComment(raw) {
   return raw;
 }
 
-function Engine(deployment) {
+function Engine(deployment, hull) {
+  this.hull = hull;
   this.entity_id = deployment.settings.entity_id;
   this._ship = deployment.ship || deployment.deployable;
   this._platform = deployment.platform;
@@ -72,7 +77,7 @@ function Engine(deployment) {
     this.emitChange();
   }
 
-  Hull.on('hull.user.*', onChange.bind(this));
+  this.hull.on('hull.user.*', onChange.bind(this));
 
   this.emitChange();
   this.fetchComments();
@@ -144,7 +149,7 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   emitChange: function(message) {
-    if (Hull.config().debug){
+    if (this.hull.config().debug){
       console.log(message);
     }
     this.emit(EVENT);
@@ -168,7 +173,7 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   resetUser: function() {
-    this._user = Hull.currentUser();
+    this._user = this.hull.currentUser();
 
     var identities = {}
     if (this._user) {
@@ -195,7 +200,7 @@ assign(Engine.prototype, Emitter.prototype, {
   getProviders: function() {
     var providers = [];
 
-    var services = Hull.config().services.auth;
+    var services = this.hull.config().services.auth;
     for (var k in services) {
       if (services.hasOwnProperty(k) && k !== 'hull') {
         var provider = { name: k };
@@ -214,7 +219,7 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   resetPassword: function(options={}){
-    Hull.api("/users/request_password_reset", "post", options, function(r) {
+    this.hull.api("/users/request_password_reset", "post", options, function(r) {
       this._error=null,
       this._status.resetPassword={
         message:this.translate("Email sent to {email}. Check your inbox!",options)
@@ -234,7 +239,7 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   logout: function() {
-    Hull.logout();
+    this.hull.logout();
   },
 
   linkIdentity: function(provider) {
@@ -280,13 +285,13 @@ assign(Engine.prototype, Emitter.prototype, {
   fetchIsFavorite: function() {
     var self = this;
     if (this._user) {
-      Hull.api('me/liked/' + this.entity_id).then(function(res) {
+      this.hull.api('me/liked/' + this.entity_id).then(function(res) {
         self._isFavorite = res;
         self.emitChange('fetched _isFavorite');
       }, function(err) {
         self._isFavorite = false;
         self.emitChange('fetched _isFavorite');
-      }).done();
+      }).catch(throwErr);
     }
   },
 
@@ -299,7 +304,7 @@ assign(Engine.prototype, Emitter.prototype, {
         order_by: SORT_OPTIONS[this._orderBy]
       });
 
-      this._isFetching = Hull.api(this.entity_id + '/comments', params);
+      this._isFetching = this.hull.api(this.entity_id + '/comments', params);
 
       this._isFetching.then(function(r) {
         this._isReady = true;
@@ -316,7 +321,7 @@ assign(Engine.prototype, Emitter.prototype, {
       }.bind(this), function(e) {
         this._isFetching = false;
         this.emitChange('fetching error: ' + e.message);
-      }.bind(this)).done();
+      }.bind(this)).catch(throwErr);
 
       this.emitChange('start fetching');
     }
@@ -347,18 +352,19 @@ assign(Engine.prototype, Emitter.prototype, {
   deleteComment: function(id) {
     if (!id) return false;
     var found = false;
+    var self=this;
     this._comments = this._comments.map(function(comment) {
       if (comment && comment.id === id) {
         found = comment;
         comment._isDeleting = true;
-        Hull.api(comment.id, 'delete', { description: "[deleted]" }).then((res)=> {
+        self.hull.api(comment.id, 'delete', { description: "[deleted]" }).then((res)=> {
           found = res;
           this._comments = this._comments.filter(function(c) { return c.id != id; });
           this.emitChange('deleted ok');
         }, (err)=> {
           found._isDeleting = false;
           this.emitChange("error deleting comment: ", err.toString());
-        }).done();
+        }).catch(throwErr);
       }
       return comment;
     }, this);
@@ -374,7 +380,7 @@ assign(Engine.prototype, Emitter.prototype, {
       var comment = { description: text, extra: { }, created_at: new Date() };
       var i = this._comments.push({ description: text, user: (this._user || {}), created_at: new Date() }) - 1;
 
-      this._isPosting = Hull.api(this.entity_id + '/comments', 'post', comment);
+      this._isPosting = this.hull.api(this.entity_id + '/comments', 'post', comment);
       this._isPosting.then((r)=>{
         this._comments[i] = r;
         this._commentsCount++;
@@ -384,7 +390,7 @@ assign(Engine.prototype, Emitter.prototype, {
         this._isPosting = false;
         this._comments.pop();
         this.emitChange();
-      }).done();
+      }).catch(throwErr);
 
       this.emitChange('stared posting a comment...');
     } else {
@@ -397,20 +403,20 @@ assign(Engine.prototype, Emitter.prototype, {
       var c = this._commentsById[id];
 
       var self = this;
-      return Hull.api(id, 'put', { description: text }).then(function(r) {
+      return this.hull.api(id, 'put', { description: text }).then(function(r) {
         assign(c, r);
         self.emitChange();
-      }).done();
+      }).catch(throwErr);
     }
   },
 
   vote: function(id, rating) {
     var c = this._commentsById[id];
 
-    Hull.api(id + '/reviews', 'post', { rating: rating }).then(function(r) {
+    this.hull.api(id + '/reviews', 'post', { rating: rating }).then(function(r) {
       c.votes = processCommentVotes(r.ratings.distribution);
       this.emitChange('Update comment score');
-    }.bind(this)).done();
+    }.bind(this)).catch(throwErr);
   },
 
   upVote: function(id) {
@@ -422,7 +428,7 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   share: function(provider) {
-    Hull.share({
+    this.hull.share({
       provider: provider,
       anonymous: true,
       params: {
@@ -439,10 +445,10 @@ assign(Engine.prototype, Emitter.prototype, {
       }
       if (this._isFavorite) {
         this._isFavorite = false;
-        Hull.api(this.entity_id + '/likes','delete').then(refresh, refresh).done();
+        self.hull.api(this.entity_id + '/likes','delete').then(refresh, refresh).catch(throwErr);
       } else {
         this._isFavorite = true;
-        Hull.api(this.entity_id + '/likes','post').then(refresh, refresh).done();
+        self.hull.api(this.entity_id + '/likes','post').then(refresh, refresh).catch(throwErr);
       }
       this.emitChange()
     }
@@ -450,7 +456,7 @@ assign(Engine.prototype, Emitter.prototype, {
 
   flag: function(commentId) {
     if (commentId) {
-      return Hull.api(commentId + '/flag', 'post').done();
+      return this.hull.api(commentId + '/flag', 'post').catch(throwErr);
     }
   },
 
