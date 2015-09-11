@@ -3,7 +3,7 @@
 
 import React from "react";
 import assign from "object-assign";
-import _ from "underscore";
+import _ from "../lib/lodash";
 import Icons from "json-svg-icons";
 
 function parseLevel(level, opts, colorize){

@@ -3,7 +3,7 @@ import cx from 'react/lib/cx';
 import { translate } from '../lib/i18n';
 import DropdownMenu from './dropdown-menu';
 import Icon from './icon';
-import _ from 'underscore';
+import _ from '../lib/lodash';
 
 const EmailLogin = React.createClass({
   getInitialState() {

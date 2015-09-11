@@ -1,4 +1,4 @@
-var _ = require('underscore');
+var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 var config = require('./config');
@@ -26,11 +26,8 @@ module.exports = {
       devServer: true,
       entry    : devEntry,
       output   : devOutput,
-      postcss: [
-        require('autoprefixer-core'),
-      ],
+      postcss  : config.postcss,
       resolve  : {
-        root: [path.join(__dirname, "bower_components")],
         extensions: config.extensions,
         moduleDirectories: config.moduleDirectories
       },
@@ -45,11 +42,8 @@ module.exports = {
       name    : 'browser',
       entry   : config.entry,
       output  : config.output,
-      postcss: [
-        require('autoprefixer-core'),
-      ],
+      postcss  : config.postcss,
       resolve : {
-        root: [path.join(__dirname, "bower_components")],
         extensions: config.extensions,
         moduleDirectories: config.moduleDirectories
       },
@@ -66,7 +60,7 @@ module.exports = {
           compress: { drop_console: true }
         }),
         new webpack.optimize.DedupePlugin(),
-        new StatsPlugin(path.join(__dirname, config.outputFolder, 'stats.json'), { chunkModules: true, profile: true })
+        new StatsPlugin('stats.json', { chunkModules: true, profile: true })
       ])
     }
   }

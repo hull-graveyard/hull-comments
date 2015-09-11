@@ -1,7 +1,7 @@
 "use strict";
 /*global require, console*/
 
-var _ = require("underscore");
+var _ = require("lodash");
 var path = require('path');
 var del = require("del");
 var runSequence = require("run-sequence");

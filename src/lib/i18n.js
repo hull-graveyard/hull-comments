@@ -1,5 +1,4 @@
-import Intl from 'intl';
-import IntlMessageFormat from 'intl-messageformat';
+import MessageFormat from 'messageformat';
 
 var _translations = {};
 var _locale = 'en';
@@ -8,9 +7,10 @@ var _messages = {};
 function compileMessages() {
   _messages = {};
 
+  var mf = new MessageFormat(_locale);
   for (var k in _translations[_locale]) {
     if (_translations[_locale].hasOwnProperty(k)) {
-      _messages[k] = new IntlMessageFormat(_translations[_locale][k], _locale);
+      _messages[k] = mf.compile(_translations[_locale][k], _locale);
     }
   }
 }
@@ -31,12 +31,13 @@ function translate(message, data) {
   var m = _messages[message];
 
   if (m == null) {
+    var mf = new MessageFormat('en');
     console.warn('[i18n] "' + message + '". is missing in "' + _locale + '.json".');
-    m = _messages[message] = new IntlMessageFormat(message, _locale);
+    m = _messages[message] = mf(message, _locale);
   }
 
   try {
-    return m.format(data);
+    return m(data);
   } catch (e) {
     console.error('[i18n] Cannot translate "' + message + '". ' + e.message);
 

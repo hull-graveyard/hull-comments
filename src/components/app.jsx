@@ -1,15 +1,10 @@
 import React from 'react';
-import _ from 'underscore';
-import inflections from 'underscore.inflections';
-import underscoreString from 'underscore.string';
+import _ from '../lib/lodash';
 import Comments from './comments';
 import Engine from '../lib/engine';
 import { setTranslations } from '../lib/i18n';
 import styles from '../styles/main.scss';
 import HullStyle from './hull-style';
-
-_.mixin(inflections);
-_.mixin(underscoreString.exports());
 
 var App = React.createClass({
   propTypes: {
@@ -53,7 +48,7 @@ var App = React.createClass({
 
     return <div style={s} className={this.state.cls}>
       <HullStyle {...this.state.settings}/>
-      <Comments {...this.state}actions={this.props.engine.getActions()} />
+      <Comments {...this.state} actions={this.props.engine.getActions()} />
     </div>
   },
 

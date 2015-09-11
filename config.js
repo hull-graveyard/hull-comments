@@ -34,9 +34,9 @@ function gulpDest(out){
 }
 
 var files = {
-  "src/locales/**/*" : gulpDest("locales/"),
   "src/vendors/**/*" : gulpDest("vendors/"),
   "src/images/**/*"  : gulpDest("images/"),
+  'locales'          : outputFolder,
   "manifest.json"    : outputFolder,
   "src/*.ico"        : outputFolder,
   "src/*.jpg"        : outputFolder,
@@ -83,7 +83,7 @@ var cssIncludes   = modulesDirectories.map(function(include){
 // Among which: vex, datepicker, underscore-contrib
 var loaders = [
   {test: /\.json$/,                loaders: ["json"] },
-  {test: /\.js$/,                  loaders: ["babel"], exclude: /node_modules|bower_components/},
+  {test: /\.js$/,                  loaders: ["babel"], exclude: /node_modules/},
   {test: /\.jsx$/,                 loaders: ["react-hot", "babel"], exclude: /node_modules/},
   {test: /\.(css|scss)$/,          loaders: ['style/useable', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&'+cssIncludes]
   },
@@ -91,19 +91,47 @@ var loaders = [
   {test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: "file" },
 ];
 
+var postcss = [require('autoprefixer-core')];
+
+var loaderLibrary = {
+  json     : {test: /\.json$/,                loaders: ["json"] },
+  css      : {test: /\.(css|scss)$/,          loaders: ['style/useable', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&'+cssIncludes]},
+  image    : {test: /\.jpe?g$|\.gif$|\.png$/, loader : 'file' },
+  file     : {test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: "file" },
+  js       : {test: /\.(js)$/,  loader: 'babel', exclude: /node_modules|src\/vendors/},
+  prodJSX  : {test: /\.(jsx)$/, loader: 'babel', },
+  devJSX   : {test: /\.(jsx)$/, loaders: ['react-hot', 'babel']}
+}
+
+var loaders = [
+  loaderLibrary.json,
+  loaderLibrary.css,
+  loaderLibrary.image,
+  loaderLibrary.file,
+  loaderLibrary.js,
+  (hotReload ? loaderLibrary.devJSX : loaderLibrary.prodJSX)
+];
+
+var productionLoaders = [
+  loaderLibrary.json,
+  loaderLibrary.css,
+  loaderLibrary.image,
+  loaderLibrary.file,
+  loaderLibrary.js,
+  loaderLibrary.prodJSX
+];
+
+
 // We remove the "dist" from the filenames for demo and index.html in package.json
 // Package.json expects our files to be addressable from the same repo
 // We put them in `dist` to have a clean structure but then we need to build them in the right place
 var plugins = [
-  new ExtractTextPlugin('style.css', { allChunks: true }),
+  new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+  new webpack.optimize.CommonsChunkPlugin({name: 'vendors', filename: 'vendors.js', minChunks: Infinity}),
   new webpack.DefinePlugin({
     "BUILD_DATE" : JSON.stringify(moment().format("MMMM, DD, YYYY, HH:mm:ss")),
     "PUBLIC_PATH": JSON.stringify(output.publicPath)
-  }),
-  new webpack.ResolverPlugin(
-    new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-  ),
-  new webpack.optimize.OccurenceOrderPlugin()
+  })
 ];
 
 var externals = {};
@@ -126,7 +154,10 @@ module.exports = {
   modulesDirectories : modulesDirectories,
   plugins            : plugins,
   loaders            : loaders,
+  productionLoaders  : productionLoaders,
   externals          : externals,
+
+  postcss            : postcss,
 
   pkg                : pkg
 };

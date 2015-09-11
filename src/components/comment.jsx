@@ -5,9 +5,8 @@ import ShareMenu from './share-menu';
 import CommentMeta from './comment-meta';
 import Avatar from './avatar';
 import CommentFooter from './comment-footer';
-import sanitize from 'sanitize-caja';
 import { translate } from '../lib/i18n';
-import _ from 'underscore';
+import _ from '../lib/lodash';
 
 var SingleComment = React.createClass({
   getInitialState: function() {
@@ -56,7 +55,7 @@ var SingleComment = React.createClass({
     } else if (c.deleted_at) {
       return translate('Comment has been deleted.');
     } else {
-      return <div dangerouslySetInnerHTML={{__html: sanitize(c.description) }} />;
+      return <div dangerouslySetInnerHTML={{__html: comment.description }} />;
     }
   },
 
@@ -134,7 +133,7 @@ var SingleComment = React.createClass({
   }
 });
 
-function renderComment(properties, depth) {
+function renderComment(properties, d) {
   const user = properties.user;
   const comment = properties.comment;
   const depth = properties.depth || 0;

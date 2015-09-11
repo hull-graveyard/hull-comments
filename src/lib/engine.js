@@ -1,8 +1,7 @@
-import _ from 'underscore';
+import _ from './lodash';
 import assign from 'object-assign';
 var Emitter = require('events').EventEmitter;
-import IntlMessageFormat from 'intl-messageformat';
-import sanitize from 'sanitize-caja';
+import MessageFormat from 'messageformat';
 
 var throwErr = function(err){
   console.log(err)
@@ -192,9 +191,10 @@ assign(Engine.prototype, Emitter.prototype, {
     this._translations = {};
 
     var translations = this._ship.translations['en'];
+    var mf = new MessageFormat('en');
     for (var k in translations) {
       if (translations.hasOwnProperty(k)) {
-        this._translations[k] = new IntlMessageFormat(translations[k], 'en-US');
+        this._translations[k] = mf.compile(translations[k]);
       }
     }
   },
@@ -370,7 +370,6 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   postComment: function(text, parentId) {
-    text = sanitize(text);
 
     if (this._isPosting) return false;
 
@@ -478,7 +477,7 @@ assign(Engine.prototype, Emitter.prototype, {
 
     if (m == null) { return message; }
 
-    return m.format(data);
+    return m(data);
   },
 
   _processComments(comments) {

@@ -1,0 +1,1306 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@2.14.2
+3 info using node@v0.12.7
+4 verbose node symlink /usr/local/bin/node
+5 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/package.json
+6 verbose install where, deps [ '/Users/romain/Sites/Ships/hull-comments',
+6 verbose install   [ 'autoprefixer-core',
+6 verbose install     'better-console',
+6 verbose install     'color',
+6 verbose install     'extend',
+6 verbose install     'extract-text-webpack-plugin',
+6 verbose install     'foundation',
+6 verbose install     'foundation-sites',
+6 verbose install     'gulp-rename',
+6 verbose install     'gulp-sass',
+6 verbose install     'intl',
+6 verbose install     'intl-messageformat',
+6 verbose install     'json-svg-icons',
+6 verbose install     'lodash',
+6 verbose install     'messageformat',
+6 verbose install     'moment',
+6 verbose install     'object-assign',
+6 verbose install     'postcss-loader',
+6 verbose install     'react',
+6 verbose install     'underscore.string',
+6 verbose install     'autoprefixer-loader',
+6 verbose install     'babel',
+6 verbose install     'babel-core',
+6 verbose install     'babel-loader',
+6 verbose install     'css',
+6 verbose install     'css-loader',
+6 verbose install     'del',
+6 verbose install     'file-loader',
+6 verbose install     'gh-pages',
+6 verbose install     'gulp',
+6 verbose install     'gulp-util',
+6 verbose install     'json-loader',
+6 verbose install     'less',
+6 verbose install     'less-loader',
+6 verbose install     'ngrok',
+6 verbose install     'node-notifier',
+6 verbose install     'open',
+6 verbose install     'react-hot-loader',
+6 verbose install     'run-sequence',
+6 verbose install     'sass-loader',
+6 verbose install     'stats-webpack-plugin',
+6 verbose install     'style-loader',
+6 verbose install     'touch',
+6 verbose install     'webpack',
+6 verbose install     'webpack-dev-server' ] ]
+7 verbose install where, peers [ '/Users/romain/Sites/Ships/hull-comments', [] ]
+8 verbose installManyTop reading for lifecycle /Users/romain/Sites/Ships/hull-comments/package.json
+9 info preinstall hull-comments@0.0.2
+10 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/autoprefixer-core/package.json
+11 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/autoprefixer-loader/package.json
+12 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/babel/package.json
+13 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/babel-core/package.json
+14 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/babel-loader/package.json
+15 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/better-console/package.json
+16 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/color/package.json
+17 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/css/package.json
+18 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/css-loader/package.json
+19 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/del/package.json
+20 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/extend/package.json
+21 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/extract-text-webpack-plugin/package.json
+22 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/file-loader/package.json
+23 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/foundation/package.json
+24 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/foundation-sites/package.json
+25 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gh-pages/package.json
+26 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gulp/package.json
+27 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gulp-rename/package.json
+28 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gulp-sass/package.json
+29 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gulp-util/package.json
+30 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/intl/package.json
+31 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/intl-messageformat/package.json
+32 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/json-loader/package.json
+33 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons/package.json
+34 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/less/package.json
+35 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/less-loader/package.json
+36 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/lodash/package.json
+37 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/messageformat/package.json
+38 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/moment/package.json
+39 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/ngrok/package.json
+40 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/node-notifier/package.json
+41 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/node-sass/package.json
+42 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/object-assign/package.json
+43 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/open/package.json
+44 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/postcss-loader/package.json
+45 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/react/package.json
+46 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/react-hot-loader/package.json
+47 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/run-sequence/package.json
+48 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/sanitize-caja/package.json
+49 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/sass-loader/package.json
+50 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/stats-webpack-plugin/package.json
+51 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/package.json
+52 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/touch/package.json
+53 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/underscore/package.json
+54 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/underscore-contrib/package.json
+55 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/underscore.inflections/package.json
+56 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/underscore.string/package.json
+57 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/webpack/package.json
+58 verbose installManyTop reading scoped package data from /Users/romain/Sites/Ships/hull-comments/node_modules/webpack-dev-server/package.json
+59 info package.json babel-core@5.8.24 No README data
+60 info package.json foundation@4.2.1 No license field.
+61 info package.json foundation-sites@5.5.2 No description
+62 info package.json foundation-sites@5.5.2 No license field.
+63 info package.json gulp-rename@1.2.2 No license field.
+64 info package.json less-loader@2.2.0 No license field.
+65 info package.json messageformat@0.2.2 license should be a valid SPDX license expression
+66 info package.json stats-webpack-plugin@0.2.1 No license field.
+67 info package.json underscore.inflections@0.2.1 No license field.
+68 info package.json better-console@0.2.4 license should be a valid SPDX license expression
+69 info package.json intl-messageformat@1.1.0 license should be a valid SPDX license expression
+70 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/package.json
+71 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/autoprefixer-core/package.json
+72 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/autoprefixer-loader/package.json
+73 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/babel/package.json
+74 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/babel-core/package.json
+75 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/babel-loader/package.json
+76 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/better-console/package.json
+77 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/color/package.json
+78 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/css/package.json
+79 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/css-loader/package.json
+80 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/del/package.json
+81 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/extend/package.json
+82 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/extract-text-webpack-plugin/package.json
+83 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/file-loader/package.json
+84 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/foundation/package.json
+85 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/foundation-sites/package.json
+86 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gh-pages/package.json
+87 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gulp/package.json
+88 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gulp-rename/package.json
+89 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gulp-sass/package.json
+90 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/gulp-util/package.json
+91 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/intl/package.json
+92 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/intl-messageformat/package.json
+93 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/json-loader/package.json
+94 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons/package.json
+95 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/less/package.json
+96 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/less-loader/package.json
+97 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/lodash/package.json
+98 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/messageformat/package.json
+99 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/moment/package.json
+100 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/ngrok/package.json
+101 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/node-notifier/package.json
+102 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/node-sass/package.json
+103 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/object-assign/package.json
+104 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/open/package.json
+105 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/postcss-loader/package.json
+106 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/react/package.json
+107 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/react-hot-loader/package.json
+108 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/run-sequence/package.json
+109 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/sanitize-caja/package.json
+110 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/sass-loader/package.json
+111 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/stats-webpack-plugin/package.json
+112 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/package.json
+113 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/touch/package.json
+114 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/underscore/package.json
+115 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/underscore-contrib/package.json
+116 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/underscore.inflections/package.json
+117 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/underscore.string/package.json
+118 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/webpack/package.json
+119 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/webpack-dev-server/package.json
+120 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/babel/package.json
+121 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/babel-external-helpers/package.json
+122 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/babel-node/package.json
+123 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/babel-plugin/package.json
+124 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/gh-pages/package.json
+125 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/gulp/package.json
+126 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/lessc/package.json
+127 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/messageformat/package.json
+128 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/ngrok/package.json
+129 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/node-sass/package.json
+130 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/notify/package.json
+131 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/touch/package.json
+132 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/webpack/package.json
+133 verbose targetResolver reading package data from /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/webpack-dev-server/package.json
+134 verbose already installed skipping babel@^5.8.23 /Users/romain/Sites/Ships/hull-comments
+135 verbose already installed skipping babel-core@^5.8.24 /Users/romain/Sites/Ships/hull-comments
+136 verbose already installed skipping babel-loader@^5.3.2 /Users/romain/Sites/Ships/hull-comments
+137 verbose already installed skipping css@^2.2.1 /Users/romain/Sites/Ships/hull-comments
+138 verbose already installed skipping css-loader@^0.18.0 /Users/romain/Sites/Ships/hull-comments
+139 verbose already installed skipping del@^2.0.2 /Users/romain/Sites/Ships/hull-comments
+140 verbose already installed skipping file-loader@^0.8.4 /Users/romain/Sites/Ships/hull-comments
+141 verbose already installed skipping gh-pages@^0.4.0 /Users/romain/Sites/Ships/hull-comments
+142 verbose already installed skipping gulp@^3.9.0 /Users/romain/Sites/Ships/hull-comments
+143 verbose already installed skipping gulp-util@^3.0.6 /Users/romain/Sites/Ships/hull-comments
+144 verbose already installed skipping json-loader@^0.5.2 /Users/romain/Sites/Ships/hull-comments
+145 verbose already installed skipping less@^2.5.1 /Users/romain/Sites/Ships/hull-comments
+146 verbose already installed skipping less-loader@^2.2.0 /Users/romain/Sites/Ships/hull-comments
+147 verbose already installed skipping ngrok@^0.2.1 /Users/romain/Sites/Ships/hull-comments
+148 verbose already installed skipping node-notifier@^4.2.3 /Users/romain/Sites/Ships/hull-comments
+149 verbose already installed skipping open@0.0.5 /Users/romain/Sites/Ships/hull-comments
+150 verbose already installed skipping react-hot-loader@^1.3.0 /Users/romain/Sites/Ships/hull-comments
+151 verbose already installed skipping run-sequence@^1.1.2 /Users/romain/Sites/Ships/hull-comments
+152 verbose already installed skipping sass-loader@^2.0.1 /Users/romain/Sites/Ships/hull-comments
+153 verbose already installed skipping stats-webpack-plugin@0.2.1 /Users/romain/Sites/Ships/hull-comments
+154 silly cache add args [ 'style-loader@github:unity/style-loader', null ]
+155 verbose cache add spec style-loader@github:unity/style-loader
+156 verbose already installed skipping touch@1.0.0 /Users/romain/Sites/Ships/hull-comments
+157 verbose already installed skipping webpack@^1.12.1 /Users/romain/Sites/Ships/hull-comments
+158 verbose already installed skipping webpack-dev-server@^1.10.1 /Users/romain/Sites/Ships/hull-comments
+159 verbose already installed skipping autoprefixer-core@^6.0.1 /Users/romain/Sites/Ships/hull-comments
+160 verbose already installed skipping better-console@^0.2.4 /Users/romain/Sites/Ships/hull-comments
+161 verbose already installed skipping color@^0.10.1 /Users/romain/Sites/Ships/hull-comments
+162 verbose already installed skipping extend@^3.0.0 /Users/romain/Sites/Ships/hull-comments
+163 verbose already installed skipping extract-text-webpack-plugin@^0.8.2 /Users/romain/Sites/Ships/hull-comments
+164 verbose already installed skipping foundation@^4.2.1-1 /Users/romain/Sites/Ships/hull-comments
+165 silly cache add parsed spec { raw: 'style-loader@github:unity/style-loader',
+165 silly cache add   scope: null,
+165 silly cache add   name: 'style-loader',
+165 silly cache add   rawSpec: 'github:unity/style-loader',
+165 silly cache add   spec: 'github:unity/style-loader',
+165 silly cache add   type: 'hosted',
+165 silly cache add   hosted:
+165 silly cache add    { type: 'github',
+165 silly cache add      ssh: 'git@github.com:unity/style-loader.git',
+165 silly cache add      sshUrl: 'git+ssh://git@github.com/unity/style-loader.git',
+165 silly cache add      httpsUrl: 'git+https://github.com/unity/style-loader.git',
+165 silly cache add      gitUrl: 'git://github.com/unity/style-loader.git',
+165 silly cache add      shortcut: 'github:unity/style-loader',
+165 silly cache add      directUrl: 'https://raw.githubusercontent.com/unity/style-loader/master/package.json' } }
+166 verbose addRemoteGit caching github:unity/style-loader
+167 verbose addRemoteGit unity/style-loader is a repository hosted by github
+168 silly tryGitProto attempting to clone git://github.com/unity/style-loader.git
+169 silly tryClone cloning unity/style-loader via git://github.com/unity/style-loader.git
+170 verbose tryClone git-github-com-unity-style-loader-git-82048393 not in flight; caching
+171 verbose already installed skipping foundation-sites@^5.5.2 /Users/romain/Sites/Ships/hull-comments
+172 verbose already installed skipping gulp-rename@^1.2.2 /Users/romain/Sites/Ships/hull-comments
+173 verbose already installed skipping gulp-sass@^2.0.4 /Users/romain/Sites/Ships/hull-comments
+174 verbose already installed skipping intl@^1.0.0 /Users/romain/Sites/Ships/hull-comments
+175 info git [ 'config', '--get', 'remote.origin.url' ]
+176 verbose already installed skipping intl-messageformat@^1.1.0 /Users/romain/Sites/Ships/hull-comments
+177 silly cache add args [ 'json-svg-icons@github:hull/json-svg-icons#master', null ]
+178 verbose cache add spec json-svg-icons@github:hull/json-svg-icons#master
+179 verbose already installed skipping lodash@^3.10.1 /Users/romain/Sites/Ships/hull-comments
+180 verbose already installed skipping messageformat@^0.2.2 /Users/romain/Sites/Ships/hull-comments
+181 verbose already installed skipping moment@^2.10.6 /Users/romain/Sites/Ships/hull-comments
+182 verbose already installed skipping object-assign@^4.0.1 /Users/romain/Sites/Ships/hull-comments
+183 verbose already installed skipping postcss-loader@^0.6.0 /Users/romain/Sites/Ships/hull-comments
+184 silly cache add parsed spec { raw: 'json-svg-icons@github:hull/json-svg-icons#master',
+184 silly cache add   scope: null,
+184 silly cache add   name: 'json-svg-icons',
+184 silly cache add   rawSpec: 'github:hull/json-svg-icons#master',
+184 silly cache add   spec: 'github:hull/json-svg-icons#master',
+184 silly cache add   type: 'hosted',
+184 silly cache add   hosted:
+184 silly cache add    { type: 'github',
+184 silly cache add      ssh: 'git@github.com:hull/json-svg-icons.git#master',
+184 silly cache add      sshUrl: 'git+ssh://git@github.com/hull/json-svg-icons.git#master',
+184 silly cache add      httpsUrl: 'git+https://github.com/hull/json-svg-icons.git#master',
+184 silly cache add      gitUrl: 'git://github.com/hull/json-svg-icons.git#master',
+184 silly cache add      shortcut: 'github:hull/json-svg-icons#master',
+184 silly cache add      directUrl: 'https://raw.githubusercontent.com/hull/json-svg-icons/master/package.json' } }
+185 verbose addRemoteGit caching github:hull/json-svg-icons#master
+186 verbose addRemoteGit hull/json-svg-icons#master is a repository hosted by github
+187 silly tryGitProto attempting to clone git://github.com/hull/json-svg-icons.git#master
+188 silly tryClone cloning hull/json-svg-icons#master via git://github.com/hull/json-svg-icons.git#master
+189 verbose tryClone git-github-com-hull-json-svg-icons-git-bc4088d2 not in flight; caching
+190 verbose already installed skipping react@^0.13.3 /Users/romain/Sites/Ships/hull-comments
+191 verbose already installed skipping underscore.string@^3.2.2 /Users/romain/Sites/Ships/hull-comments
+192 verbose already installed skipping autoprefixer-loader@^3.1.0 /Users/romain/Sites/Ships/hull-comments
+193 silly validateExistingRemote unity/style-loader remote.origin.url: git://github.com/unity/style-loader.git
+194 verbose validateExistingRemote unity/style-loader is updating existing cached remote /Users/romain/.npm/_git-remotes/git-github-com-unity-style-loader-git-82048393
+195 info git [ 'fetch', '-a', 'origin' ]
+196 info git [ 'config', '--get', 'remote.origin.url' ]
+197 silly validateExistingRemote hull/json-svg-icons#master remote.origin.url: git://github.com/hull/json-svg-icons.git
+198 verbose validateExistingRemote hull/json-svg-icons#master is updating existing cached remote /Users/romain/.npm/_git-remotes/git-github-com-hull-json-svg-icons-git-bc4088d2
+199 info git [ 'fetch', '-a', 'origin' ]
+200 verbose updateRemote git fetch -a origin (git://github.com/unity/style-loader.git)
+201 verbose setPermissions unity/style-loader set permissions on /Users/romain/.npm/_git-remotes/git-github-com-unity-style-loader-git-82048393
+202 verbose resolveHead unity/style-loader original treeish: master
+203 info git [ 'rev-list', '-n1', 'master' ]
+204 verbose updateRemote git fetch -a origin (git://github.com/hull/json-svg-icons.git)
+205 verbose setPermissions hull/json-svg-icons#master set permissions on /Users/romain/.npm/_git-remotes/git-github-com-hull-json-svg-icons-git-bc4088d2
+206 verbose resolveHead hull/json-svg-icons#master original treeish: master
+207 silly resolveHead unity/style-loader resolved treeish: fc1925a05f34f897fa60e591ca3ede619573effa
+208 verbose resolveHead unity/style-loader resolved Git URL: git://github.com/unity/style-loader.git#fc1925a05f34f897fa60e591ca3ede619573effa
+209 silly resolveHead Git working directory: /var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-c1bf913e3980/fc1925a05f34f897fa60e591ca3ede619573effa
+210 info git [ 'rev-list', '-n1', 'master' ]
+211 info git [ 'clone',
+211 info git   '/Users/romain/.npm/_git-remotes/git-github-com-unity-style-loader-git-82048393',
+211 info git   '/var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-c1bf913e3980/fc1925a05f34f897fa60e591ca3ede619573effa' ]
+212 silly resolveHead hull/json-svg-icons#master resolved treeish: f001f2431950b752dd438f12941ba4515d478d08
+213 verbose resolveHead hull/json-svg-icons#master resolved Git URL: git://github.com/hull/json-svg-icons.git#f001f2431950b752dd438f12941ba4515d478d08
+214 silly resolveHead Git working directory: /var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-9ee0ff37f6e7/f001f2431950b752dd438f12941ba4515d478d08
+215 info git [ 'clone',
+215 info git   '/Users/romain/.npm/_git-remotes/git-github-com-hull-json-svg-icons-git-bc4088d2',
+215 info git   '/var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-9ee0ff37f6e7/f001f2431950b752dd438f12941ba4515d478d08' ]
+216 verbose cloneResolved unity/style-loader clone Cloning into '/var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-c1bf913e3980/fc1925a05f34f897fa60e591ca3ede619573effa'...
+216 verbose cloneResolved done.
+217 info git [ 'checkout', 'fc1925a05f34f897fa60e591ca3ede619573effa' ]
+218 verbose checkoutTreeish unity/style-loader checkout Note: checking out 'fc1925a05f34f897fa60e591ca3ede619573effa'.
+218 verbose checkoutTreeish
+218 verbose checkoutTreeish You are in 'detached HEAD' state. You can look around, make experimental
+218 verbose checkoutTreeish changes and commit them, and you can discard any commits you make in this
+218 verbose checkoutTreeish state without impacting any branches by performing another checkout.
+218 verbose checkoutTreeish
+218 verbose checkoutTreeish If you want to create a new branch to retain commits you create, you may
+218 verbose checkoutTreeish do so (now or later) by using -b with the checkout command again. Example:
+218 verbose checkoutTreeish
+218 verbose checkoutTreeish   git checkout -b new_branch_name
+218 verbose checkoutTreeish
+218 verbose checkoutTreeish HEAD is now at fc1925a... Prevent memoize to return the right dom node
+219 verbose addLocalDirectory /Users/romain/.npm/style-loader/0.12.3/package.tgz not in flight; packing
+220 verbose tar pack [ '/Users/romain/.npm/style-loader/0.12.3/package.tgz',
+220 verbose tar pack   '/var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-c1bf913e3980/fc1925a05f34f897fa60e591ca3ede619573effa' ]
+221 verbose tarball /Users/romain/.npm/style-loader/0.12.3/package.tgz
+222 verbose folder /var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-c1bf913e3980/fc1925a05f34f897fa60e591ca3ede619573effa
+223 verbose cloneResolved hull/json-svg-icons#master clone Cloning into '/var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-9ee0ff37f6e7/f001f2431950b752dd438f12941ba4515d478d08'...
+223 verbose cloneResolved done.
+224 verbose addLocalTarball adding from inside cache /Users/romain/.npm/style-loader/0.12.3/package.tgz
+225 info git [ 'checkout', 'f001f2431950b752dd438f12941ba4515d478d08' ]
+226 verbose addRemoteGit data._from: unity/style-loader
+227 verbose addRemoteGit data._resolved: git://github.com/unity/style-loader.git#fc1925a05f34f897fa60e591ca3ede619573effa
+228 silly cache afterAdd style-loader@0.12.3
+229 verbose afterAdd /Users/romain/.npm/style-loader/0.12.3/package/package.json not in flight; writing
+230 verbose afterAdd /Users/romain/.npm/style-loader/0.12.3/package/package.json written
+231 verbose checkoutTreeish hull/json-svg-icons#master checkout Note: checking out 'f001f2431950b752dd438f12941ba4515d478d08'.
+231 verbose checkoutTreeish
+231 verbose checkoutTreeish You are in 'detached HEAD' state. You can look around, make experimental
+231 verbose checkoutTreeish changes and commit them, and you can discard any commits you make in this
+231 verbose checkoutTreeish state without impacting any branches by performing another checkout.
+231 verbose checkoutTreeish
+231 verbose checkoutTreeish If you want to create a new branch to retain commits you create, you may
+231 verbose checkoutTreeish do so (now or later) by using -b with the checkout command again. Example:
+231 verbose checkoutTreeish
+231 verbose checkoutTreeish   git checkout -b new_branch_name
+231 verbose checkoutTreeish
+231 verbose checkoutTreeish HEAD is now at f001f24... update checkbox
+232 verbose addLocalDirectory /Users/romain/.npm/json-svg-icons/0.0.1/package.tgz not in flight; packing
+233 verbose tar pack [ '/Users/romain/.npm/json-svg-icons/0.0.1/package.tgz',
+233 verbose tar pack   '/var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-9ee0ff37f6e7/f001f2431950b752dd438f12941ba4515d478d08' ]
+234 verbose tarball /Users/romain/.npm/json-svg-icons/0.0.1/package.tgz
+235 verbose folder /var/folders/2m/tkcvx1g930s0fx9h42zwbzrr0000gn/T/npm-54360-1a63b11b/git-cache-9ee0ff37f6e7/f001f2431950b752dd438f12941ba4515d478d08
+236 verbose addLocalTarball adding from inside cache /Users/romain/.npm/json-svg-icons/0.0.1/package.tgz
+237 verbose addRemoteGit data._from: hull/json-svg-icons#master
+238 verbose addRemoteGit data._resolved: git://github.com/hull/json-svg-icons.git#f001f2431950b752dd438f12941ba4515d478d08
+239 silly cache afterAdd json-svg-icons@0.0.1
+240 verbose afterAdd /Users/romain/.npm/json-svg-icons/0.0.1/package/package.json not in flight; writing
+241 verbose afterAdd /Users/romain/.npm/json-svg-icons/0.0.1/package/package.json written
+242 silly install resolved [ { name: 'style-loader',
+242 silly install resolved     version: '0.12.3',
+242 silly install resolved     author: { name: 'Tobias Koppers @sokra' },
+242 silly install resolved     description: 'style loader module for webpack',
+242 silly install resolved     devDependencies: { 'css-loader': '~0.8.0' },
+242 silly install resolved     repository:
+242 silly install resolved      { type: 'git',
+242 silly install resolved        url: 'git+ssh://git@github.com/webpack/style-loader.git' },
+242 silly install resolved     license: 'MIT',
+242 silly install resolved     dependencies: { 'loader-utils': '^0.2.5' },
+242 silly install resolved     readme: '# style loader for webpack\r\n\r\n## Usage\r\n\r\n[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)\r\n\r\n### Simple API\r\n\r\n``` javascript\r\nrequire("style!raw!./file.css");\r\n// => add rules in file.css to document\r\n```\r\n\r\nIt\'s recommended to combine it with the [`css-loader`](https://github.com/webpack/css-loader): `require("style!css!./file.css")`.\r\n\r\nIt also possible to add a URL instead of a css string:\r\n\r\n``` javascript\r\nrequire("style/url!file!./file.css");\r\n// => add a <link rel="stylesheet"> to file.css to document\r\n```\r\n\r\n### Placeholders\r\n\r\n(experimental)\r\n\r\nWhen using placeholders (see css-loader) the module exports the placeholders object:\r\n\r\n``` js\r\nvar styles = require("style!css!./file.css");\r\nstyle.placeholder1 === "z849f98ca812bc0d099a43e0f90184"\r\n```\r\n\r\n### Reference-counted API\r\n\r\n``` javascript\r\nvar style = require("style/useable!css!./file.css");\r\nstyle.use(); // = style.ref();\r\nstyle.unuse(); // = style.unref();\r\n```\r\n\r\nStyles are not added on require, but instead on call to `use`/`ref`. Styles are removed from page if `unuse`/`unref` is called exactly as often as `use`/`ref`.\r\n\r\nNote: Behavior is undefined when `unuse`/`unref` is called more often than `use`/`ref`. Don\'t do that.\r\n\r\n### Options\r\n\r\n#### `singleton`\r\n\r\nIf defined, the style-loader will re-use a single `<style>` element, instead of adding/removing individual elements for each required module. **Note:** this option is on by default in IE9, which has strict limitations on the # of style tags allowed on a page. You can enable or disable it with the singleton query parameter (`?singleton` or `?-singleton`).\r\n\r\n## Recommended configuration\r\n\r\nBy convention the reference-counted API should be bound to `.useable.css` and the simple API to `.css` (similar to other file types, i. e. `.useable.less` and `.less`).\r\n\r\nSo the recommended configuration for webpack is:\r\n\r\n``` javascript\r\n{\r\n  module: {\r\n    loaders: [\r\n      { test: /\\.css$/, exclude: /\\.useable\\.css$/, loader: "style!css" },\r\n      { test: /\\.useable\\.css$/, loader: "style/useable!css" }\r\n    ]\r\n  }\r\n}\r\n```\r\n\r\n\r\n## Install\r\n\r\n`npm install style-loader`\r\n\r\n## License\r\n\r\nMIT (http://www.opensource.org/licenses/mit-license.php)\r\n',
+242 silly install resolved     readmeFilename: 'README.md',
+242 silly install resolved     gitHead: 'fc1925a05f34f897fa60e591ca3ede619573effa',
+242 silly install resolved     bugs: { url: 'https://github.com/webpack/style-loader/issues' },
+242 silly install resolved     homepage: 'https://github.com/webpack/style-loader#readme',
+242 silly install resolved     _id: 'style-loader@0.12.3',
+242 silly install resolved     _shasum: 'fe2578eaa6edd33be8a643c9244b200f9ec37e6a',
+242 silly install resolved     _from: 'unity/style-loader',
+242 silly install resolved     _resolved: 'git://github.com/unity/style-loader.git#fc1925a05f34f897fa60e591ca3ede619573effa' },
+242 silly install resolved   { name: 'json-svg-icons',
+242 silly install resolved     version: '0.0.1',
+242 silly install resolved     description: 'A collection of SVG icons in JSON format, handy when using React',
+242 silly install resolved     license: 'MIT',
+242 silly install resolved     main: 'dist/index.js',
+242 silly install resolved     repository:
+242 silly install resolved      { type: 'git',
+242 silly install resolved        url: 'git+https://github.com/hull/json-svg-icons.git' },
+242 silly install resolved     author:
+242 silly install resolved      { name: 'Romain Dardour',
+242 silly install resolved        email: 'romain@hull.io',
+242 silly install resolved        url: 'hull.io' },
+242 silly install resolved     engines: { node: '>=0.10.0' },
+242 silly install resolved     scripts: { test: 'mocha' },
+242 silly install resolved     files: [ 'dist' ],
+242 silly install resolved     keywords: [],
+242 silly install resolved     dependencies: {},
+242 silly install resolved     devDependencies:
+242 silly install resolved      { 'object-assign': '^2.0.0',
+242 silly install resolved        'run-sequence': '^1.0.2',
+242 silly install resolved        underscore: '^1.8.2',
+242 silly install resolved        webpack: '^1.7.1',
+242 silly install resolved        'webpack-dev-server': '^1.7.0',
+242 silly install resolved        through2: '^0.6.3',
+242 silly install resolved        'autoprefixer-loader': '^1.1.0',
+242 silly install resolved        babel: '^4.4.5',
+242 silly install resolved        'babel-core': '^4.4.5',
+242 silly install resolved        'babel-loader': '^4.0.0',
+242 silly install resolved        bower: '^1.3.12',
+242 silly install resolved        css: '^2.1.0',
+242 silly install resolved        'css-loader': '^0.9.0',
+242 silly install resolved        del: '^1.1.0',
+242 silly install resolved        'file-loader': '^0.8.1',
+242 silly install resolved        gulp: '^3.8.11',
+242 silly install resolved        'gulp-svg2json': 'github:hull/gulp-svg2json#master',
+242 silly install resolved        'gulp-util': '^3.0.1',
+242 silly install resolved        'gh-pages': '^0.2.0',
+242 silly install resolved        'json-loader': '^0.5.1',
+242 silly install resolved        jsx: '^0.9.89',
+242 silly install resolved        'jsx-loader': '^0.12.2',
+242 silly install resolved        less: '^2.4.0',
+242 silly install resolved        'less-loader': '^2.1.0',
+242 silly install resolved        ngrok: '^0.1.99',
+242 silly install resolved        'node-notifier': '^4.1.0',
+242 silly install resolved        open: '0.0.5',
+242 silly install resolved        'react-hot-loader': '^1.2.3',
+242 silly install resolved        'react-tools': '^0.11.2',
+242 silly install resolved        'sass-loader': '^0.4.0-beta.1',
+242 silly install resolved        'stats-webpack-plugin': '0.0.1',
+242 silly install resolved        'style-loader': 'github:unity/style-loader',
+242 silly install resolved        touch: '0.0.3' },
+242 silly install resolved     gitHead: 'f001f2431950b752dd438f12941ba4515d478d08',
+242 silly install resolved     readme: '# json-svg-icons\n\nA set of SVG icons in JSON format. Very useful when building React apps, since this allows you to programatically update any part of the icon, tweak size, stroke, fill, animations etc...\n\nLook in [`src/demo.jsx`](https://github.com/hull/json-svg-icons/blob/master/src/demo.jsx) for example usage\n\n## Install\n\n```\n$ npm install --save json-svg-icons\n```\n\n\n## Usage\n\n```js\nvar reactSvgIcons = require(\'json-svg-icons\');\nreactSvgIcons;\n//=> {\n//      facebook:...,\n//      twitter:...,\n//}\n```\n\nor individually: \n```js\nvar facebook = require(\'json-svg-icons/dist/facebook.json\');\n```\n\n## License\n\nMIT © [Romain Dardour](http://hull.io)\n',
+242 silly install resolved     readmeFilename: 'readme.md',
+242 silly install resolved     bugs: { url: 'https://github.com/hull/json-svg-icons/issues' },
+242 silly install resolved     homepage: 'https://github.com/hull/json-svg-icons#readme',
+242 silly install resolved     _id: 'json-svg-icons@0.0.1',
+242 silly install resolved     _shasum: 'd5fe387228837dc77f53343d2dbd844394f72a02',
+242 silly install resolved     _from: 'hull/json-svg-icons#master',
+242 silly install resolved     _resolved: 'git://github.com/hull/json-svg-icons.git#f001f2431950b752dd438f12941ba4515d478d08' } ]
+243 info install style-loader@0.12.3 into /Users/romain/Sites/Ships/hull-comments
+244 info install json-svg-icons@0.0.1 into /Users/romain/Sites/Ships/hull-comments
+245 info installOne style-loader@0.12.3
+246 verbose installOne of style-loader to /Users/romain/Sites/Ships/hull-comments not in flight; installing
+247 info installOne json-svg-icons@0.0.1
+248 verbose installOne of json-svg-icons to /Users/romain/Sites/Ships/hull-comments not in flight; installing
+249 verbose lock using /Users/romain/.npm/_locks/style-loader-4884af0e524bf5f0.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+250 verbose lock using /Users/romain/.npm/_locks/json-svg-icons-70df8b14c86fd931.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+251 silly install write writing style-loader 0.12.3 to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+252 silly install write writing json-svg-icons 0.0.1 to /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+253 verbose unbuild node_modules/style-loader
+254 verbose unbuild node_modules/json-svg-icons
+255 info preuninstall style-loader@0.12.3
+256 info preuninstall json-svg-icons@0.0.1
+257 info uninstall style-loader@0.12.3
+258 info uninstall json-svg-icons@0.0.1
+259 verbose unbuild rmStuff style-loader@0.12.3 from /Users/romain/Sites/Ships/hull-comments/node_modules
+260 info postuninstall style-loader@0.12.3
+261 verbose unbuild rmStuff json-svg-icons@0.0.1 from /Users/romain/Sites/Ships/hull-comments/node_modules
+262 info postuninstall json-svg-icons@0.0.1
+263 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader is being purged from base /Users/romain/Sites/Ships/hull-comments
+264 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+265 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons is being purged from base /Users/romain/Sites/Ships/hull-comments
+266 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+267 silly vacuum-fs purging /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+268 silly vacuum-fs purging /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+269 silly vacuum-fs quitting because other entries in /Users/romain/Sites/Ships/hull-comments/node_modules
+270 verbose tar unpack /Users/romain/.npm/json-svg-icons/0.0.1/package.tgz
+271 verbose tar unpacking to /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+272 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons is being purged
+273 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+274 silly gunzTarPerm modes [ '755', '644' ]
+275 silly gunzTarPerm extractEntry package.json
+276 silly gunzTarPerm extractEntry dist/demo.js
+277 silly vacuum-fs quitting because other entries in /Users/romain/Sites/Ships/hull-comments/node_modules
+278 verbose tar unpack /Users/romain/.npm/style-loader/0.12.3/package.tgz
+279 verbose tar unpacking to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+280 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader is being purged
+281 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+282 silly gunzTarPerm modes [ '755', '644' ]
+283 silly gunzTarPerm extractEntry package.json
+284 silly gunzTarPerm extractEntry .npmignore
+285 silly gunzTarPerm extractEntry README.md
+286 silly gunzTarPerm extractEntry dist/index.js
+287 silly gunzTarPerm extractEntry dist/italic.json
+288 silly gunzTarPerm extractEntry dist/angellist.json
+289 silly gunzTarPerm extractEntry dist/app.json
+290 silly gunzTarPerm extractEntry addStyleUrl.js
+291 silly gunzTarPerm extractEntry addStyles.js
+292 silly gunzTarPerm extractEntry index.js
+293 silly gunzTarPerm extractEntry url.js
+294 silly gunzTarPerm extractEntry useable.js
+295 silly gunzTarPerm extractEntry dist/arrow_double_left.json
+296 silly gunzTarPerm extractEntry dist/arrow_double_right.json
+297 silly gunzTarPerm extractEntry dist/arrow_down.json
+298 verbose write writing to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/package.json
+299 info preinstall style-loader@0.12.3
+300 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/package.json
+301 silly prepareForInstallMany adding loader-utils@^0.2.5 from style-loader dependencies
+302 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/package.json
+303 silly gunzTarPerm extractEntry dist/arrow_left.json
+304 silly cache add args [ 'loader-utils@^0.2.5', null ]
+305 verbose cache add spec loader-utils@^0.2.5
+306 silly cache add parsed spec { raw: 'loader-utils@^0.2.5',
+306 silly cache add   scope: null,
+306 silly cache add   name: 'loader-utils',
+306 silly cache add   rawSpec: '^0.2.5',
+306 silly cache add   spec: '>=0.2.5 <0.3.0',
+306 silly cache add   type: 'range' }
+307 silly addNamed loader-utils@>=0.2.5 <0.3.0
+308 verbose addNamed ">=0.2.5 <0.3.0" is a valid semver range for loader-utils
+309 silly addNameRange { name: 'loader-utils', range: '>=0.2.5 <0.3.0', hasData: false }
+310 silly mapToRegistry name loader-utils
+311 silly mapToRegistry using default registry
+312 silly mapToRegistry registry https://registry.npmjs.org/
+313 silly mapToRegistry uri https://registry.npmjs.org/loader-utils
+314 verbose addNameRange registry:https://registry.npmjs.org/loader-utils not in flight; fetching
+315 verbose request uri https://registry.npmjs.org/loader-utils
+316 verbose request no auth needed
+317 info attempt registry request try #1 at 21:36:28
+318 verbose request id 93b4a4cc54c6b3e7
+319 verbose etag "64QL3E2CCZFAS89UNVBUKHOLH"
+320 http request GET https://registry.npmjs.org/loader-utils
+321 silly gunzTarPerm extractEntry dist/arrow_right.json
+322 silly gunzTarPerm extractEntry dist/arrow_up.json
+323 silly gunzTarPerm extractEntry dist/badge.json
+324 silly gunzTarPerm extractEntry dist/blockquote.json
+325 silly gunzTarPerm extractEntry dist/bold.json
+326 silly gunzTarPerm extractEntry dist/check.json
+327 silly gunzTarPerm extractEntry dist/checkbox.json
+328 silly gunzTarPerm extractEntry dist/checkin.json
+329 silly gunzTarPerm extractEntry dist/city.json
+330 silly gunzTarPerm extractEntry dist/clear.json
+331 silly gunzTarPerm extractEntry dist/click.json
+332 silly gunzTarPerm extractEntry dist/clock.json
+333 silly gunzTarPerm extractEntry dist/cloud.json
+334 silly gunzTarPerm extractEntry dist/codesnippet.json
+335 silly gunzTarPerm extractEntry dist/cog.json
+336 silly gunzTarPerm extractEntry dist/comment.json
+337 silly gunzTarPerm extractEntry dist/comment_code.json
+338 silly gunzTarPerm extractEntry dist/comments.json
+339 silly gunzTarPerm extractEntry dist/component.json
+340 silly gunzTarPerm extractEntry dist/country.json
+341 silly gunzTarPerm extractEntry dist/cross.json
+342 silly gunzTarPerm extractEntry dist/dashboard.json
+343 silly gunzTarPerm extractEntry dist/day.json
+344 silly gunzTarPerm extractEntry dist/delete.json
+345 silly gunzTarPerm extractEntry dist/achievement.json
+346 silly gunzTarPerm extractEntry dist/desktop.json
+347 silly gunzTarPerm extractEntry dist/download.json
+348 silly gunzTarPerm extractEntry dist/draft.json
+349 silly gunzTarPerm extractEntry dist/earth.json
+350 silly gunzTarPerm extractEntry dist/email.json
+351 silly gunzTarPerm extractEntry dist/email_message.json
+352 silly gunzTarPerm extractEntry dist/emit.json
+353 silly gunzTarPerm extractEntry dist/exit.json
+354 silly gunzTarPerm extractEntry dist/eye_closed.json
+355 silly gunzTarPerm extractEntry dist/eye_open.json
+356 silly gunzTarPerm extractEntry dist/facebook.json
+357 silly gunzTarPerm extractEntry dist/filter.json
+358 silly gunzTarPerm extractEntry dist/foursquare.json
+359 silly gunzTarPerm extractEntry dist/ghost.json
+360 silly gunzTarPerm extractEntry dist/github.json
+361 silly gunzTarPerm extractEntry dist/google.json
+362 silly gunzTarPerm extractEntry dist/google_analytics.json
+363 silly gunzTarPerm extractEntry dist/google_plus.json
+364 silly gunzTarPerm extractEntry dist/h1.json
+365 silly gunzTarPerm extractEntry dist/h2.json
+366 silly gunzTarPerm extractEntry dist/h3.json
+367 silly gunzTarPerm extractEntry dist/heart.json
+368 silly gunzTarPerm extractEntry dist/hide.json
+369 silly gunzTarPerm extractEntry dist/html5.json
+370 silly gunzTarPerm extractEntry dist/hull.json
+371 silly gunzTarPerm extractEntry dist/icons.json
+372 silly gunzTarPerm extractEntry dist/image.json
+373 silly gunzTarPerm extractEntry dist/indent.json
+374 silly gunzTarPerm extractEntry dist/index.html
+375 silly gunzTarPerm extractEntry dist/akismet.json
+376 silly gunzTarPerm extractEntry dist/instagram.json
+377 silly gunzTarPerm extractEntry dist/instant_win.json
+378 silly gunzTarPerm extractEntry dist/add_image.json
+379 silly gunzTarPerm extractEntry dist/javascript.json
+380 silly gunzTarPerm extractEntry dist/justifyblock.json
+381 silly gunzTarPerm extractEntry dist/justifycenter.json
+382 silly gunzTarPerm extractEntry dist/justifyleft.json
+383 silly gunzTarPerm extractEntry dist/justifyright.json
+384 silly gunzTarPerm extractEntry dist/keen_io.json
+385 silly gunzTarPerm extractEntry dist/key.json
+386 silly gunzTarPerm extractEntry dist/kissmetrics.json
+387 silly gunzTarPerm extractEntry dist/libraries.json
+388 silly gunzTarPerm extractEntry dist/like.json
+389 silly gunzTarPerm extractEntry dist/link.json
+390 silly gunzTarPerm extractEntry dist/linkedin.json
+391 silly gunzTarPerm extractEntry dist/lock.json
+392 silly gunzTarPerm extractEntry dist/maximize.json
+393 silly gunzTarPerm extractEntry dist/meetups.json
+394 silly gunzTarPerm extractEntry dist/minus.json
+395 silly gunzTarPerm extractEntry dist/mixpanel.json
+396 silly gunzTarPerm extractEntry dist/mobile.json
+397 silly gunzTarPerm extractEntry dist/month.json
+398 silly gunzTarPerm extractEntry dist/numbers.json
+399 silly gunzTarPerm extractEntry dist/ol.json
+400 silly gunzTarPerm extractEntry dist/outdent.json
+401 silly gunzTarPerm extractEntry dist/pencil.json
+402 silly gunzTarPerm extractEntry dist/phone.json
+403 silly gunzTarPerm extractEntry dist/platform.json
+404 silly gunzTarPerm extractEntry dist/play.json
+405 silly gunzTarPerm extractEntry dist/plug_in.json
+406 silly gunzTarPerm extractEntry dist/plus.json
+407 silly gunzTarPerm extractEntry dist/question.json
+408 silly gunzTarPerm extractEntry dist/question_bubble.json
+409 silly gunzTarPerm extractEntry dist/quiz.json
+410 silly gunzTarPerm extractEntry dist/redo.json
+411 silly gunzTarPerm extractEntry dist/reply.json
+412 silly gunzTarPerm extractEntry dist/reset.json
+413 silly gunzTarPerm extractEntry dist/review.json
+414 silly gunzTarPerm extractEntry dist/search.json
+415 silly gunzTarPerm extractEntry dist/send.json
+416 silly gunzTarPerm extractEntry dist/share.json
+417 silly gunzTarPerm extractEntry dist/show.json
+418 silly gunzTarPerm extractEntry dist/soundcloud.json
+419 silly gunzTarPerm extractEntry dist/source.json
+420 silly gunzTarPerm extractEntry dist/star.json
+421 silly gunzTarPerm extractEntry dist/stat.json
+422 silly gunzTarPerm extractEntry dist/stop.json
+423 silly gunzTarPerm extractEntry dist/table.json
+424 silly gunzTarPerm extractEntry dist/tag.json
+425 silly gunzTarPerm extractEntry dist/tags.json
+426 silly gunzTarPerm extractEntry dist/templates.json
+427 silly gunzTarPerm extractEntry dist/trait.json
+428 silly gunzTarPerm extractEntry dist/trash.json
+429 silly gunzTarPerm extractEntry dist/tumblr.json
+430 silly gunzTarPerm extractEntry dist/twitter.json
+431 silly gunzTarPerm extractEntry dist/ul.json
+432 silly gunzTarPerm extractEntry dist/uncomment_code.json
+433 silly gunzTarPerm extractEntry dist/undo.json
+434 silly gunzTarPerm extractEntry dist/unlink.json
+435 silly gunzTarPerm extractEntry dist/user.json
+436 silly gunzTarPerm extractEntry dist/user_circle.json
+437 silly gunzTarPerm extractEntry dist/user_group.json
+438 silly gunzTarPerm extractEntry dist/valid.json
+439 silly gunzTarPerm extractEntry dist/vkontakte.json
+440 silly gunzTarPerm extractEntry dist/wand.json
+441 silly gunzTarPerm extractEntry dist/warning.json
+442 silly gunzTarPerm extractEntry dist/webhook.json
+443 silly gunzTarPerm extractEntry dist/week.json
+444 silly gunzTarPerm extractEntry license
+445 silly gunzTarPerm extractEntry readme.md
+446 verbose write writing to /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons/package.json
+447 info preinstall json-svg-icons@0.0.1
+448 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons/package.json
+449 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons/package.json
+450 silly install resolved []
+451 verbose about to build /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+452 info build /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+453 info linkStuff json-svg-icons@0.0.1
+454 silly linkStuff json-svg-icons@0.0.1 has /Users/romain/Sites/Ships/hull-comments/node_modules as its parent node_modules
+455 http 304 https://registry.npmjs.org/loader-utils
+456 silly get cb [ 304,
+456 silly get   { date: 'Fri, 11 Sep 2015 19:36:27 GMT',
+456 silly get     via: '1.1 varnish',
+456 silly get     'cache-control': 'max-age=60',
+456 silly get     etag: '"64QL3E2CCZFAS89UNVBUKHOLH"',
+456 silly get     age: '23',
+456 silly get     connection: 'keep-alive',
+456 silly get     'x-served-by': 'cache-ams4122-AMS',
+456 silly get     'x-cache': 'HIT',
+456 silly get     'x-cache-hits': '1',
+456 silly get     'x-timer': 'S1442000187.009384,VS0,VE0',
+456 silly get     vary: 'Accept' } ]
+457 verbose etag https://registry.npmjs.org/loader-utils from cache
+458 verbose get saving loader-utils to /Users/romain/.npm/registry.npmjs.org/loader-utils/.cache.json
+459 silly addNameRange number 2 { name: 'loader-utils', range: '>=0.2.5 <0.3.0', hasData: true }
+460 silly addNameRange versions [ 'loader-utils',
+460 silly addNameRange   [ '0.1.0',
+460 silly addNameRange     '0.1.1',
+460 silly addNameRange     '0.1.2',
+460 silly addNameRange     '0.2.0',
+460 silly addNameRange     '0.2.1',
+460 silly addNameRange     '0.2.2',
+460 silly addNameRange     '0.2.3',
+460 silly addNameRange     '0.2.4',
+460 silly addNameRange     '0.2.5',
+460 silly addNameRange     '0.2.6',
+460 silly addNameRange     '0.2.7',
+460 silly addNameRange     '0.2.8',
+460 silly addNameRange     '0.2.9',
+460 silly addNameRange     '0.2.10',
+460 silly addNameRange     '0.2.11' ] ]
+461 silly addNamed loader-utils@0.2.11
+462 verbose addNamed "0.2.11" is a plain semver version for loader-utils
+463 verbose linkBins json-svg-icons@0.0.1
+464 verbose linkMans json-svg-icons@0.0.1
+465 verbose rebuildBundles json-svg-icons@0.0.1
+466 info install json-svg-icons@0.0.1
+467 info postinstall json-svg-icons@0.0.1
+468 silly cache afterAdd loader-utils@0.2.11
+469 verbose afterAdd /Users/romain/.npm/loader-utils/0.2.11/package/package.json not in flight; writing
+470 verbose unlock done using /Users/romain/.npm/_locks/json-svg-icons-70df8b14c86fd931.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/json-svg-icons
+471 verbose afterAdd /Users/romain/.npm/loader-utils/0.2.11/package/package.json written
+472 silly install resolved [ { name: 'loader-utils',
+472 silly install resolved     version: '0.2.11',
+472 silly install resolved     author: { name: 'Tobias Koppers @sokra' },
+472 silly install resolved     description: 'utils for webpack loaders',
+472 silly install resolved     dependencies: { 'big.js': '^3.0.2', json5: '^0.4.0' },
+472 silly install resolved     scripts:
+472 silly install resolved      { test: 'mocha',
+472 silly install resolved        travis: 'npm run cover -- --report lcovonly',
+472 silly install resolved        cover: 'istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha',
+472 silly install resolved        'publish-patch': 'mocha && npm version patch && git push && git push --tags && npm publish' },
+472 silly install resolved     license: 'MIT',
+472 silly install resolved     repository:
+472 silly install resolved      { type: 'git',
+472 silly install resolved        url: 'git+https://github.com/webpack/loader-utils.git' },
+472 silly install resolved     devDependencies: { coveralls: '^2.11.2', istanbul: '^0.3.14', mocha: '^1.21.4' },
+472 silly install resolved     files: [ 'index.js' ],
+472 silly install resolved     gitHead: '0adb5e5c06b6fd217b8ec4a5316bb08d3363cd88',
+472 silly install resolved     bugs: { url: 'https://github.com/webpack/loader-utils/issues' },
+472 silly install resolved     homepage: 'https://github.com/webpack/loader-utils#readme',
+472 silly install resolved     _id: 'loader-utils@0.2.11',
+472 silly install resolved     _shasum: '8a0164e337c21ca099c2b1716366f0db0ec3087f',
+472 silly install resolved     _from: 'loader-utils@>=0.2.5 <0.3.0',
+472 silly install resolved     _npmVersion: '2.10.1',
+472 silly install resolved     _nodeVersion: '0.12.4',
+472 silly install resolved     _npmUser: { name: 'sokra', email: 'tobias.koppers@googlemail.com' },
+472 silly install resolved     maintainers: [ [Object] ],
+472 silly install resolved     dist:
+472 silly install resolved      { shasum: '8a0164e337c21ca099c2b1716366f0db0ec3087f',
+472 silly install resolved        tarball: 'http://registry.npmjs.org/loader-utils/-/loader-utils-0.2.11.tgz' },
+472 silly install resolved     directories: {},
+472 silly install resolved     _resolved: 'https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.11.tgz',
+472 silly install resolved     readme: 'ERROR: No README data found!' } ]
+473 info install loader-utils@0.2.11 into /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+474 info installOne loader-utils@0.2.11
+475 verbose installOne of loader-utils to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader not in flight; installing
+476 verbose lock using /Users/romain/.npm/_locks/loader-utils-c73ac728a700e64e.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+477 silly install write writing loader-utils 0.2.11 to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+478 verbose unbuild node_modules/style-loader/node_modules/loader-utils
+479 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils is being purged from base /Users/romain/Sites/Ships/hull-comments
+480 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+481 verbose tar unpack /Users/romain/.npm/loader-utils/0.2.11/package.tgz
+482 verbose tar unpacking to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+483 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils is being purged
+484 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+485 silly gunzTarPerm modes [ '755', '644' ]
+486 silly gunzTarPerm extractEntry package.json
+487 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+488 silly gunzTarPerm extractEntry README.md
+489 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+490 silly gunzTarPerm extractEntry LICENSE
+491 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+492 silly gunzTarPerm extractEntry index.js
+493 silly gunzTarPerm modified mode [ 'index.js', 438, 420 ]
+494 verbose write writing to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/package.json
+495 info preinstall loader-utils@0.2.11
+496 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/package.json
+497 silly prepareForInstallMany adding big.js@^3.0.2 from loader-utils dependencies
+498 silly prepareForInstallMany adding json5@^0.4.0 from loader-utils dependencies
+499 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/package.json
+500 silly cache add args [ 'big.js@^3.0.2', null ]
+501 verbose cache add spec big.js@^3.0.2
+502 silly cache add args [ 'json5@^0.4.0', null ]
+503 verbose cache add spec json5@^0.4.0
+504 silly cache add parsed spec { raw: 'big.js@^3.0.2',
+504 silly cache add   scope: null,
+504 silly cache add   name: 'big.js',
+504 silly cache add   rawSpec: '^3.0.2',
+504 silly cache add   spec: '>=3.0.2 <4.0.0',
+504 silly cache add   type: 'range' }
+505 silly addNamed big.js@>=3.0.2 <4.0.0
+506 verbose addNamed ">=3.0.2 <4.0.0" is a valid semver range for big.js
+507 silly addNameRange { name: 'big.js', range: '>=3.0.2 <4.0.0', hasData: false }
+508 silly mapToRegistry name big.js
+509 silly mapToRegistry using default registry
+510 silly mapToRegistry registry https://registry.npmjs.org/
+511 silly mapToRegistry uri https://registry.npmjs.org/big.js
+512 verbose addNameRange registry:https://registry.npmjs.org/big.js not in flight; fetching
+513 silly cache add parsed spec { raw: 'json5@^0.4.0',
+513 silly cache add   scope: null,
+513 silly cache add   name: 'json5',
+513 silly cache add   rawSpec: '^0.4.0',
+513 silly cache add   spec: '>=0.4.0 <0.5.0',
+513 silly cache add   type: 'range' }
+514 silly addNamed json5@>=0.4.0 <0.5.0
+515 verbose addNamed ">=0.4.0 <0.5.0" is a valid semver range for json5
+516 silly addNameRange { name: 'json5', range: '>=0.4.0 <0.5.0', hasData: false }
+517 silly mapToRegistry name json5
+518 silly mapToRegistry using default registry
+519 silly mapToRegistry registry https://registry.npmjs.org/
+520 silly mapToRegistry uri https://registry.npmjs.org/json5
+521 verbose addNameRange registry:https://registry.npmjs.org/json5 not in flight; fetching
+522 verbose request uri https://registry.npmjs.org/big.js
+523 verbose request no auth needed
+524 info attempt registry request try #1 at 21:36:28
+525 verbose etag "V2BGW5VM749T7RMZ6I77UNR9"
+526 http request GET https://registry.npmjs.org/big.js
+527 verbose request uri https://registry.npmjs.org/json5
+528 verbose request no auth needed
+529 info attempt registry request try #1 at 21:36:28
+530 verbose etag "WJHOV7OMGVWCGCCSOCWNWLFT"
+531 http request GET https://registry.npmjs.org/json5
+532 http 304 https://registry.npmjs.org/big.js
+533 silly get cb [ 304,
+533 silly get   { date: 'Fri, 11 Sep 2015 19:36:27 GMT',
+533 silly get     via: '1.1 varnish',
+533 silly get     'cache-control': 'max-age=60',
+533 silly get     etag: '"V2BGW5VM749T7RMZ6I77UNR9"',
+533 silly get     age: '23',
+533 silly get     connection: 'keep-alive',
+533 silly get     'x-served-by': 'cache-ams4136-AMS',
+533 silly get     'x-cache': 'HIT',
+533 silly get     'x-cache-hits': '1',
+533 silly get     'x-timer': 'S1442000187.259137,VS0,VE0',
+533 silly get     vary: 'Accept' } ]
+534 verbose etag https://registry.npmjs.org/big.js from cache
+535 verbose get saving big.js to /Users/romain/.npm/registry.npmjs.org/big.js/.cache.json
+536 silly addNameRange number 2 { name: 'big.js', range: '>=3.0.2 <4.0.0', hasData: true }
+537 silly addNameRange versions [ 'big.js',
+537 silly addNameRange   [ '2.0.0',
+537 silly addNameRange     '2.1.0',
+537 silly addNameRange     '2.2.0',
+537 silly addNameRange     '2.4.0',
+537 silly addNameRange     '2.4.1',
+537 silly addNameRange     '2.5.0',
+537 silly addNameRange     '2.5.1',
+537 silly addNameRange     '3.0.0',
+537 silly addNameRange     '3.0.1',
+537 silly addNameRange     '3.0.2',
+537 silly addNameRange     '3.1.1',
+537 silly addNameRange     '3.1.2',
+537 silly addNameRange     '3.1.3' ] ]
+538 silly addNamed big.js@3.1.3
+539 verbose addNamed "3.1.3" is a plain semver version for big.js
+540 silly cache afterAdd big.js@3.1.3
+541 verbose afterAdd /Users/romain/.npm/big.js/3.1.3/package/package.json not in flight; writing
+542 verbose afterAdd /Users/romain/.npm/big.js/3.1.3/package/package.json written
+543 http 304 https://registry.npmjs.org/json5
+544 silly get cb [ 304,
+544 silly get   { date: 'Fri, 11 Sep 2015 19:36:28 GMT',
+544 silly get     via: '1.1 varnish',
+544 silly get     'cache-control': 'max-age=60',
+544 silly get     etag: '"WJHOV7OMGVWCGCCSOCWNWLFT"',
+544 silly get     age: '0',
+544 silly get     connection: 'keep-alive',
+544 silly get     'x-served-by': 'cache-ams4148-AMS',
+544 silly get     'x-cache': 'HIT',
+544 silly get     'x-cache-hits': '1',
+544 silly get     'x-timer': 'S1442000188.267002,VS0,VE376',
+544 silly get     vary: 'Accept' } ]
+545 verbose etag https://registry.npmjs.org/json5 from cache
+546 verbose get saving json5 to /Users/romain/.npm/registry.npmjs.org/json5/.cache.json
+547 silly addNameRange number 2 { name: 'json5', range: '>=0.4.0 <0.5.0', hasData: true }
+548 silly addNameRange versions [ 'json5', [ '0.0.0', '0.0.1', '0.1.0', '0.2.0', '0.4.0' ] ]
+549 silly addNamed json5@0.4.0
+550 verbose addNamed "0.4.0" is a plain semver version for json5
+551 silly cache afterAdd json5@0.4.0
+552 verbose afterAdd /Users/romain/.npm/json5/0.4.0/package/package.json not in flight; writing
+553 verbose afterAdd /Users/romain/.npm/json5/0.4.0/package/package.json written
+554 silly install resolved [ { name: 'big.js',
+554 silly install resolved     description: 'A small, fast, easy-to-use library for arbitrary-precision decimal arithmetic',
+554 silly install resolved     version: '3.1.3',
+554 silly install resolved     keywords:
+554 silly install resolved      [ 'arbitrary',
+554 silly install resolved        'precision',
+554 silly install resolved        'arithmetic',
+554 silly install resolved        'big',
+554 silly install resolved        'number',
+554 silly install resolved        'decimal',
+554 silly install resolved        'float',
+554 silly install resolved        'biginteger',
+554 silly install resolved        'bigdecimal',
+554 silly install resolved        'bignumber',
+554 silly install resolved        'bigint',
+554 silly install resolved        'bignum' ],
+554 silly install resolved     repository:
+554 silly install resolved      { type: 'git',
+554 silly install resolved        url: 'git+https://github.com/MikeMcl/big.js.git' },
+554 silly install resolved     main: './big',
+554 silly install resolved     author: { name: 'Michael Mclaughlin', email: 'M8ch88l@gmail.com' },
+554 silly install resolved     bugs: { url: 'https://github.com/MikeMcl/big.js/issues' },
+554 silly install resolved     engines: { node: '*' },
+554 silly install resolved     license: 'MIT',
+554 silly install resolved     scripts:
+554 silly install resolved      { test: 'node ./test/every-test.js',
+554 silly install resolved        build: 'uglifyjs -o ./big.min.js ./big.js' },
+554 silly install resolved     files: [ 'big.js', 'big.min.js' ],
+554 silly install resolved     gitHead: '86268e96b3dbf6db8ce319489f410277d9d4ea1b',
+554 silly install resolved     homepage: 'https://github.com/MikeMcl/big.js#readme',
+554 silly install resolved     _id: 'big.js@3.1.3',
+554 silly install resolved     _shasum: '4cada2193652eb3ca9ec8e55c9015669c9806978',
+554 silly install resolved     _from: 'big.js@>=3.0.2 <4.0.0',
+554 silly install resolved     _npmVersion: '2.9.1',
+554 silly install resolved     _nodeVersion: '0.12.0',
+554 silly install resolved     _npmUser: { name: 'mikemcl', email: 'M8ch88l@gmail.com' },
+554 silly install resolved     maintainers: [ [Object] ],
+554 silly install resolved     dist:
+554 silly install resolved      { shasum: '4cada2193652eb3ca9ec8e55c9015669c9806978',
+554 silly install resolved        tarball: 'http://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz' },
+554 silly install resolved     directories: {},
+554 silly install resolved     _resolved: 'https://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz',
+554 silly install resolved     readme: 'ERROR: No README data found!' },
+554 silly install resolved   { name: 'json5',
+554 silly install resolved     version: '0.4.0',
+554 silly install resolved     description: 'JSON for the ES5 era.',
+554 silly install resolved     keywords: [ 'json', 'es5' ],
+554 silly install resolved     author: { name: 'Aseem Kishore', email: 'aseem.kishore@gmail.com' },
+554 silly install resolved     license: 'MIT',
+554 silly install resolved     contributors: [ [Object], [Object] ],
+554 silly install resolved     main: 'lib/json5.js',
+554 silly install resolved     bin: { json5: 'lib/cli.js' },
+554 silly install resolved     dependencies: {},
+554 silly install resolved     devDependencies: { mocha: '~1.0.3' },
+554 silly install resolved     scripts:
+554 silly install resolved      { build: './lib/cli.js -c package.json5',
+554 silly install resolved        test: 'mocha --ui exports --reporter spec' },
+554 silly install resolved     homepage: 'http://json5.org/',
+554 silly install resolved     repository: { type: 'git', url: 'git+https://github.com/aseemk/json5.git' },
+554 silly install resolved     bugs: { url: 'https://github.com/aseemk/json5/issues' },
+554 silly install resolved     _id: 'json5@0.4.0',
+554 silly install resolved     dist:
+554 silly install resolved      { shasum: '054352e4c4c80c86c0923877d449de176a732c8d',
+554 silly install resolved        tarball: 'http://registry.npmjs.org/json5/-/json5-0.4.0.tgz' },
+554 silly install resolved     _from: 'json5@>=0.4.0 <0.5.0',
+554 silly install resolved     _npmVersion: '1.3.21',
+554 silly install resolved     _npmUser: { name: 'aseemk', email: 'aseem.kishore@gmail.com' },
+554 silly install resolved     maintainers: [ [Object] ],
+554 silly install resolved     directories: {},
+554 silly install resolved     _shasum: '054352e4c4c80c86c0923877d449de176a732c8d',
+554 silly install resolved     _resolved: 'https://registry.npmjs.org/json5/-/json5-0.4.0.tgz',
+554 silly install resolved     readme: 'ERROR: No README data found!' } ]
+555 info install big.js@3.1.3 into /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+556 info install json5@0.4.0 into /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+557 info installOne big.js@3.1.3
+558 verbose installOne of big.js to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils not in flight; installing
+559 info installOne json5@0.4.0
+560 verbose installOne of json5 to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils not in flight; installing
+561 verbose lock using /Users/romain/.npm/_locks/big-js-168ea363207bf95d.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+562 silly install write writing big.js 3.1.3 to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+563 verbose lock using /Users/romain/.npm/_locks/json5-6a9016aa7d752917.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+564 silly install write writing json5 0.4.0 to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+565 verbose unbuild node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+566 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js is being purged from base /Users/romain/Sites/Ships/hull-comments
+567 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+568 verbose unbuild node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+569 verbose tar unpack /Users/romain/.npm/big.js/3.1.3/package.tgz
+570 verbose tar unpacking to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+571 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js is being purged
+572 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+573 silly gunzTarPerm modes [ '755', '644' ]
+574 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5 is being purged from base /Users/romain/Sites/Ships/hull-comments
+575 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+576 verbose tar unpack /Users/romain/.npm/json5/0.4.0/package.tgz
+577 verbose tar unpacking to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+578 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5 is being purged
+579 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+580 silly gunzTarPerm modes [ '755', '644' ]
+581 silly gunzTarPerm extractEntry package.json
+582 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+583 silly gunzTarPerm extractEntry package.json
+584 silly gunzTarPerm extractEntry README.md
+585 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+586 silly gunzTarPerm extractEntry LICENCE
+587 silly gunzTarPerm modified mode [ 'LICENCE', 438, 420 ]
+588 silly gunzTarPerm extractEntry .npmignore
+589 silly gunzTarPerm extractEntry README.md
+590 silly gunzTarPerm extractEntry big.js
+591 silly gunzTarPerm modified mode [ 'big.js', 438, 420 ]
+592 silly gunzTarPerm extractEntry big.min.js
+593 silly gunzTarPerm modified mode [ 'big.min.js', 438, 420 ]
+594 silly gunzTarPerm extractEntry .editorconfig
+595 silly gunzTarPerm extractEntry .travis.yml
+596 silly gunzTarPerm extractEntry CHANGELOG.md
+597 silly gunzTarPerm extractEntry lib/cli.js
+598 silly gunzTarPerm extractEntry lib/json5.js
+599 silly gunzTarPerm extractEntry lib/require.js
+600 silly gunzTarPerm extractEntry package.json5
+601 silly gunzTarPerm extractEntry test/parse.js
+602 silly gunzTarPerm extractEntry test/require.js
+603 silly gunzTarPerm extractEntry test/stringify.js
+604 silly gunzTarPerm extractEntry test/parse-cases/arrays/leading-comma-array.js
+605 silly gunzTarPerm extractEntry test/parse-cases/arrays/lone-trailing-comma-array.js
+606 silly gunzTarPerm extractEntry test/parse-cases/arrays/empty-array.json
+607 silly gunzTarPerm extractEntry test/parse-cases/arrays/no-comma-array.txt
+608 silly gunzTarPerm extractEntry test/parse-cases/arrays/regular-array.json
+609 silly gunzTarPerm extractEntry test/parse-cases/arrays/trailing-comma-array.json5
+610 silly gunzTarPerm extractEntry test/parse-cases/comments/inline-comment-following-top-level-value.json5
+611 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-following-array-element.json5
+612 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-in-string.json
+613 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-preceding-top-level-value.json5
+614 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-with-asterisks.json5
+615 silly gunzTarPerm extractEntry test/parse-cases/comments/inline-comment-following-array-element.json5
+616 silly gunzTarPerm extractEntry test/parse-cases/comments/block-comment-following-top-level-value.json5
+617 silly gunzTarPerm extractEntry test/parse-cases/comments/inline-comment-in-string.json
+618 silly gunzTarPerm extractEntry test/parse-cases/comments/inline-comment-preceding-top-level-value.json5
+619 silly gunzTarPerm extractEntry test/parse-cases/comments/top-level-block-comment.txt
+620 silly gunzTarPerm extractEntry test/parse-cases/comments/top-level-inline-comment.txt
+621 silly gunzTarPerm extractEntry test/parse-cases/comments/unterminated-block-comment.txt
+622 silly gunzTarPerm extractEntry test/parse-cases/misc/empty.txt
+623 silly gunzTarPerm extractEntry test/parse-cases/misc/npm-package.json
+624 silly gunzTarPerm extractEntry test/parse-cases/misc/npm-package.json5
+625 silly gunzTarPerm extractEntry test/parse-cases/misc/readme-example.json5
+626 silly gunzTarPerm extractEntry test/parse-cases/misc/valid-whitespace.json5
+627 silly gunzTarPerm extractEntry test/parse-cases/new-lines/.editorconfig
+628 silly gunzTarPerm extractEntry test/parse-cases/new-lines/.gitattributes
+629 silly gunzTarPerm extractEntry test/parse-cases/new-lines/comment-cr.json5
+630 silly gunzTarPerm extractEntry test/parse-cases/new-lines/comment-crlf.json5
+631 silly gunzTarPerm extractEntry test/parse-cases/new-lines/comment-lf.json5
+632 silly gunzTarPerm extractEntry test/parse-cases/new-lines/escaped-cr.json5
+633 silly gunzTarPerm extractEntry test/parse-cases/new-lines/escaped-crlf.json5
+634 silly gunzTarPerm extractEntry test/parse-cases/new-lines/escaped-lf.json5
+635 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-noctal.js
+636 silly gunzTarPerm extractEntry test/parse-cases/numbers/noctal-with-leading-octal-digit.js
+637 silly gunzTarPerm extractEntry test/parse-cases/numbers/noctal.js
+638 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-noctal.js
+639 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-binary-coffeescript.txt
+640 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-with-integer-exponent.json
+641 silly gunzTarPerm extractEntry test/parse-cases/numbers/float.json
+642 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal-empty.txt
+643 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal-lowercase-letter.json5
+644 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal-uppercase-x.json5
+645 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal-with-integer-exponent.json5
+646 silly gunzTarPerm extractEntry test/parse-cases/numbers/hexadecimal.json5
+647 silly gunzTarPerm extractEntry test/parse-cases/numbers/infinity.json5
+648 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-float-exponent.txt
+649 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-hexadecimal-exponent.txt
+650 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-integer-exponent.json
+651 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-negative-float-exponent.txt
+652 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-negative-hexadecimal-exponent.txt
+653 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-negative-integer-exponent.json
+654 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-negative-zero-integer-exponent.json
+655 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-positive-float-exponent.txt
+656 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-positive-hexadecimal-exponent.txt
+657 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-positive-integer-exponent.json
+658 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-positive-zero-integer-exponent.json
+659 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer-with-zero-integer-exponent.json
+660 silly gunzTarPerm extractEntry test/parse-cases/numbers/integer.json
+661 silly gunzTarPerm extractEntry test/parse-cases/numbers/lone-decimal-point.txt
+662 silly gunzTarPerm extractEntry test/parse-cases/numbers/nan.json5
+663 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-binary-coffeescript.txt
+664 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-float-leading-decimal-point.json5
+665 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-float-leading-zero.json
+666 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-float-trailing-decimal-point.json5
+667 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-float.json
+668 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-hexadecimal.json5
+669 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-infinity.json5
+670 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-integer.json
+671 silly gunzTarPerm extractEntry test/parse-cases/numbers/binary-coffeescript.txt
+672 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-octal-coffeescript.txt
+673 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-octal.txt
+674 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-leading-decimal-point.json5
+675 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-float-leading-decimal-point.json5
+676 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-float-trailing-decimal-point.json5
+677 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-float.json
+678 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-hexadecimal.json5
+679 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-integer.json
+680 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-octal-coffeescript.txt
+681 silly gunzTarPerm extractEntry test/parse-cases/numbers/negative-zero-octal.txt
+682 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-leading-zero.json
+683 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-trailing-decimal-point-with-integer-exponent.json5
+684 silly gunzTarPerm extractEntry test/parse-cases/numbers/octal-coffeescript.txt
+685 silly gunzTarPerm extractEntry test/parse-cases/numbers/octal.txt
+686 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-binary-coffeescript.txt
+687 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-float-leading-decimal-point.json5
+688 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-float-leading-zero.json5
+689 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-float-trailing-decimal-point.json5
+690 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-float.json5
+691 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-hexadecimal.json5
+692 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-infinity.json5
+693 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-integer.json5
+694 silly gunzTarPerm extractEntry test/parse-cases/numbers/float-trailing-decimal-point.json5
+695 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-octal-coffeescript.txt
+696 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-octal.txt
+697 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-binary-coffeescript.txt
+698 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-float-leading-decimal-point.json5
+699 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-float-trailing-decimal-point.json5
+700 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-float.json5
+701 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-hexadecimal.json5
+702 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-integer.json5
+703 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-octal-coffeescript.txt
+704 silly gunzTarPerm extractEntry test/parse-cases/numbers/positive-zero-octal.txt
+705 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-binary-coffeescript.txt
+706 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-float-leading-decimal-point.json5
+707 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-float-trailing-decimal-point.json5
+708 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-float.json
+709 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-hexadecimal.json5
+710 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-integer-with-integer-exponent.json
+711 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-integer.json
+712 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-octal-coffeescript.txt
+713 silly gunzTarPerm extractEntry test/parse-cases/numbers/zero-octal.txt
+714 silly gunzTarPerm extractEntry test/parse-cases/objects/lone-trailing-comma-object.txt
+715 silly gunzTarPerm extractEntry test/parse-cases/objects/duplicate-keys.json
+716 silly gunzTarPerm extractEntry test/parse-cases/objects/illegal-unquoted-key-number.txt
+717 silly gunzTarPerm extractEntry test/parse-cases/objects/illegal-unquoted-key-symbol.txt
+718 silly gunzTarPerm extractEntry test/parse-cases/objects/leading-comma-object.txt
+719 silly gunzTarPerm extractEntry test/parse-cases/objects/empty-object.json
+720 silly gunzTarPerm extractEntry test/parse-cases/objects/no-comma-object.txt
+721 silly gunzTarPerm extractEntry test/parse-cases/objects/reserved-unquoted-key.json5
+722 silly gunzTarPerm extractEntry test/parse-cases/objects/single-quoted-key.json5
+723 silly gunzTarPerm extractEntry test/parse-cases/objects/trailing-comma-object.json5
+724 silly gunzTarPerm extractEntry test/parse-cases/objects/unquoted-keys.json5
+725 silly gunzTarPerm extractEntry test/parse-cases/strings/escaped-single-quoted-string.json5
+726 silly gunzTarPerm extractEntry test/parse-cases/strings/multi-line-string.json5
+727 silly gunzTarPerm extractEntry test/parse-cases/strings/single-quoted-string.json5
+728 silly gunzTarPerm extractEntry test/parse-cases/strings/unescaped-multi-line-string.txt
+729 silly gunzTarPerm extractEntry test/parse-cases/todo/unicode-escaped-unquoted-key.json5
+730 silly gunzTarPerm extractEntry test/parse-cases/todo/unicode-unquoted-key.json5
+731 silly gunzTarPerm extractEntry test/readme.md
+732 verbose write writing to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js/package.json
+733 info preinstall big.js@3.1.3
+734 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js/package.json
+735 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js/package.json
+736 silly install resolved []
+737 verbose about to build /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+738 info build /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+739 info linkStuff big.js@3.1.3
+740 silly linkStuff big.js@3.1.3 has /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules as its parent node_modules
+741 verbose linkBins big.js@3.1.3
+742 verbose linkMans big.js@3.1.3
+743 verbose rebuildBundles big.js@3.1.3
+744 info install big.js@3.1.3
+745 info postinstall big.js@3.1.3
+746 verbose unlock done using /Users/romain/.npm/_locks/big-js-168ea363207bf95d.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/big.js
+747 verbose write writing to /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5/package.json
+748 info preinstall json5@0.4.0
+749 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5/package.json
+750 verbose readDependencies loading dependencies from /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5/package.json
+751 silly install resolved []
+752 verbose about to build /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+753 info build /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+754 info linkStuff json5@0.4.0
+755 silly linkStuff json5@0.4.0 has /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules as its parent node_modules
+756 verbose linkBins json5@0.4.0
+757 verbose link bins [ { json5: 'lib/cli.js' },
+757 verbose link bins   '/Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/.bin',
+757 verbose link bins   false ]
+758 verbose linkMans json5@0.4.0
+759 verbose rebuildBundles json5@0.4.0
+760 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/.bin/json5 is being purged
+761 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/.bin/json5
+762 info install json5@0.4.0
+763 info postinstall json5@0.4.0
+764 verbose unlock done using /Users/romain/.npm/_locks/json5-6a9016aa7d752917.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils/node_modules/json5
+765 verbose about to build /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+766 info build /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+767 info linkStuff loader-utils@0.2.11
+768 silly linkStuff loader-utils@0.2.11 has /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules as its parent node_modules
+769 verbose linkBins loader-utils@0.2.11
+770 verbose linkMans loader-utils@0.2.11
+771 verbose rebuildBundles loader-utils@0.2.11
+772 verbose rebuildBundles [ '.bin', 'big.js', 'json5' ]
+773 info install loader-utils@0.2.11
+774 info postinstall loader-utils@0.2.11
+775 verbose unlock done using /Users/romain/.npm/_locks/loader-utils-c73ac728a700e64e.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader/node_modules/loader-utils
+776 verbose about to build /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+777 info build /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+778 info linkStuff style-loader@0.12.3
+779 silly linkStuff style-loader@0.12.3 has /Users/romain/Sites/Ships/hull-comments/node_modules as its parent node_modules
+780 verbose linkBins style-loader@0.12.3
+781 verbose linkMans style-loader@0.12.3
+782 verbose rebuildBundles style-loader@0.12.3
+783 verbose rebuildBundles [ 'loader-utils' ]
+784 info install style-loader@0.12.3
+785 info postinstall style-loader@0.12.3
+786 verbose unlock done using /Users/romain/.npm/_locks/style-loader-4884af0e524bf5f0.lock for /Users/romain/Sites/Ships/hull-comments/node_modules/style-loader
+787 info build /Users/romain/Sites/Ships/hull-comments
+788 info linkStuff hull-comments@0.0.2
+789 silly linkStuff hull-comments@0.0.2 has /Users/romain/Sites/Ships as its parent node_modules
+790 verbose linkBins hull-comments@0.0.2
+791 verbose linkMans hull-comments@0.0.2
+792 verbose rebuildBundles hull-comments@0.0.2
+793 verbose rebuildBundles [ '.DS_Store',
+793 verbose rebuildBundles   '.bin',
+793 verbose rebuildBundles   'autoprefixer-core',
+793 verbose rebuildBundles   'autoprefixer-loader',
+793 verbose rebuildBundles   'babel',
+793 verbose rebuildBundles   'babel-core',
+793 verbose rebuildBundles   'babel-loader',
+793 verbose rebuildBundles   'better-console',
+793 verbose rebuildBundles   'color',
+793 verbose rebuildBundles   'css',
+793 verbose rebuildBundles   'css-loader',
+793 verbose rebuildBundles   'del',
+793 verbose rebuildBundles   'extend',
+793 verbose rebuildBundles   'extract-text-webpack-plugin',
+793 verbose rebuildBundles   'file-loader',
+793 verbose rebuildBundles   'foundation',
+793 verbose rebuildBundles   'foundation-sites',
+793 verbose rebuildBundles   'gh-pages',
+793 verbose rebuildBundles   'gulp',
+793 verbose rebuildBundles   'gulp-rename',
+793 verbose rebuildBundles   'gulp-sass',
+793 verbose rebuildBundles   'gulp-util',
+793 verbose rebuildBundles   'intl',
+793 verbose rebuildBundles   'intl-messageformat',
+793 verbose rebuildBundles   'json-loader',
+793 verbose rebuildBundles   'json-svg-icons',
+793 verbose rebuildBundles   'less',
+793 verbose rebuildBundles   'less-loader',
+793 verbose rebuildBundles   'lodash',
+793 verbose rebuildBundles   'messageformat',
+793 verbose rebuildBundles   'moment',
+793 verbose rebuildBundles   'ngrok',
+793 verbose rebuildBundles   'node-notifier',
+793 verbose rebuildBundles   'node-sass',
+793 verbose rebuildBundles   'object-assign',
+793 verbose rebuildBundles   'open',
+793 verbose rebuildBundles   'postcss-loader',
+793 verbose rebuildBundles   'react',
+793 verbose rebuildBundles   'react-hot-loader',
+793 verbose rebuildBundles   'run-sequence',
+793 verbose rebuildBundles   'sanitize-caja',
+793 verbose rebuildBundles   'sass-loader',
+793 verbose rebuildBundles   'stats-webpack-plugin',
+793 verbose rebuildBundles   'style-loader',
+793 verbose rebuildBundles   'touch',
+793 verbose rebuildBundles   'underscore',
+793 verbose rebuildBundles   'underscore-contrib',
+793 verbose rebuildBundles   'underscore.inflections',
+793 verbose rebuildBundles   'underscore.string',
+793 verbose rebuildBundles   'webpack',
+793 verbose rebuildBundles   'webpack-dev-server' ]
+794 verbose rebuild bundle /Users/romain/Sites/Ships/hull-comments/node_modules/node-sass
+795 info build /Users/romain/Sites/Ships/hull-comments/node_modules/node-sass
+796 info preinstall node-sass@3.3.2
+797 info linkStuff node-sass@3.3.2
+798 silly linkStuff node-sass@3.3.2 has /Users/romain/Sites/Ships/hull-comments/node_modules as its parent node_modules
+799 verbose linkBins node-sass@3.3.2
+800 verbose link bins [ { 'node-sass': 'bin/node-sass' },
+800 verbose link bins   '/Users/romain/Sites/Ships/hull-comments/node_modules/.bin',
+800 verbose link bins   false ]
+801 verbose linkMans node-sass@3.3.2
+802 verbose rebuildBundles node-sass@3.3.2
+803 verbose rebuildBundles [ '.bin',
+803 verbose rebuildBundles   'async-foreach',
+803 verbose rebuildBundles   'chalk',
+803 verbose rebuildBundles   'gaze',
+803 verbose rebuildBundles   'get-stdin',
+803 verbose rebuildBundles   'glob',
+803 verbose rebuildBundles   'meow',
+803 verbose rebuildBundles   'mkdirp',
+803 verbose rebuildBundles   'nan',
+803 verbose rebuildBundles   'npmconf',
+803 verbose rebuildBundles   'pangyp',
+803 verbose rebuildBundles   'request',
+803 verbose rebuildBundles   'sass-graph' ]
+804 silly gentlyRm /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/node-sass is being purged
+805 verbose gentlyRm don't care about contents; nuking /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/node-sass
+806 silly vacuum-fs purging /Users/romain/Sites/Ships/hull-comments/node_modules/.bin/node-sass
+807 silly vacuum-fs quitting because other entries in /Users/romain/Sites/Ships/hull-comments/node_modules/.bin
+808 info install node-sass@3.3.2
+809 verbose unsafe-perm in lifecycle true
+810 info postinstall node-sass@3.3.2
+811 verbose unsafe-perm in lifecycle true
+812 verbose rebuild bundle /Users/romain/Sites/Ships/hull-comments/node_modules/sanitize-caja
+813 info build /Users/romain/Sites/Ships/hull-comments/node_modules/sanitize-caja
+814 info preinstall sanitize-caja@0.1.3
+815 info linkStuff sanitize-caja@0.1.3
+816 silly linkStuff sanitize-caja@0.1.3 has /Users/romain/Sites/Ships/hull-comments/node_modules as its parent node_modules
+817 verbose linkBins sanitize-caja@0.1.3
+818 verbose linkMans sanitize-caja@0.1.3
+819 verbose rebuildBundles sanitize-caja@0.1.3
+820 info install sanitize-caja@0.1.3
+821 info postinstall sanitize-caja@0.1.3
+822 verbose rebuild bundle /Users/romain/Sites/Ships/hull-comments/node_modules/underscore
+823 info build /Users/romain/Sites/Ships/hull-comments/node_modules/underscore
+824 info preinstall underscore@1.8.3
+825 info linkStuff underscore@1.8.3
+826 silly linkStuff underscore@1.8.3 has /Users/romain/Sites/Ships/hull-comments/node_modules as its parent node_modules
+827 verbose linkBins underscore@1.8.3
+828 verbose linkMans underscore@1.8.3
+829 verbose rebuildBundles underscore@1.8.3
+830 info install underscore@1.8.3
+831 info postinstall underscore@1.8.3
+832 verbose rebuild bundle /Users/romain/Sites/Ships/hull-comments/node_modules/underscore-contrib
+833 info build /Users/romain/Sites/Ships/hull-comments/node_modules/underscore-contrib
+834 info preinstall underscore-contrib@0.3.0
+835 info linkStuff underscore-contrib@0.3.0
+836 silly linkStuff underscore-contrib@0.3.0 has /Users/romain/Sites/Ships/hull-comments/node_modules as its parent node_modules
+837 verbose linkBins underscore-contrib@0.3.0
+838 verbose linkMans underscore-contrib@0.3.0
+839 verbose rebuildBundles underscore-contrib@0.3.0
+840 verbose rebuildBundles [ 'underscore' ]
+841 info install underscore-contrib@0.3.0
+842 info postinstall underscore-contrib@0.3.0
+843 verbose rebuild bundle /Users/romain/Sites/Ships/hull-comments/node_modules/underscore.inflections
+844 info build /Users/romain/Sites/Ships/hull-comments/node_modules/underscore.inflections
+845 info preinstall underscore.inflections@0.2.1
+846 info linkStuff underscore.inflections@0.2.1
+847 silly linkStuff underscore.inflections@0.2.1 has /Users/romain/Sites/Ships/hull-comments/node_modules as its parent node_modules
+848 verbose linkBins underscore.inflections@0.2.1
+849 verbose linkMans underscore.inflections@0.2.1
+850 verbose rebuildBundles underscore.inflections@0.2.1
+851 info install underscore.inflections@0.2.1
+852 info postinstall underscore.inflections@0.2.1
+853 info install hull-comments@0.0.2
+854 info postinstall hull-comments@0.0.2
+855 info prepublish hull-comments@0.0.2
+856 verbose unsafe-perm in lifecycle true
+857 info hull-comments@0.0.2 Failed to exec prepublish script
+858 verbose stack Error: hull-comments@0.0.2 prepublish: `gulp build`
+858 verbose stack Exit status 1
+858 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:214:16)
+858 verbose stack     at EventEmitter.emit (events.js:110:17)
+858 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+858 verbose stack     at ChildProcess.emit (events.js:110:17)
+858 verbose stack     at maybeClose (child_process.js:1015:16)
+858 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
+859 verbose pkgid hull-comments@0.0.2
+860 verbose cwd /Users/romain/Sites/Ships/hull-comments
+861 error Darwin 14.5.0
+862 error argv "node" "/usr/local/bin/npm" "install"
+863 error node v0.12.7
+864 error npm  v2.14.2
+865 error code ELIFECYCLE
+866 error hull-comments@0.0.2 prepublish: `gulp build`
+866 error Exit status 1
+867 error Failed at the hull-comments@0.0.2 prepublish script 'gulp build'.
+867 error This is most likely a problem with the hull-comments package,
+867 error not with npm itself.
+867 error Tell the author that this fails on your system:
+867 error     gulp build
+867 error You can get their info via:
+867 error     npm owner ls hull-comments
+867 error There is likely additional logging output above.
+868 verbose exit [ 1, true ]

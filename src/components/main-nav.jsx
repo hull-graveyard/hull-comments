@@ -1,4 +1,3 @@
-import _            from 'underscore';
 import React        from 'react';
 import cx           from 'react/lib/cx';
 import UserMenu     from './user-menu';

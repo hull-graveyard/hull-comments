@@ -1,4 +1,4 @@
-import _ from 'underscore';
+import _ from '../lib/lodash';
 import React from 'react';
 import DropdownMenu from './dropdown-menu';
 import Icon from './icon';
