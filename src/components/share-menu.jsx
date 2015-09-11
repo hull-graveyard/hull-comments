@@ -18,8 +18,9 @@ var ShareMenu = React.createClass({
   },
 
   getOptions: function() {
-    var networks = ['facebook', 'twitter', 'linkedin', 'google', 'email']
-    return _.map(networks, (value)=>{
+    const networks = ['facebook', 'twitter', 'linkedin', 'google', 'email']
+
+    return _.map(networks, (value) => {
       var icon = <Icon name={value} color={"currentColor"} settings={this.props.settings} size={13}/>;
       return {
         label: <span className='share-icon'>{icon}&nbsp;<span className='show-for-medium-up'>{value}</span></span>,
@@ -34,8 +35,7 @@ var ShareMenu = React.createClass({
 
   render: function() {
     return <DropdownMenu
-      className="share-menu"
-      component="li"
+      component={this.props.component || 'span'}
       right={this.props.right}
       options={this.getOptions()}
       title={this.getTitle()}

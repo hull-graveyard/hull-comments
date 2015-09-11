@@ -6,9 +6,10 @@ import titleize from 'underscore.string/titleize';
 import { translate } from '../lib/i18n';
 
 var LoginForm = React.createClass({
+  login(providerName, e) {
+    e.preventDefault();
 
-  login(providerName) {
-    this.props.actions.login({provider:providerName});
+    this.props.actions.login({provider:providerName}, 'login_button_facebook');
   },
 
   renderSocialLogin(){

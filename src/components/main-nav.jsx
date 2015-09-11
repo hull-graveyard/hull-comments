@@ -27,7 +27,7 @@ var MainHeader = React.createClass({
   },
 
   renderMenuToggle(){
-    return <li className="toggle-topbar menu-icon"><a href="#" onClick={this.toggleNavBar}><span>Menu</span></a></li>
+    return <li className="toggle-topbar menu-icon"><a href="#" onClick={this.toggleNavBar}><span>{translate('Menu')}</span></a></li>
   },
 
   render() {
@@ -37,7 +37,6 @@ var MainHeader = React.createClass({
       'top-bar': true,
       'expanded': true
     };
-
 
     return <nav className={cx(navClasses)}>
       <section className="top-bar-section">
@@ -55,7 +54,7 @@ var MainHeader = React.createClass({
         </ul>
         <ul className="left">
           <FavoritesButton {...this.props}/>
-          <ShareMenu {...this.props} right={false} />
+          <ShareMenu {...this.props} component='li' right={false} />
         </ul>
         <ul className="right">
           <UserMenu {...this.props} />

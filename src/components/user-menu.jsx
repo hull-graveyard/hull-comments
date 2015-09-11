@@ -21,27 +21,22 @@ var UserMenu = React.createClass({
   render: function() {
     var user = this.props.user;
 
+    if (user == null) { return <noscript />; }
+
     var title;
     var options;
     var action;
-    if (user) {
-      title = (
-        <span className='small-avatar'>
-          <img src={user.picture}/>
-          <span className="show-for-medium-up">{user.name || user.email || translate('logged in as guest')}</span>
-        </span>
-      );
-      options = [
-        { label: translate('Log out'), value: "logout" }
-      ];
-      action = this.handleChange;
-    } else {
-      title = translate('Log in');
-      options = this.props.providers.map(function(provider) {
-        return { label: capitalize(provider.name), value: provider.name };
-      }, this);
-      action = this.login;
-    }
+
+    title = (
+      <span className='small-avatar'>
+        <img src={user.picture}/>
+        <span className="show-for-medium-up">{user.name || user.email || translate('logged in as guest')}</span>
+      </span>
+    );
+    options = [
+      { label: translate('Log out'), value: "logout" }
+    ];
+    action = this.handleChange;
 
     return <DropdownMenu className={{'has-dropdown':true, 'user-menu':true}}
       component="li"

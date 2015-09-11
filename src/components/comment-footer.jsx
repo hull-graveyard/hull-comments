@@ -4,6 +4,19 @@ import ShareMenu from './share-menu';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 
+const listStyle = {
+  listStyle: 'none',
+  marginLeft: 0,
+  marginTop: 10,
+  fontSize: 13,
+  fontWeight: 'bold'
+};
+
+const listItemStyle = {
+  display: 'inline-block',
+  marginRight: 10
+};
+
 var CommentFooter = React.createClass({
   upVote: function(e) {
     e.preventDefault();
@@ -43,37 +56,42 @@ var CommentFooter = React.createClass({
       return <div className='comment-footer light-text'>{translate('Posting comment...')}</div>;
     }
 
-    var items = [], separator = <li className="bullet">•</li>;
+    var items = [];
 
-    var ps = this.getPositiveScore();
-    var ns = this.getNegativeScore();
-    var downColor = (!!ns) ? "#FF6600" : null;
-    var upColor = (!!ps) ? "#FFCC00" : null;
-    var up;
-    var down;
-    if (this.props.user == null) {
-      up = <span className={cx({'text-warning':!!ps})}>{ps} <Icon name='arrow_up' size={13} settings={this.props.settings} color={upColor}/></span>
-      down = <span className={cx({'text-alert':!!ns})}><Icon name='arrow_down' size={13} settings={this.props.settings} color={downColor}/> {ns}</span>
-    } else {
-      up = <a href="#" title={translate("Vote up")} className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icon name='arrow_up' size={13} settings={this.props.settings} color={upColor}/></a>
-      down = <a href="#" title={translate("Vote down")} className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icon name='arrow_down' size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
+    if (this.props.user) {
+      var ps = this.getPositiveScore();
+      var ns = this.getNegativeScore();
+      var downColor = (!!ns) ? "#FF6600" : null;
+      var upColor = (!!ps) ? "#FFCC00" : null;
+      var up;
+      var down;
+      if (this.props.user == null) {
+        up = <span className={cx({'text-warning':!!ps})}>{ps} <Icon name='arrow_up' size={13} settings={this.props.settings} color={upColor}/></span>
+        down = <span className={cx({'text-alert':!!ns})}><Icon name='arrow_down' size={13} settings={this.props.settings} color={downColor}/> {ns}</span>
+      } else {
+        up = <a href="#" title={translate("Vote up")} className={cx({'text-warning':!!ps})} onClick={this.upVote}>{ps} <Icon name='arrow_up' size={13} settings={this.props.settings} color={upColor}/></a>
+        down = <a href="#" title={translate("Vote down")} className={cx({'text-alert':!!ns})} onClick={this.downVote}><Icon name='arrow_down' size={13} settings={this.props.settings} color={downColor}/> {ns}</a>
+      }
+
+      items = items.concat([
+        <li key='vote' style={listItemStyle}>{up} {down}</li>,
+        <li key='reply' style={listItemStyle}><a href='javascript: void 0;' onClick={this.props.onToggleReply}>{translate('Reply')}</a></li>
+      ]);
     }
-    items.push(<li key='vote-down' className="voting">{up}</li>);
-    items.push(<li key='vote-up' className="voting">{down}</li>);
 
     if (this.props.isCurrentUser) {
       items.push(
-        <li key='edit' className={cx({ edit: true, active: this.props.isEditing })}>
-          <a href="#" onClick={this.props.onToggleEdit}>
-            <i className="icon icon-mobile icon-pencil" /> {translate('Edit')}
-          </a>
-        </li>
+        <li key='edit' style={listItemStyle}><a href='javascript: void 0;' onClick={this.props.onToggleEdit}>{translate('Edit')}</a></li>
       );
     }
 
-    items.push(<ShareMenu key='share' {...this.props} />);
+    items.push(
+      <li key='share' style={listItemStyle}>
+        <ShareMenu {...this.props} />
+      </li>
+    );
 
-    return <div className='comment-footer light-text'><div className='menubar-list'>{items}</div></div>;
+    return <ul style={listStyle}>{items}</ul>;
   }
 });
 

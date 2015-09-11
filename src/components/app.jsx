@@ -47,7 +47,11 @@ var App = React.createClass({
   },
 
   render: function() {
-    return <div className={this.state.cls}>
+    var s = {
+      paddingBottom: 200
+    };
+
+    return <div style={s} className={this.state.cls}>
       <HullStyle {...this.state.settings}/>
       <Comments {...this.state}actions={this.props.engine.getActions()} />
     </div>

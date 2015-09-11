@@ -9,6 +9,7 @@ var throwErr = function(err){
 }
 
 var ACTIONS = [
+  'toggleForm',
   'signup',
   'login',
   'logout',
@@ -116,7 +117,8 @@ assign(Engine.prototype, Emitter.prototype, {
       orderBy: this._orderBy,
       isReady: !!this._isReady,
       hasMore: this._hasMore,
-      commentsCount: this._commentsCount
+      commentsCount: this._commentsCount,
+      formIsOpen: !!this._formIsOpen
     };
     return state;
   },
@@ -214,6 +216,12 @@ assign(Engine.prototype, Emitter.prototype, {
     return providers;
   },
 
+  toggleForm: function() {
+    this._formIsOpen = !this._formIsOpen;
+
+    this.emitChange();
+  },
+
   login: function(options, source) {
     this.perform('login', options);
   },
@@ -273,6 +281,9 @@ assign(Engine.prototype, Emitter.prototype, {
       this._error = null;
       this.emitChange();
     }.bind(this), function(error){
+      // Quick fix...
+      if (error.response != null) { error = error.response; }
+
       this[s] = false;
       error.provider = provider;
       this._error = error;
@@ -299,6 +310,7 @@ assign(Engine.prototype, Emitter.prototype, {
     if (!this._isFetching) {
       params = assign({}, params, {
         wrapped: true,
+        nested: true,
         page: this._page,
         per_page: 50,
         order_by: SORT_OPTIONS[this._orderBy]
@@ -310,12 +322,9 @@ assign(Engine.prototype, Emitter.prototype, {
         this._isReady = true;
         this._isFetching = false;
         this._hasMore = !!r.pagination.next_url;
-        this._commentsCount = r.pagination.total;
+        this._commentsCount = r.tree.total;
         this._comments = this._comments.concat(r.data);
-        this._commentsById = _.reduce(r.data, function(m, c) {
-          m[c.id] = processComment(c);
-          return m;
-        }, {});
+        this._processComments(r.data);
 
         this.emitChange('fetching ok');
       }.bind(this), function(e) {
@@ -350,39 +359,43 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   deleteComment: function(id) {
-    if (!id) return false;
-    var found = false;
-    var self=this;
-    this._comments = this._comments.map(function(comment) {
-      if (comment && comment.id === id) {
-        found = comment;
-        comment._isDeleting = true;
-        self.hull.api(comment.id, 'delete', { description: "[deleted]" }).then((res)=> {
-          found = res;
-          this._comments = this._comments.filter(function(c) { return c.id != id; });
-          this.emitChange('deleted ok');
-        }, (err)=> {
-          found._isDeleting = false;
-          this.emitChange("error deleting comment: ", err.toString());
-        }).catch(throwErr);
-      }
-      return comment;
-    }, this);
-    this.emitChange('marked as deleting');
+    let c = this._commentsById[id];
+
+    if (c == null) { return; }
+
+    c['deleted_at'] = new Date();
+    this.hull.api(c.id, 'delete');
+
+    this.emitChange();
   },
 
-  postComment: function(text, inReplyTo) {
+  postComment: function(text, parentId) {
     text = sanitize(text);
 
     if (this._isPosting) return false;
 
     if (!!this._deployment.ship.settings.allow_guest || this._user) {
-      var comment = { description: text, extra: { }, created_at: new Date() };
-      var i = this._comments.push({ description: text, user: (this._user || {}), created_at: new Date() }) - 1;
+      var d = new Date();
+      var comment = { description: text, extra: { }, created_at: d };
+      var c = { description: text, user: (this._user || {}), created_at: d }
+      if (parentId == null) {
+        var i = this._comments.push(c) - 1;
+      } else {
+        comment['parent_id'] = parentId;
+        var p = this._commentsById[parentId];
+        p.children = p.children || [];
+        var i = p.children.push(c) - 1;
+      }
 
       this._isPosting = this.hull.api(this.entity_id + '/comments', 'post', comment);
       this._isPosting.then((r)=>{
-        this._comments[i] = r;
+        if (parentId == null) {
+          this._comments[i] = r;
+        } else {
+          this._commentsById[parentId].children[i] = r;
+        }
+        r.votes = { up: 0, down: 0 };
+        this._commentsById[r.id]= r;
         this._commentsCount++;
         this._isPosting = false;
         this.emitChange('comment is now posted');
@@ -445,10 +458,10 @@ assign(Engine.prototype, Emitter.prototype, {
       }
       if (this._isFavorite) {
         this._isFavorite = false;
-        self.hull.api(this.entity_id + '/likes','delete').then(refresh, refresh).catch(throwErr);
+        this.hull.api(this.entity_id + '/likes','delete').then(refresh, refresh);
       } else {
         this._isFavorite = true;
-        self.hull.api(this.entity_id + '/likes','post').then(refresh, refresh).catch(throwErr);
+        this.hull.api(this.entity_id + '/likes','post').then(refresh, refresh);
       }
       this.emitChange()
     }
@@ -466,6 +479,14 @@ assign(Engine.prototype, Emitter.prototype, {
     if (m == null) { return message; }
 
     return m.format(data);
+  },
+
+  _processComments(comments) {
+    _.each(comments, function(raw) {
+      let c = processComment(raw);
+      this._commentsById[c.id] = c;
+      this._processComments(c.children);
+    }, this);
   }
 });
 
