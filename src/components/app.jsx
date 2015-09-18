@@ -1,9 +1,9 @@
-import React from 'react';
-import _ from '../lib/lodash';
-import Comments from './comments';
-import Engine from '../lib/engine';
-import { setTranslations } from '../lib/i18n';
-import styles from '../styles/main.scss';
+import React     from 'react';
+import _         from '../lib/lodash';
+import Comments  from './comments';
+import Engine    from '../lib/engine';
+import I18n      from '../lib/i18n';
+import styles    from '../styles/main.scss';
 import HullStyle from './hull-style';
 
 var App = React.createClass({
@@ -22,7 +22,7 @@ var App = React.createClass({
   componentDidMount: function() {
     // This is more robust than embedding the styles in the Iframe's Head using the head="" property
     var style = this.props.styles.use(this.getStyleContainer());
-    this.setState({cls:style.locals.ship})
+    this.setState({rootCssClass:style.locals.ship})
   },
 
   componentWillUnmount: function() {
@@ -46,8 +46,8 @@ var App = React.createClass({
       paddingBottom: 200
     };
 
-    return <div style={s} className={this.state.cls}>
-      <HullStyle {...this.state.settings}/>
+    return <div style={s} className={this.state.rootCssClass}>
+      <HullStyle {...this.state.settings} rootCssClass={`.${this.state.rootCssClass}`}/>
       <Comments {...this.state} actions={this.props.engine.getActions()} />
     </div>
   },
@@ -57,12 +57,11 @@ var App = React.createClass({
     start : function(element, deployment, hull){
       var entity = hull.entity.encode(Hull.findUrl())
 
-      setTranslations(deployment.ship.translations);
+      I18n.setTranslations(deployment.ship.translations);
 
       deployment.settings = _.defaults({}, deployment.settings, {
         entity_id: entity
       });
-
 
       var engine = new Engine(deployment, hull);
       var app = <App engine={engine} styles={styles} />;

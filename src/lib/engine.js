@@ -1,6 +1,7 @@
-import _ from './lodash';
-import assign from 'object-assign';
+import _             from './lodash';
+import { translate } from './i18n';
 var Emitter = require('events').EventEmitter;
+import assign        from 'object-assign';
 import MessageFormat from 'messageformat';
 
 var throwErr = function(err){
@@ -230,7 +231,7 @@ assign(Engine.prototype, Emitter.prototype, {
     this.hull.api("/users/request_password_reset", "post", options, function(r) {
       this._error=null,
       this._status.resetPassword={
-        message:this.translate("Email sent to {email}. Check your inbox!",options)
+        message: translate("Email sent to {email}. Check your inbox!",options)
       }
       this.emitChange()
     }.bind(this), function(error) {

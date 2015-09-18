@@ -6,12 +6,12 @@ import Icon from './icon';
 var Comments = React.createClass({
   render: function() {
     if (this.props.isReady) {
-      return <div className=''>
+      return <div>
         <MainNav {...this.props} />
         <Conversation {...this.props} />
       </div>;
     } else {
-      return <Icon name='spinner' size={32} centered/>;
+      return <Icon name='spinner' style={{width: '64px', display:'block', margin:'0 auto'}}/>;
     }
   }
 });

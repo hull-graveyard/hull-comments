@@ -6,9 +6,7 @@ import { translate } from '../lib/i18n';
 
 var ShareMenu = React.createClass({
   getTitle: function() {
-    return this.props.title || <span>
-      {translate('Share')} <Icon name="share" settings={this.props.settings} color={"currentColor"} colorize={true} size={13}/>
-    </span>;
+    return this.props.title || <span>{translate('Share')} <Icon name="share"/></span>;
   },
 
   getDefaultProps: function() {
@@ -21,9 +19,8 @@ var ShareMenu = React.createClass({
     const networks = ['facebook', 'twitter', 'linkedin', 'google', 'email']
 
     return _.map(networks, (value) => {
-      var icon = <Icon name={value} color={"currentColor"} settings={this.props.settings} size={13}/>;
       return {
-        label: <span className='share-icon'>{icon}&nbsp;<span className='show-for-medium-up'>{value}</span></span>,
+        label: <span className='share-icon'><Icon name={value}/>&nbsp;<span className='show-for-medium-up'>{value}</span></span>,
         value: value.toLowerCase()
       }
     });

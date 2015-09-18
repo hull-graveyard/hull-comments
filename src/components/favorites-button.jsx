@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'react/lib/cx';
-import Icon from './icon';
+import Icon from './icon.jsx';
 import { translate } from '../lib/i18n';
 
 var FavoritesButton = React.createClass({
@@ -14,15 +14,14 @@ var FavoritesButton = React.createClass({
 
     if (this.props.isFavorite){
       var color = '#FFCC00';
-      var style={color:color}
-    } else {
-      var style={
-        color:"currentColor"
-      }
+      var linkStyle = {color};
     }
     return (
       <li>
-        <a href="#" onClick={this.toggleFavorite} style={style}>{this.props.isFavorite ? translate('Liked') : translate('Like')} <Icon name='heart' settings={this.props.settings} colorize={true} size={13} color={color}/></a>
+        <a href="#" onClick={this.toggleFavorite} style={linkStyle}>
+          {this.props.isFavorite ? translate('Liked') : translate('Like')}
+          <Icon name='heart'/>
+        </a>
       </li>
     );
   }

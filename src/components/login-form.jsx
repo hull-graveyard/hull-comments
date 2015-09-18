@@ -13,7 +13,6 @@ var LoginForm = React.createClass({
   },
 
   renderSocialLogin(){
-    debugger
     return this.props.providers.map(function(provider) {
       var btnClasses = {'button':true, 'tiny':true, 'expand':false, 'round':true, 'login':true, [provider.name]:true, "left":true }
       return <a href="#" key={provider.name} className={cx(btnClasses)} style={{marginTop:0,marginBottom:10,marginRight:10}} onClick={this.login.bind(this, provider.name)}>

@@ -9,6 +9,12 @@ import { translate } from '../lib/i18n';
 import _ from '../lib/lodash';
 
 var SingleComment = React.createClass({
+  getDefaultProps: function() {
+    return {
+      comment: {}
+    };
+  },
+
   getInitialState: function() {
     return { showReplyForm: false, isCollapsed: false };
   },
@@ -48,11 +54,11 @@ var SingleComment = React.createClass({
   },
 
   renderMessageContent: function() {
-    let c = this.props.comment;
+    let comment = this.props.comment;
 
     if (this.isCurrentUser() && this.state.isEditing) {
       return <CommentForm mode='edit' {...this.props} onCancel={this.toggleEdit} onSubmit={this.toggleEdit} />;
-    } else if (c.deleted_at) {
+    } else if (comment.deleted_at) {
       return translate('Comment has been deleted.');
     } else {
       return <div dangerouslySetInnerHTML={{__html: comment.description }} />;
@@ -60,28 +66,28 @@ var SingleComment = React.createClass({
   },
 
   renderModerationStatus: function() {
-    var s = this.props.comment.moderation_status;
+    var status = this.props.comment.moderation_status;
 
-    if (s == null || s === 'approved') { return; }
+    if (status == null || status === 'approved') { return; }
 
-    var m;
-    if (s === 'pending') {
-      m = translate('Your comment is awaiting moderation');
+    var message;
+    if (status === 'pending') {
+      message = translate('Your comment is awaiting moderation');
     } else {
-      m = translate('Your comment has been marked as {status}', { status: s });
+      message = translate('Your comment has been marked as {status}', { status: status });
     }
 
     return (
-      <p className='comment-moderation-status'>{m}</p>
+      <p className='comment-moderation-status'>{message}</p>
     );
   },
 
   renderReplyForm: function() {
     if (!this.state.isReplying) { return; }
 
-    const s = { marginTop: 10 };
+    const style = { marginTop: 10 };
 
-    return <CommentForm {...this.props} style={s} mode='reply' onCancel={this.closeReply} onSubmit={this.closeReply} parentId={this.props.comment.id} />;
+    return <CommentForm {...this.props} style={style} mode='reply' onCancel={this.closeReply} onSubmit={this.closeReply} parentId={this.props.comment.id} />;
   },
 
   renderFooter() {

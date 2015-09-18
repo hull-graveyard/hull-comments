@@ -1,13 +1,15 @@
 "use strict";
 
 /*global module, require, process, __dirname */
-var webpack = require("webpack");
-var path = require("path");
-var pkg = require("./package.json");
-var manifest = require("./manifest.json");
-var moment = require("moment");
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var _            = require("lodash");
+var webpack      = require("webpack");
+var path         = require("path");
+var moment       = require("moment");
+
+var pkg          = require("./package.json");
+var manifest     = require("./manifest.json");
+var autoprefixer = require('autoprefixer-core');
 
 // DO NOT CHANGE FOLDERS
 // WIHTOUT UPDATING PACKAGE.JSON TOO.
@@ -28,14 +30,45 @@ var entry = {
   index: "./"+sourceFolder+"/index.js"
 };
 
-// ADDITIONAL FILES TO BE COPIED BY GULP
-function gulpDest(out){
-  return path.join(outputFolder,assetsFolder,out);
+/*Icon Fonts Processing*/
+
+var sketch = {
+  export : 'artboards',
+  formats: 'svg'
 }
 
+var imagemin = {
+  progressive: true,
+  svgoPlugins: [{
+    removeViewBox: false,
+    convertTransform:true
+  }]
+}
+
+var sprite = {
+  shape: {
+    dimension : {
+      maxWidth : 32,
+      maxHeight: 32
+    },
+    spacing: {
+      padding: 0
+    }
+  },
+  mode : {
+    view : {
+      bust: false,
+      dest: 'sprite',
+      render: {
+        scss: false
+      }
+    }
+  }
+};
+
 var files = {
-  "src/vendors/**/*" : gulpDest("vendors/"),
-  "src/images/**/*"  : gulpDest("images/"),
+  "src/vendors/**/*" : path.join(outputFolder,assetsFolder,"vendors"),
+  "src/images/**/*"  : path.join(outputFolder,assetsFolder,"images"),
   'locales'          : outputFolder,
   "manifest.json"    : outputFolder,
   "src/*.ico"        : outputFolder,
@@ -48,74 +81,49 @@ var files = {
 var libName = pkg.name;
 var displayName = manifest.name||libName;
 
-
-// ------------------------------------------------
-// ------------------------------------------------
-// NO NEED TO TOUCH ANYTHING BELOW THIS
-// ------------------------------------------------
-// ------------------------------------------------
-
-var outputPath = path.join(__dirname, outputFolder);
-
 var output = {
-  path: path.join(outputPath,assetsFolder,"/"),
-  pathinfo: true,
-  filename: "[name].js",
-  chunkFileName: "[name].chunk.js",
-  libraryTarget: "umd",
-  library: displayName,
-  publicPath: assetsFolder+"/"
+  path          : path.join(__dirname, outputFolder, assetsFolder,"/"),
+  pathinfo      : true,
+  filename      : "[name].js",
+  chunkFileName : "[name].chunk.js",
+  libraryTarget : "umd",
+  library       : displayName,
+  publicPath    : assetsFolder+"/"
 };
 
-var extensions         = ["", ".js", ".jsx", ".css", ".scss"];
+var resolve = {
+  extensions : ["", ".js", ".jsx", ".css", ".scss"]
+}
 
-var modulesDirectories = ["node_modules", "src/vendor"];
-
-var cssIncludes   = modulesDirectories.map(function(include){
+var cssIncludes = ["node_modules", "src/vendor"].map(function(include){
   return ("includePaths[]="+path.resolve(__dirname, include));
 }).join("&");
 
 
-// https://github.com/webpack/react-starter/blob/master/make-webpack-config.js
-// "imports?define=>false": Yeah, we"re going big and disabling AMD completely. F**k it.
-// This is because webpack strips the `this` context when requiring those, while they expect it.
-// Basically, this fixes all of our problems with badly constructed AMD modules.
-// Among which: vex, datepicker, underscore-contrib
-var loaders = [
-  {test: /\.json$/,                loaders: ["json"] },
-  {test: /\.js$/,                  loaders: ["babel"], exclude: /node_modules/},
-  {test: /\.jsx$/,                 loaders: ["react-hot", "babel"], exclude: /node_modules/},
-  {test: /\.(css|scss)$/,          loaders: ['style/useable', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&'+cssIncludes]
-  },
-  {test: /\.jpe?g$|\.gif$|\.png$/, loaders: ["file"]},
-  {test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: "file" },
-];
+var postcss = [autoprefixer];
 
-var postcss = [require('autoprefixer-core')];
-
+// about babel : it's VERY SLOW. DO NOT APPLY IT TO EVERY SOURCE FILE. see the Excludes we applied
 var loaderLibrary = {
-  json     : {test: /\.json$/,                loaders: ["json"] },
-  css      : {test: /\.(css|scss)$/,          loaders: ['style/useable', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&'+cssIncludes]},
-  image    : {test: /\.jpe?g$|\.gif$|\.png$/, loader : 'file' },
-  file     : {test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: "file" },
+  json     : {test: /\.json$/,                loader: 'json' },
+  css      : {test: /\.(css|scss)$/,          loaders: ['style/useable', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&'+cssIncludes]},
+  file     : {test: /\.jpe?g$|\.gif$|\.png|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader : 'file' },
+  svg      : {test: /\.svg$/,   loader : 'svg-inline' },
   js       : {test: /\.(js)$/,  loader: 'babel', exclude: /node_modules|src\/vendors/},
   prodJSX  : {test: /\.(jsx)$/, loader: 'babel', },
   devJSX   : {test: /\.(jsx)$/, loaders: ['react-hot', 'babel']}
 }
 
-var loaders = [
+var devLoaders = [
   loaderLibrary.json,
   loaderLibrary.css,
-  loaderLibrary.image,
   loaderLibrary.file,
   loaderLibrary.js,
   (hotReload ? loaderLibrary.devJSX : loaderLibrary.prodJSX)
 ];
 
-var productionLoaders = [
+var loaders = [
   loaderLibrary.json,
   loaderLibrary.css,
-  loaderLibrary.image,
   loaderLibrary.file,
   loaderLibrary.js,
   loaderLibrary.prodJSX
@@ -127,35 +135,66 @@ var productionLoaders = [
 // We put them in `dist` to have a clean structure but then we need to build them in the right place
 var plugins = [
   new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
-  new webpack.optimize.CommonsChunkPlugin({name: 'vendors', filename: 'vendors.js', minChunks: Infinity}),
+  new webpack.optimize.OccurenceOrderPlugin(),
+  // new webpack.optimize.CommonsChunkPlugin({name: 'vendors', filename: 'vendors.js', minChunks: Infinity}),
   new webpack.DefinePlugin({
     "BUILD_DATE" : JSON.stringify(moment().format("MMMM, DD, YYYY, HH:mm:ss")),
     "PUBLIC_PATH": JSON.stringify(output.publicPath)
   })
 ];
 
-var externals = {};
+var ngrok = {}
+if(process.env.NGROK_AUTHTOKEN) {
+  var ngrok = {
+    port      : serverPort,
+    authtoken : process.env.NGROK_AUTHTOKEN,
+    subdomain : libName
+  }
+}
+
+
+
+var devPlugins = plugins;
+if(hotReload){
+  var devEntry = _.reduce(entry,function(entries,v,k){
+    entries[k] = [ 'webpack-dev-server/client?'+previewUrl, 'webpack/hot/only-dev-server', v ];
+    return entries;
+  },{});
+  devPlugins = plugins.concat([new webpack.HotModuleReplacementPlugin()])
+} else {
+  devEntry = entry;
+}
 
 module.exports = {
+  ngrok              : ngrok,
+
   hotReload          : hotReload,
   libName            : libName,
   displayName        : displayName,
 
   files              : files,
 
+  sprite             : sprite,
+  imagemin           : imagemin, 
+  sketch             : sketch, 
+
+  sourceFolder       : sourceFolder,
   outputFolder       : outputFolder,
   assetsFolder       : assetsFolder,
   serverPort         : serverPort,
   previewUrl         : previewUrl,
 
+  devEntry           : devEntry,
+
   entry              : entry,
   output             : output,
-  extensions         : extensions,
-  modulesDirectories : modulesDirectories,
+
   plugins            : plugins,
+  devPlugins         : devPlugins,
+  devLoaders         : devLoaders,
+
+  resolve            : resolve,
   loaders            : loaders,
-  productionLoaders  : productionLoaders,
-  externals          : externals,
 
   postcss            : postcss,
 
