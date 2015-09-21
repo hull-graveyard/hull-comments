@@ -151,9 +151,6 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   emitChange: function(message) {
-    if (this.hull.config().debug){
-      console.log(message);
-    }
     this.emit(EVENT);
   },
 
@@ -224,7 +221,7 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   login: function(options, source) {
-    this.perform('login', options);
+    return this.perform('login', options)
   },
 
   resetPassword: function(options={}){
@@ -284,7 +281,7 @@ assign(Engine.prototype, Emitter.prototype, {
     }.bind(this), function(error){
       // Quick fix...
       if (error.response != null) { error = error.response; }
-
+      if (error.error != null) { error = error.error; }
       this[s] = false;
       error.provider = provider;
       this._error = error;

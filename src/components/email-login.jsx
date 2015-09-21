@@ -15,6 +15,7 @@ const EmailLogin = React.createClass({
 
   showTab(tab, e){
     e.preventDefault();
+    this.props.actions.clearErrors()
     this.setState({tab:tab});
   },
 
@@ -93,7 +94,6 @@ const EmailLogin = React.createClass({
     var tab = this.state.tab;
     return _.reduce(['login', 'register', 'recover'], function(m, t) {
       m[t] = { display: t == tab ? 'block' : 'none' }
-
       return m;
     }, {});
   },
@@ -106,13 +106,14 @@ const EmailLogin = React.createClass({
     var isRecover = this.state.tab == 'recover';
 
     if(this.props.error && this.props.error.provider=='email'){
-      var error = <p className="error-block text-center">{this.props.error.message}</p>;
+      var error = <div className="error-block">{this.props.error.message}</div>;
     }
 
     var styles = this.getTabStyle();
     return (
       <div className="register" style={{clear: 'both'}}>
         {this.renderNavBar()}
+        {error}
         <div className="tabs-content" style={{padding:"0 1rem"}}>
           <div className={cx({'content':true, 'active':isLogin})} style={styles.login}>
             {this.renderEmailPasswordForm(this.login)}
@@ -129,7 +130,6 @@ const EmailLogin = React.createClass({
             </p>
             {this.renderEmailPasswordForm(this.signup)}
           </div>
-          {error}
         </div>
       </div>
     );
