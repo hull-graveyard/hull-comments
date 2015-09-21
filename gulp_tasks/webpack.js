@@ -3,7 +3,7 @@ var webpack          = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var gutil            = require('gulp-util');
 
-function handleError(err, taskName) {
+function handleError(err) {
   if (err) {
     throw new gutil.PluginError('webpack:build', err);
   }
@@ -24,6 +24,9 @@ function webpackFeedbackHandler(err, stats){
   if(st.warnings.length > 0){
     gutil.log("[webpack:build:warning]", JSON.stringify(st.warnings,null,2));
   }
+
+  gutil.log('[webpack:build]', stats.toString({ colors: true }));
+
 };
 
 module.exports = function(gulp, config){
@@ -36,23 +39,7 @@ module.exports = function(gulp, config){
   gulp.task('webpack', function(callback) {
     // Then, use Webpack to bundle all JS and html files to the destination folder
     webpack(webpackConfig.production, function(err, stats) {
-
-      if (err){
-        handleError(err, 'building project')
-      }
-
-      var jsonStats = stats.toJson();
-
-      if (jsonStats.errors.length > 0){
-        return new gutil.PluginError('webpack:build', JSON.stringify(jsonStats.errors));
-      }
-
-      if (jsonStats.warnings.length > 0){
-        return new gutil.PluginError('webpack:build', JSON.stringify(jsonStats.warnings));
-      }
-
-      gutil.log('[webpack:build]', stats.toString({ colors: true }));
-      notify({ message: 'Webpack Built'});
+      webpackFeedbackHandler(err, stats)
       callback();
     });
   });
@@ -69,12 +56,13 @@ module.exports = function(gulp, config){
       hot         : config.hotReload
     }).listen(config.serverPort, function(err) {
 
-      handleError(err, taskName);
+      webpackFeedbackHandler(err, stats)
+
       // Dump the preview URL in the console, and open Chrome when launched for convenience.
       var url = webpackConfig.development.output.publicPath+"webpack-dev-server/";
       gutil.log("["+taskName+"] started at ", url);
-      callback()
 
+      callback()
     });
   });
 
