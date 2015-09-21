@@ -32,7 +32,7 @@ var LoginForm = React.createClass({
   render() {
     var providers = this.props.providers;
     return <section className="auth-section logged-out">
-      <span className='light-text'>{translate('Sign in with')}</span>
+      {translate('Sign in with')}
       <div className="connect">
         {this.renderEmailLogin()}
         {this.renderSocialLogin(providers)}

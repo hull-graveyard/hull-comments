@@ -16,7 +16,7 @@ var CommentMeta = React.createClass({
     var user = comment.user || {};
 
     return (
-      <header className='comment-meta light-text'>
+      <header className='comment-meta'>
         <strong className='comment-author'>
           <a>{user.name || translate('Guest')}</a>
           { user.is_admin ? <span className='comment__admin-label'> {translate('Moderator')} </span> : undefined }

@@ -23,7 +23,6 @@
 }
 
 .placeholder >.textarea:before {
-  color:#ccc;
   content: attr(placeholder);
   display: block; /* For Firefox */
 }

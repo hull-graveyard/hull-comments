@@ -7,7 +7,7 @@ var TopForm = React.createClass({
 
   render: function() {
     return (
-      <div className={`row comment-composer ${this.props.top ? 'comment-composer--top':''}`}>
+      <div className={`comment-composer ${this.props.top ? 'comment-composer--top':''}`}>
         <Avatar {...this.props.user} className='comment-composer__avatar'/>
         <CommentForm {...this.props} />
         <EmailLogin {...this.props} className='auth-email left'/>

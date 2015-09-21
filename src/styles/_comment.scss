@@ -1,8 +1,6 @@
-.comment__avatar, .comment-composer__avatar{
-  position: absolute;
-}
 
 .comment__body{
+  line-height: 1.5;
   font-size: 15px;
   color: #444;
   -webkit-font-smoothing: antialiased;
@@ -13,6 +11,9 @@
 
 .comment {
   margin-bottom: 15px;
+  overflow: auto;
+  clear: both;
+
   .comment,
   .comment__container,
   .comment-composer{
@@ -39,12 +40,26 @@
   }
 }
 
-.comment-composer__avatar img{
-  margin-top: 10px;
+.comment__avatar, .comment-composer__avatar{
+  position: absolute;
 }
 
+.comment-composer__avatar {
+  img{
+    margin-top: 10px;
+  }
+}
+
+.comment{
+  .comment-composer__form{
+    padding-left: 45px;
+  }
+}
 
 .comment-composer--top {
+  margin-bottom: $line-height*2;
+  overflow: auto;
+  clear: both;
   .comment-composer__avatar {
     @media #{$small-only}{
       display: none;  

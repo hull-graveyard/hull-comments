@@ -38,10 +38,8 @@ var CommentActions = React.createClass({
   },
 
   render() {
-    var t = translate(this.props.isCollapsed ? 'Expand' : 'Collapse');
-
     return (
-      <ul className="comment-actions">
+      <ul className="comment-actions light-text">
         {this.renderActions()}
       </ul>
     );
