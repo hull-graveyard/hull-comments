@@ -8,7 +8,7 @@ import relativeTime from '../lib/relative-time';
 var CommentMeta = React.createClass({
   renderReplyTo(){
     if(this.props.parent){
-      return <span><Icon name='reply' colorize/>In reply to {this.props.parent.user.name} </span>
+      return <span className='nowrap'><Icon name='reply' colorize/>In reply to {this.props.parent.user.name} </span>
     }
   },
   render() {
@@ -24,7 +24,7 @@ var CommentMeta = React.createClass({
 
         {this.renderReplyTo()}
         
-        <span className='comment-time'> {relativeTime(comment.created_at)} </span>
+        <span className='comment-time nowrap'> {relativeTime(comment.created_at)} </span>
 
         <CommentActions {...this.props}/>
       </header>

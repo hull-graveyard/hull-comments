@@ -11,7 +11,6 @@
 
 .comment {
   margin-bottom: 15px;
-  overflow: auto;
   clear: both;
 
   .comment,
@@ -58,7 +57,6 @@
 
 .comment-composer--top {
   margin-bottom: $line-height*2;
-  overflow: auto;
   clear: both;
   .comment-composer__avatar {
     @media #{$small-only}{

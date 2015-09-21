@@ -73,7 +73,7 @@ var CommentFooter = React.createClass({
     </li>
   },
   renderShare(){
-    return <li key='share' className='comment-footer__list-item comment-footer__share-menu'><ShareMenu {...this.props} /></li>;
+    return <li key='share' className='comment-footer__list-item comment-footer__share-menu'><ShareMenu {...this.props} right size={24}/></li>;
   },
 
   render() {

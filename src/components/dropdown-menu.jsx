@@ -6,7 +6,8 @@ var DropdownMenu = React.createClass({
   propTypes: {
     onSelect: React.PropTypes.func,
     options: React.PropTypes.array,
-    value: React.PropTypes.string
+    value: React.PropTypes.string,
+    open: React.PropTypes.bool
   },
 
   getDefaultProps() {

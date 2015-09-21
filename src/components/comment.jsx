@@ -76,7 +76,7 @@ var Comment = React.createClass({
     var isCurrentUser = this.isCurrentUser();
 
     return (
-      <div className={cx({ comment: true, 'comment--root':!this.props.depth, collapsed: this.state.isCollapsed })}>
+      <div className={cx({ 'row comment': true, 'comment--root':!this.props.depth, collapsed: this.state.isCollapsed })}>
         <Avatar {...comment.user} className='comment__avatar'/>
         <div className="comment__container">
           <CommentMeta

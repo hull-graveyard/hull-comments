@@ -17,6 +17,9 @@ $line-height:15px;
       clear: both;
     }
 
+    .nowrap{
+      white-space: nowrap;
+    }
     @import "./foundation-flat";
     @import "./icons";
     @import "./buttons";

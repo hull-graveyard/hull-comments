@@ -28,7 +28,8 @@ var SortMenu = React.createClass({
     return <DropdownMenu
       className={{'has-dropdown':true, 'sorting':true}}
       component="li"
-      inNavBar={true}
+      right
+      inNavBar
       options={this.getOptions()}
       title={this.getTitle()}
       value={this.props.orderBy}
