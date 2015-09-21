@@ -21,8 +21,7 @@ var ShareMenu = React.createClass({
   },
 
   getOptions() {
-    // let providers = Hull.utils.isMobile() ? PROVIDERS.concat(MOBILE_PROVIDERS) : PROVIDERS
-    let providers = PROVIDERS.concat(MOBILE_PROVIDERS);
+    let providers = Hull.utils.isMobile() ? PROVIDERS.concat(MOBILE_PROVIDERS) : PROVIDERS
 
     return _.map(providers, (value) => {
       return {
