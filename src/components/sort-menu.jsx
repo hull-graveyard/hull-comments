@@ -2,6 +2,7 @@ import DropdownMenu from './dropdown-menu';
 import React from 'react';
 import Icon from './icon';
 import capitalize from '../lib/capitalize';
+import { translate } from '../lib/i18n';
 
 const ICONS = {
   newest:'chevron_down',
@@ -15,12 +16,12 @@ var SortMenu = React.createClass({
   },
 
   getTitle: function() {
-    return <span><Icon name={ICONS[this.props.orderBy]}/>{capitalize(this.props.orderBy)}</span>;
+    return <span><Icon name={ICONS[this.props.orderBy]}/>{translate(capitalize(this.props.orderBy))}</span>;
   },
 
   getOptions: function() {
     return ['best', 'newest', 'oldest'].map(function(opt) {
-      return { value: opt, label: <span><Icon name={ICONS[opt]}/>{capitalize(opt)}</span> }
+      return { value: opt, label: <span><Icon name={ICONS[opt]}/>{translate(capitalize(opt))}</span> }
     });
   },
 
