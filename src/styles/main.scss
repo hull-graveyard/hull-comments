@@ -7,6 +7,7 @@ $line-height:15px;
 :local(.ship){
   -webkit-font-smoothing: antialiased;
   font: 13px/2 'Helvetica Neue', Helvetica, Arial, verdana, sans-serif;
+  margin-bottom: 200px;
   :global{
     *{
       box-sizing:border-box;
