@@ -29,14 +29,14 @@
     {
       "name": "text_color",
       "title": "Main Text Color",
-      "default": "#3f4549",
+      "default": "#7F929C",
       "type": "string",
       "format": "color"
     },
     {
       "name": "light_color",
       "title": "Secondary Text Color",
-      "default": "#7f929c",
+      "default": "#BAC3CA",
       "type": "string",
       "format": "color"
     },
