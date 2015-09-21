@@ -1,7 +1,13 @@
 import DropdownMenu from './dropdown-menu';
 import React from 'react';
+import Icon from './icon';
 import capitalize from '../lib/capitalize';
 
+const ICONS = {
+  newest:'chevron_down',
+  best:  'heart',
+  oldest:'chevron_up'
+}
 var SortMenu = React.createClass({
 
   handleChange: function(val) {
@@ -9,17 +15,16 @@ var SortMenu = React.createClass({
   },
 
   getTitle: function() {
-    return capitalize(this.props.orderBy);
+    return <span><Icon name={ICONS[this.props.orderBy]}/>{capitalize(this.props.orderBy)}</span>;
   },
 
   getOptions: function() {
-    return ['newest', 'oldest', 'best'].map(function(opt) {
-      return { value: opt, label: capitalize(opt) }
+    return ['best', 'newest', 'oldest'].map(function(opt) {
+      return { value: opt, label: <span><Icon name={ICONS[opt]}/>{capitalize(opt)}</span> }
     });
   },
 
   render: function() {
-    return <div></div>;
     return <DropdownMenu
       className={{'has-dropdown':true, 'sorting':true}}
       component="li"

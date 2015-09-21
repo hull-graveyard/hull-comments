@@ -1,10 +1,10 @@
 import React from 'react';
-import cx from 'react/lib/cx';
+import cx from 'classnames';
 import Icon from './icon';
-import EmailLogin from './email-login';
 import titleize from 'underscore.string/titleize';
 import { translate } from '../lib/i18n';
 
+const BUTTON_CLASSES='login-button left button tiny round';
 var LoginForm = React.createClass({
   login(providerName, e) {
     e.preventDefault();
@@ -12,25 +12,30 @@ var LoginForm = React.createClass({
     this.props.actions.login({provider:providerName}, 'login_button_facebook');
   },
 
+
+  toggleForm(e) {
+    e.preventDefault();
+    this.props.actions.toggleForm();
+  },
+
   renderSocialLogin(){
     return this.props.providers.map(function(provider) {
-      var btnClasses = {'button':true, 'tiny':true, 'expand':false, 'round':true, 'login':true, [provider.name]:true, "left":true }
-      return <a href="#" key={provider.name} className={cx(btnClasses)} style={{marginTop:0,marginBottom:10,marginRight:10}} onClick={this.login.bind(this, provider.name)}>
-          <Icon name={provider.name.toLowerCase()} size='16' settings={this.props.settings} color="#FFFFFF"/>
-          <strong className='hide-for-large-up show-for-large-up'>{titleize(provider.name)}</strong>
-        </a>
+      var btnClasses = { [BUTTON_CLASSES]:true, [provider.name]:true }
+      return <a key={provider.name} className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}><Icon colorize name={provider.name.toLowerCase()}/></a>
     }, this);
+  },
+
+  renderEmailLogin(){
+    return <a className={`${BUTTON_CLASSES} primary email`} onClick={this.toggleForm} style={{fontSize:12, fontWeight:700}}><Icon colorize name='send'/>{" "+translate("Email")}</a>
   },
 
   render() {
     var providers = this.props.providers;
     return <section className="auth-section logged-out">
+      <span className='light-text'>{translate('Sign in with')}</span>
       <div className="connect">
-        <p className='light-text text-center text-uppercase'><strong><small className='light-text'>{translate('Sign in with')}</small></strong></p>
-        <div>
-          {this.renderSocialLogin(providers)}
-          <EmailLogin {...this.props} className='auth-email left'/>
-        </div>
+        {this.renderEmailLogin()}
+        {this.renderSocialLogin(providers)}
       </div>
     </section>;
   }

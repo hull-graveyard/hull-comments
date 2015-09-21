@@ -1,10 +1,11 @@
 import React from 'react';
+var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 import MainNav from './main-nav';
 import Conversation from './conversation';
 import Icon from './icon';
 
 var Comments = React.createClass({
-  render: function() {
+  render() {
     if (this.props.isReady) {
       return <div>
         <MainNav {...this.props} />

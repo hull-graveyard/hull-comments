@@ -3,6 +3,7 @@
   99%{ display: block; }
   100%{opacity: 0; display: none; transform:translate3d(0,-100%,0); }
 }
+
 @keyframes downAndShow {
   0%{transform:translate3d(0,-100%,0); display: none; opacity: 0; }
   1%{display: block; }
@@ -14,6 +15,7 @@
   99%{ display: inline; }
   100%{opacity: 0; display: none; transform:translate3d(-100%,0,0); }
 }
+
 @keyframes rightAndShow {
   0%{transform:translate3d(-100%,0,0); display: none; opacity: 0; }
   1%{display: inline; }

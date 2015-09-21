@@ -1,16 +1,15 @@
 .dropdown-container{
   position: relative;
-  a{ outline: none; }
-  > div, > ul{
-    &.dropdown, &.f-dropdown{
-      display: none;
-      left: 15px;
-      top: 100%;
-      width: auto;
-      @media #{$medium-up}{
-        min-width: 10rem;
-      }
-      animation: upAndHide .2s forwards $easeOutQuint;
+  a{
+    outline: none;
+  }
+  div.dropdown, ul.dropdown, div.f-dropdown, ul.f-dropdown{
+    display: none;
+    left: 15px;
+    top: 100%;
+    width: auto;
+    @media #{$medium-up}{
+      min-width: 10rem;
     }
     &.dropdown-right{
       right: 15px;
@@ -18,34 +17,33 @@
     }
   }
   &.open {
-    > div, > ul{
-      &.dropdown, &.f-dropdown{
-        display: block;
-        animation: downAndShow .2s forwards $easeOutQuint;
+    div.dropdown, ul.dropdown, div.f-dropdown, ul.f-dropdown{
+      display: block;
+      @media #{$small-only}{
+        max-width: 100%;
+        li.dropdown__item{
+          float: left;
+        }
       }
     }
   }
 }
 
-div, ul{
-  &.dropdown, &.f-dropdown{
-    border-radius: $global-radius;
-    box-shadow: 0 0 0 2px $filet-color;
-    &.dropdown-right{
-      &:before, &:after{
-        left: auto;
-      }
-      &:before{
-        right: 10px;
-      }
-      &:after{
-        right: 9px;
-      }
+div.dropdown, ul.dropdown, div.f-dropdown, ul.f-dropdown{
+  border-radius: $global-radius;
+  box-shadow: 0 0 0 2px $filet-color;
+  &.dropdown-right{
+    &:before, &:after{
+      left: auto;
+    }
+    &:before{
+      right: 10px;
+    }
+    &:after{
+      right: 9px;
     }
   }
 }
-
-
 
 .comment-footer .dropdown-container {
   > .f-dropdown{
@@ -64,72 +62,80 @@ div, ul{
       padding: 0;
     }
   }
-  &.open{
-    > div, > ul{
-      &.f-dropdown{
-        animation: rightAndShow .2s forwards $easeOutQuint;
+}
+
+
+.dropdown, .f-dropdown{
+  li.dropdown__item{
+    display: block;
+    padding: 0;
+    margin: 0;
+    float: none;
+    &:not(.has-form) .dropdown__anchor{
+      line-height: $line-height;
+      padding: 10px;
+      .icon{
+        margin-right: 10px;
       }
     }
   }
 }
 
-.top-bar-section .dropdown li:not(.has-form) {
-  a:not(.button){
-    line-height: $base-line-height*1.5;
-  }
-  &:not(.active):hover{
-    > a:not(.button){
-      background: $filet-color;
-      color: $primary-color;
-    }
-  }
-}
+
+// .top-bar-section .dropdown li:not(.has-form) {
+//   a:not(.button){
+//     line-height: $base-line-height*1.5;
+//   }
+//   &:not(.active):hover{
+//     > a:not(.button){
+//       background: $filet-color;
+//       color: $primary-color;
+//     }
+//   }
+// }
 
 
-.top-bar .dropdown {
-  background: transparentize(white,.02);
-}
+// .top-bar .dropdown {
+//   background: transparentize(white,.02);
+// }
 
-.top-bar.expanded .dropdown-container,
-.comment-footer .dropdown-container{
-  &:before, &:after{
-    display: none;
-  }
-  &.open{
-    .f-dropdown{
-      display: inline;
-    }
-  }
-}
-.dropdown-container.auth-email .f-dropdown{
-  min-width: 330px;
-  @media #{$medium-up}{
-    right: 0;
-    left: auto;
-    &:before{
-      left: auto;
-      right: 10px;
-    }
-    &:after{
-      left: auto;
-      right: 9px;
-    }
-  }
-}
-.dropdown-container .top-bar li {
-  line-height: 2.8125rem;
-}
+// .top-bar.expanded .dropdown-container,
+// .comment-footer .dropdown-container{
+//   &:before, &:after{
+//     display: none;
+//   }
+//   &.open{
+//     .f-dropdown{
+//       display: inline;
+//     }
+//   }
+// }
+// .dropdown-container.auth-email .f-dropdown{
+//   min-width: 330px;
+//   @media #{$medium-up}{
+//     right: 0;
+//     left: auto;
+//     &:before{
+//       left: auto;
+//       right: 10px;
+//     }
+//     &:after{
+//       left: auto;
+//       right: 9px;
+//     }
+//   }
+// }
+// .dropdown-container .top-bar li {
+//   line-height: 2.8125rem;
+// }
 
-.comment-actions.menubar-list .dropdown-container .f-dropdown{
-  left: -10px;
-  top: 23px;
-}
-.user-menu {
-  a{margin-right: 0;}
-  .small-avatar span{
-    margin-left: 1rem;
-  }
-  .dropdown-right{
-    right: 26px;
-  }
-}
+
+// // .user-menu {
+// //   a{margin-right: 0;}
+// //   .small-avatar span{
+// //     margin-left: 1rem;
+// //   }
+// //   .dropdown-right{
+// //     right: 26px;
+// //   }
+// // }

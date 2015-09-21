@@ -1,19 +1,6 @@
 import React from 'react';
-import cx from 'react/lib/cx';
+import cx from 'classnames';
 import assign from 'object-assign';
-
-const dropdownItemStyle = {
-  lineHeight: 1,
-  padding: 0
-};
-
-const dropdownAnchorStyle = {
-  lineHeight: 1,
-  paddingTop: 8,
-  paddingRight: 10,
-  paddingBottom: 8,
-  paddingLeft: 10
-};
 
 var DropdownMenu = React.createClass({
   propTypes: {
@@ -21,28 +8,29 @@ var DropdownMenu = React.createClass({
     options: React.PropTypes.array,
     value: React.PropTypes.string
   },
-  getDefaultProps: function() {
+
+  getDefaultProps() {
     return {
       component : 'li'
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return { opened: this.props.open }
   },
 
-  close: function() {
+  close() {
     if (this.state.opened) {
       this.setState({ opened: false });
     }
   },
 
-  toggle: function(e) {
+  toggle(e) {
     if (e && e.preventDefault) e.preventDefault();
     this.setState({ opened: !this.state.opened });
   },
 
-  handleSelect: function(selected, evt) {
+  handleSelect(selected, evt) {
     evt.preventDefault();
 
     if (typeof this.props.onSelect === 'function') {
@@ -55,7 +43,7 @@ var DropdownMenu = React.createClass({
     this.close();
   },
 
-  getTitle: function() {
+  getTitle() {
     if (this.props.title) {
       return this.props.title;
     } else if (this.props.value) {
@@ -66,23 +54,22 @@ var DropdownMenu = React.createClass({
 
   renderOptions(){
     if(!this.props.options){ return null; }
-    var dropdownClass = {
+    let dropdownClass = cx({
       'f-dropdown':true,
       'dropdown-right':!!this.props.right
-    };
+    });
 
-    return <ul className={cx(dropdownClass)}>
+    return <ul className={dropdownClass}>
       {this.props.options.map(function(opt, i) {
-        return <li key={opt.value} style={dropdownItemStyle} className={cx({ selected: this.props.value === opt.value })}>
-          <a href='javascript: void 0;' style={dropdownAnchorStyle} onClick={this.handleSelect.bind(this, opt)}>
-            {opt.label || opt.value}
-          </a>
+        let liClass = (this.props.value === opt.value) ? 'dropdown__item selected' : 'dropdown__item';
+        return <li key={opt.value} className={liClass}>
+          <a href='#' className='dropdown__anchor' onClick={this.handleSelect.bind(this, opt)}>{opt.label || opt.value}</a>
         </li>;
       }, this)}
     </ul>;
   },
 
-  render: function() {
+  render() {
     if(this.props.component=='button'){
       var Component = 'span';
       var ButtonComponent = 'button'

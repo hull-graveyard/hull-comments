@@ -1,0 +1,29 @@
+
+// .comment-composer__actions{
+//   opacity: 0;
+//   display: none;
+//   transition:all .2s $easeOutQuint;
+// }
+
+.textarea{
+  font-size: 16px;
+  -webkit-appearance: none;
+  outline:none;
+  position: relative;
+  padding: $line-height;
+  max-height: 10 * $line-height;
+  line-height: $line-height*1.33333;
+  margin-bottom: 1 * $line-height;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px $filet-color;
+  border-radius: $global-radius;
+  overflow: auto;
+  width: 100%;
+  transition:all .2s $easeOutQuint;
+}
+
+.placeholder >.textarea:before {
+  color:#ccc;
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+}

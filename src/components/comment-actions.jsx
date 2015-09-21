@@ -1,50 +1,47 @@
 import React from 'react';
 import Icon from './icon';
-import cx from 'react/lib/cx';
+import cx from 'classnames';
 import DropdownMenu from './dropdown-menu';
 import { translate } from '../lib/i18n';
 
 var CommentActions = React.createClass({
-  handleFlag: function(e) {
+  handleFlag(e) {
     e.preventDefault();
     this.props.actions.flag(this.props.comment.id);
   },
 
-  handleDelete: function(e) {
+  handleDelete(e) {
     e.preventDefault();
     if (this.props.comment && this.props.comment.id) {
       this.props.actions.deleteComment(this.props.comment.id);
     }
   },
 
-  renderActions: function() {
+  renderActions() {
     var actions = [];
 
     if (this.props.user) {
-      actions.push({ value: 'Spam', label: translate('Mark as spam'), onClick: this.handleFlag });
+      actions.push({ value: 'Spam', label: <span><Icon name='ghost'/>{translate('Mark as spam')}</span>, onClick: this.handleFlag });
     }
 
     if (this.props.isCurrentUser) {
       actions.push({
         value: 'Delete',
-        label: translate('Delete'),
+        label: <span><Icon name='trash'/>{translate('Delete')}</span>,
         onClick: this.handleDelete
       });
     }
 
     if (actions.length == 0) { return; }
-    var title = <Icon name='italic' size={13} {...this.props}/>
+    var title = <Icon name='cog' style={{width:16}}/>
     return <DropdownMenu component='li' options={actions} title={title} />;
   },
 
-  render: function() {
+  render() {
     var t = translate(this.props.isCollapsed ? 'Expand' : 'Collapse');
 
     return (
-      <ul className="comment-actions menubar-list">
-        <li className={this.props.isCollapsed ? "expand" : "collapse"}>
-          <a href="#" onClick={this.props.onToggleCollapse} title={t}><strong>{this.props.isCollapsed ? "+" : "−"}</strong></a>
-        </li>
+      <ul className="comment-actions">
         {this.renderActions()}
       </ul>
     );

@@ -1,18 +1,16 @@
 import React from 'react';
 import Avatar from './avatar';
 import CommentForm from './comment-form';
+import EmailLogin from './email-login';
 
 var TopForm = React.createClass({
 
   render: function() {
     return (
-      <div className="row">
-        <div className="medium-1 columns show-for-medium-up pl-0">
-          <Avatar {...this.props.user}/>
-        </div>
-        <div className="medium-11 columns ps-0">
-          <CommentForm {...this.props} />
-        </div>
+      <div className={`row comment-composer ${this.props.top ? 'comment-composer--top':''}`}>
+        <Avatar {...this.props.user} className='comment-composer__avatar'/>
+        <CommentForm {...this.props} />
+        <EmailLogin {...this.props} className='auth-email left'/>
       </div>
     );
   }

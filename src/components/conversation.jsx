@@ -1,36 +1,34 @@
 import React from 'react';
-import cx from 'react/lib/cx';
+import cx from 'classnames';
 import Comment from './comment';
 import TopForm from './top-form';
 import { translate } from '../lib/i18n';
 
 var Conversation = React.createClass({
-  loadMore: function(e) {
+  loadMore(e) {
     if (e && e.preventDefault) e.preventDefault();
 
     this.props.actions.fetchMore();
   },
 
-  renderFetchMore: function() {
+  renderFetchMore() {
     if (!this.props.hasMore) { return; }
 
     return (
-      <div className="load-more row">
-        <div className="small-12 columns">
-          <a onClick={this.loadMore} className="tiny button round transparent">{translate('Load more comments')}</a>
-        </div>
+      <div className="load-more">
+        <a onClick={this.loadMore} className="tiny button round transparent">{translate('Load more comments')}</a>
       </div>
     );
   },
 
-  render: function() {
+  render() {
     var comments = this.props.comments.map(function(comment, i) {
-      return  <Comment key={"comment-" + (comment.id || i)} {...this.props} comment={comment} />;
+      return  <Comment key={`comment-${comment.id || i}`} {...this.props} comment={comment} />;
     }, this);
 
     return (
-      <div>
-        <TopForm {...this.props}/>
+      <div style={{paddingLeft: 5, paddingRight:5}}>
+        <TopForm {...this.props} top={true}/>
 
         {comments}
 

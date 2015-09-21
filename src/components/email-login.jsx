@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'react/lib/cx';
+import cx from 'classnames';
 import { translate } from '../lib/i18n';
 import DropdownMenu from './dropdown-menu';
 import Icon from './icon';
@@ -13,7 +13,7 @@ const EmailLogin = React.createClass({
     };
   },
 
-  showTab: function(tab, e){
+  showTab(tab, e){
     e.preventDefault();
     this.setState({tab:tab});
   },
@@ -41,15 +41,16 @@ const EmailLogin = React.createClass({
   },
 
   renderEmailPasswordForm(action){
-    return [
-      this.renderEmailField(),
+    var txt = this.state.tab==='login' ? 'Log in' : 'Sign up'
+    return <span>
+      {this.renderEmailField()}
       <p className="input-wrapper">
         <input type="password" placeholder={translate('Password')} name="password" value={this.state.newUser.password}  onChange={this.handleChange}  />
-      </p>,
-      <button className="tiny button round expand success" onClick={action}>
-        <Icon name='check' settings={this.props.settings} color="#FFFFFF"/>
-      </button>
-    ]
+      </p>
+      <a onClick={action} className='tiny button round expand success'>
+        <Icon name='chevron_right' settings={this.props.settings} colorize style={{width:24}}/>
+      </a>
+    </span>
   },
 
   renderRecoverForm(){
@@ -60,11 +61,11 @@ const EmailLogin = React.createClass({
         </small>
       </p>
     }
-    return [
-      this.renderEmailField(),
-      <button className="tiny button round expand success" onClick={this.recover}><strong>{translate('Send reset link')}</strong></button>,
+    return <span>
+      {this.renderEmailField()}
+      <button className="small button round expand success" onClick={this.recover}><strong>{translate('Send reset link')}</strong></button>
       {message}
-    ]
+    </span>
   },
 
   renderEmailField(){
@@ -80,18 +81,12 @@ const EmailLogin = React.createClass({
 
     return <nav className="top-bar expanded nav-bar">
       <section className="top-bar-section">
-        <ul className='left'>
+        <ul className='tab-full'>
           <li className={cx({'tab-title':true,'active':isLogin})}><a onClick={this.showTab.bind(this,'login')}>{translate('Log in')}</a></li>
           <li className={cx({'tab-title':true,'active':isRegister})}><a onClick={this.showTab.bind(this,'register')}>{translate('Sign up')}</a></li>
         </ul>
       </section>
     </nav>
-  },
-
-  toggleForm(e) {
-    e.preventDefault();
-
-    this.props.actions.toggleForm();
   },
 
   getTabStyle() {
@@ -103,8 +98,8 @@ const EmailLogin = React.createClass({
     }, {});
   },
 
-  renderForm() {
-    if (!this.props.formIsOpen) { return; }
+  render() {
+    if (!this.props.formIsOpen) { return <noscript/>; }
 
     var isLogin = this.state.tab == 'login';
     var isRegister = this.state.tab == 'register';
@@ -121,7 +116,7 @@ const EmailLogin = React.createClass({
         <div className="tabs-content" style={{padding:"0 1rem"}}>
           <div className={cx({'content':true, 'active':isLogin})} style={styles.login}>
             {this.renderEmailPasswordForm(this.login)}
-            <strong  className='text-center'><small><a href="#" onClick={this.showTab.bind(this,'recover')}>{translate('Forgot Password?')}</a></small></strong>
+            <div className="text-center"><strong><a href="#" onClick={this.showTab.bind(this,'recover')}>{translate('Forgot Password?')}</a></strong></div>
           </div>
 
           <div className={cx({'content':true, 'active':isRecover})} style={styles.recover}>
@@ -137,17 +132,6 @@ const EmailLogin = React.createClass({
           {error}
         </div>
       </div>
-    );
-  },
-
-  render() {
-    var title = [ <Icon name='email' color="#FFFFFF" size="16"/>, translate("Email") ];
-
-    return (
-      <span>
-        <button className='button tiny round email left' onClick={this.toggleForm}>{title}</button>
-        {this.renderForm()}
-      </span>
     );
   }
 });

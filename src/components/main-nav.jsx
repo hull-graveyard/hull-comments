@@ -1,5 +1,5 @@
 import React        from 'react';
-import cx           from 'react/lib/cx';
+import cx           from 'classnames';
 import UserMenu     from './user-menu';
 import SortMenu from './sort-menu';
 import ShareMenu from './share-menu';
@@ -26,37 +26,39 @@ var MainHeader = React.createClass({
   },
 
   renderMenuToggle(){
-    return <li className="toggle-topbar menu-icon"><a href="#" onClick={this.toggleNavBar}><span>{translate('Menu')}</span></a></li>
+    return <li className="toggle-topbar menu-icon"><a href="#" onClick={this.toggleNavBar}>{translate('Menu')}</a></li>
   },
 
   render() {
-    var navClasses = {
+    var navClasses = cx({
       'main-bar': true,
       'nav-bar': true,
       'top-bar': true,
       'expanded': true
-    };
+    });
 
-    return <nav className={cx(navClasses)}>
+    return <nav className={navClasses}>
       <section className="top-bar-section">
-        <ul className="title-area">
+        <ul className="main-bar__menu left">
           <li className="name">
-            <h1>
-              <a href="#">
-                {translate('{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}', { count: this.props.commentsCount })}
-              </a>
-            </h1>
+            <a>{translate('{count, plural, =0 {No comments} =1 {One comment} other {# Comments}}', { count: this.props.commentsCount })}</a>
           </li>
-        </ul>
-        <ul className="left">
-          <SortMenu {...this.props} />
-        </ul>
-        <ul className="left">
-          <FavoritesButton {...this.props}/>
-          <ShareMenu {...this.props} component='li' right={false} />
         </ul>
         <ul className="right">
           <UserMenu {...this.props} />
+        </ul>
+      </section>
+      <section className="top-bar-section" style={{clear:'both', border:'1px solid #eee'}}>
+        <ul className="main-bar__menu left">
+          <ShareMenu component='li' {...this.props} />
+          <li>
+            <FavoritesButton {...this.props}/>
+          </li>
+        </ul>
+        <ul className="right">
+          <li>
+            <SortMenu {...this.props} />
+          </li>
         </ul>
       </section>
     </nav>;

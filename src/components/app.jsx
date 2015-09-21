@@ -6,6 +6,8 @@ import I18n      from '../lib/i18n';
 import styles    from '../styles/main.scss';
 import HullStyle from './hull-style';
 
+styles.use();
+
 var App = React.createClass({
   propTypes: {
     engine: React.PropTypes.object.isRequired,
@@ -20,8 +22,7 @@ var App = React.createClass({
   },
 
   componentDidMount: function() {
-    // This is more robust than embedding the styles in the Iframe's Head using the head="" property
-    var style = this.props.styles.use(this.getStyleContainer());
+    var style = this.props.styles.use();
     this.setState({rootCssClass:style.locals.ship})
   },
 
@@ -42,11 +43,7 @@ var App = React.createClass({
   },
 
   render: function() {
-    var s = {
-      paddingBottom: 200
-    };
-
-    return <div style={s} className={this.state.rootCssClass}>
+    return <div className={this.state.rootCssClass}>
       <HullStyle {...this.state.settings} rootCssClass={`.${this.state.rootCssClass}`}/>
       <Comments {...this.state} actions={this.props.engine.getActions()} />
     </div>
@@ -55,7 +52,7 @@ var App = React.createClass({
   statics: {
     // Expose a static entry point to boot the ship
     start : function(element, deployment, hull){
-      var entity = hull.entity.encode(Hull.findUrl())
+      var entity = hull.entity.encode(Hull.findUrl().split('#')[0])
 
       I18n.setTranslations(deployment.ship.translations);
 

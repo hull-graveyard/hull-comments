@@ -2,31 +2,68 @@
 @import "foundation-sites/scss/foundation/components/global";
 @import "foundation-sites/scss/foundation/functions";
 
+$line-height:15px;
+
 :local(.ship){
   -webkit-font-smoothing: antialiased;
+  font: 13px/2 'Helvetica Neue', Helvetica, Arial, verdana, sans-serif;
   :global{
-
-
     *{
+      box-sizing:border-box;
       margin:0;
       padding:0;
     }
-    @import "./foundation-flat";
-    @import './animations';
-    @import './typography';
-    @import './dropdowns';
-    @import './navbar';
-    @import './list';
-    @import './spinner';
-    @import './comment_form';
-    @import './comment';
-    @import './buttons';
-    @import "./icons";
-
-    .error-block{
-      color: $red;
-      font-size: .8rem;
-      font-weight: 600;
+    .row{
+      clear: both;
     }
+
+    @import "./foundation-flat";
+    @import "./icons";
+    @import "./buttons";
+    @import './dropdowns';
+    @import './lists';
+    @import './form';
+    @import './user';
+
+    .auth-section{
+      float: left;
+      width: 100%;
+    }
+
+    .tab-full{
+      width: 100%;
+    }
+    .register .tab-title{
+      width: 50%;
+      margin-top: 15px;
+      padding: 0 15px;
+      float: left;
+      a{
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+        border-radius: 1000px;
+      }
+    }
+    @import './navbar';
+
+
+    @import './comment-form';
+
+
+    @import './comment';
+    @import './comment-meta';
+    @import './comment-footer';
+
+
+    // padding-bottom: 200px;
+
+    // @import './typography';
+    // @import './navbar';
+    // @import './list';
+    // @import './comment';
+    // @import './buttons';
+    // @import "./login";
+
   }
 }

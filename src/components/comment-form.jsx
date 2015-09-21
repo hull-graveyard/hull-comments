@@ -1,13 +1,14 @@
 import React from 'react';
 import ContentEditable from "./contenteditable";
-import cx from 'react/lib/cx';
+import cx from 'classnames';
 import LoginForm from './login-form';
+import Icon from './icon';
 import { translate } from '../lib/i18n';
 
 var CommentForm = React.createClass({
   propTypes: {
     user: React.PropTypes.object,
-    onSubmit: React.PropTypes.func,
+    handleSubmit: React.PropTypes.func,
     parentId: React.PropTypes.string,
     text: React.PropTypes.string,
     expanded: React.PropTypes.bool,
@@ -15,7 +16,7 @@ var CommentForm = React.createClass({
     comment: React.PropTypes.object
   },
 
-  getInitialState: function() {
+  getInitialState() {
     var t;
     if (this.props.mode === 'reply') {
       t = '';
@@ -26,13 +27,13 @@ var CommentForm = React.createClass({
     return { text: t, isExpanded: this.props.expanded };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     if (this.props.focus) {
       this.refs.textarea.getDOMNode().focus();
     }
   },
 
-  onSubmit: function(e) {
+  handleSubmit(e) {
     e.preventDefault();
     var text = this.state.text;
     if (text && text.length) {
@@ -46,18 +47,18 @@ var CommentForm = React.createClass({
     this.setState({ text: "" });
   },
 
-  handleKeyDown: function(e) {
+  handleKeyDown(e) {
     if (e.metaKey && e.keyCode === 13) {
-      this.onSubmit(e);
+      this.handleSubmit(e);
     }
   },
 
-  handleChange: function(e) {
+  handleChange(e) {
     var text = e.target.value;
     this.setState({ text: text });
   },
 
-  renderError: function() {
+  renderError() {
     if (this.props.errorMessage) {
       return <div className="alert error" role="alert">
         <a className="close" onClick={this.dismissError} title={translate('Dismiss')}>×</a>
@@ -66,91 +67,100 @@ var CommentForm = React.createClass({
     }
   },
 
-  expandForm: function(e) {
+  expandForm(e) {
     if (this.props.expanded || !this.state.isExpanded) {
       this.setState({ isExpanded: true });
     }
   },
 
-  contractForm: function(e) {
+  contractForm(e) {
     if (!this.props.expanded && this.state.isExpanded) {
       this.setState({ isExpanded: false });
     }
   },
 
-  handleCancel: function(e) {
+  handleCancel(e) {
     e.preventDefault();
     if (typeof this.props.onCancel === 'function') {
       this.props.onCancel(e);
     }
   },
+  renderCancelButton(){
+    return <a key='cancel' href='#' className='tiny button link' onClick={this.handleCancel}><strong>{translate('Cancel')}</strong></a>
+  },
+  renderUpdateButton(){
+    return <a key='update' className='tiny button radius' onClick={this.handleSubmit}><strong>{translate('Update')}</strong></a> 
+  },
+  renderReplyButton(){
+    return <a key='reply' className='tiny button radius' onClick={this.handleSubmit}><strong><Icon colorize style={{width:12}} name='reply'/>{translate('Reply')}</strong></a>
+  },
+  renderPostButton(user){
+    var name = (user && (user.name || user.email)) || translate('Guest');
+    var t = translate('Post as {name}', { name: name });
+    return <a className='tiny button radius' onClick={this.handleSubmit}><strong>{t}</strong></a>;
+  },
 
-  renderButtons: function() {
-    var user = this.props.user;
+  renderActions(user, mode='', allow_guest=false) {
+    let actions;
 
-    if (user && this.props.mode === 'edit') {
-      return [
-        <a key='cancel' href='#' className='tiny button radius transparent text-text' onClick={this.handleCancel}>{translate('Cancel')}</a>,
-        <button key='update' className='tiny button radius strong' onClick={this.onSubmit}>{translate('Update')}</button>
-      ];
-    } else if (user && this.props.mode === 'reply') {
-      return [
-        <a key='cancel' href='#' className='tiny button radius transparent text-text' onClick={this.handleCancel}>{translate('Cancel')}</a>,
-        <button key='reply' className='tiny button radius strong' onClick={this.onSubmit}>{translate('Reply')}</button>
-      ];
-    } else if (this.props.settings.allow_guest || user) {
-      var name = (user && (user.name || user.email)) || translate('Guest');
-      var t = translate('Post as {name}', { name: name });
+    if (user && mode === 'edit') {
+      actions = <span>{this.renderCancelButton()} {this.renderUpdateButton()}</span>;
 
-      return <button className='tiny button radius' onClick={this.onSubmit}><strong>{t}</strong></button>;
+    } else if (user && mode === 'reply') {
+      actions = <span>{this.renderCancelButton()} {this.renderReplyButton()}</span>;
+
+    } else if (allow_guest || user) {
+      actions = this.renderPostButton(user)
     }
-  },
 
-  renderTextarea: function() {
-    var user = this.props.user || {};
-    var w = this.props.mode === 'reply' ? 'Reply...' : 'What do you think?';
-    var placeholder = "<span class='light-text'>" + translate(w) + "</span>";
-    return (
-      <div className="comment-form-editor">
-        <ContentEditable
-          ref="textarea"
-          className="textarea"
-          html={this.state.text}
-          tabIndex="0"
-          placeholder={placeholder}
-          onFocus={this.expandForm}
-          onBlur={this.contractForm}
-          onChange={this.handleChange}/>
-        <div className="comment-form-actions">
-          <div className={cx({"logged-in" : !!this.props.user, "right":true, "auth-section": !this.props.user })}>
-            {this.renderButtons()}
-          </div>
-        </div>
+    return <div className="comment-composer__actions">
+      <div className={cx({"logged-in" : !!user, "right":true, "auth-section": !user })}>
+        {actions}
       </div>
-    );
+    </div>
+
   },
 
-  renderLoginForm: function() {
+  renderTextarea(user={}, mode='') {
+    let placeholder = mode === 'reply' ? 'Reply...' : 'What do you think?';
+    return <div className={`editor ${(!this.state.text)?'placeholder':''}`}>
+      <ContentEditable ref="textarea"
+        className="textarea"
+        html={this.state.text}
+        tabIndex="0"
+        placeholder={translate(placeholder)}
+        onFocus={this.expandForm}
+        onBlur={this.contractForm}
+        onChange={this.handleChange}/>
+    </div>
+  },
+
+  renderLoginForm() {
     if (!this.props.user && this.props.mode !== 'edit') {
       return <LoginForm {...this.props} />;
     }
   },
 
-  render: function() {
-    var editMode = this.props.mode === 'edit';
+  render() {
+    let { user, mode } =  this.props;
+    let editMode = this.props.mode === 'edit';
 
-    var className = cx({
-      'comment-form' : true,
+    let className = cx({
+      'comment-composer__form' : true,
       'edit'         : editMode,
       'reply'        : !editMode,
       'authenticated': !!this.props.user,
       'expanded'     : this.state.isExpanded
     });
 
+
     return (
       <form className={className}>
         {this.renderError()}
-        {this.renderTextarea()}
+        <div className={`comment-composer__editor ${(editMode)?'comment-composer__editor--editing':''}`}>
+          {this.renderTextarea(user)}
+          {this.renderActions(user, mode, this.props.settings.allow_guest)}
+        </div>
         {this.renderLoginForm()}
       </form>
     );

@@ -9,7 +9,6 @@ var moment       = require("moment");
 
 var pkg          = require("./package.json");
 var manifest     = require("./manifest.json");
-var autoprefixer = require('autoprefixer-core');
 
 // DO NOT CHANGE FOLDERS
 // WIHTOUT UPDATING PACKAGE.JSON TOO.
@@ -100,7 +99,26 @@ var cssIncludes = ["node_modules", "src/vendor"].map(function(include){
 }).join("&");
 
 
-var postcss = [autoprefixer];
+// SASS-LIKE : 
+// postcss-simple-vars
+// postcss-advanced-vars
+// postcss-sassy-mixins
+// postcss-simple-extend
+// postcss-vertical-rhythm
+var postcss = [
+  require('precss')({ /* options */ }), //Sass-like syntax
+  require('postcss-round-subpixels'),
+  /*IE*/
+    require('postcss-pseudoelements'),
+    require('postcss-color-rgba-fallback'),
+    require('postcss-opacity'),
+    require('postcss-vmin'),
+  /*END IE*/
+  require('postcss-clearfix'),
+  require('postcss-initial'), //all:initial
+  require('autoprefixer'), //Prefixes
+  require('cssnano')(), //Condense & Optimize
+];
 
 // about babel : it's VERY SLOW. DO NOT APPLY IT TO EVERY SOURCE FILE. see the Excludes we applied
 var loaderLibrary = {

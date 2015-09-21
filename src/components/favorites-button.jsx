@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'react/lib/cx';
+import cx from 'classnames';
 import Icon from './icon.jsx';
 import { translate } from '../lib/i18n';
 
@@ -13,16 +13,14 @@ var FavoritesButton = React.createClass({
     if (this.props.user == null) { return null; }
 
     if (this.props.isFavorite){
-      var color = '#FFCC00';
+      var color = '#E75F45';
       var linkStyle = {color};
     }
     return (
-      <li>
-        <a href="#" onClick={this.toggleFavorite} style={linkStyle}>
-          {this.props.isFavorite ? translate('Liked') : translate('Like')}
-          <Icon name='heart'/>
-        </a>
-      </li>
+      <a href="#" onClick={this.toggleFavorite} style={linkStyle}>
+        <Icon colorize name='heart'/>
+        {this.props.isFavorite ? translate('Liked') : translate('Like')}
+      </a>
     );
   }
 });

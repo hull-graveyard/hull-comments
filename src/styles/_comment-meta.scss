@@ -1,0 +1,28 @@
+.comment-actions{
+  @extend %list;
+  margin-left: .5rem;
+  padding: 0;
+  display: inline-block;
+  .dropdown-container .f-dropdown{
+    left: -5px;
+    top: 23px;
+  }
+  .icon:not(:hover) svg{
+    fill:currentColor;
+  }
+}
+
+
+.comment-time, .comment-actions{
+}
+
+.comment-actions{
+  opacity: 0;
+  transition:all .2s $easeOutQuint;
+}
+
+.comment__container:hover > .comment-meta > {
+  .comment-actions{
+    opacity: 1;
+  }
+}

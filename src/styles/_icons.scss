@@ -1,7 +1,16 @@
+
 .icon {
   fill : currentColor;
   display: inline-block;
-  width: 13px;
-  margin-left: 3px;
-  vertical-align: -5%;
+  width: 16px;
+  vertical-align: -10%;
+  + span{
+    margin-left: 3px;
+  }
+}
+
+.icon.colorize{
+  svg path{
+    fill:currentColor;
+  }
 }

@@ -1,16 +1,15 @@
 var React = require('react');
 
 var Avatar = React.createClass({
-  getDefaultProps: function(){
-    return {}
+  getDefaultProps(){
+    return {
+      className:''
+    }
   },
-  render: function() {
+  render() {
     var picture = this.props.picture || "http://hull.s3.amazonaws.com/avatar.png"
-    return (
-      <div className="avatar medium-text-center">
-        <a className="user"><img src={picture} /></a>
-      </div>
-    );
+    // var picture = Hull.config().orgUrl + '/api/v1/' + this.props.id + '/picture';
+    return <div className={`avatar ${this.props.className}`}><img src={picture} /></div>;
   }
 
 });

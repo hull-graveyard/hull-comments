@@ -1,41 +1,44 @@
 import React from 'react';
 
 var ContentEditable = React.createClass({
-  render: function(){
-    var msg = this.props.html||this.props.placeholder
-    return <div id="contenteditable"
-    {...this.props}
-    onInput={this.handleChange}
-    onBlur={this.handleChange}
-    contentEditable
-    dangerouslySetInnerHTML={{__html: msg}}></div>;
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.html !== React.findDOMNode(this).innerHTML;
   },
 
-  shouldComponentUpdate: function(nextProps){
-    return nextProps.html !== this.getDOMNode().innerHTML;
-  },
-
-  componentDidUpdate: function() {
-    if ( this.props.html !== this.getDOMNode().innerHTML ) {
-     this.getDOMNode().innerHTML = this.props.html;
+  componentDidUpdate() {
+    if ( this.props.html !== React.findDOMNode(this).innerHTML ) {
+     React.findDOMNode(this).innerHTML = this.props.html;
     }
   },
 
   handleBlur(evt){
     this.props.onBlur();
-    this.handleChange(evt);
+    this.emitChange(evt);
   },
 
-  handleChange: function(evt){
-    var html = this.getDOMNode().innerHTML;
-    if(this.props.placeholder!==html){
-      if (this.props.onChange && html !== this.lastHtml) {
-        evt.target = { value: html };
-        this.props.onChange(evt);
-      }
-      this.lastHtml = html;
+  emitChange(evt) {
+    var html = React.findDOMNode(this).innerHTML;
+
+    var emit = (html == this.props.placeholder) ? '' : html
+
+    if (this.props.onChange && emit !== this.lastHtml) {
+      evt.target = { value: emit };
+      this.props.onChange(evt);
     }
+
+    this.lastHtml = emit;
+  },
+
+  render(){
+    return <div ref='contentEditor'
+    {...this.props}
+    onInput={this.emitChange}
+    onBlur={this.handleBlur}
+    contentEditable
+    dangerouslySetInnerHTML={{__html: this.props.html}}></div>;
   }
+
 });
 
 module.exports = ContentEditable;

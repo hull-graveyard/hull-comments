@@ -1,12 +1,14 @@
-import React from 'react';
-import cx from 'react/lib/cx';
-import capitalize from '../lib/capitalize';
-import DropdownMenu from './dropdown-menu';
+import React         from 'react';
+import cx            from 'classnames';
+import capitalize    from '../lib/capitalize';
+import Icon          from './icon.jsx';
+import DropdownMenu  from './dropdown-menu';
+import Avatar        from './avatar';
 import { translate } from '../lib/i18n';
-import EmailLogin from './email-login';
+import EmailLogin    from './email-login';
 
 var UserMenu = React.createClass({
-  handleChange: function(item) {
+  handleChange(item) {
     switch(item.value) {
       case 'logout':
         this.props.actions.logout();
@@ -14,36 +16,32 @@ var UserMenu = React.createClass({
     }
   },
 
-  login: function(selected) {
+  login(selected) {
     this.props.actions.login({provider:selected.value});
   },
 
-  render: function() {
-    var user = this.props.user;
+  render() {
+    let { user } = this.props;
 
     if (user == null) { return <noscript />; }
 
-    var title;
-    var options;
-    var action;
-
-    title = (
-      <span className='small-avatar'>
-        <img src={user.picture}/>
-        <span className="show-for-medium-up">{user.name || user.email || translate('logged in as guest')}</span>
+    let title = (
+      <span className='user'>
+        <span className="avatar user__avatar"><img src={user.picture} /></span>
+        <span className="user__name">{user.name || user.email || translate('logged in as guest')}</span>
       </span>
     );
-    options = [
-      { label: translate('Log out'), value: "logout" }
+
+    let options = [
+      { label: <span><Icon name='exit'/> {translate('Log out')}</span>, value: "logout" }
     ];
-    action = this.handleChange;
 
     return <DropdownMenu className={{'has-dropdown':true, 'user-menu':true}}
       component="li"
       inNavBar={true}
       right={true}
       options={options}
-      onSelect={action}
+      onSelect={this.handleChange}
       title={title}>
       </DropdownMenu>;
   }

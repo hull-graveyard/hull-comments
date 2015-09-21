@@ -1,18 +1,31 @@
-.button, button{
-  &.login{
-    padding:10px;
-  }
-  .svg-icon {
-    vertical-align: middle;
-    &+span{
-      margin-left: 6px;
-    }
+// .button, button{
+//   &.login{
+//     padding:10px;
+//   }
+//   .svg-icon {
+//     vertical-align: middle;
+//     &+span{
+//       margin-left: 6px;
+//     }
+//   }
+// }
+
+.button.link{
+  background:transparent;
+}
+
+.button.login-button{
+  margin: 0 5px 10px 0;
+  padding: 10px;
+  .icon{
+    width:24px;
+    vertical-align:-50%;
   }
 }
 
-// http://brandcolors.net/
-.button.email, .bc-background-email { background-color: #6a737b; }
-.bc-color-email { color: #6a737b; }
+.button.email{
+  padding: 10px 20px;
+}
 
 .button.facebook, .bc-background-facebook { background-color: #3b5998; }
 .bc-color-facebook { color: #3b5998; }
