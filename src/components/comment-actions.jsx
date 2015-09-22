@@ -33,8 +33,7 @@ var CommentActions = React.createClass({
     }
 
     if (actions.length == 0) { return; }
-    var title = <Icon name='cog' style={{width:16}}/>
-    return <DropdownMenu component='li' options={actions} title={title} />;
+    return <DropdownMenu component='li' options={actions} title={<Icon name='cog' size={16}/>} />;
   },
 
   render() {

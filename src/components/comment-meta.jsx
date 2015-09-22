@@ -19,13 +19,10 @@ var CommentMeta = React.createClass({
       <header className='comment-meta'>
         <strong className='comment-author'>
           <a>{user.name || translate('Guest')}</a>
-          { user.is_admin ? <span className='comment__admin-label'> {translate('Moderator')} </span> : undefined }
+          { user.is_admin ? <span className='comment__admin-label'> {` ${translate('Moderator')} `} </span> : undefined }
         </strong>
-
         {this.renderReplyTo()}
-        
-        <span className='comment-time nowrap'> {relativeTime(comment.created_at)} </span>
-
+        <span className='comment-time nowrap'>{` ${relativeTime(comment.created_at)} `}</span>
         <CommentActions {...this.props}/>
       </header>
     );

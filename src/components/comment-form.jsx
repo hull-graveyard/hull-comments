@@ -92,7 +92,7 @@ var CommentForm = React.createClass({
     return <a key='update' className='tiny button radius' onClick={this.handleSubmit}><strong>{translate('Update')}</strong></a> 
   },
   renderReplyButton(){
-    return <a key='reply' className='tiny button radius' onClick={this.handleSubmit}><strong><Icon colorize style={{width:12}} name='reply'/>{translate('Reply')}</strong></a>
+    return <a key='reply' className='tiny button radius' onClick={this.handleSubmit}><strong><Icon colorize size={12} name='reply'/>{translate('Reply')}</strong></a>
   },
   renderPostButton(user){
     var name = (user && (user.name || user.email)) || translate('Guest');

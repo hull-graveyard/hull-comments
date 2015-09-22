@@ -25,7 +25,7 @@ var ShareMenu = React.createClass({
 
     return _.map(providers, (value) => {
       return {
-        label: <span className='share-icon'><Icon style={{width:this.props.size, marginRight:5}} colorize={false} name={value}/><span className='share-icon__text'>&nbsp;{str.humanize(value)}</span></span>,
+        label: <span className='share-icon'><Icon size={this.props.size} style={{marginRight:5}} colorize={false} name={value}/><span className='share-icon__text'>&nbsp;{str.humanize(value)}</span></span>,
         value: value.toLowerCase()
       }
     });

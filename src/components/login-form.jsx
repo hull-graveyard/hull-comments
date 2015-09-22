@@ -21,12 +21,12 @@ var LoginForm = React.createClass({
   renderSocialLogin(){
     return this.props.providers.map(function(provider) {
       var btnClasses = { [BUTTON_CLASSES]:true, [provider.name]:true }
-      return <a key={provider.name} className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}><Icon colorize name={provider.name.toLowerCase()}/></a>
+      return <a key={provider.name} className={cx(btnClasses)} onClick={this.login.bind(this, provider.name)}><Icon size={24} colorize name={provider.name.toLowerCase()}/></a>
     }, this);
   },
 
   renderEmailLogin(){
-    return <a className={`${BUTTON_CLASSES} primary email`} onClick={this.toggleForm} style={{fontSize:12, fontWeight:700}}><Icon colorize name='send'/>{" "+translate("Email")}</a>
+    return <a className={`${BUTTON_CLASSES} primary email`} onClick={this.toggleForm} style={{fontSize:12, fontWeight:700}}><Icon size={24} colorize name='send'/>{" "+translate("Email")}</a>
   },
 
   render() {

@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { translate } from '../lib/i18n';
 import DropdownMenu from './dropdown-menu';
 import Icon from './icon';
+let { Input } = require('react-input-placeholder')(React);
 import _ from '../lib/lodash';
 
 const EmailLogin = React.createClass({
@@ -41,38 +42,40 @@ const EmailLogin = React.createClass({
     this.setState({ newUser: newUser });
   },
 
+  renderPrefixedField(icon, field){
+    return <div className="row collapse prefix-radius">
+      <div className="small-1 columns"><Icon name={icon} size={32}/></div>
+      <div className="small-11 columns">{field}</div>
+    </div>
+  },
+  renderButton(action, text){
+    return <button className="tiny button round expand success" onClick={action}><strong>{text}</strong></button>
+  },
+
   renderEmailPasswordForm(action){
     var txt = this.state.tab==='login' ? 'Log in' : 'Sign up'
+    let password = <Input type="password" placeholder={translate('Password')} name="password" value={this.state.newUser.password}  onChange={this.handleChange}  />
+    let email = <Input type="email" placeholder={translate('Email')} name="email" value={this.state.newUser.email} onChange={this.handleChange}  />
     return <span>
-      {this.renderEmailField()}
-      <p className="input-wrapper">
-        <input type="password" placeholder={translate('Password')} name="password" value={this.state.newUser.password}  onChange={this.handleChange}  />
-      </p>
-      <a onClick={action} className='tiny button round expand success'>
-        <Icon name='chevron_right' settings={this.props.settings} colorize style={{width:24}}/>
-      </a>
+      {this.renderPrefixedField('send', email)}
+      {this.renderPrefixedField('lock', password)}
+      {this.renderButton(action,<Icon name='chevron_right' settings={this.props.settings} colorize size={24}/>)}
     </span>
   },
 
   renderRecoverForm(){
     if(this.props.status && this.props.status.resetPassword){
       var message = <p className="message-block text-center">
-        <small>
-          {translate(this.props.status.resetPassword.message, { email:this.state.newUser.email })}
-        </small>
+        <small>{translate(this.props.status.resetPassword.message, { email:this.state.newUser.email })}</small>
       </p>
     }
+    let email = <Input type="email" placeholder={translate('Email')} name="email" value={this.state.newUser.email} onChange={this.handleChange}  />
+
     return <span>
-      {this.renderEmailField()}
-      <button className="small button round expand success" onClick={this.recover}><strong>{translate('Send reset link')}</strong></button>
+      {this.renderPrefixedField('send', email)}
+      {this.renderButton(this.recover, translate('Send reset link'))}
       {message}
     </span>
-  },
-
-  renderEmailField(){
-    return <p className="input-wrapper">
-      <input type="email" placeholder={translate('Email')} name="email" value={this.state.newUser.email} onChange={this.handleChange}  />
-    </p>
   },
 
   renderNavBar(){
@@ -110,11 +113,15 @@ const EmailLogin = React.createClass({
     }
 
     var styles = this.getTabStyle();
+    let userField = <Input type="text" placeholder={translate('Name')} name="name" value={this.state.newUser.name} onChange={this.handleChange} />
+
     return (
       <div className="register" style={{clear: 'both'}}>
         {this.renderNavBar()}
         {error}
+
         <div className="tabs-content" style={{padding:"0 1rem"}}>
+
           <div className={cx({'content':true, 'active':isLogin})} style={styles.login}>
             {this.renderEmailPasswordForm(this.login)}
             <div className="text-center"><strong><a href="#" onClick={this.showTab.bind(this,'recover')}>{translate('Forgot Password?')}</a></strong></div>
@@ -125,9 +132,7 @@ const EmailLogin = React.createClass({
           </div>
 
           <div className={cx({'content':true, 'active':isRegister})} style={styles.register}>
-            <p className="input-wrapper">
-              <input type="text" placeholder={translate('Name')} name="name" value={this.state.newUser.name} onChange={this.handleChange} />
-            </p>
+            {this.renderPrefixedField('user', userField)}
             {this.renderEmailPasswordForm(this.signup)}
           </div>
         </div>

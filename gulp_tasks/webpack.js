@@ -12,21 +12,20 @@ function handleError(err) {
 // Raise errors on Webpack build errors
 function webpackFeedbackHandler(err, stats){
   handleError(err);
+  if(stats){
+    var st = stats.toJson();
 
-  var st = stats.toJson();
+    if(st.errors.length > 0){
+      // gutil.log("[webpack:build:error]", JSON.stringify(st.errors));
+      throw new gutil.PluginError("webpack:build:error", JSON.stringify(st.errors));
+    }
 
-  if(st.errors.length > 0){
-    gutil.log("[webpack:build:error]", JSON.stringify(st.errors));
-    throw new gutil.PluginError("webpack:build:error", JSON.stringify(st.errors));
+    // Don't throw an error here : Uglify uses a lot of warnings to mention stripped code
+    // if(st.warnings.length > 0){
+    //   gutil.log("[webpack:build:warning]", JSON.stringify(st.warnings,null,2));
+    // }
+    gutil.log('[webpack:build]', stats.toString({ colors: true }));
   }
-
-  // Don't throw an error here : Uglify uses a lot of warnings to mention stripped code
-  if(st.warnings.length > 0){
-    gutil.log("[webpack:build:warning]", JSON.stringify(st.warnings,null,2));
-  }
-
-  gutil.log('[webpack:build]', stats.toString({ colors: true }));
-
 };
 
 module.exports = function(gulp, config){
@@ -56,7 +55,7 @@ module.exports = function(gulp, config){
       hot         : config.hotReload
     }).listen(config.serverPort, function(err) {
 
-      webpackFeedbackHandler(err, stats)
+      webpackFeedbackHandler(err)
 
       // Dump the preview URL in the console, and open Chrome when launched for convenience.
       var url = webpackConfig.development.output.publicPath+"webpack-dev-server/";

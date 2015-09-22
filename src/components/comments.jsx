@@ -12,7 +12,7 @@ var Comments = React.createClass({
         <Conversation {...this.props} />
       </div>;
     } else {
-      return <Icon name='spinner' style={{width: '64px', display:'block', margin:'0 auto'}}/>;
+      return <Icon name='spinner' size={64}style={{display:'block', margin:'0 auto'}}/>;
     }
   }
 });

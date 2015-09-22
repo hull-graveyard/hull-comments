@@ -22,6 +22,8 @@ let icons = {
   pencil: require('svg-inline!../icons/pencil.svg'),
   trash: require('svg-inline!../icons/trash.svg'),
   ghost: require('svg-inline!../icons/ghost.svg'),
+  lock: require('svg-inline!../icons/lock.svg'),
+  user: require('svg-inline!../icons/user_circle.svg'),
 
   facebook: require('svg-inline!../icons/facebook.svg'),
   foursquare: require('svg-inline!../icons/foursquare.svg'),
@@ -39,20 +41,24 @@ let icons = {
 }
 
 var Icon = React.createClass({
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       colorize:false,
-      style: {}
+      style: {},
+      size: 16
     };
   },
   render() {
     let name = this.props.name
     let src = icons[name];
     if(src){
-      let className = `icon ${this.props.colorize ? 'colorize': ''}`;
-
-      let style = this.props.color ? assign({}, this.props.style, {color: this.props.color }) : this.props.style;
-      return <SVGIcon src={src} className={className} {...this.props} style={style} />;
+      let {size, style, colorize, color} = this.props;
+      let className = `icon ${colorize ? 'colorize': ''}`;
+      let outputStyle = assign({width:size, height:size}, style);
+      if (color) {
+        outputStyle = assign(outputStyle, {color});
+      }
+      return <SVGIcon src={src} className={className} {...this.props} style={outputStyle} />;
     } else {
       return <i/>
     }

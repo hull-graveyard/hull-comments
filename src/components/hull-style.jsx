@@ -33,7 +33,8 @@ var HullStyle = React.createClass({
       ${rootCssClass} .comment-footer__list-item a,
       ${rootCssClass} .comment-footer__list-item a:hover,
       ${rootCssClass} .comment-footer__list-item a:active,
-      ${rootCssClass} .placeholder >.textarea:before {
+      ${rootCssClass} .placeholder >.textarea:before,
+      ${rootCssClass} input.placeholder {
         color: ${light_color};
       }
     `
