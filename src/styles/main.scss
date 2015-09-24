@@ -30,6 +30,10 @@ $line-height:15px;
     @import './form';
     @import './user';
 
+    .collapse{
+      display: block;
+    }
+    
     .auth-section{
       float: left;
       width: 100%;
