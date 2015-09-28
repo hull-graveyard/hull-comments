@@ -8,6 +8,9 @@ import HullStyle from './hull-style';
 
 styles.use();
 
+
+
+
 var App = React.createClass({
   propTypes: {
     engine: React.PropTypes.object.isRequired,
@@ -62,6 +65,14 @@ var App = React.createClass({
 
       var engine = new Engine(deployment, hull);
       var app = <App engine={engine} styles={styles} />;
+
+      if (deployment.onUpdate && typeof deployment.onUpdate === 'function') {
+        deployment.onUpdate(function(ship) {
+          I18n.setTranslations(ship.translations);
+          engine.updateShip(ship);
+        });
+      }
+
       React.render(app, element);
     }
   }

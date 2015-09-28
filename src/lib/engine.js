@@ -85,6 +85,12 @@ function Engine(deployment, hull) {
 }
 
 assign(Engine.prototype, Emitter.prototype, {
+
+  updateShip: function(ship) {
+    this._ship = ship;
+    this.emitChange();
+  },
+
   getActions: function() {
     if (this._actions) { return this._actions; }
     var instance = this;
