@@ -14,7 +14,7 @@ module.exports = function(config){
       resolve  : config.resolve,
       postcss  : config.postcss,
       node: {
-        fs: "empty"
+        fs: "empty" //Prevents MessageFormat from erroring
       },
       entry    : config.devEntry,
       output   : config.output,
@@ -30,7 +30,7 @@ module.exports = function(config){
       resolve  : config.resolve,
       postcss  : config.postcss,
       node: {
-        fs: "empty"
+        fs: "empty" //Prevents MessageFormat from erroring
       },
       entry    : config.entry,
       output   : config.output,

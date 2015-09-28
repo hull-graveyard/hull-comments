@@ -38,7 +38,10 @@ module.exports = function(gulp, config){
   gulp.task('webpack', function(callback) {
     // Then, use Webpack to bundle all JS and html files to the destination folder
     webpack(webpackConfig.production, function(err, stats) {
-      webpackFeedbackHandler(err, stats)
+      if(err){
+        webpackFeedbackHandler(err, stats)
+        return callback(err)
+      }
       callback();
     });
   });
