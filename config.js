@@ -24,18 +24,32 @@ var hotReload = true;
 // WITHOUT UPDATING PACKAGE.JSON TOO
 // THESE ARE THE JS FILES USED AS ENTRY POINTS TO COMPILE YOUR APP
 
+
+/*
+  --------------------------------
+  Compiled JS files
+  --------------------------------
+*/
 var entry = {
   ship:  "./"+sourceFolder+"/ship.js",
   index: "./"+sourceFolder+"/index.js"
 };
 
-/*Icon Fonts Processing*/
-
+/*
+  --------------------------------
+  Sketch icons extraction
+  --------------------------------
+*/
 var sketch = {
   export : 'artboards',
   formats: 'svg'
 }
 
+/*
+  --------------------------------
+  SVGO Icons Optimization
+  --------------------------------
+*/
 var imagemin = {
   progressive: true,
   svgoPlugins: [{
@@ -44,27 +58,57 @@ var imagemin = {
   }]
 }
 
-var sprite = {
-  shape: {
-    dimension : {
-      maxWidth : 32,
-      maxHeight: 32
-    },
-    spacing: {
-      padding: 0
-    }
+/*
+  --------------------------------
+  iconfont generation
+  --------------------------------
+*/
+var icons = {
+  folder: path.join(sourceFolder,'icons'),
+  src : path.join(sourceFolder,'icons','**','*'),
+  output:{
+    sprite : path.join(outputFolder,assetsFolder),
+    css    : path.join(sourceFolder,'styles','hullstrap'),
+    font   : path.join(sourceFolder,'styles','fonts'),
+    html   : path.join('server','views')
   },
-  mode : {
-    view : {
-      bust: false,
-      dest: 'sprite',
-      render: {
-        scss: false
+  sprite:{
+    shape: {
+      dimension : {
+        maxWidth : 32,
+        maxHeight: 32
+      },
+      spacing: {
+        padding: 0
+      }
+    },
+    mode : {
+      view : {
+        bust: false,
+        dest: 'sprite',
+        render: {
+          scss: false
+        }
       }
     }
+  },
+  fontPath: 'fonts',
+  font:{
+    fontName     : 'iconfont',
+    fontHeight   : 1001,
+    normalize    : true,
+    formats      : ['ttf','eot','woff','svg'],
+    timestamp    : Math.round(Date.now()/1000)
   }
-};
+}
 
+
+
+/*
+  --------------------------------
+  Copied files
+  --------------------------------
+*/
 var files = {
   "src/vendors/**/*" : path.join(outputFolder,assetsFolder,"vendors"),
   "src/images/**/*"  : path.join(outputFolder,assetsFolder,"images"),
@@ -77,7 +121,9 @@ var files = {
   "CNAME"            : outputFolder,
 };
 
+
 var libName = pkg.name;
+
 var displayName = manifest.name||libName;
 
 var output = {
@@ -90,13 +136,10 @@ var output = {
   publicPath    : assetsFolder+"/"
 };
 
-var resolve = {
-  extensions : ["", ".js", ".jsx", ".css", ".scss"]
-}
+var resolve = { extensions : ["", ".js", ".jsx", ".css", ".scss"] }
 
-var cssIncludes = ["node_modules", "src/vendor"].map(function(include){
-  return ("includePaths[]="+path.resolve(__dirname, include));
-}).join("&");
+var cssIncludes = ["node_modules", "src/vendor"].map(function(include){return ("includePaths[]="+path.resolve(__dirname, include));}).join("&");
+
 
 
 // SASS-LIKE : 
@@ -161,18 +204,55 @@ var plugins = [
   })
 ];
 
-var ngrok = {}
+
+/*
+  ----------------------------
+  NGROK
+  ----------------------------
+*/
+var ngrok;
 if(process.env.NGROK_AUTHTOKEN) {
-  var ngrok = {
+  ngrok = {
     port      : serverPort,
     authtoken : process.env.NGROK_AUTHTOKEN,
     subdomain : libName
   }
 }
 
+/*
+  ----------------------------
+  CLOUDFRONT
+  ----------------------------
+*/
+var cloudfront;
+if(process.env.AWS_KEY && process.env.AWS_SECRET){
+  var cloudfrontInvalidations = [libName+'/*']
+  cloudfront = {
+    config:{
+      credentials:{
+        "accessKeyId":process.env.AWS_KEY,
+        "secretAccessKey":process.env.AWS_SECRET,
+      },
+      distributionId:process.env.CLOUDFRONT_DISTRIBUTION_ID,
+      region:"us-east-1"
+    },
+    invalidationBatch:{
+      CallerReference: new Date().toString(),
+      Paths:{
+        Quantity:cloudfrontInvalidations.length,
+        Items:cloudfrontInvalidations
+      }
+    }
+  }
+}
 
 
-var devPlugins = plugins;
+
+/* 
+  ----------------------------
+  DEV MODE / HOT RELOAD overrides
+*/
+var devPlugins;
 if(hotReload){
   var devEntry = _.reduce(entry,function(entries,v,k){
     entries[k] = [ 'webpack-dev-server/client?'+previewUrl, 'webpack/hot/only-dev-server', v ];
@@ -181,20 +261,21 @@ if(hotReload){
   devPlugins = plugins.concat([new webpack.HotModuleReplacementPlugin()])
 } else {
   devEntry = entry;
+  devPlugins = plugins;
 }
 
 module.exports = {
-  ngrok              : ngrok,
 
-  hotReload          : hotReload,
   libName            : libName,
   displayName        : displayName,
 
+  hotReload          : hotReload,
+  ngrok              : ngrok,
+  cloudfront         : cloudfront,
+
   files              : files,
 
-  sprite             : sprite,
-  imagemin           : imagemin, 
-  sketch             : sketch, 
+  icons              : icons,
 
   sourceFolder       : sourceFolder,
   outputFolder       : outputFolder,

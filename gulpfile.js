@@ -8,11 +8,16 @@ var config      = require('./config');
 
 [
   'clean',
+  'cloudfront',
   'copy',
   'deploy',
-  'svgo',
+  // 'format',
+  // 'iconfont',
+  // 'iconsprite',
   'ngrok',
   'sass',
+  // 'serve',
+  // 'sketch',
   'webpack'
 ].map(function(task){require('./gulp_tasks/'+task+'.js')(gulp, config);})
 
@@ -21,11 +26,11 @@ gulp.task('default', ['server']);
 gulp.task('serve',   ['server']);
 
 gulp.task('prepare', function(callback){
-  runSequence('clean', ['copy-files', 'sass'], callback)
+  runSequence('clean', ['copy', 'sass'], callback)
 });
 
 gulp.task('watch',   function(callback){
-  runSequence(['copy-files:watch', 'sass:watch'], callback);
+  runSequence(['copy:watch', 'sass:watch'], callback);
 });
 
 gulp.task('serve',   function(callback){
@@ -41,5 +46,5 @@ gulp.task('build', function(callback) {
 });
 
 gulp.task('deploy', function(callback) {
-  runSequence('build', 'gh:deploy', callback);
+  runSequence('build', 'gh:deploy', 'cloudfront', callback);
 });

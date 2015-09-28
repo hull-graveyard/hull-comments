@@ -7,6 +7,8 @@ module.exports = function(gulp, config){
 
   gulp.task('ngrok', function(callback){
 
+    if(!config.ngrok){ throw new gutil.PluginError('ngrok', 'Ngrok is not configured properly, checkout config.js'); }
+
     ngrok.connect(config.ngrok, function (error, url) {
 
       if (error) throw new gutil.PluginError('ship:server', error);
