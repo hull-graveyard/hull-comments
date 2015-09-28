@@ -226,7 +226,7 @@ if(process.env.NGROK_AUTHTOKEN) {
 */
 var cloudfront;
 if(process.env.AWS_KEY && process.env.AWS_SECRET){
-  var cloudfrontInvalidations = [libName+'/*']
+  var cloudfrontInvalidations = ['/'+libName+'/*']
   cloudfront = {
     config:{
       credentials:{

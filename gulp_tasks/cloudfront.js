@@ -6,7 +6,7 @@ module.exports=function(gulp, config){
 
     if(!config.cloudfront){ throw new gutil.PluginError('cloudfront', 'cloudfront is not configured properly, checkout config.js'); }
 
-    return gulp.src(files)
-    .pipe(cloudfront(config.cloudfront.invalidationBatch, config.cloudfront.credentials))
+    return gulp.src('**/*.js')
+    .pipe(cloudfront(config.cloudfront.invalidationBatch, config.cloudfront.config))
   })
 }
