@@ -14,6 +14,7 @@ var config      = require('./config');
   // 'format',
   // 'iconfont',
   // 'iconsprite',
+  'lint',
   'ngrok',
   'sass',
   // 'serve',
