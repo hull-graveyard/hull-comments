@@ -1,4 +1,5 @@
-var cloudfront       = require('gulp-invalidate-cloudfront');
+var cloudfront  = require('gulp-invalidate-cloudfront');
+var gutil       = require("gulp-util");
 
 module.exports=function(gulp, config){
 
