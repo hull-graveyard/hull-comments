@@ -1,5 +1,4 @@
 var iconfont       = require('gulp-iconfont')
-var iconfontCss    = require('gulp-iconfont-css')
 var rename         = require('gulp-rename');
 var consolidate    = require('gulp-consolidate');
 
