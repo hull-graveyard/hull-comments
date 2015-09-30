@@ -50,6 +50,7 @@
     "foundation": "^4.2.1-1",
     "foundation-sites": "^5.5.2",
     "gh-pages": "^0.4.0",
+    "git-rev-sync": "^1.4.0",
     "gulp": "^3.9.0",
     "gulp-imagemin": "^2.3.0",
     "gulp-invalidate-cloudfront": "^0.1.2",
