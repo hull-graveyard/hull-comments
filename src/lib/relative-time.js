@@ -9,13 +9,13 @@ const UNITS = {
   day: 86400000,
   hour: 3600000,
   minute: 60000,
-  second: 1000
+  second: 1000,
 };
 
 function relativeTime(time) {
   const delta = new Date() - new Date(time);
 
-  for (let unit in UNITS) {
+  for (const unit in UNITS) {
     if (UNITS.hasOwnProperty(unit) && delta >= UNITS[unit]) {
       const n = Math.floor(delta / UNITS[unit]);
 

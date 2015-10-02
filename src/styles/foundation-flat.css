@@ -3,19 +3,19 @@ meta.foundation-version {
 
 meta.foundation-mq-small {
   font-family: "/only screen/";
-  width: 0em; }
+  width: 0; }
 
 meta.foundation-mq-small-only {
-  font-family: "/only screen and (max-width: 30em)/";
-  width: 0em; }
+  font-family: "/only screen and (max-width: 40em)/";
+  width: 0; }
 
 meta.foundation-mq-medium {
-  font-family: "/only screen and (min-width:30.063em)/";
-  width: 30.063em; }
+  font-family: "/only screen and (min-width:40.0625em)/";
+  width: 40.0625em; }
 
 meta.foundation-mq-medium-only {
-  font-family: "/only screen and (min-width:30.063em) and (max-width:64em)/";
-  width: 30.063em; }
+  font-family: "/only screen and (min-width:40.0625em) and (max-width:64em)/";
+  width: 40.0625em; }
 
 meta.foundation-mq-large {
   font-family: "/only screen and (min-width:64.0625em)/";
@@ -391,7 +391,7 @@ button::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
-@media only screen and (min-width: 30.063em) {
+@media only screen and (min-width: 40.0625em) {
   button, .button {
     display: inline-block; } }
 
@@ -634,7 +634,7 @@ button::-moz-focus-inner {
     padding-right: 0.9375rem;
     float: left; } }
 
-@media only screen and (min-width: 30.063em) {
+@media only screen and (min-width: 40.0625em) {
   .medium-push-0 {
     position: relative;
     left: 0;
@@ -1653,7 +1653,7 @@ button::-moz-focus-inner {
     .tabs-content.vertical > .content {
       padding: 0 0.9375rem; }
 
-@media only screen and (min-width: 30.063em) {
+@media only screen and (min-width: 40.0625em) {
   .tabs.vertical {
     float: left;
     margin: 0;
@@ -2143,7 +2143,7 @@ meta.foundation-mq-topbar {
     margin-bottom: 0;
     padding-bottom: 0.4125rem;
     padding-top: 0.4125rem; }
-    @media only screen and (max-width: 30em) {
+    @media only screen and (max-width: 40em) {
       .top-bar .button, .top-bar button {
         position: relative;
         top: -1px; } }
@@ -2647,7 +2647,7 @@ meta.foundation-mq-topbar {
 .text-justify {
   text-align: justify !important; }
 
-@media only screen and (max-width: 30em) {
+@media only screen and (max-width: 40em) {
   .small-only-text-left {
     text-align: left !important; }
   .small-only-text-right {
@@ -2667,7 +2667,7 @@ meta.foundation-mq-topbar {
   .small-text-justify {
     text-align: justify !important; } }
 
-@media only screen and (min-width: 30.063em) and (max-width: 64em) {
+@media only screen and (min-width: 40.0625em) and (max-width: 64em) {
   .medium-only-text-left {
     text-align: left !important; }
   .medium-only-text-right {
@@ -2677,7 +2677,7 @@ meta.foundation-mq-topbar {
   .medium-only-text-justify {
     text-align: justify !important; } }
 
-@media only screen and (min-width: 30.063em) {
+@media only screen and (min-width: 40.0625em) {
   .medium-text-left {
     text-align: left !important; }
   .medium-text-right {
@@ -2987,7 +2987,7 @@ blockquote p {
   border: none;
   padding: 0 0.0625rem; }
 
-@media only screen and (min-width: 30.063em) {
+@media only screen and (min-width: 40.0625em) {
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.4; }
   h1 {
@@ -3033,7 +3033,7 @@ blockquote p {
     display: table-cell !important; } }
 
 /* medium displays */
-@media only screen and (min-width: 30.063em) {
+@media only screen and (min-width: 40.0625em) {
   .hide-for-small-only, .show-for-small-up, .hide-for-small, .hide-for-small-down, .show-for-medium-only, .show-for-medium-up, .show-for-medium, .show-for-medium-down, .hide-for-large-only, .hide-for-large-up, .hide-for-large, .show-for-large-down, .hide-for-xlarge-only, .hide-for-xlarge-up, .hide-for-xlarge, .show-for-xlarge-down, .hide-for-xxlarge-only, .hide-for-xxlarge-up, .hide-for-xxlarge, .show-for-xxlarge-down {
     display: inherit !important; }
   .show-for-small-only, .hide-for-small-up, .show-for-small, .show-for-small-down, .hide-for-medium-only, .hide-for-medium-up, .hide-for-medium, .hide-for-medium-down, .show-for-large-only, .show-for-large-up, .show-for-large, .hide-for-large-down, .show-for-xlarge-only, .show-for-xlarge-up, .show-for-xlarge, .hide-for-xlarge-down, .show-for-xxlarge-only, .show-for-xxlarge-up, .show-for-xxlarge, .hide-for-xxlarge-down {

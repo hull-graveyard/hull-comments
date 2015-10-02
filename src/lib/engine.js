@@ -1,14 +1,13 @@
-import _             from './lodash';
+import _ from './lodash';
 import { translate } from './i18n';
-var Emitter = require('events').EventEmitter;
-import assign        from 'object-assign';
-import MessageFormat from 'messageformat';
+const Emitter = require('events').EventEmitter;
+import assign from 'object-assign';
 
-var throwErr = function(err){
-  console.log(err)
-}
+const throwErr = function(err) {
+  console.log(err);
+};
 
-var ACTIONS = [
+const ACTIONS = [
   'toggleForm',
   'signup',
   'login',
@@ -27,33 +26,40 @@ var ACTIONS = [
   'downVote',
   'share',
   'toggleFavorite',
-  'flag'
+  'flag',
 ];
 
-var STATUS = {
+const STATUS = {
   login: '_isLoggingIn',
   logout: '_isLoggingOut',
   linkIdentity: '_isLinking',
-  unlinkIdentity: '_isUnlinking'
+  unlinkIdentity: '_isUnlinking',
 };
 
-var SORT_OPTIONS = {
+const SORT_OPTIONS = {
   newest: 'created_at DESC',
   oldest: 'created_at ASC',
-  best: 'stats.reviews.sum DESC'
+  best: 'stats.reviews.sum DESC',
 };
 
-var EVENT = 'CHANGE';
+const EVENT = 'CHANGE';
 
 function processCommentVotes(distribution) {
   return _.reduce(distribution, function(m, v, k) {
     k = parseInt(k, 10);
 
-    if (k > 0) { m.up += v }
-    if (k < 0) { m.down += v }
+    if (k > 0) {
+      m.up += v;
+    }
+    if (k < 0) {
+      m.down += v;
+    }
 
     return m;
-  }, { up: 0, down: 0 });
+  }, {
+    up: 0,
+    down: 0,
+  });
 }
 
 function processComment(raw) {
@@ -86,14 +92,16 @@ function Engine(deployment, hull) {
 
 assign(Engine.prototype, Emitter.prototype, {
 
-  updateShip: function(ship) {
+  updateShip(ship) {
     this._ship = ship;
     this.emitChange();
   },
 
-  getActions: function() {
-    if (this._actions) { return this._actions; }
-    var instance = this;
+  getActions() {
+    if (this._actions) {
+      return this._actions;
+    }
+    const instance = this;
     this._actions = ACTIONS.reduce(function(m, a) {
       m[a] = instance[a].bind(instance);
       return m;
@@ -102,10 +110,10 @@ assign(Engine.prototype, Emitter.prototype, {
     return this._actions;
   },
 
-  getState: function() {
-    var state = {
+  getState() {
+    return {
       settings: this._ship.settings,
-      user: this._user ? this._user : undefined,
+      user: this._user ? this._user : null,
       identities: this._identities,
       providers: this.getProviders(),
       error: this._error,
@@ -124,44 +132,45 @@ assign(Engine.prototype, Emitter.prototype, {
       isReady: !!this._isReady,
       hasMore: this._hasMore,
       commentsCount: this._commentsCount,
-      formIsOpen: !!this._formIsOpen
+      formIsOpen: !!this._formIsOpen,
     };
-    return state;
   },
 
-  getComments: function() {
-    var orderBy = this._orderBy;
+  getComments() {
+    const orderBy = this._orderBy;
 
-    var comments = (this._comments || []).slice();
+    const comments = (this._comments || []).slice();
     comments.sort(function(a, b) {
-      var da = new Date(a.created_at);
-      var db = new Date(b.created_at);
-      var ret = 0;
-      if (da > db) {ret =  -1; } else {ret = 1;}
+      const da = new Date(a.created_at);
+      const db = new Date(b.created_at);
+      let ret = 0;
+      if (da > db) {
+        ret = -1;
+      } else {
+        ret = 1;
+      }
       if (orderBy === 'oldest') {
         return -1 * ret;
-      } else {
-        return ret;
       }
+      return ret;
     });
 
     return comments;
   },
 
-  addChangeListener: function(listener) {
-    this.addListener(EVENT, listener)
+  addChangeListener(listener) {
+    this.addListener(EVENT, listener);
   },
 
-  removeChangeListener: function(listener) {
+  removeChangeListener(listener) {
     this.removeListener(EVENT, listener);
   },
 
-  emitChange: function(message) {
+  emitChange() {
     this.emit(EVENT);
   },
 
-  resetState: function() {
-    this.resetTranslations();
+  resetState() {
     this.resetUser();
 
     this._page = 1;
@@ -177,10 +186,10 @@ assign(Engine.prototype, Emitter.prototype, {
     this._isFavorite = null;
   },
 
-  resetUser: function() {
+  resetUser() {
     this._user = this.hull.currentUser();
 
-    var identities = {}
+    const identities = {};
     if (this._user) {
       this._user.identities.forEach(function(identity) {
         identities[identity.provider] = true;
@@ -191,25 +200,15 @@ assign(Engine.prototype, Emitter.prototype, {
     this.fetchIsFavorite();
   },
 
-  resetTranslations: function() {
-    this._translations = {};
+  getProviders() {
+    const providers = [];
 
-    var translations = this._ship.translations['en'];
-    var mf = new MessageFormat('en');
-    for (var k in translations) {
-      if (translations.hasOwnProperty(k)) {
-        this._translations[k] = mf.compile(translations[k]);
-      }
-    }
-  },
-
-  getProviders: function() {
-    var providers = [];
-
-    var services = this.hull.config().services.auth;
-    for (var k in services) {
+    const services = this.hull.config().services.auth;
+    for (const k in services) {
       if (services.hasOwnProperty(k) && k !== 'hull') {
-        var provider = { name: k };
+        const provider = {
+          name: k,
+        };
         provider.isLinked = !!this._identities[k];
         provider.isUnlinkable = provider.isLinked && this._user.main_identity !== k;
 
@@ -220,55 +219,55 @@ assign(Engine.prototype, Emitter.prototype, {
     return providers;
   },
 
-  toggleForm: function() {
+  toggleForm() {
     this._formIsOpen = !this._formIsOpen;
 
     this.emitChange();
   },
 
-  login: function(options, source) {
-    return this.perform('login', options)
+  login(options) {
+    return this.perform('login', options);
   },
 
-  resetPassword: function(options={}){
-    this.hull.api("/users/request_password_reset", "post", options, function(r) {
-      this._error=null,
-      this._status.resetPassword={
-        message: translate("Email sent to {email}. Check your inbox!",options)
-      }
-      this.emitChange()
+  resetPassword(options = {}) {
+    this.hull.api('/users/request_password_reset', 'post', options, function() {
+      this._error = null;
+      this._status.resetPassword = {
+        message: translate('Email sent to {email}. Check your inbox!', options),
+      };
+      this.emitChange();
     }.bind(this), function(error) {
-      this._error=error
+      this._error = error;
       delete this._status.resetPassword;
-      this.emitChange()
+      this.emitChange();
     }.bind(this));
   },
 
-  clearErrors: function() {
-    this._error=null;
-    this._status={};
-    this.emitChange()
+  clearErrors() {
+    this._error = null;
+    this._status = {};
+    this.emitChange();
   },
 
-  logout: function() {
+  logout() {
     this.hull.logout();
   },
 
-  linkIdentity: function(provider) {
-    this.perform('linkIdentity', {provider});
+  linkIdentity(provider) {
+    this.perform('linkIdentity', { provider });
   },
 
-  unlinkIdentity: function(provider) {
-    this.perform('unlinkIdentity', {provider});
+  unlinkIdentity(provider) {
+    this.perform('unlinkIdentity', { provider });
   },
 
-  signup: function(user) {
+  signup(user) {
     this.perform('signup', user);
   },
 
-  perform: function(method, options={}) {
-    var s = STATUS[method];
-    var provider = options.provider || 'email'
+  perform(method, options = {}) {
+    const s = STATUS[method];
+    const provider = options.provider || 'email';
     this[s] = provider;
     this._error = null;
 
@@ -278,16 +277,20 @@ assign(Engine.prototype, Emitter.prototype, {
       options.redirect_url = document.location.origin + '/a/hull-callback';
     }
 
-    var promise = Hull[method](options);
-    promise.then(function(){
+    const promise = Hull[method](options);
+    promise.then(function() {
       this.resetUser();
       this[s] = false;
       this._error = null;
       this.emitChange();
-    }.bind(this), function(error){
+    }.bind(this), function(error) {
       // Quick fix...
-      if (error.response != null) { error = error.response; }
-      if (error.error != null) { error = error.error; }
+      if (error.response !== null) {
+        error = error.response;
+      }
+      if (error.error !== null) {
+        error = error.error;
+      }
       this[s] = false;
       error.provider = provider;
       this._error = error;
@@ -297,27 +300,27 @@ assign(Engine.prototype, Emitter.prototype, {
     return promise;
   },
 
-  fetchIsFavorite: function() {
-    var self = this;
+  fetchIsFavorite() {
+    const self = this;
     if (this._user) {
       this.hull.api('me/liked/' + this.entity_id).then(function(res) {
         self._isFavorite = res;
         self.emitChange('fetched _isFavorite');
-      }, function(err) {
+      }, function() {
         self._isFavorite = false;
         self.emitChange('fetched _isFavorite');
       }).catch(throwErr);
     }
   },
 
-  fetchComments: function(params) {
+  fetchComments(params) {
     if (!this._isFetching) {
       params = assign({}, params, {
         wrapped: true,
         nested: true,
         page: this._page,
         per_page: 50,
-        order_by: SORT_OPTIONS[this._orderBy]
+        order_by: SORT_OPTIONS[this._orderBy],
       });
 
       this._isFetching = this.hull.api(this.entity_id + '/comments', params);
@@ -342,8 +345,10 @@ assign(Engine.prototype, Emitter.prototype, {
     return this._isFetching;
   },
 
-  fetchMore: function(params) {
-    if (!this._hasMore) { return; }
+  fetchMore() {
+    if (!this._hasMore) {
+      return;
+    }
 
     if (!this._isFetching) {
       this._page = this._page + 1;
@@ -352,7 +357,7 @@ assign(Engine.prototype, Emitter.prototype, {
     }
   },
 
-  orderBy: function(sortKey) {
+  orderBy(sortKey) {
     this._orderBy = SORT_OPTIONS[sortKey] ? sortKey : 'newest';
 
     this._page = 1;
@@ -362,47 +367,60 @@ assign(Engine.prototype, Emitter.prototype, {
     this.fetchComments();
   },
 
-  deleteComment: function(id) {
-    let c = this._commentsById[id];
+  deleteComment(id) {
+    const c = this._commentsById[id];
 
-    if (c == null) { return; }
+    if (c === null) {
+      return;
+    }
 
-    c['deleted_at'] = new Date();
+    c.deleted_at = new Date();
     this.hull.api(c.id, 'delete');
 
     this.emitChange();
   },
 
-  postComment: function(text, parentId) {
-
+  postComment(text, parentId) {
     if (this._isPosting) return false;
 
     if (!!this._deployment.ship.settings.allow_guest || this._user) {
-      var d = new Date();
-      var comment = { description: text, extra: { }, created_at: d };
-      var c = { description: text, user: (this._user || {}), created_at: d }
-      if (parentId == null) {
-        var i = this._comments.push(c) - 1;
+      const d = new Date();
+      const comment = {
+        description: text,
+        extra: { },
+        created_at: d,
+      };
+      const c = {
+        description: text,
+        user: (this._user || {}),
+        created_at: d,
+      };
+      let i;
+      if (parentId === null) {
+        i = this._comments.push(c) - 1;
       } else {
-        comment['parent_id'] = parentId;
-        var p = this._commentsById[parentId];
+        comment.parent_id = parentId;
+        const p = this._commentsById[parentId];
         p.children = p.children || [];
-        var i = p.children.push(c) - 1;
+        i = p.children.push(c) - 1;
       }
 
       this._isPosting = this.hull.api(this.entity_id + '/comments', 'post', comment);
-      this._isPosting.then((r)=>{
-        if (parentId == null) {
+      this._isPosting.then((r) => {
+        if (parentId === null) {
           this._comments[i] = r;
         } else {
           this._commentsById[parentId].children[i] = r;
         }
-        r.votes = { up: 0, down: 0 };
-        this._commentsById[r.id]= r;
+        r.votes = {
+          up: 0,
+          down: 0,
+        };
+        this._commentsById[r.id] = r;
         this._commentsCount++;
         this._isPosting = false;
         this.emitChange('comment is now posted');
-      }, ()=>{
+      }, () => {
         this._isPosting = false;
         this._comments.pop();
         this.emitChange();
@@ -414,83 +432,73 @@ assign(Engine.prototype, Emitter.prototype, {
     }
   },
 
-  updateComment: function(text, id) {
-    if (id && text) {
-      var c = this._commentsById[id];
+  updateComment(description, id) {
+    if (id && description) {
+      const c = this._commentsById[id];
 
-      var self = this;
-      return this.hull.api(id, 'put', { description: text }).then(function(r) {
+      const self = this;
+      return this.hull.api(id, 'put', { description }).then(function(r) {
         assign(c, r);
         self.emitChange();
       }).catch(throwErr);
     }
   },
 
-  vote: function(id, rating) {
-    var c = this._commentsById[id];
+  vote(id, rating) {
+    const c = this._commentsById[id];
 
-    this.hull.api(id + '/reviews', 'post', { rating: rating }).then(function(r) {
+    this.hull.api(id + '/reviews', 'post', { rating }).then(function(r) {
       c.votes = processCommentVotes(r.ratings.distribution);
       this.emitChange('Update comment score');
     }.bind(this)).catch(throwErr);
   },
 
-  upVote: function(id) {
+  upVote(id) {
     this.vote(id, 1);
   },
 
-  downVote: function(id) {
+  downVote(id) {
     this.vote(id, -1);
   },
 
-  share: function(provider) {
+  share(provider) {
     this.hull.share({
       provider: provider,
       anonymous: true,
-      params: {
-        display: 'popup'
-      }
+      params: { display: 'popup' },
     });
   },
 
-  toggleFavorite: function() {
-    if (this._user)  {
-      var self = this;
-      var refresh = function() {
+  toggleFavorite() {
+    if (this._user) {
+      const self = this;
+      const refresh = function() {
         self.fetchIsFavorite();
-      }
+      };
       if (this._isFavorite) {
         this._isFavorite = false;
-        this.hull.api(this.entity_id + '/likes','delete').then(refresh, refresh);
+        this.hull.api(this.entity_id + '/likes', 'delete').then(refresh, refresh);
       } else {
         this._isFavorite = true;
-        this.hull.api(this.entity_id + '/likes','post').then(refresh, refresh);
+        this.hull.api(this.entity_id + '/likes', 'post').then(refresh, refresh);
       }
-      this.emitChange()
+      this.emitChange();
     }
   },
 
-  flag: function(commentId) {
+  flag(commentId) {
     if (commentId) {
       return this.hull.api(commentId + '/flag', 'post').catch(throwErr);
     }
   },
 
-  translate: function(message, data) {
-    var m = this._translations[message];
-
-    if (m == null) { return message; }
-
-    return m(data);
-  },
-
   _processComments(comments) {
     _.each(comments, function(raw) {
-      let c = processComment(raw);
+      const c = processComment(raw);
       this._commentsById[c.id] = c;
       this._processComments(c.children);
     }, this);
-  }
+  },
 });
 
 module.exports = Engine;

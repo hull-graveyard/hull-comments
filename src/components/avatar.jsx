@@ -1,17 +1,25 @@
-var React = require('react');
+import React from 'react';
+import styles from '../styles/avatar.scss';
+import cssModules from '../lib/cssModules';
 
-var Avatar = React.createClass({
-  getDefaultProps(){
-    return {
-      className:''
-    }
+
+const Avatar = React.createClass({
+  propTypes: {
+    picture: React.PropTypes.any,
+    className: React.PropTypes.string,
   },
+
+  getDefaultProps() {
+    return {
+      className: '',
+    };
+  },
+
   render() {
-    var picture = this.props.picture || "http://hull.s3.amazonaws.com/avatar.png"
-    // var picture = Hull.config().orgUrl + '/api/v1/' + this.props.id + '/picture';
-    return <div className={`avatar ${this.props.className}`}><img src={picture} /></div>;
-  }
+    const picture = this.props.picture || 'http://hull.s3.amazonaws.com/avatar.png';
+    return <img styleName="avatar" src={picture} />;
+  },
 
 });
 
-module.exports = Avatar;
+module.exports = cssModules(Avatar, styles);

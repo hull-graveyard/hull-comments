@@ -1,4 +1,10 @@
+$line-height:15px;
+
+@import "foundation-sites/scss/foundation/components/global";
+@import "foundation-sites/scss/foundation/functions";
+
 @import "colors";
+@import "buttons";
 
 //
 // FOUNDATION SETTINGS

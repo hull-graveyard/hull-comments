@@ -6,8 +6,9 @@ var assign = require("object-assign");
 module.exports = function(gulp, config){
 
   gulp.task('ngrok', function(callback){
-
-    if(!config.ngrok){ throw new gutil.PluginError('ngrok', 'Ngrok is not configured properly, checkout config.js'); }
+    if (!config.ngrok){
+      return callback();
+    }
 
     ngrok.connect(config.ngrok, function (error, url) {
 

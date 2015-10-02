@@ -1,0 +1,41 @@
+@import "settings";
+
+.composer{
+  padding-left: 40px;
+  @media #{$medium-up}{
+    padding-left: 60px;
+    .form{
+      padding-left: 40px;
+    }
+  }
+  &.top{
+    padding-left: 0;
+    margin-bottom: $line-height*2;
+    clear: both;
+    @media #{$small-only}{
+    .avatar{
+        display: none;  
+      }
+    }
+    @media #{$medium-up}{
+      .form{
+        padding-left: 65px;
+      }
+      .avatar{
+        img{
+          max-width: 50px;
+        }
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.avatar{
+  margin-top: 10px;
+  position: absolute;
+}
+
+.left{
+  float: left;
+}

@@ -1,28 +1,42 @@
 import React from 'react';
-import cx from 'classnames';
 import Icon from './icon.jsx';
 import { translate } from '../lib/i18n';
+import styles from '../styles/favorites.scss';
+import cssModules from '../lib/cssModules';
 
-var FavoritesButton = React.createClass({
-  toggleFavorite: function(e) {
-    e.preventDefault();
+
+const FavoritesButton = React.createClass({
+  propTypes: {
+    styleName: React.PropTypes.string,
+    actions: React.PropTypes.object.isRequired,
+    isFavorite: React.PropTypes.bool,
+    user: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.oneOf([null]),
+    ]),
+  },
+
+  toggleFavorite(event) {
+    event.preventDefault();
     this.props.actions.toggleFavorite();
   },
 
-  render: function() {
-    if (this.props.user == null) { return null; }
+  render() {
+    let color;
+    let linkStyle;
+    if (!this.props.user) { return <noscript/>; }
 
-    if (this.props.isFavorite){
-      var color = '#E75F45';
-      var linkStyle = {color};
+    if (this.props.isFavorite) {
+      color = '#E75F45';
+      linkStyle = {color};
     }
     return (
-      <a href="#" onClick={this.toggleFavorite} style={linkStyle}>
-        <Icon colorize name='heart'/>
+      <a href="#" styleName="link" onClick={this.toggleFavorite} style={linkStyle}>
+        <Icon colorize name="heart"/>
         {this.props.isFavorite ? translate('Liked') : translate('Like')}
       </a>
     );
-  }
+  },
 });
 
-module.exports = FavoritesButton;
+module.exports = cssModules(FavoritesButton, styles);

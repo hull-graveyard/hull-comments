@@ -1,50 +1,59 @@
-import React      from 'react';
+import React from 'react';
+import Colr from 'colr';
 
 /**
  * Style component
  * @param  {hash} settings
  * @return {React Component} A style tag
  */
-var HullStyle = React.createClass({
-  getStyle(){
+const HullStyle = React.createClass({
+  propTypes: {
+    rootClass: React.PropTypes.string.isRequired,
+    link_color: React.PropTypes.string.isRequired,
+    light_color: React.PropTypes.string.isRequired,
+    text_color: React.PropTypes.string.isRequired,
+    background_color: React.PropTypes.string.isRequired,
+  },
 
+  getStyle() {
     // Just Javascript™
-    let { rootCssClass, link_color, light_color, text_color, background_color } = this.props; 
+    const link = new Colr().fromHex(this.props.link_color);
+    const light = new Colr().fromHex(this.props.light_color);
+    const text = new Colr().fromHex(this.props.text_color);
+    const background = new Colr().fromHex(this.props.background_color);
+    const { rootClass } = this.props;
     // Here's where you inject your user-configurable CSS.
     // ES6 template literals (http://updates.html5rocks.com/2015/01/ES6-Template-Strings) make this a fun moment.
-    var style = `
-      ${rootCssClass}{
-        background-color: ${background_color};
-        color: ${text_color};
+    return `
+      ${rootClass}{
+        background-color: ${background.toHex()};
+        color: ${text};
       }
 
-      ${rootCssClass} a:not(.button),
-      ${rootCssClass} a.button.link,
-      ${rootCssClass} a:hover.button.link{
-        color: ${link_color};
+      ${rootClass} a:not(.button),
+      ${rootClass} a.button.link {
+        color: ${link.toHex()};
       }
 
-      ${rootCssClass} a.button.primary,
-      ${rootCssClass} a.button.primary:hover{
-        background-color: ${link_color};
+      ${rootClass} a.button{
+        background-color: ${link.toHex()};
+        color:white;
       }
 
-      ${rootCssClass} .light-text,
-      ${rootCssClass} .comment-footer__list-item a,
-      ${rootCssClass} .comment-footer__list-item a:hover,
-      ${rootCssClass} .comment-footer__list-item a:active,
-      ${rootCssClass} .placeholder >.textarea:before,
-      ${rootCssClass} input.placeholder {
-        color: ${light_color};
+      ${rootClass} a.button:hover{
+        background-color: ${link.darken(20).toHex()};
       }
-    `
-    return style
+
+      ${rootClass} .light-text,
+      ${rootClass} a.light-text{
+        color: ${light.toHex()};
+      }
+    `;
   },
   render() {
     // Insert any css you want here. Live updates FTW
     return <style type="text/css">{this.getStyle()}</style>;
-  }
-
+  },
 });
 
 module.exports = HullStyle;

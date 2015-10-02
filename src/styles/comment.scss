@@ -1,0 +1,45 @@
+@import "settings";
+
+
+.avatar{
+  position: absolute;
+}
+
+.comment {
+  display: block;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 15px;
+  clear: both;
+
+  .comment,
+  .container{
+    padding-left: 40px;
+    .comment{
+      padding-left: 0;
+      @media #{$medium-up}{
+        padding-left: 40px;
+      }
+      .comment{
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.root > {
+  .avatar img{
+    @media #{$medium-up}{
+      margin-top: 0;
+      max-width: 50px;
+    }
+  }
+
+  .comment,
+  .container{
+    padding-left: 40px;
+    @media #{$medium-up}{
+      padding-left: 60px;
+    }
+  }
+}

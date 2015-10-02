@@ -1,17 +1,18 @@
-.comment-footer__list{
-  @extend %list;
+@import "settings";
+
+.list{
+  composes: inline-list from './mixins.scss';
   list-style: none;
   margin: 5px 0 20px 0;
   font-size: 11px;
   clear: fix;
   position: relative;
 }
-.comment-footer__list-item{
+
+
+.item{
   display: inline-block;
   float: left;
-  .text-warning{ color:$warning-color; }
-  .text-alert{ color:$alert-color; }
-  .text-success{ color:$success-color; }
   @media #{$small-only}{
     ul.f-dropdown{
       width: 240px;
@@ -24,12 +25,27 @@
         }
       }
     }
-    .share-icon__text{
+    .share-text{
       display: none;
     }
   }
 }
 
-.comment-footer__separator{
+.link{
+  composes: nav__link from './mixins.scss';
+  padding:0;
+  &.warning{ color:$warning-color; }
+  &.alert{ color:$alert-color; }
+  &.success{ color:$success-color; }
+}
+
+.disabled{
+  cursor: default;
+}
+
+
+
+
+.separator{
   margin: 0 10px;
 }

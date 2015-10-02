@@ -1,32 +1,45 @@
 import React from 'react';
-import cx from 'classnames';
 import CommentActions from './comment-actions';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 import relativeTime from '../lib/relative-time';
+import styles from '../styles/comment-meta.scss';
+import cssModules from '../lib/cssModules';
 
-var CommentMeta = React.createClass({
-  renderReplyTo(){
-    if(this.props.parent){
-      return <span className='nowrap'><Icon name='reply' colorize/>{translate('In reply to {name}', {name:this.props.parent.user.name})} </span>
+const CommentMeta = React.createClass({
+  propTypes: {
+    parent: React.PropTypes.object,
+    comment: React.PropTypes.shape({
+      user: React.PropTypes.object,
+      id: React.PropTypes.string,
+    }).isRequired,
+  },
+  renderReplyTo() {
+    const parent = this.props.parent;
+    if (parent) {
+      return <span styleName="nowrap"><Icon name="reply" colorize/>{translate('In reply to {name}', {name: parent.user.name})} </span>;
     }
   },
   render() {
-    var comment = this.props.comment;
-    var user = comment.user || {};
+    const comment = this.props.comment;
+    const user = comment.user || {};
 
     return (
-      <header className='comment-meta'>
-        <strong className='comment-author'>
+      <header styleName="meta">
+        <strong>
           <a>{user.name || translate('Guest')}</a>
-          { user.is_admin ? <span className='comment__admin-label'> {` ${translate('Moderator')} `} </span> : undefined }
+          { user.is_admin ? <span styleName="admin"> {` ${translate('Moderator')} `} </span> : null }
         </strong>
-        {this.renderReplyTo()}
-        <span className='comment-time nowrap'>{` ${relativeTime(comment.created_at)} `}</span>
-        <CommentActions {...this.props}/>
+        <span className="light-text">
+          {this.renderReplyTo()}
+          <span styleName="nowrap">{` ${relativeTime(comment.created_at)} `}</span>
+        </span>
+        <div styleName="actions">
+          <CommentActions {...this.props}/>
+        </div>
       </header>
     );
-  }
+  },
 });
 
-module.exports = CommentMeta;
+module.exports = cssModules(CommentMeta, styles);

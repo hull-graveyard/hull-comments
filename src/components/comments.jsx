@@ -1,20 +1,26 @@
 import React from 'react';
-var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
-import MainNav from './main-nav';
+import Nav from './nav';
 import Conversation from './conversation';
 import Icon from './icon';
+import styles from '../styles/main.scss';
+import cssModules from '../lib/cssModules';
 
-var Comments = React.createClass({
+
+const Comments = React.createClass({
+  propTypes: {
+    isReady: React.PropTypes.bool,
+  },
   render() {
     if (this.props.isReady) {
-      return <div>
-        <MainNav {...this.props} />
-        <Conversation {...this.props} />
-      </div>;
-    } else {
-      return <Icon name='spinner' size={64}style={{display:'block', margin:'0 auto'}}/>;
+      return (
+        <div>
+          <Nav {...this.props} />
+          <Conversation {...this.props} />
+        </div>
+      );
     }
-  }
+    return <Icon name="spinner" size={64} style={{display: 'block', margin: '0 auto'}}/>;
+  },
 });
 
-module.exports = Comments
+module.exports = cssModules(Comments, styles);

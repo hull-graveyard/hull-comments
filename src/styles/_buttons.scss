@@ -1,96 +1,29 @@
-// .button, button{
-//   &.login{
-//     padding:10px;
-//   }
-//   .svg-icon {
-//     vertical-align: middle;
-//     &+span{
-//       margin-left: 6px;
-//     }
-//   }
-// }
+@mixin button($color, $text){
+  appearance: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 
-.button.link{
-  background:transparent;
-}
+  transition: background-color .3s ease-out;
+  background-color: $color;
+  color: $text;
 
-.button.login-button{
-  margin: 0 5px 10px 0;
-  padding: 10px;
-  .icon{
-    width:24px;
-    vertical-align:-50%;
+  margin: 0 0 1rem;
+  padding: .625rem 1.25rem .6875rem;
+
+  border: 0 solid transparent;
+  border-radius: 3px;
+
+  display: inline-block;
+  position: relative;
+
+  font-family: Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+  font-size: .6875rem;
+  font-weight: 400;
+  line-height: normal;
+
+  &:hover{
+    background-color: adjust-color($color, $lightness: -10);
   }
 }
 
-.button.email{
-  padding: 10px 20px;
-}
-
-.button.facebook, .bc-background-facebook { background-color: #3b5998; }
-.bc-color-facebook { color: #3b5998; }
-
-.button.foursquare, .bc-background-foursquare { background-color: #f94877; }
-.bc-color-foursquare { color: #f94877; }
-.button.foursquare-2, .bc-background-foursquare-2 { background-color: #eeebac; }
-.bc-color-foursquare-2 { color: #eeebac; }
-.button.foursquare-3, .bc-background-foursquare-3 { background-color: #0cbadf; }
-.bc-color-foursquare-3 { color: #0cbadf; }
-.button.foursquare-4, .bc-background-foursquare-4 { background-color: #8fd400; }
-.bc-color-foursquare-4 { color: #8fd400; }
-.button.foursquare-5, .bc-background-foursquare-5 { background-color: #ff7900; }
-.bc-color-foursquare-5 { color: #ff7900; }
-.button.foursquare-6, .bc-background-foursquare-6 { background-color: #ffcb00; }
-.bc-color-foursquare-6 { color: #ffcb00; }
-.button.foursquare-7, .bc-background-foursquare-7 { background-color: #d1d4d3; }
-.bc-color-foursquare-7 { color: #d1d4d3; }
-
-.button.github, .bc-background-github { background-color: #999999; }
-.bc-color-github { color: #999999; }
-.button.github-2, .bc-background-github-2 { background-color: #999999; }
-.bc-color-github-2 { color: #999999; }
-.button.github-3, .bc-background-github-3 { background-color: #666666; }
-.bc-color-github-3 { color: #666666; }
-.button.github-4, .bc-background-github-4 { background-color: #333333; }
-.bc-color-github-4 { color: #333333; }
-.button.github-5, .bc-background-github-5 { background-color: #6cc644; }
-.bc-color-github-5 { color: #6cc644; }
-.button.github-6, .bc-background-github-6 { background-color: #bd2c00; }
-.bc-color-github-6 { color: #bd2c00; }
-.button.github-7, .bc-background-github-7 { background-color: #ff9933; }
-.bc-color-github-7 { color: #ff9933; }
-
-.button.google, .bc-background-google-plus { background-color: #dd4b39; }
-.bc-color-google-plus { color: #dd4b39; }
-
-.button.instagram, .bc-background-instagram { background-color: #3f729b; }
-.bc-color-instagram { color: #3f729b; }
-
-.button.linkedin, .bc-background-linkedin { background-color: #0976b4; }
-.bc-color-linkedin { color: #0976b4; }
-.button.linkedin-2, .bc-background-linkedin-2 { background-color: #000000; }
-.bc-color-linkedin-2 { color: #000000; }
-
-.button.pinterest, .bc-background-pinterest { background-color: #cc2127; }
-.bc-color-pinterest { color: #cc2127; }
-
-.button.product-hunt, .bc-background-product-hunt { background-color: #d85536; }
-.bc-color-product-hunt { color: #d85536; }
-
-.button.readability, .bc-background-readability { background-color: #990000; }
-.bc-color-readability { color: #990000; }
-
-.button.stumbleupon, .bc-background-stumbleupon { background-color: #eb4924; }
-.bc-color-stumbleupon { color: #eb4924; }
-
-.button.tumblr, .bc-background-tumblr { background-color: #35465c; }
-.bc-color-tumblr { color: #35465c; }
-
-.button.twitter, .bc-background-twitter { background-color: #55acee; }
-.bc-color-twitter { color: #55acee; }
-
-.button.vine, .bc-background-vine { background-color: #00b488; }
-.bc-color-vine { color: #00b488; }
-
-.button.vkontakte, .bc-background-vkontakte { background-color: #45668e; }
-.bc-color-vkontakte { color: #45668e; }

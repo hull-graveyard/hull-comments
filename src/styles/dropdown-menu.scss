@@ -1,40 +1,57 @@
-.dropdown-container{
+@import "settings";
+
+.container{
   position: relative;
-  > a{
-    cursor: pointer;
-  }
+  display: inline-block;
 }
-div.dropdown, ul.dropdown, div.f-dropdown, ul.f-dropdown{
-  display: none;
-  left: -9999px;
+
+.dropdown{
   list-style-type: none;
+
   width: auto;
-  top: 100%;
-  border-radius: $global-radius;
-  box-shadow: 0 0 0 2px $filet-color;
-  font-size: 12px;
   height: auto;
-  background: white;
-  position: absolute;
-  max-height: none;
-  margin: 12px 0 0 0;
-  z-index: 3;
   max-width: 200px;
   min-width: 150px;
   @media #{$medium-up}{
     min-width: 150px;
   }
-  a,
-  li.dropdown__item:not(.has-form) .dropdown__anchor{
-    display: block;
-    outline: none;
-    cursor:pointer;
-    line-height: $line-height;
-    padding: 5px 15px;
-    .icon{
-      margin-right: 10px;
+
+  left: -9999px;
+  top: 100%;
+
+  display: none;
+  position: absolute;
+
+  background: white;
+  border-radius: $global-radius;
+  box-shadow: 0 0 0 2px $filet-color;
+  font-size: 12px;
+  margin: 12px 0 0 0;
+  padding:0;
+  z-index: 3;
+
+  &.right{
+    &.open{
+      display: block;
+      left: auto;
+      right: 0;
+      &:before, &:after{
+        left: auto;
+      }
+      &:before{
+        right: 10px;
+      }
+      &:after{
+        right: 9px;
+      }
     }
   }
+
+  &.open{
+    display: block;
+    left: -8px;
+  }
+
   &:before{
     border: 6px inset;
     content: "";
@@ -61,37 +78,46 @@ div.dropdown, ul.dropdown, div.f-dropdown, ul.f-dropdown{
     left: 9px;
     z-index: 2;
   }
-
-  li.dropdown__item{
-    display: block;
-    padding: 0;
-    margin: 0;
-    float: none;
-  }
 }
 
-.open {
-  div.dropdown, ul.dropdown, div.f-dropdown, ul.f-dropdown{
-    display: block;
-    left: 15px;
-    &.dropdown-right{
-      right: 15px;
-      left: auto;
-      &:before, &:after{
-        left: auto;
-      }
-      &:before{
-        right: 10px;
-      }
-      &:after{
-        right: 9px;
-      }
-    }
+
+.item{
+  display: block;
+  padding: 0;
+  margin: 0;
+  float: none;
+  width: 100%;
+  &.selected, &:hover{
+    background-color: #eee;
   }
 }
+.anchor{
+  composes:nav__link from './mixins.scss';
+  padding: 5px 15px;
+  display: block;
+  i{
+    margin-right: 10px;
+    vertical-align:-20%;
+  }
+}
+.link{
+  composes:nav__link from './mixins.scss';
+  cursor: pointer;
+  display: inline-block;
+}
 
-// .comment-footer .dropdown-container {
-//   > .f-dropdown{
+
+
+
+
+
+
+
+
+
+
+// .comment-footer .container {
+//   > .dropdown{
 //     width: auto;
 //     max-width: none;
 //     position: relative;
@@ -108,5 +134,6 @@ div.dropdown, ul.dropdown, div.f-dropdown, ul.f-dropdown{
 //     }
 //   }
 // }
+
 
 

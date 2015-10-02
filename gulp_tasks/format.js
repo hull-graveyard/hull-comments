@@ -1,11 +1,9 @@
 var esformatter = require('gulp-esformatter');
-var filelog      = require('gulp-filelog');
 
 // Formats your sourcecode to be more pretty.
 module.exports = function(gulp, config){
   gulp.task('format', function() {
-    return gulp.src(['src/**/*.js', 'src/**/*.jsx', '!src/vendors/**'])
-      .pipe(filelog())
+    return gulp.src(["src/lib/engine.js"])
       .pipe(esformatter({
         indent: {
           value: '  '

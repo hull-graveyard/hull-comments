@@ -1,34 +1,47 @@
 import React from 'react';
 import cx from 'classnames';
-import assign from 'object-assign';
+import styles from '../styles/dropdown-menu.scss';
+import cssModules from '../lib/cssModules';
 
-var DropdownMenu = React.createClass({
+
+const DropdownMenu = React.createClass({
   propTypes: {
     onSelect: React.PropTypes.func,
     options: React.PropTypes.array,
     value: React.PropTypes.string,
-    open: React.PropTypes.bool
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.element,
+    ]),
+    className: React.PropTypes.object,
+    right: React.PropTypes.bool,
+    children: React.PropTypes.any,
+    component: React.PropTypes.oneOfType([
+      React.PropTypes.element,
+      React.PropTypes.string,
+    ]),
+    open: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
-      component : 'li'
+      component: 'span',
+      className: {},
     };
   },
 
   getInitialState() {
-    return { opened: this.props.open }
+    return { opened: this.props.open };
   },
 
-  close() {
-    if (this.state.opened) {
-      this.setState({ opened: false });
+
+  getTitle() {
+    if (this.props.title) {
+      return this.props.title;
+    } else if (this.props.value) {
+      return this.props.value.label;
     }
-  },
-
-  toggle(e) {
-    if (e && e.preventDefault) e.preventDefault();
-    this.setState({ opened: !this.state.opened });
+    return null;
   },
 
   handleSelect(selected, evt) {
@@ -43,51 +56,50 @@ var DropdownMenu = React.createClass({
     }
     this.close();
   },
-
-  getTitle() {
-    if (this.props.title) {
-      return this.props.title;
-    } else if (this.props.value) {
-      return this.props.value.label;
-    }
-    return null;
+  toggle(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ opened: !this.state.opened });
   },
 
-  renderOptions(){
-    if(!this.props.options){ return null; }
-    let dropdownClass = cx({
-      'f-dropdown':true,
-      'dropdown-right':!!this.props.right
-    });
+  close() {
+    if (this.state.opened) {
+      this.setState({ opened: false });
+    }
+  },
 
-    return <ul className={dropdownClass}>
-      {this.props.options.map(function(opt, i) {
-        let liClass = (this.props.value === opt.value) ? 'dropdown__item selected' : 'dropdown__item';
-        return <li key={opt.value} className={liClass}>
-          <a href='#' className='dropdown__anchor' onClick={this.handleSelect.bind(this, opt)}>{opt.label || opt.value}</a>
-        </li>;
-      }, this)}
-    </ul>;
+  renderOptions() {
+    if (!this.props.options) { return null; }
+
+    return (
+      <ul styleName={cx({dropdown: true, open: !!this.state.opened, right: !!this.props.right})}>
+        {this.props.options.map(function(opt, i) {
+          const selected = (this.props.value === opt.value);
+          return (
+            <li key={`${opt.value}-${i}`} styleName={cx({item: true, selected: selected})}>
+              <a href="#" styleName="anchor" className="light-text" onClick={this.handleSelect.bind(this, opt)}>{opt.label || opt.value}</a>
+            </li>
+          );
+        }, this)}
+      </ul>
+    );
   },
 
   render() {
-    if(this.props.component=='button'){
-      var Component = 'span';
-      var ButtonComponent = 'button'
-      this.props.btnClass=`${this.props.btnClass} dropdown`
-    } else {
-      var ButtonComponent = 'a';
-      var Component = this.props.component;
-    }
-    var parentClass = (typeof this.props.className === 'string')?{[this.props.className]:true}:this.props.className
-    var className = assign({open:this.state.opened, 'dropdown-container':true}, parentClass);
+    let Component = this.props.component;
+    let ButtonComponent = 'a';
 
-    return <Component className={cx(className)} onClick={this.onSelfClick}>
-      <ButtonComponent href='#' className={this.props.btnClass} onClick={this.toggle}>{this.getTitle()}</ButtonComponent>
-      {this.renderOptions()}
-      {this.props.children}
-    </Component>;
-  }
+    if (this.props.component === 'button') {
+      Component = 'span';
+      ButtonComponent = 'button';
+    }
+    return (
+      <Component styleName="container" onClick={this.onSelfClick}>
+        <ButtonComponent href="#" styleName="link" onClick={this.toggle}>{this.getTitle()}</ButtonComponent>
+        {this.renderOptions()}
+        {this.props.children}
+      </Component>
+    );
+  },
 });
 
-module.exports = DropdownMenu;
+module.exports = cssModules(DropdownMenu, styles);

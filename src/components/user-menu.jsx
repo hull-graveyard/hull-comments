@@ -1,51 +1,52 @@
-import React         from 'react';
-import cx            from 'classnames';
-import capitalize    from '../lib/capitalize';
-import Icon          from './icon.jsx';
-import DropdownMenu  from './dropdown-menu';
-import Avatar        from './avatar';
+import React from 'react';
+import Icon from './icon.jsx';
+import DropdownMenu from './dropdown-menu';
+import UserAvatar from './user-avatar';
 import { translate } from '../lib/i18n';
-import EmailLogin    from './email-login';
+import styles from '../styles/user.scss';
+import cssModules from '../lib/cssModules';
 
-var UserMenu = React.createClass({
+
+const UserMenu = React.createClass({
+  propTypes: {
+    actions: React.PropTypes.object.isRequired,
+    user: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.oneOf([null]),
+    ]),
+  },
+
   handleChange(item) {
-    switch(item.value) {
-      case 'logout':
-        this.props.actions.logout();
-        break;
+    switch (item.value) {
+    case 'logout':
+      this.props.actions.logout();
+      break;
+    default:
+      break;
     }
   },
 
   login(selected) {
-    this.props.actions.login({provider:selected.value});
+    this.props.actions.login({provider: selected.value});
   },
 
   render() {
-    let { user } = this.props;
+    const { user } = this.props;
 
-    if (user == null) { return <noscript />; }
+    if (!user) { return <noscript />; }
 
-    let title = (
-      <span className='user'>
-        <span className="avatar user__avatar"><img src={user.picture} /></span>
-        <span className="user__name">{user.name || user.email || translate('logged in as guest')}</span>
-      </span>
-    );
-
-    let options = [
-      { label: <span><Icon name='exit'/> {translate('Log out')}</span>, value: "logout" }
+    const options = [
+      { label: <span><Icon name="exit"/> {translate('Log out')}</span>, value: 'logout' },
     ];
 
-    return <DropdownMenu className={{'has-dropdown':true, 'user-menu':true}}
-      component="li"
-      inNavBar={true}
-      right={true}
-      options={options}
-      onSelect={this.handleChange}
-      title={title}>
-      </DropdownMenu>;
-  }
+    return (
+      <DropdownMenu right
+        options={options}
+        onSelect={this.handleChange}
+        title={<UserAvatar {...this.props}/>}/>
+      );
+  },
 });
 
-module.exports = UserMenu;
+module.exports = cssModules(UserMenu, styles);
 

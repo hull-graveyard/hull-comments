@@ -1,0 +1,13 @@
+.name {
+  margin-left: 10px;
+}
+
+.avatar{
+  composes: avatar from './mixins.scss';
+  max-width: 20px;
+}
+
+.user{
+  display: inline-block;
+}
+

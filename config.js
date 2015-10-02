@@ -157,12 +157,12 @@ var postcss = [
 // about babel : it"s VERY SLOW. DO NOT APPLY IT TO EVERY SOURCE FILE. see the Excludes we applied
 var loaderLibrary = {
   json     : {test: /\.json$/,                loader: "json" },
-  css      : {test: /\.(css|scss)$/,          loaders: ["style/useable", "css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&"+cssIncludes]},
+  css      : {test: /\.(css|scss)$/,          loaders: ["style", "css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&"+cssIncludes]},
   file     : {test: /\.jpe?g$|\.gif$|\.png|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader : "file" },
   svg      : {test: /\.svg$/,   loader : "svg-inline" },
-  js       : {test: /\.(js)$/,  loader: "babel", exclude: /node_modules|src\/vendors/},
-  prodJSX  : {test: /\.(jsx)$/, loader: "babel", },
-  devJSX   : {test: /\.(jsx)$/, loaders: ["react-hot", "babel"]}
+  js       : {test: /\.(js)$/,  loader: "babel", exclude: /node_modules|src\/vendors/  },
+  prodJSX  : {test: /\.(jsx)$/, loader: "babel"  },
+  devJSX   : {test: /\.(jsx)$/, loaders: ["react-hot", "babel"]  }
 };
 
 var devLoaders = [

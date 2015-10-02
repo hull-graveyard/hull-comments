@@ -1,21 +1,33 @@
-import React                   from 'react';
-import cx                      from 'classnames';
-import ShareMenu               from './share-menu';
-import CommentMeta             from './comment-meta';
+import React from 'react';
+import cx from 'classnames';
+import CommentMeta from './comment-meta';
 import CommentModerationStatus from './comment-moderation-status';
-import CommentMessage          from './comment-message';
-import CommentFooter           from './comment-footer';
-import TopForm                 from './top-form';
-import Conversation            from './conversation';
-import Avatar                  from './avatar';
-import { translate }           from '../lib/i18n';
-import _                       from '../lib/lodash';
+import CommentMessage from './comment-message';
+import CommentFooter from './comment-footer';
+import TopForm from './top-form';
+import Avatar from './avatar';
+import _ from '../lib/lodash';
+import styles from '../styles/comment.scss';
+import cssModules from '../lib/cssModules';
 
-var Comment = React.createClass({
+
+const Comment = React.createClass({
+  propTypes: {
+    comment: React.PropTypes.shape({
+      user: React.PropTypes.object,
+      id: React.PropTypes.string,
+    }).isRequired,
+    user: React.PropTypes.object,
+    depth: React.PropTypes.number.isRequired,
+    settings: React.PropTypes.object,
+    actions: React.PropTypes.object,
+    providers: React.PropTypes.array,
+  },
+
   getDefaultProps() {
     return {
       comment: {},
-      depth: 0
+      depth: 0,
     };
   },
 
@@ -25,8 +37,8 @@ var Comment = React.createClass({
 
 
   isCurrentUser() {
-    var commentUser = (this.props.comment || {}).user || {};
-    var currentUser = (this.props.user || {});
+    const commentUser = (this.props.comment || {}).user || {};
+    const currentUser = (this.props.user || {});
     return commentUser.id === currentUser.id;
   },
 
@@ -48,37 +60,38 @@ var Comment = React.createClass({
   },
 
   renderReplyForm() {
-    if (!this.state.isReplying) { return; }
-    return <TopForm {...this.props} mode='reply' onCancel={this.handleCloseReply} onSubmit={this.handleCloseReply} parentId={this.props.comment.id}/>
+    if (!this.state.isReplying) { return null; }
+    return <TopForm {...this.props} mode="reply" onCancel={this.handleCloseReply} onSubmit={this.handleCloseReply} parentId={this.props.comment.id}/>;
   },
 
-  renderReplies(){
-    let { user, comment, depth, settings, providers, actions } = this.props
-    depth = depth || 0;
+  renderReplies() {
+    const { user, comment, settings, providers, actions } = this.props;
+    const depth = this.props.depth || 0;
 
     return _.map(comment.children, function(c, i) {
-      let props = {
+      const props = {
         user,
         parent: comment,
         comment: c,
         depth: depth + 1,
         settings,
         providers,
-        actions
-      }
-      return <Comment key={i} {...props}/>;
+        actions,
+      };
+      return <WrappedComment key={i} {...props}/>;
     });
   },
 
   render() {
-    let comment = this.props.comment;
-    var user = comment.user;
-    var isCurrentUser = this.isCurrentUser();
+    const comment = this.props.comment;
+    const isCurrentUser = this.isCurrentUser();
 
     return (
-      <div className={cx({ 'row comment collapse': true, 'comment--root':!this.props.depth, collapsed: this.state.isCollapsed })}>
-        <Avatar {...comment.user} className='comment__avatar'/>
-        <div className="comment__container">
+      <div styleName={cx({comment: true, root: !this.props.depth, collapsed: this.state.isCollapsed })}>
+        <div styleName="avatar">
+          <Avatar {...comment.user}/>
+        </div>
+        <div styleName="container">
           <CommentMeta
             {...this.props}
             {...this.state}
@@ -104,19 +117,8 @@ var Comment = React.createClass({
         {this.renderReplies(this.props)}
       </div>
     );
-  }
+  },
 });
 
-
-// function renderComment(properties) {
-//   return <SingleComment {...properties} />
-// }
-
-// var Comment = React.createClass({
-//   render() {
-//     return renderComment(this.props);
-//   }
-// });
-
-module.exports = Comment;
-
+const WrappedComment = cssModules(Comment, styles);
+module.exports = WrappedComment;

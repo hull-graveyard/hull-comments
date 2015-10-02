@@ -1,12 +1,15 @@
-"use strict";
-/*global module,import*/
+'use strict';
+/* global module,import */
 
-import React from "react";
-import assign from "object-assign";
-import _ from "../lib/lodash";
+import React from 'react';
+import assign from 'object-assign';
+import cx from 'classnames';
 import SVGIcon from 'svg-inline-loader/lib/component.jsx';
+import styles from '../styles/icon.scss';
+import cssModules from '../lib/cssModules';
 
-let icons = {
+
+const icons = {
   reply: require('svg-inline!../icons/reply.svg'),
   share: require('svg-inline!../icons/share.svg'),
   heart: require('svg-inline!../icons/heart.svg'),
@@ -37,32 +40,36 @@ let icons = {
   tumblr: require('svg-inline!../icons/tumblr.svg'),
   meetups: require('svg-inline!../icons/meetups.svg'),
   send: require('svg-inline!../icons/send.svg'),
-  email: require('svg-inline!../icons/send.svg')
-}
+  email: require('svg-inline!../icons/send.svg'),
+};
 
-var Icon = React.createClass({
+const Icon = React.createClass({
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
+    size: React.PropTypes.number,
+    style: React.PropTypes.object,
+    colorize: React.PropTypes.bool,
+    color: React.PropTypes.string,
+  },
   getDefaultProps() {
     return {
-      colorize:false,
+      colorize: false,
       style: {},
-      size: 16
+      size: 16,
     };
   },
   render() {
-    let name = this.props.name
-    let src = icons[name];
-    if(src){
-      let {size, style, colorize, color} = this.props;
-      let className = `icon ${colorize ? 'colorize': ''}`;
-      let outputStyle = assign({width:size, height:size}, style);
-      if (color) {
-        outputStyle = assign(outputStyle, {color});
-      }
-      return <SVGIcon src={src} className={className} {...this.props} style={outputStyle} />;
-    } else {
-      return <i/>
+    const { name, size, style, colorize, color } = this.props;
+    const src = icons[name];
+    if (!src) {
+      return <i/>;
     }
-  }
+    let outputStyle = assign({width: size, height: size}, style);
+    if (color) {
+      outputStyle = assign(outputStyle, {color});
+    }
+    return <SVGIcon src={src} styleName={cx({icon: true, colorized: !!colorize})} {...this.props} style={outputStyle} />;
+  },
 });
 
-module.exports = Icon;
+module.exports = cssModules(Icon, styles);

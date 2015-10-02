@@ -1,3 +1,14 @@
+@import "settings";
+
+.nowrap{
+  composes: nowrap from './mixins.scss';
+}
+
+.admin{
+  margin-right: 10px;
+}
+
+
 .meta{
   line-height: 1.3;
   margin: 5px 0;

@@ -1,0 +1,59 @@
+@import "settings";
+
+.editor{
+  display: block;
+  position: relative;
+  @media #{$medium-up}{
+    $caret-size : 11px;
+    &:before, &:after{
+      content:" ";
+      position: absolute;
+      top: $caret-size*2 + 2; //Because avatar = 50px;
+    }
+    &:before{
+      left: -$caret-size*2;
+      margin-top: -$caret-size;
+      border: inset $caret-size+1;
+      border-color: transparent;
+      border-right-color: rgba(143, 156, 163, 0.2);
+    }
+    &:after{
+      left: -$caret-size*2 + 4;
+      margin-top: -($caret-size - 2);
+      border: inset $caret-size - 1;
+      border-color: transparent;
+      border-right-color: white;
+    }
+  }
+  &.editing{
+    border:1px solid red;
+  }
+}
+.expanded{
+  display: block;
+}
+
+.comment{
+  .form{
+    padding-left: 45px;
+  }
+}
+
+
+.form{
+  box-sizing:border-box;
+  &.edit, &.reply, &.authenticated{
+    padding-left: 0;
+    .editor:before, .editor:after{
+      display: none;
+    }
+  }
+}
+
+.auth{
+  composes: auth from './login-form.scss'
+}
+
+.right{
+  float:right;
+}
