@@ -1,25 +1,18 @@
 import React from 'react';
 import styles from '../styles/avatar.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const Avatar = React.createClass({
-  propTypes: {
-    picture: React.PropTypes.any,
-    className: React.PropTypes.string,
-  },
+@cssModules(styles, {allowMultiple: true})
+export default class Avatar extends React.Component {
 
-  getDefaultProps() {
-    return {
-      className: '',
-    };
-  },
+  static propTypes = {
+    picture: React.PropTypes.string,
+  }
 
   render() {
     const picture = this.props.picture || 'http://hull.s3.amazonaws.com/avatar.png';
     return <img styleName="avatar" src={picture} />;
-  },
+  }
 
-});
-
-module.exports = cssModules(Avatar, styles);
+}

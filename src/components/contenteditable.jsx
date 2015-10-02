@@ -1,33 +1,36 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styles from '../styles/contenteditable.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const ContentEditable = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class ContentEditable extends React.Component {
+
+  static propTypes = {
     html: React.PropTypes.string,
     placeholder: React.PropTypes.string,
     onBlur: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
-  },
+  }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.html !== React.findDOMNode(this).innerHTML;
-  },
+    return nextProps.html !== ReactDOM.findDOMNode(this).innerHTML;
+  }
 
   componentDidUpdate() {
-    if ( this.props.html !== React.findDOMNode(this).innerHTML ) {
-      React.findDOMNode(this).innerHTML = this.props.html;
+    if ( this.props.html !== ReactDOM.findDOMNode(this).innerHTML ) {
+      React.findDOMNodeDOM(this).innerHTML = this.props.html;
     }
-  },
+  }
 
-  handleBlur(evt) {
+  handleBlur = (evt) => {
     this.props.onBlur();
-    this.emitChange(evt);
-  },
+    this.handleInput(evt);
+  }
 
-  emitChange(evt) {
-    const html = React.findDOMNode(this).innerHTML;
+  handleInput = (evt) => {
+    const html = ReactDOM.findDOMNode(this).innerHTML;
 
     const emit = (html === this.props.placeholder) ? '' : html;
 
@@ -37,20 +40,18 @@ const ContentEditable = React.createClass({
     }
 
     this.lastHtml = emit;
-  },
+  }
 
   render() {
     return (
       <div ref="contentEditor"
       styleName="textarea"
       {...this.props}
-      onInput={this.emitChange}
+      onInput={this.handleInput}
       onBlur={this.handleBlur}
       contentEditable
       dangerouslySetInnerHTML={{__html: this.props.html}}></div>
     );
-  },
+  }
 
-});
-
-module.exports = cssModules(ContentEditable, styles);
+}

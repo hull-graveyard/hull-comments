@@ -4,17 +4,20 @@ import cx from 'classnames';
 import CommentForm from './comment-form';
 import EmailLogin from './email-login';
 import styles from '../styles/top-form.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const TopForm = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class TopForm extends React.Component {
+
+  static propTypes = {
     top: React.PropTypes.bool,
     user: React.PropTypes.oneOfType([
       React.PropTypes.object,
       React.PropTypes.oneOf([null]),
     ]),
-  },
+  };
+
   render() {
     return (
       <div styleName={cx({composer: true, top: this.props.top})}>
@@ -27,8 +30,5 @@ const TopForm = React.createClass({
         <EmailLogin {...this.props} styleName="left"/>
       </div>
     );
-  },
-
-});
-
-module.exports = cssModules(TopForm, styles);
+  }
+}

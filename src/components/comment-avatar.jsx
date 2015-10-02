@@ -1,15 +1,17 @@
 import React from 'react';
 import styles from '../styles/main.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const CommentAvatar = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class CommentAvatar extends React.Component {
+
+  static propTypes = {
     comment: React.PropTypes.shape({
       user: React.PropTypes.object,
       id: React.PropTypes.string,
     }).isRequired,
-  },
+  }
 
   render() {
     const comment = this.props.comment;
@@ -19,7 +21,5 @@ const CommentAvatar = React.createClass({
         <a className="user"><img alt="Avatar" src={user.picture} /></a>
       </div>
     );
-  },
-});
-
-module.exports = cssModules(CommentAvatar, styles);
+  }
+}

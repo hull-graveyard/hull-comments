@@ -8,11 +8,12 @@ import TopForm from './top-form';
 import Avatar from './avatar';
 import _ from '../lib/lodash';
 import styles from '../styles/comment.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
+@cssModules(styles, {allowMultiple: true})
+export default class Comment extends React.Component {
 
-const Comment = React.createClass({
-  propTypes: {
+  static propTypes = {
     comment: React.PropTypes.shape({
       user: React.PropTypes.object,
       id: React.PropTypes.string,
@@ -22,47 +23,41 @@ const Comment = React.createClass({
     settings: React.PropTypes.object,
     actions: React.PropTypes.object,
     providers: React.PropTypes.array,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      comment: {},
-      depth: 0,
-    };
-  },
 
-  getInitialState() {
-    return { isReplying: false, isEditing: false, isCollapsed: false };
-  },
+  static defaultProps = {comment: {}, depth: 0 };
+
+  state = { isReplying: false, isEditing: false, isCollapsed: false };
 
 
   isCurrentUser() {
     const commentUser = (this.props.comment || {}).user || {};
     const currentUser = (this.props.user || {});
     return commentUser.id === currentUser.id;
-  },
+  }
 
-  handleToggleCollapse(e) {
-    e.preventDefault();
+  handleToggleCollapse = (event) => {
+    event.preventDefault();
     this.setState({ isCollapsed: !this.state.isCollapsed });
-  },
-  handleToggleEdit(e) {
-    if (e && e.preventDefault) e.preventDefault();
+  }
+  handleToggleEdit = (event) => {
+    if (event && event.preventDefault) event.preventDefault();
     this.setState({ isEditing: !this.state.isEditing });
-  },
-  handleToggleReply(e) {
-    if (e && e.preventDefault) e.preventDefault();
+  }
+  handleToggleReply = (event) => {
+    if (event && event.preventDefault) event.preventDefault();
     this.setState({ isReplying: !this.state.isReplying });
-  },
-  handleCloseReply(e) {
-    if (e && e.preventDefault) e.preventDefault();
+  }
+  handleCloseReply = (event) => {
+    if (event && event.preventDefault) event.preventDefault();
     this.setState({ isReplying: false });
-  },
+  }
 
   renderReplyForm() {
     if (!this.state.isReplying) { return null; }
     return <TopForm {...this.props} mode="reply" onCancel={this.handleCloseReply} onSubmit={this.handleCloseReply} parentId={this.props.comment.id}/>;
-  },
+  }
 
   renderReplies() {
     const { user, comment, settings, providers, actions } = this.props;
@@ -78,9 +73,9 @@ const Comment = React.createClass({
         providers,
         actions,
       };
-      return <WrappedComment key={i} {...props}/>;
+      return <Comment key={i} {...props}/>;
     });
-  },
+  }
 
   render() {
     const comment = this.props.comment;
@@ -98,7 +93,7 @@ const Comment = React.createClass({
             isCurrentUser={isCurrentUser}
             onToggleCollapse={this.handleToggleCollapse}
           />
-          <CommentModerationStatus {...comment} {...this.state}/>
+          <CommentModerationStatus status={comment.moderation_status} isCurrentUser={isCurrentUser}/>
           <CommentMessage
             {...this.props}
             {...this.state}
@@ -117,8 +112,6 @@ const Comment = React.createClass({
         {this.renderReplies(this.props)}
       </div>
     );
-  },
-});
+  }
+}
 
-const WrappedComment = cssModules(Comment, styles);
-module.exports = WrappedComment;

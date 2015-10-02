@@ -6,14 +6,15 @@ import Colr from 'colr';
  * @param  {hash} settings
  * @return {React Component} A style tag
  */
-const HullStyle = React.createClass({
-  propTypes: {
+export default class HullStyle extends React.Component {
+
+  static propTypes = {
     rootClass: React.PropTypes.string.isRequired,
     link_color: React.PropTypes.string.isRequired,
     light_color: React.PropTypes.string.isRequired,
     text_color: React.PropTypes.string.isRequired,
     background_color: React.PropTypes.string.isRequired,
-  },
+  };
 
   getStyle() {
     // Just Javascript™
@@ -49,12 +50,9 @@ const HullStyle = React.createClass({
         color: ${light.toHex()};
       }
     `;
-  },
+  }
   render() {
     // Insert any css you want here. Live updates FTW
     return <style type="text/css">{this.getStyle()}</style>;
-  },
-});
-
-module.exports = HullStyle;
-
+  }
+}

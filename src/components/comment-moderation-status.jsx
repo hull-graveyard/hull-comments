@@ -1,26 +1,26 @@
 import React from 'react';
 import { translate } from '../lib/i18n';
 import styles from '../styles/main.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const CommentModerationStatus = React.createClass({
-  propTypes: {
-    moderation_status: React.PropTypes.oneOfType([
+@cssModules(styles, {allowMultiple: true})
+export default class CommentModerationStatus extends React.Component {
+
+  static propTypes = {
+    status: React.PropTypes.oneOfType([
       React.PropTypes.oneOf([null]),
       React.PropTypes.string,
     ]),
     isCurrentUser: React.PropTypes.bool,
-  },
+  };
 
   render() {
-    const {
-      moderation_status: status,
-      isCurrentUser,
-    } = this.props;
+    const { status, isCurrentUser } = this.props;
+
     let message;
 
-    if (!isCurrentUser || status === null || status === 'approved') { return <noscript/>; }
+    if (!isCurrentUser || status === null || status === 'approved') { return null; }
 
     if (status === 'pending') {
       message = translate('Your comment is awaiting moderation');
@@ -29,8 +29,7 @@ const CommentModerationStatus = React.createClass({
     }
 
     return <small className="light-text">{message}</small>;
-  },
+  }
 
-});
+}
 
-module.exports = cssModules(CommentModerationStatus, styles);

@@ -11,7 +11,7 @@ var config      = require('./config');
   'cloudfront',
   'copy',
   'deploy',
-  // 'format',
+  'format',
   // 'iconfont',
   // 'iconsprite',
   'lint',

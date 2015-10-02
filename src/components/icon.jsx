@@ -6,7 +6,7 @@ import assign from 'object-assign';
 import cx from 'classnames';
 import SVGIcon from 'svg-inline-loader/lib/component.jsx';
 import styles from '../styles/icon.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
 const icons = {
@@ -43,21 +43,19 @@ const icons = {
   email: require('svg-inline!../icons/send.svg'),
 };
 
-const Icon = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class Icon extends React.Component {
+
+  static propTypes = {
     name: React.PropTypes.string.isRequired,
     size: React.PropTypes.number,
     style: React.PropTypes.object,
     colorize: React.PropTypes.bool,
     color: React.PropTypes.string,
-  },
-  getDefaultProps() {
-    return {
-      colorize: false,
-      style: {},
-      size: 16,
-    };
-  },
+  }
+
+  static defaultProps = {colorize: false, style: {}, size: 16 };
+
   render() {
     const { name, size, style, colorize, color } = this.props;
     const src = icons[name];
@@ -69,7 +67,5 @@ const Icon = React.createClass({
       outputStyle = assign(outputStyle, {color});
     }
     return <SVGIcon src={src} styleName={cx({icon: true, colorized: !!colorize})} {...this.props} style={outputStyle} />;
-  },
-});
-
-module.exports = cssModules(Icon, styles);
+  }
+}

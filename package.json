@@ -33,7 +33,8 @@
     "lodash": "^3.10.1",
     "messageformat": "^0.2.2",
     "object-assign": "^4.0.1",
-    "react": "^0.13.3",
+    "react": "^0.14.0-beta3",
+    "react-dom": "^0.14.0-beta3",
     "react-input-placeholder": "^1.2.0",
     "underscore.string": "^3.2.2"
   },

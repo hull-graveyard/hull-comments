@@ -5,36 +5,31 @@ import ShareMenu from './share-menu';
 import FavoritesButton from './favorites-button';
 import { translate } from '../lib/i18n';
 import styles from '../styles/nav.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
-const MainHeader = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class MainHeader extends React.Component {
+
+  static propTypes = {
     orderBy: React.PropTypes.string,
     commentsCount: React.PropTypes.number.isRequired,
-  },
+  }
 
-  getDefaultProps() {
-    return { orderBy: 'newest' };
-  },
+  static defaultProps = { orderBy: 'newest' };
 
-  getInitialState() {
-    return {
-      expanded: false,
-      classes: {},
-    };
-  },
+  state = {expanded: false, classes: {} };
 
   componentWillMount() {
     // styles.use();
-  },
+  }
 
   componentWillUnmount() {
     // styles.unuse();
-  },
+  }
 
   toggleNavBar() {
     this.setState({expanded: !this.state.expanded});
-  },
+  }
 
   render() {
     return (
@@ -59,7 +54,5 @@ const MainHeader = React.createClass({
         </section>
       </nav>
     );
-  },
-});
-
-module.exports = cssModules(MainHeader, styles);
+  }
+}

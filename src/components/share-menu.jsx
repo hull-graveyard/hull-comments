@@ -5,14 +5,16 @@ import DropdownMenu from './dropdown-menu';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 import styles from '../styles/share-menu.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
 const PROVIDERS = ['facebook', 'twitter', 'linkedin', 'google', 'email'];
 const MOBILE_PROVIDERS = ['whatsapp'];
 
-const ShareMenu = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class ShareMenu extends React.Component {
+
+  static propTypes = {
     title: React.PropTypes.string,
     size: React.PropTypes.number,
     actions: React.PropTypes.object.isRequired,
@@ -21,19 +23,13 @@ const ShareMenu = React.createClass({
       React.PropTypes.string,
     ]).isRequired,
     right: React.PropTypes.bool,
-  },
+  }
 
-  getDefaultProps() {
-    return {
-      right: false,
-      size: 24,
-      component: 'span',
-    };
-  },
+  static defaultProps = {right: false, size: 24, component: 'span'};
 
   getTitle() {
     return this.props.title || <span><Icon colorize name="share"/>{translate('Share')}</span>;
-  },
+  }
 
   getOptions() {
     const providers = Hull.utils.isMobile() ? PROVIDERS.concat(MOBILE_PROVIDERS) : PROVIDERS;
@@ -44,11 +40,11 @@ const ShareMenu = React.createClass({
         value: value.toLowerCase(),
       };
     });
-  },
+  }
 
-  handleShare(event) {
+  handleShare = (event) => {
     this.props.actions.share(event.value);
-  },
+  }
 
   render() {
     return (
@@ -59,7 +55,7 @@ const ShareMenu = React.createClass({
         title={this.getTitle()}
         onSelect={this.handleShare} />
     );
-  },
-});
+  }
+}
 
-module.exports = cssModules(ShareMenu, styles);
+

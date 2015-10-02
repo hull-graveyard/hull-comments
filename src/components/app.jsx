@@ -1,27 +1,31 @@
 import React from 'react';
 import Comments from './comments';
 import HullStyle from './hull-style';
+import styles from '../styles/main.scss';
+import cssModules from 'react-css-modules';
 
-const App = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class extends React.Component {
+
+
+  static propTypes = {
     engine: React.PropTypes.object.isRequired,
-  },
+  }
 
-  getInitialState() {
-    return this.props.engine.getState();
-  },
+  static state = {}
 
-  componentWillMount() {
+  componentWillMount = () => {
+    this._onChange();
     this.props.engine.addChangeListener(this._onChange);
-  },
+  }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     this.props.engine.removeChangeListener(this._onChange);
-  },
+  }
 
-  _onChange() {
+  _onChange = () => {
     this.setState(this.props.engine.getState());
-  },
+  }
 
   render() {
     return (
@@ -32,8 +36,5 @@ const App = React.createClass({
         </div>
       </div>
     );
-  },
-
-});
-
-module.exports = App;
+  }
+}

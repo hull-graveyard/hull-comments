@@ -4,11 +4,13 @@ import ShareMenu from './share-menu';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 import styles from '../styles/comment-footer.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const CommentFooter = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class CommentFooter extends React.Component {
+
+  static propTypes = {
     user: React.PropTypes.object,
     actions: React.PropTypes.object,
     onToggleReply: React.PropTypes.func.isRequired,
@@ -23,7 +25,7 @@ const CommentFooter = React.createClass({
         React.PropTypes.object,
       ]),
     }).isRequired,
-  },
+  }
 
   getNegativeScore() {
     if (!this.props.comment.votes) { return null; }
@@ -31,7 +33,7 @@ const CommentFooter = React.createClass({
     const s = votes.down;
     if (s > 0) { return s; }
     return null;
-  },
+  }
 
 
   getPositiveScore() {
@@ -40,26 +42,26 @@ const CommentFooter = React.createClass({
     const s = votes.up;
     if (s > 0) { return s; }
     return null;
-  },
+  }
 
-  upVote(event) {
+  handleUpVote = (event) => {
     event.preventDefault();
     if (this.props.user) {
       this.props.actions.upVote(this.props.comment.id);
     }
-  },
+  }
 
-  downVote(event) {
+  handleDownVote = (event) => {
     event.preventDefault();
     if (this.props.user) {
       this.props.actions.downVote(this.props.comment.id);
     }
-  },
+  }
 
-  handleShare(provider, e) {
-    e.preventDefault();
+  handleShare = (provider, event) => {
+    event.preventDefault();
     this.props.actions.share(provider);
-  },
+  }
 
 
   renderVote() {
@@ -72,18 +74,18 @@ const CommentFooter = React.createClass({
       <li key="vote" styleName="item">
         <a title={translate('Vote up')}
           styleName={cx({ disabled: !!this.props.user, link: true, success: !!ps})}
-          onClick={this.upVote}>{ps} {iconUp}</a>
+          onClick={this.handleUpVote}>{ps} {iconUp}</a>
         {this.renderSeparator()}
         <a title={translate('Vote down')}
           styleName={cx({ disabled: !!this.props.user, link: true, alert: !!ns})}
-          onClick={this.downVote}>{iconDown} {ns}</a>
+          onClick={this.handleDownVote}>{iconDown} {ns}</a>
         {this.renderSeparator()}
       </li>
     );
-  },
+  }
   renderSeparator() {
     return <span styleName="separator"/>;
-  },
+  }
 
   renderReply() {
     return (
@@ -92,7 +94,7 @@ const CommentFooter = React.createClass({
            onClick={this.props.onToggleReply}><Icon name="reply" colorize/>{translate('Reply')}</a>{this.renderSeparator()}
       </li>
     );
-  },
+  }
   renderEdit() {
     if (!this.props.isCurrentUser) { return null; }
     return (
@@ -101,14 +103,14 @@ const CommentFooter = React.createClass({
            onClick={this.props.onToggleEdit}><Icon name="pencil" colorize/>{translate('Edit')}</a>{this.renderSeparator()}
       </li>
     );
-  },
+  }
   renderShare() {
     return <li key="share" styleName="item"><ShareMenu {...this.props} right size={24}/></li>;
-  },
+  }
 
   render() {
     if (!!this.props.comment.deleted_at) {
-      return <noscript/>;
+      return null;
     }
     if (this.props.comment === null || this.props.comment.id === null) {
       return <div styleName="footer">{translate('Posting comment...')}</div>;
@@ -122,8 +124,5 @@ const CommentFooter = React.createClass({
         {this.renderShare()}
       </ul>
     );
-  },
-});
-
-module.exports = cssModules(CommentFooter, styles);
-
+  }
+}

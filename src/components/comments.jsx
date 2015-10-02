@@ -3,13 +3,13 @@ import Nav from './nav';
 import Conversation from './conversation';
 import Icon from './icon';
 import styles from '../styles/main.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
+@cssModules(styles, {allowMultiple: true})
+export default class Comments extends React.Component {
 
-const Comments = React.createClass({
-  propTypes: {
-    isReady: React.PropTypes.bool,
-  },
+  static propTypes = { isReady: React.PropTypes.bool };
+
   render() {
     if (this.props.isReady) {
       return (
@@ -20,7 +20,5 @@ const Comments = React.createClass({
       );
     }
     return <Icon name="spinner" size={64} style={{display: 'block', margin: '0 auto'}}/>;
-  },
-});
-
-module.exports = cssModules(Comments, styles);
+  }
+}

@@ -5,24 +5,21 @@ import Icon from './icon';
 const { Input } = require('react-input-placeholder')(React);
 import _ from '../lib/lodash';
 import styles from '../styles/main.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const EmailLogin = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class EmailLogin extends React.Component {
+
+  static propTypes = {
     error: React.PropTypes.object,
     status: React.PropTypes.object,
     actions: React.PropTypes.object.isRequired,
     settings: React.PropTypes.object.isRequired,
     formIsOpen: React.PropTypes.bool,
-  },
+  }
 
-  getInitialState() {
-    return {
-      newUser: {},
-      tab: 'login',
-    };
-  },
+  state = {newUser: {}, tab: 'login'};
 
   getTabStyle() {
     const tab = this.state.tab;
@@ -30,35 +27,35 @@ const EmailLogin = React.createClass({
       m[t] = { display: t === tab ? 'block' : 'none' };
       return m;
     }, {});
-  },
+  }
 
-  handleRecover(event) {
+  handleRecover = (event) => {
     event.preventDefault();
     this.props.actions.resetPassword({email: this.state.newUser.email});
-  },
+  }
 
-  handleLogin(event) {
+  handleLogin = (event) => {
     event.preventDefault();
     this.props.actions.login({login: this.state.newUser.email, password: this.state.newUser.password});
-  },
+  }
 
-  handleSignup(event) {
+  handleSignup = (event) => {
     event.preventDefault();
     this.props.actions.signup(this.state.newUser);
-  },
+  }
 
-  showTab(tab, event) {
+  handleShowTab = (tab, event) => {
     event.preventDefault();
     this.props.actions.clearErrors();
     this.setState({tab: tab});
-  },
+  }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const newUser = this.state.newUser || {};
     this.props.actions.clearErrors();
     newUser[event.target.name] = event.target.value;
     this.setState({ newUser: newUser });
-  },
+  }
 
   renderNavBar() {
     const tab = this.state.tab;
@@ -69,13 +66,13 @@ const EmailLogin = React.createClass({
       <nav className="top-bar expanded nav-bar">
         <section className="top-bar-section">
           <ul className="tab-full">
-            <li className={cx({'tab-title': true, 'active': isLogin})}><a onClick={this.showTab.bind(this, 'login')}>{translate('Log in')}</a></li>
-            <li className={cx({'tab-title': true, 'active': isRegister})}><a onClick={this.showTab.bind(this, 'register')}>{translate('Sign up')}</a></li>
+            <li className={cx({'tab-title': true, 'active': isLogin})}><a onClick={this.handleShowTab.bind(this, 'login')}>{translate('Log in')}</a></li>
+            <li className={cx({'tab-title': true, 'active': isRegister})}><a onClick={this.handleShowTab.bind(this, 'register')}>{translate('Sign up')}</a></li>
           </ul>
         </section>
       </nav>
     );
-  },
+  }
 
   renderPrefixedField(icon, field) {
     return (
@@ -84,11 +81,11 @@ const EmailLogin = React.createClass({
         <div className="small-11 columns">{field}</div>
       </div>
     );
-  },
+  }
 
   renderButton(action, text) {
     return <button className="tiny button round expand success" onClick={action}><strong>{text}</strong></button>;
-  },
+  }
 
   renderEmailPasswordForm(action) {
     const password = <Input type="password" placeholder={translate('Password')} name="password" value={this.state.newUser.password} onChange={this.handleChange} />;
@@ -100,7 +97,7 @@ const EmailLogin = React.createClass({
         {this.renderButton(action, <Icon name="chevron_right" settings={this.props.settings} colorize size={24}/>)}
       </span>
     );
-  },
+  }
 
   renderRecoverForm() {
     let message;
@@ -120,11 +117,11 @@ const EmailLogin = React.createClass({
         {message}
       </span>
     );
-  },
+  }
 
   render() {
     let error;
-    if (!this.props.formIsOpen) { return <noscript/>; }
+    if (!this.props.formIsOpen) { return null; }
 
     const tab = this.state.tab;
     const isLogin = (tab === 'login');
@@ -147,7 +144,7 @@ const EmailLogin = React.createClass({
 
           <div className={cx({content: true, active: isLogin})} style={tabStyles.login}>
             {this.renderEmailPasswordForm(this.handleLogin)}
-            <div className="text-center"><strong><a href="#" onClick={this.showTab.bind(this, 'recover')}>{translate('Forgot Password?')}</a></strong></div>
+            <div className="text-center"><strong><a href="#" onClick={this.handleShowTab.bind(this, 'recover')}>{translate('Forgot Password?')}</a></strong></div>
           </div>
 
           <div className={cx({content: true, active: isRecover})} style={tabStyles.recover}>
@@ -161,7 +158,5 @@ const EmailLogin = React.createClass({
         </div>
       </div>
     );
-  },
-});
-
-module.exports = cssModules(EmailLogin, styles);
+  }
+}

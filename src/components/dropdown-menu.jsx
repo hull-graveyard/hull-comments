@@ -1,11 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from '../styles/dropdown-menu.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const DropdownMenu = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class DropdownMenu extends React.Component {
+
+
+  static propTypes = {
     onSelect: React.PropTypes.func,
     options: React.PropTypes.array,
     value: React.PropTypes.string,
@@ -21,18 +24,11 @@ const DropdownMenu = React.createClass({
       React.PropTypes.string,
     ]),
     open: React.PropTypes.bool,
-  },
+  }
 
-  getDefaultProps() {
-    return {
-      component: 'span',
-      className: {},
-    };
-  },
+  static defaultProps = {component: 'span', className: {} };
 
-  getInitialState() {
-    return { opened: this.props.open };
-  },
+  state = { opened: this.props.open };
 
 
   getTitle() {
@@ -42,9 +38,9 @@ const DropdownMenu = React.createClass({
       return this.props.value.label;
     }
     return null;
-  },
+  }
 
-  handleSelect(selected, evt) {
+  handleSelect = (selected, evt) => {
     evt.preventDefault();
 
     if (typeof this.props.onSelect === 'function') {
@@ -55,17 +51,18 @@ const DropdownMenu = React.createClass({
       selected.onClick(evt, selected);
     }
     this.close();
-  },
-  toggle(e) {
-    if (e && e.preventDefault) e.preventDefault();
+  }
+
+  handleToggle = (event) => {
+    if (event && event.preventDefault) event.preventDefault();
     this.setState({ opened: !this.state.opened });
-  },
+  }
 
   close() {
     if (this.state.opened) {
       this.setState({ opened: false });
     }
-  },
+  }
 
   renderOptions() {
     if (!this.props.options) { return null; }
@@ -82,7 +79,7 @@ const DropdownMenu = React.createClass({
         }, this)}
       </ul>
     );
-  },
+  }
 
   render() {
     let Component = this.props.component;
@@ -93,13 +90,11 @@ const DropdownMenu = React.createClass({
       ButtonComponent = 'button';
     }
     return (
-      <Component styleName="container" onClick={this.onSelfClick}>
-        <ButtonComponent href="#" styleName="link" onClick={this.toggle}>{this.getTitle()}</ButtonComponent>
+      <Component styleName="container">
+        <ButtonComponent href="#" styleName="link" onClick={this.handleToggle}>{this.getTitle()}</ButtonComponent>
         {this.renderOptions()}
         {this.props.children}
       </Component>
     );
-  },
-});
-
-module.exports = cssModules(DropdownMenu, styles);
+  }
+}

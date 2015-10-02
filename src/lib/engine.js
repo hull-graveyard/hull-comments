@@ -68,7 +68,7 @@ function processComment(raw) {
   return raw;
 }
 
-function Engine(deployment, hull) {
+export default function Engine(deployment, hull) {
   this.hull = hull;
   this.entity_id = deployment.settings.entity_id;
   this._ship = deployment.ship || deployment.deployable;

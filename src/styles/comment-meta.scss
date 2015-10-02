@@ -15,6 +15,7 @@
 }
 
 .actions{
+  float: right;
   @extend %list;
   margin-left: .5rem;
   padding: 0;

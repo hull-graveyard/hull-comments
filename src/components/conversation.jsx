@@ -3,29 +3,31 @@ import Comment from './comment';
 import TopForm from './top-form';
 import { translate } from '../lib/i18n';
 import styles from '../styles/conversation.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const Conversation = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class Conversation extends React.Component {
+
+  static propTypes = {
     actions: React.PropTypes.object,
     hasMore: React.PropTypes.bool,
     comments: React.PropTypes.array.isRequired,
-  },
+  }
 
-  loadMore(e) {
+  handleLoadMore = (e) => {
     if (e && e.preventDefault) e.preventDefault();
 
     this.props.actions.fetchMore();
-  },
+  }
 
   renderFetchMore() {
     if (!this.props.hasMore) { return null; }
 
     return (
-      <a onClick={this.loadMore} styleName="button">{translate('Load more comments')}</a>
+      <a onClick={this.handleLoadMore} styleName="button">{translate('Load more comments')}</a>
     );
-  },
+  }
 
   render() {
     const comments = this.props.comments.map(function(comment, i) {
@@ -39,8 +41,6 @@ const Conversation = React.createClass({
         {this.renderFetchMore()}
       </div>
     );
-  },
-});
-
-module.exports = cssModules(Conversation, styles);
+  }
+}
 

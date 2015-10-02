@@ -20,5 +20,6 @@
 
 :global(.placeholder) > .textarea:before{
   content: attr(placeholder);
+  color:#ccc;
   display: block; /* For Firefox */
 }

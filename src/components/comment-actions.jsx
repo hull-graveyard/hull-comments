@@ -3,10 +3,12 @@ import Icon from './icon';
 import DropdownMenu from './dropdown-menu';
 import { translate } from '../lib/i18n';
 import styles from '../styles/comment-actions.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
-const CommentActions = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class CommentActions extends React.Component {
+
+  static propTypes = {
     isCurrentUser: React.PropTypes.bool,
     user: React.PropTypes.object,
     comment: React.PropTypes.shape({
@@ -14,21 +16,21 @@ const CommentActions = React.createClass({
       id: React.PropTypes.string,
     }).isRequired,
     actions: React.PropTypes.object,
-  },
+  }
 
-  handleFlag(e) {
-    e.preventDefault();
+  handleFlag = (event) => {
+    event.preventDefault();
     this.props.actions.flag(this.props.comment.id);
-  },
+  }
 
-  handleDelete(e) {
-    e.preventDefault();
+  handleDelete = (event) => {
+    event.preventDefault();
     if (this.props.comment && this.props.comment.id) {
       this.props.actions.deleteComment(this.props.comment.id);
     }
-  },
+  }
 
-  renderActions() {
+  render() {
     const actions = [];
 
     if (this.props.user) {
@@ -48,16 +50,11 @@ const CommentActions = React.createClass({
     }
 
     if (actions.length === 0) { return null; }
-    return <DropdownMenu component="li" options={actions} title={<Icon name="cog" size={16} style={{verticalAlign: '-8%'}}/>} />;
-  },
 
-  render() {
     return (
       <ul styleName="actions" className="light-text">
-        {this.renderActions()}
+        <DropdownMenu right component="li" options={actions} title={<Icon name="cog" size={16} style={{verticalAlign: '-8%'}}/>} />
       </ul>
     );
-  },
-});
-
-module.exports = cssModules(CommentActions, styles);
+  }
+}

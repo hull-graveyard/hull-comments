@@ -1,15 +1,18 @@
 import React from 'react';
 import { translate } from '../lib/i18n';
 import styles from '../styles/user.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
-const UserAvatar = cssModules(React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class UserAvatar extends React.Component {
+
+  static propTypes = {
     user: React.PropTypes.oneOfType([
       React.PropTypes.object,
       React.PropTypes.oneOf([null]),
     ]),
-  },
+  }
+
   render() {
     const { user } = this.props;
     return (
@@ -18,8 +21,5 @@ const UserAvatar = cssModules(React.createClass({
         <span styleName="name">{user.name || user.email || translate('logged in as guest')}</span>
       </span>
     );
-  },
-}), styles);
-
-module.exports = cssModules(UserAvatar, styles);
-
+  }
+}

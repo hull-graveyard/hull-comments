@@ -5,11 +5,13 @@ import LoginForm from './login-form';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 import styles from '../styles/comment-form.scss';
-import cssModules from '../lib/cssModules';
+import cssModules from 'react-css-modules';
 
 
-const CommentForm = React.createClass({
-  propTypes: {
+@cssModules(styles, {allowMultiple: true})
+export default class CommentForm extends React.Component {
+
+  static propTypes = {
     focus: React.PropTypes.bool,
     user: React.PropTypes.object,
     settings: React.PropTypes.shape({
@@ -24,26 +26,20 @@ const CommentForm = React.createClass({
     comment: React.PropTypes.object,
     actions: React.PropTypes.object,
     errorMessage: React.PropTypes.string,
-  },
+  }
 
-  getInitialState() {
-    let t;
-    if (this.props.mode === 'reply') {
-      t = '';
-    } else {
-      t = this.props.comment ? this.props.comment.description : '';
-    }
-
-    return { text: t, isExpanded: this.props.expanded };
-  },
+  state = {
+    text: ((this.props.mode === 'reply' || !this.props.comment) ? '' : this.props.comment.description),
+    isExpanded: this.props.expanded,
+  };
 
   componentDidMount() {
     if (this.props.focus) {
       this.refs.textarea.getDOMNode().focus();
     }
-  },
+  }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     const text = this.state.text;
     if (text && text.length) {
@@ -55,60 +51,64 @@ const CommentForm = React.createClass({
       if (this.props.onSubmit) { this.props.onSubmit(text); }
     }
     this.setState({ text: '' });
-  },
+  }
 
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
     if (event.metaKey && event.keyCode === 13) {
       this.handleSubmit(event);
     }
-  },
+  }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ text: event.target.value });
-  },
+  }
 
-  handleCancel(event) {
+  handleCancel = (event) => {
     event.preventDefault();
     if (typeof this.props.onCancel === 'function') {
       this.props.onCancel(event);
     }
-  },
+  }
 
-  contractForm() {
+  contractForm = () => {
     if (!this.props.expanded && this.state.isExpanded) {
       this.setState({ isExpanded: false });
     }
-  },
-  expandForm() {
+  }
+  expandForm = () => {
     if (this.props.expanded || !this.state.isExpanded) {
       this.setState({ isExpanded: true });
     }
-  },
+  }
+
+  handleDismissError = () => {
+    // TODO
+  }
 
   renderError() {
     if (this.props.errorMessage) {
       return (
         <div className="alert error" role="alert">
-          <a className="close" onClick={this.dismissError} title={translate('Dismiss')}>×</a>
+          <a className="close" onClick={this.handleDismissError} title={translate('Dismiss')}>×</a>
           <span>{this.props.errorMessage}</span>
         </div>
       );
     }
-  },
+  }
 
   renderCancelButton() {
     return <a key="cancel" href="#" className="link" onClick={this.handleCancel}><strong>{translate('Cancel')}</strong></a>;
-  },
+  }
   renderUpdateButton() {
     return <a key="update" className="button" onClick={this.handleSubmit}><strong>{translate('Update')}</strong></a>;
-  },
+  }
   renderReplyButton() {
     return <a key="reply" className="button" onClick={this.handleSubmit}><strong><Icon colorize size={12} name="reply"/>{translate('Reply')}</strong></a>;
-  },
+  }
   renderPostButton(user) {
     const name = (user && (user.name || user.email)) || translate('Guest');
     return <a className="button" onClick={this.handleSubmit}><strong>{translate('Post as {name}', { name: name })}</strong></a>;
-  },
+  }
 
   renderActions(user, mode = '', allowGuest = false) {
     let actions;
@@ -126,12 +126,12 @@ const CommentForm = React.createClass({
         {actions}
       </div>
     );
-  },
+  }
 
   renderTextarea(user = {}, mode = '') {
     const placeholder = mode === 'reply' ? 'Reply...' : 'What do you think?';
     return (
-      <div styleName={cx({editor: true, placeholder: !this.state.text})} className={cx({'light-text': !this.state.text})}>
+      <div styleName={cx({editor: true})} className={cx({'light-text': !this.state.text, 'placeholder': !this.state.text})}>
         <ContentEditable ref="textarea"
           html={this.state.text}
           tabIndex="0"
@@ -141,13 +141,13 @@ const CommentForm = React.createClass({
           onChange={this.handleChange}/>
       </div>
     );
-  },
+  }
 
   renderLoginForm() {
     if (!this.props.user && this.props.mode !== 'edit') {
       return <LoginForm {...this.props} />;
     }
-  },
+  }
 
   render() {
     const { user, mode } = this.props;
@@ -172,8 +172,6 @@ const CommentForm = React.createClass({
         {this.renderLoginForm()}
       </form>
     );
-  },
-});
+  }
+}
 
-
-module.exports = cssModules(CommentForm, styles);

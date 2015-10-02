@@ -34,7 +34,7 @@
     &.open{
       display: block;
       left: auto;
-      right: 0;
+      right: -8px;
       &:before, &:after{
         left: auto;
       }
