@@ -17,19 +17,6 @@
       transition: all 150ms ease-in-out
   }
 
-
-  :global {
-
-    .light-text{
-      color: #ccc;
-    }
-
-    .nowrap{
-      white-space: nowrap;
-    }
-
-  }
-
 }
 
 .button{

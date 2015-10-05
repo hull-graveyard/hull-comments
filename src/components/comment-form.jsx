@@ -132,7 +132,7 @@ export default class CommentForm extends React.Component {
   renderTextarea(user = {}, mode = '') {
     const placeholder = mode === 'reply' ? 'Reply...' : 'What do you think?';
     return (
-      <div styleName={cx({editor: true})} className={cx({'light-text': !this.state.text, 'placeholder': !this.state.text})}>
+      <div styleName={cx({editor: true, light: !this.state.text})} className={cx({placeholder: !this.state.text})}>
         <ContentEditable ref="textarea"
           html={this.state.text}
           tabIndex="0"

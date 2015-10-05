@@ -28,7 +28,7 @@ export default class CommentMessage extends React.Component {
     if (isCurrentUser && isEditing) {
       content = <CommentForm mode="edit" {...props} onCancel={onToggleEdit} onSubmit={onToggleEdit} />;
     } else if (comment.deleted_at) {
-      content = <small className="light-text">{translate('Comment has been deleted.')}</small>;
+      content = <small styleName="light">{translate('Comment has been deleted.')}</small>;
     } else {
       content = <div dangerouslySetInnerHTML={{__html: comment.description }} />;
     }

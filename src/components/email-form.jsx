@@ -60,8 +60,8 @@ export default class EmailForm extends React.Component {
     return (
       <nav styleName="tab-bar">
         <ul styleName="tab-list">
-          <li styleName={cx({'tab-link': true, 'active': isLogin})}><a className="light-text" onClick={this.handleShowTab.bind(this, 'login')}>{translate('Log in')}</a></li>
-          <li styleName={cx({'tab-link': true, 'active': isRegister})}><a className="light-text" onClick={this.handleShowTab.bind(this, 'register')}>{translate('Sign up')}</a></li>
+          <li styleName={cx({'tab-link': true, 'active': isLogin})}><a styleName="light" onClick={this.handleShowTab.bind(this, 'login')}>{translate('Log in')}</a></li>
+          <li styleName={cx({'tab-link': true, 'active': isRegister})}><a styleName="light" onClick={this.handleShowTab.bind(this, 'register')}>{translate('Sign up')}</a></li>
         </ul>
       </nav>
     );
@@ -136,7 +136,7 @@ export default class EmailForm extends React.Component {
 
           <div styleName={cx({tab: true, active: isLogin})}>
             {this.renderEmailPasswordForm(this.handleLogin)}
-            <div styleName="center"><strong><a className="link" href="#" onClick={this.handleShowTab.bind(this, 'recover')}>{translate('Forgot Password?')}</a></strong></div>
+            <div styleName="center"><strong><a styleName="link" href="#" onClick={this.handleShowTab.bind(this, 'recover')}>{translate('Forgot Password?')}</a></strong></div>
           </div>
 
           <div styleName={cx({tab: true, active: isRecover})}>

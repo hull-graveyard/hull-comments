@@ -1,7 +1,6 @@
 @import "settings";
 
 .auth{
-  composes: auth from './mixins.css';
   margin-bottom: 30px;
   line-height: 1;
 }

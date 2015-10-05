@@ -73,7 +73,7 @@ export default class DropdownMenu extends React.Component {
           const selected = (this.props.value === opt.value);
           return (
             <li key={`${opt.value}-${i}`} styleName={cx({item: true, selected: selected})}>
-              <a href="#" styleName="anchor" className="light-text" onClick={this.handleSelect.bind(this, opt)}>{opt.label || opt.value}</a>
+              <a href="#" styleName="anchor" onClick={this.handleSelect.bind(this, opt)}>{opt.label || opt.value}</a>
             </li>
           );
         }, this)}

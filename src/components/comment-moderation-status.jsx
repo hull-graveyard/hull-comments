@@ -28,7 +28,7 @@ export default class CommentModerationStatus extends React.Component {
       message = translate('Your comment has been marked as {status}', { status: status });
     }
 
-    return <small className="light-text">{message}</small>;
+    return <small styleName="light">{message}</small>;
   }
 
 }

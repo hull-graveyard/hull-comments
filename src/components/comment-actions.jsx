@@ -52,7 +52,7 @@ export default class CommentActions extends React.Component {
     if (actions.length === 0) { return null; }
 
     return (
-      <ul styleName="actions" className="light-text">
+      <ul styleName="actions">
         <DropdownMenu right component="li" options={actions} title={<Icon name="cog" size={16} style={{verticalAlign: '-8%'}}/>} />
       </ul>
     );

@@ -78,7 +78,7 @@
   }
 }
 .anchor{
-  composes:nav__link from './mixins.css';
+  composes:nav__link light from './mixins.css';
   padding: calc(var(--line_height)/2) 15px;
   display: block;
   i{

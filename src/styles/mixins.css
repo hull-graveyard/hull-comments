@@ -53,7 +53,7 @@
   composes: link;
 }
 .auth{
-  float: left;
+  /*float: left;*/
   width: 100%;
 }
 

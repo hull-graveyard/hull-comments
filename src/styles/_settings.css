@@ -109,8 +109,8 @@
   background-color: $color;
   color: $text;
 
-  margin: 0 0 1rem;
-  padding: .625rem 1.25rem .6875rem;
+  margin: 0 0 15px;
+  padding: 10px 20px 10px;
 
   border: 0 solid transparent;
   border-radius: 3px;
@@ -124,6 +124,7 @@
   line-height: normal;
 
   &:hover{
+    color:white;
     background-color: color($color blackness(-10%));
   }
 }

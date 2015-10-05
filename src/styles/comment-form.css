@@ -36,6 +36,9 @@
     border:1px solid red;
   }
 }
+.light{
+  composes: light from './mixins.css'
+}
 .expanded{
   display: block;
 }
