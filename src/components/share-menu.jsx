@@ -4,7 +4,7 @@ import React from 'react';
 import DropdownMenu from './dropdown-menu';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
-import styles from '../styles/share-menu.scss';
+import styles from '../styles/share-menu.css';
 import cssModules from 'react-css-modules';
 
 
@@ -28,7 +28,7 @@ export default class ShareMenu extends React.Component {
   static defaultProps = {right: false, size: 24, component: 'span'};
 
   getTitle() {
-    return this.props.title || <span className="link"><Icon colorize name="share"/>{translate('Share')}</span>;
+    return this.props.title || <span styleName="link"><Icon colorize name="share"/>{translate('Share')}</span>;
   }
 
   getOptions() {

@@ -1,0 +1,6 @@
+@import "settings";
+
+.body{
+  line-height: var(--large_line_height);
+  font-size: var(--large_font_size);
+}

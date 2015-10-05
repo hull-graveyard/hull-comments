@@ -1,0 +1,114 @@
+:root{ 
+  --caret-size : 11px;
+  --font_size: 11px;
+  --large_font_size: 14px;
+  --xlarge_font_size: 18px;
+  --line_height: 15px;
+  --large_line_height:20px;
+  --font_weight_bold: 700;
+  --namespace: false;
+
+  --global_radius: 3px;
+  --input_radius: 3px;
+
+  /*
+   Since the typical default browser font-size is 16px, that makes the calculation for grid size.
+   If you want your base font-size to be different and not have it affect the grid breakpoints,
+   set --rem-base to --base_font_size and make sure --base_font_size is a px value.
+  */
+  --base_font_size: 100%;
+
+  /* --base_line_height is 24px while --base_font_size is 16px*/
+  --base_line-height: 1.5;
+
+  /* Colors */
+  --white:                         #FFFFFF;
+  --black:                         #222222;
+  --black_2:                       #373f4a;
+  --turquoise:                     #4BC2B8;
+  --red:                           #E75F45;
+  --orange:                        #E7A645;
+  --orange:                        #FFC11F;
+
+  --blue_darkest:                  #262C36;
+  --blue_darkest:                  #344259;
+  --blue:                          #2CAAD0;
+  --blue:                          #0093e6;
+
+  --blue_gray_darker:              #222B3F;
+  --blue_gray_dark:                #3F4654;
+  --blue_gray:                     #677DAD;
+  --blue_gray_alt:                 #677DAD;
+  --blue_gray_light:               #9AA1B1;
+  --blue_gray_lighter:             #E0E2E7;
+  --blue_gray_lightest:            #D7DEE7;
+
+  --light_gray:                    #7B7B7B;
+  --light_blue_gray:               #798291;
+  --light_filet:                   #DEE3EA;
+  --off_white:                     #F1F4F7;
+
+  --facebook_color: #3C5A98;
+  --google_color:   #EB2F12;
+  --twitter_color:  #00ABF5;
+  --github_color:   #999999;
+
+  --primary        : $blue;
+  --primary_alt    : var(--turquoise);
+  --secondary      : var(--blue_gray_dark);
+  --secondary-alt  : var(--blue_gray_alt);
+  --base_text      : var(--blue_gray);
+  --inverted-text  : var(--white);
+  --tertiary       : var(--blue);
+  --quaternary     : var(--red);
+
+  --easeOutQuint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+
+
+  --include-xl-html-grid-classes: true;
+
+  --row-width: 100%;
+  --primary_color: var(--primary);
+  --text_color: color(#8F9CA3);
+  --filet_color: color(var(--text_color) alpha(20%));
+  --secondary_color: var(--blue_gray_dark);
+  --alert_color: var(--red);
+  --success_color: var(--turquoise);
+  --warning_color: var(--orange);
+  --info_color: var(--primary);
+
+  @custom-media --medium_up   (width >= 30em);
+  @custom-media --small-only  (width <= 30em);
+
+}
+
+@define-mixin button $color, $text {
+  appearance: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+
+  transition: background-color .3s ease-out;
+  background-color: $color;
+  color: $text;
+
+  margin: 0 0 1rem;
+  padding: .625rem 1.25rem .6875rem;
+
+  border: 0 solid transparent;
+  border-radius: 3px;
+
+  display: inline-block;
+  position: relative;
+
+  font-family: Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+  font-size: calc($font_size*.75);
+  font-weight: 400;
+  line-height: normal;
+
+  &:hover{
+    background-color: color($color blackness(-10%));
+  }
+}
+
+

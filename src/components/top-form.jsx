@@ -2,8 +2,8 @@ import React from 'react';
 import Avatar from './avatar';
 import cx from 'classnames';
 import CommentForm from './comment-form';
-import EmailLogin from './email-login';
-import styles from '../styles/top-form.scss';
+import EmailForm from './email-form';
+import styles from '../styles/top-form.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
 
@@ -28,7 +28,7 @@ export default class TopForm extends React.Component {
         <div styleName="form">
           <CommentForm {...props} />
         </div>
-        <EmailLogin {...props} styleName="left"/>
+        <EmailForm {...props} styleName="left"/>
       </div>
     );
   }

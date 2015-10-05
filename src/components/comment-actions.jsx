@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from './icon';
 import DropdownMenu from './dropdown-menu';
 import { translate } from '../lib/i18n';
-import styles from '../styles/comment-actions.scss';
+import styles from '../styles/comment-actions.css';
 import cssModules from 'react-css-modules';
 
 @cssModules(styles, {allowMultiple: true})

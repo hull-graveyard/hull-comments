@@ -1,0 +1,24 @@
+@import "settings";
+
+.textarea{
+  font-size: var(--xlarge_font_size);
+  -webkit-appearance: none;
+  outline:none;
+  position: relative;
+  padding: calc(var(--line_height)*1.25);
+  max-height: calc(var(--large_line_height) * 10);
+  line-height: var(--large_line_height);
+  margin-bottom: var(--large_line_height);
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--filet_color);
+  border-radius: var(--input_radius);
+  overflow: auto;
+  width: 100%;
+  transition:all .2s ease-out;
+}
+
+:global(.placeholder) > .textarea:before{
+  content: attr(placeholder);
+  color:#ccc;
+  display: block; /* For Firefox */
+}

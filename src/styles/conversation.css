@@ -1,0 +1,9 @@
+.conversation{
+  padding: 0 15px;
+}
+
+.button{
+  composes: button from './mixins.css';
+  composes: tiny from './mixins.css';
+  composes: round from './mixins.css';
+}

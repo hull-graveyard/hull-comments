@@ -1,7 +1,9 @@
+@import "settings";
+
 .nav__label{
-  font-size: 11px;
+  font-size: var(--font_size);
   font-weight: 700;
-  line-height: 20px;
+  line-height: var(--line_height);
 }
 .nav__link{
   composes: nav__label;
@@ -33,14 +35,23 @@
 }
 
 .button{
-  @include button($success, white);
+  @mixin button var(--success_color), white;
+}
+
+
+.light{
+  color:#0F0;
 }
 
 .link{
-  @include button(transparent, $primary);
+  color:#F60;
+  cursor:pointer;
 }
 
-
+.link-button{
+  @mixin button transparent, var(--primary);
+  composes: link;
+}
 .auth{
   float: left;
   width: 100%;

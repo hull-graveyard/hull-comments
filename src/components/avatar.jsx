@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/avatar.scss';
+import styles from '../styles/avatar.css';
 import cssModules from 'react-css-modules';
 
 

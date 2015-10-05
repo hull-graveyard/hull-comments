@@ -1,6 +1,6 @@
 import React from 'react';
 import { translate } from '../lib/i18n';
-import styles from '../styles/main.scss';
+import styles from '../styles/main.css';
 import cssModules from 'react-css-modules';
 
 

@@ -6,50 +6,36 @@
 }
 
 .dropdown{
+  composes: overlay from './_overlays.css';
   list-style-type: none;
 
-  width: auto;
-  height: auto;
-  max-width: 200px;
-  min-width: 150px;
-  @media #{$medium-up}{
+  left: -8px;
+  top: 0%;
+  margin: 12px 0 0 0;
+
+  @media (--medium_up) {
     min-width: 150px;
   }
 
-  left: -9999px;
-  top: 100%;
-
-  display: none;
-  position: absolute;
-
-  background: white;
-  border-radius: $global-radius;
-  box-shadow: 0 0 0 2px $filet-color;
-  font-size: 12px;
-  margin: 12px 0 0 0;
-  padding:0;
-  z-index: 3;
-
-  &.right{
-    &.open{
-      display: block;
-      left: auto;
-      right: -8px;
-      &:before, &:after{
-        left: auto;
-      }
-      &:before{
-        right: 10px;
-      }
-      &:after{
-        right: 9px;
-      }
-    }
+  &.open{
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+    display: block;
   }
 
-  &.open{
-    display: block;
-    left: -8px;
+  &.right{
+    left: auto;
+    right: -8px;
+    &:before, &:after{
+      left: auto;
+    }
+    &:before{
+      right: 10px;
+    }
+    &:after{
+      right: 9px;
+    }
   }
 
   &:before{
@@ -92,8 +78,8 @@
   }
 }
 .anchor{
-  composes:nav__link from './mixins.scss';
-  padding: 5px 15px;
+  composes:nav__link from './mixins.css';
+  padding: calc(var(--line_height)/2) 15px;
   display: block;
   i{
     margin-right: 10px;
@@ -101,7 +87,7 @@
   }
 }
 .link{
-  composes:nav__link from './mixins.scss';
+  composes:nav__link light from './mixins.css';
   cursor: pointer;
   display: inline-block;
 }

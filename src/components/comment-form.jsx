@@ -4,7 +4,7 @@ import cx from 'classnames';
 import LoginForm from './login-form';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
-import styles from '../styles/comment-form.scss';
+import styles from '../styles/comment-form.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
 

@@ -1,0 +1,4 @@
+.actions{
+  composes: inline-list from './mixins.css';  
+  display: inline-block; 
+}

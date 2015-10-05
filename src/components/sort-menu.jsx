@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from './icon';
 import capitalize from '../lib/capitalize';
 import { translate } from '../lib/i18n';
-import styles from '../styles/main.scss';
+import styles from '../styles/main.css';
 import cssModules from 'react-css-modules';
 
 const ICONS = { newest: 'chevron_down', best: 'heart', oldest: 'chevron_up' };

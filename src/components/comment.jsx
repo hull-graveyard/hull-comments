@@ -7,7 +7,7 @@ import CommentFooter from './comment-footer';
 import TopForm from './top-form';
 import Avatar from './avatar';
 import _ from 'lodash';
-import styles from '../styles/comment.scss';
+import styles from '../styles/comment.css';
 import cssModules from 'react-css-modules';
 
 @cssModules(styles, {allowMultiple: true})
@@ -18,6 +18,7 @@ export default class Comment extends React.Component {
       user: React.PropTypes.object,
       id: React.PropTypes.string,
     }).isRequired,
+    followings: React.PropTypes.object,
     user: React.PropTypes.object,
     depth: React.PropTypes.number.isRequired,
     settings: React.PropTypes.object,
@@ -60,12 +61,13 @@ export default class Comment extends React.Component {
   }
 
   renderReplies(props) {
-    const { user, comment, settings, providers, actions } = props;
+    const { user, comment, settings, providers, actions, followings } = props;
     const depth = props.depth || 0;
 
     return _.map(comment.children, function(c, i) {
       const commentProps = {
         user,
+        followings: followings,
         parent: comment,
         comment: c,
         depth: depth + 1,
@@ -81,7 +83,7 @@ export default class Comment extends React.Component {
     const comment = this.props.comment;
     const isCurrentUser = this.isCurrentUser();
     const props = _.omit(this.props, 'styles');
-
+    const isFollowing = this.props.followings[comment.user.id];
     return (
       <div styleName={cx({comment: true, root: !this.props.depth, collapsed: this.state.isCollapsed })}>
         <div styleName="avatar">
@@ -91,6 +93,7 @@ export default class Comment extends React.Component {
           <CommentMeta
             {...props}
             {...this.state}
+            isFollowing={isFollowing}
             isCurrentUser={isCurrentUser}
             onToggleCollapse={this.handleToggleCollapse}
           />

@@ -1,0 +1,7 @@
+.share-text{
+  display: none;
+}
+
+.link{
+  composes: light from './mixins.css';
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import Comment from './comment';
 import TopForm from './top-form';
 import { translate } from '../lib/i18n';
-import styles from '../styles/conversation.scss';
+import styles from '../styles/conversation.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
 

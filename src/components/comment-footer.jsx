@@ -3,7 +3,7 @@ import cx from 'classnames';
 import ShareMenu from './share-menu';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
-import styles from '../styles/comment-footer.scss';
+import styles from '../styles/comment-footer.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
 
@@ -74,12 +74,10 @@ export default class CommentFooter extends React.Component {
     return (
       <li key="vote" styleName="item">
         <a title={translate('Vote up')}
-          className={cx({ light: !ps })}
           styleName={cx({ disabled: !!this.props.user, link: true, success: !!ps})}
           onClick={this.handleUpVote}>{ps} {iconUp}</a>
         {this.renderSeparator()}
         <a title={translate('Vote down')}
-          className={cx({ light: !ns })}
           styleName={cx({ disabled: !!this.props.user, link: true, alert: !!ns})}
           onClick={this.handleDownVote}>{iconDown} {ns}</a>
         {this.renderSeparator()}
@@ -93,7 +91,7 @@ export default class CommentFooter extends React.Component {
   renderReply() {
     return (
       <li key="reply" styleName="item">
-        <a className="link" styleName="link"
+        <a styleName="link"
            onClick={this.props.onToggleReply}><Icon name="reply" colorize/>{translate('Reply')}</a>{this.renderSeparator()}
       </li>
     );

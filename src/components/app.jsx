@@ -1,10 +1,10 @@
 import React from 'react';
 import Comments from './comments';
 import HullStyle from './hull-style';
-import styles from '../styles/main.scss';
+import styles from '../styles/main.css';
 import cssModules from 'react-css-modules';
 
-@cssModules(styles, {allowMultiple: true})
+@cssModules(styles)
 export default class App extends React.Component {
 
 
@@ -13,7 +13,7 @@ export default class App extends React.Component {
     styles: React.PropTypes.object,
   }
 
-  static state = {}
+  state = {}
 
   componentWillMount = () => {
     this._onChange();
@@ -31,7 +31,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div styleName="ship">
-        <HullStyle { ...this.state.settings} rootClass={this.props.styles.ship}/>
+        <HullStyle { ...this.state.settings} styles={this.props.styles}/>
         <Comments { ...this.state} actions={this.props.engine.getActions()} />
       </div>
     );

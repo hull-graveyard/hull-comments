@@ -1,6 +1,0 @@
-@import "settings";
-
-.link{
-  composes:nav__link from './mixins.scss';
-  display: inline-block;
-}

@@ -1,33 +1,33 @@
 @import "settings";
 
 .button{
-  composes: button from './mixins.scss'
+  composes: button from './mixins.css'
 }
 .link{
-  composes: link from './mixins.scss'
+  composes: link-button from './mixins.css'
 }
 
 .editor{
   display: block;
   position: relative;
-  @media #{$medium-up}{
-    $caret-size : 11px;
+  @media (--medium_up) {
     &:before, &:after{
       content:" ";
       position: absolute;
-      top: $caret-size*2 + 2; //Because avatar = 50px;
+      top: calc(var(--caret-size)*2 + 2);
+      /* Because avatar = 50px;*/
     }
     &:before{
-      left: -$caret-size*2;
-      margin-top: -$caret-size;
-      border: inset $caret-size+1;
+      left: calc(var(--caret-size)*2);
+      margin-top: var(--caret-size);
+      border: inset calc(var(--caret-size)+1);
       border-color: transparent;
       border-right-color: rgba(143, 156, 163, 0.2);
     }
     &:after{
-      left: -$caret-size*2 + 4;
-      margin-top: -($caret-size - 2);
-      border: inset $caret-size - 1;
+      left: calc(var(--caret-size)*2 + 4);
+      margin-top: calc(-(var(--caret-size) - 2));
+      border: inset calc(var(--caret-size) - 1);
       border-color: transparent;
       border-right-color: white;
     }
@@ -58,7 +58,7 @@
 }
 
 .auth{
-  composes: auth from './mixins.scss'
+  composes: auth from './mixins.css'
 }
 
 .right{

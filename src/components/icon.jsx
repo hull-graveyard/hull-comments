@@ -5,7 +5,7 @@ import React from 'react';
 import assign from 'object-assign';
 import cx from 'classnames';
 import SVGIcon from 'svg-inline-loader/lib/component.jsx';
-import styles from '../styles/icon.scss';
+import styles from '../styles/icon.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
 

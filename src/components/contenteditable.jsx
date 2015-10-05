@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from '../styles/contenteditable.scss';
+import styles from '../styles/contenteditable.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
 

@@ -2,7 +2,7 @@
 
 .composer{
   padding-left: 40px;
-  @media #{$medium-up}{
+  @media (--medium_up) {
     padding-left: 60px;
     .form{
       padding-left: 40px;
@@ -10,22 +10,23 @@
   }
   &.top{
     padding-left: 0;
-    margin-bottom: $line-height*2;
+    margin-bottom: calc(var(--line_height)*2);
     clear: both;
-    @media #{$small-only}{
     .avatar{
-        display: none;  
-      }
+      display: none;  
     }
-    @media #{$medium-up}{
+    @media (--medium_up) {
+      .avatar{
+        display: block;
+      }
       .form{
         padding-left: 65px;
       }
       .avatar{
+        margin-top: 0;
         img{
           max-width: 50px;
         }
-        margin-top: 0;
       }
     }
   }

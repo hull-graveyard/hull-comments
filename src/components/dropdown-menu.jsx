@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import styles from '../styles/dropdown-menu.scss';
+import styles from '../styles/dropdown-menu.css';
 import cssModules from 'react-css-modules';
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from './icon.jsx';
 import { translate } from '../lib/i18n';
-import styles from '../styles/favorites.scss';
+import styles from '../styles/favorites.css';
 import cssModules from 'react-css-modules';
 
 

@@ -2,6 +2,7 @@
 
 .ship {
   all:initial;
+  color: var(--text_color);
   -webkit-font-smoothing: antialiased;
   font: 13px/2 'Helvetica Neue', Helvetica, Arial, verdana, sans-serif;
   margin-bottom: 200px;
@@ -9,6 +10,14 @@
   * {
     box-sizing: border-box;
   }
+
+  a,
+  button,
+  input[type=submit] {
+      transition: all 150ms ease-in-out
+  }
+
+
   :global {
 
     .light-text{
@@ -23,17 +32,12 @@
 
 }
 
-
-
-// .register .tab-title{
-//   width: 50%;
-//   margin-top: 15px;
-//   padding: 0 15px;
-//   float: left;
-//   a{
-//     padding-left: 15px;
-//     padding-right: 15px;
-//     text-align: center;
-//     border-radius: 1000px;
-//   }
-// }
+.button{
+  composes: button from './mixins.css'
+}
+.light{
+  composes: light from './mixins.css'
+}
+.link{
+  composes: link from './mixins.css'
+}

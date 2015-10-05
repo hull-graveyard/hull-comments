@@ -4,7 +4,7 @@ import SortMenu from './sort-menu';
 import ShareMenu from './share-menu';
 import FavoritesButton from './favorites-button';
 import { translate } from '../lib/i18n';
-import styles from '../styles/nav.scss';
+import styles from '../styles/nav.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
 

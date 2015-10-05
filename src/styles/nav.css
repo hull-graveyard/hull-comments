@@ -33,12 +33,12 @@
 }
 
 .label {
-  composes: nav__label from './mixins.scss'
+  composes: nav__label from './mixins.css'
 }
 
 
 .link{
-  composes:nav__link from './mixins.scss';
+  composes:nav__link from './mixins.css';
   display: inline-block;
   width: 100%;
 }

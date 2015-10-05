@@ -1,0 +1,48 @@
+@import "settings";
+.avatar{
+  margin: 0 auto var(--line_height) auto;
+  width: 50px; 
+  img{
+    max-width: 50px;
+  }
+}
+.name{
+  composes: link from './mixins.css'
+}
+
+
+.content{
+  display: block;
+}
+
+.name{
+  font-weight: var(--font_weight_bold);
+}
+
+.stats{
+  composes: light from './mixins.css';
+}
+
+.button{
+  @mixin button transparent, var(--success_color);
+  font-weight: var(--font_weight_bold);
+  box-shadow: inset 0 0 0 1px color(var(--success_color) alpha(-50%));
+  border-radius: 1000px;
+  margin-top: var(--line_height);
+  padding-top: calc(var(--line_height)/2);
+  padding-bottom: calc(var(--line_height)/2);
+  margin-bottom: 0;
+  &:hover{
+    box-shadow: inset 0 0 0 2px var(--success_color);
+  }
+
+  &.following{
+    color: var(--text_color);
+    box-shadow: inset 0 0 0 1px color(var(--text_color) alpha(-50%));
+    &:hover{
+      box-shadow: inset 0 0 0 2px var(--text_color);
+    }
+  }
+
+}
+

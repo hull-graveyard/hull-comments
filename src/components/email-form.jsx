@@ -3,12 +3,12 @@ import cx from 'classnames';
 import { translate } from '../lib/i18n';
 import Icon from './icon';
 const { Input } = require('react-input-placeholder')(React);
-import styles from '../styles/email-login.scss';
+import styles from '../styles/email-form.css';
 import cssModules from 'react-css-modules';
 
 
 @cssModules(styles, {allowMultiple: true})
-export default class EmailLogin extends React.Component {
+export default class EmailForm extends React.Component {
 
   static propTypes = {
     error: React.PropTypes.object,

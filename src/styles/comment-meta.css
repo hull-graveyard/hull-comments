@@ -1,0 +1,66 @@
+@import "settings";
+
+.name{
+  composes: link from './mixins.css';
+  margin-right: 10px;
+}
+
+.time{
+  composes: nowrap light from './mixins.css';
+}
+
+.reply{
+  composes: time;
+  margin-left: 10px;
+}
+
+.admin{
+}
+
+.meta{
+  line-height: 1.3;
+  margin: 5px 0;
+  position: relative;
+}
+
+.actions{
+  float: right;
+  margin-left: .5rem;
+  padding: 0;
+  display: inline-block;
+  .dropdown{
+    left: -5px;
+    top: 23px;
+  }
+  .icon:not(:hover) svg{
+    fill:currentColor;
+  }
+}
+
+.actions{
+  opacity: 0;
+  transition:all .2s ease-out;
+}
+
+div:hover > .meta > .actions{
+  opacity: 1;
+}
+
+
+.overlay{
+  composes: clearfix from './main.css';
+  composes: overlay from './_overlays.css';
+  display: block;
+  opacity: 0;
+  padding: 10px;
+  text-align: center;
+  margin-left: 100px;
+  margin-top: -50px;
+  &.open{
+    opacity: 1;
+    top: 100%;
+    margin-top: -20px;
+    visibility: visible;
+    display: block;
+  }
+}

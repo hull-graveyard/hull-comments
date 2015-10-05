@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
-import styles from '../styles/login-form.scss';
+import styles from '../styles/login-form.css';
 import cssModules from 'react-css-modules';
 
 

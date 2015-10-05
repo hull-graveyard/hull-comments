@@ -9,7 +9,7 @@ import Colr from 'colr';
 export default class HullStyle extends React.Component {
 
   static propTypes = {
-    rootClass: React.PropTypes.string.isRequired,
+    styles: React.PropTypes.object.isRequired,
     link_color: React.PropTypes.string.isRequired,
     light_color: React.PropTypes.string.isRequired,
     text_color: React.PropTypes.string.isRequired,
@@ -18,35 +18,35 @@ export default class HullStyle extends React.Component {
 
   getStyle() {
     // Just Javascript™
-    const link = new Colr().fromHex(this.props.link_color);
-    const light = new Colr().fromHex(this.props.light_color);
-    const text = new Colr().fromHex(this.props.text_color);
-    const background = new Colr().fromHex(this.props.background_color);
-    const { rootClass } = this.props;
+    const linkColor = new Colr().fromHex(this.props.link_color);
+    const lightColor = new Colr().fromHex(this.props.light_color);
+    const textColor = new Colr().fromHex(this.props.text_color);
+    const backgroundColor = new Colr().fromHex(this.props.background_color);
+
+    const { ship, link, light, button } = this.props.styles;
     // Here's where you inject your user-configurable CSS.
     // ES6 template literals (http://updates.html5rocks.com/2015/01/ES6-Template-Strings) make this a fun moment.
     return `
-      .${rootClass}{
-        background-color: ${background.toHex()};
-        color: ${text};
+      .${ship}{
+        background-color: ${backgroundColor.toHex()};
+        color: ${textColor};
       }
 
-      .${rootClass} .link {
-        color: ${link.toHex()};
+      .${link.split(' ').join(', .')} {
+        color: ${linkColor.toHex()};
       }
 
-      .${rootClass} .button{
-        background-color: ${link.toHex()};
+      .${button.split(' ').join(', .')}{
+        background-color: ${linkColor.toHex()};
         color:white;
       }
 
-      .${rootClass} .button:hover{
-        background-color: ${link.darken(20).toHex()};
+      .${button.split(' ').join(', .')}:hover{
+        background-color: ${linkColor.darken(20).toHex()};
       }
 
-      .${rootClass} .light-text,
-      .${rootClass} a.light-text{
-        color: ${light.toHex()};
+      .${light.split(' ').join(', .')}, a.${light.split(' ').join(', .')}, a.${light.split(' ').join(', .')}:hover{
+        color: ${lightColor.toHex()};
       }
     `;
   }

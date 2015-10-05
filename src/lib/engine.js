@@ -22,6 +22,8 @@ const ACTIONS = [
   'deleteComment',
   'orderBy',
   'fetchMore',
+  'follow',
+  'unFollow',
   'upVote',
   'downVote',
   'share',
@@ -131,6 +133,7 @@ assign(Engine.prototype, Emitter.prototype, {
       orderBy: this._orderBy,
       isReady: !!this._isReady,
       hasMore: this._hasMore,
+      followings: this._followings,
       commentsCount: this._commentsCount,
       formIsOpen: !!this._formIsOpen,
     };
@@ -176,6 +179,7 @@ assign(Engine.prototype, Emitter.prototype, {
     this._page = 1;
     this._comments = [];
     this._commentsById = {};
+    this._followings = {};
     this._hasMore = true;
     this._error = null;
     this._status = {};
@@ -230,17 +234,17 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   resetPassword(options = {}) {
-    this.hull.api('/users/request_password_reset', 'post', options, function() {
+    this.hull.api('/users/request_password_reset', 'post', options, () => {
       this._error = null;
       this._status.resetPassword = {
         message: translate('Email sent to {email}. Check your inbox!', options),
       };
       this.emitChange();
-    }.bind(this), function(error) {
+    }, (error) => {
       this._error = error;
       delete this._status.resetPassword;
       this.emitChange();
-    }.bind(this));
+    });
   },
 
   clearErrors() {
@@ -278,12 +282,12 @@ assign(Engine.prototype, Emitter.prototype, {
     }
 
     const promise = Hull[method](options);
-    promise.then(function() {
+    promise.then(() => {
       this.resetUser();
       this[s] = false;
       this._error = null;
       this.emitChange();
-    }.bind(this), function(error) {
+    }, (error) => {
       // Quick fix...
       if (error.response !== null) {
         error = error.response;
@@ -295,7 +299,7 @@ assign(Engine.prototype, Emitter.prototype, {
       error.provider = provider;
       this._error = error;
       this.emitChange();
-    }.bind(this));
+    });
 
     return promise;
   },
@@ -325,19 +329,20 @@ assign(Engine.prototype, Emitter.prototype, {
 
       this._isFetching = this.hull.api(this.entity_id + '/comments', params);
 
-      this._isFetching.then(function(r) {
+      this._isFetching.then((r) => {
         this._isReady = true;
         this._isFetching = false;
         this._hasMore = !!r.pagination.next_url;
         this._commentsCount = r.tree.total;
         this._comments = this._comments.concat(r.data);
         this._processComments(r.data);
-
-        this.emitChange('fetching ok');
-      }.bind(this), function(e) {
+        Promise.all(this.getFollowings()).then(() => {
+          this.emitChange('fetching ok');
+        });
+      }, (e) => {
         this._isFetching = false;
         this.emitChange('fetching error: ' + e.message);
-      }.bind(this)).catch(throwErr);
+      }).catch(throwErr);
 
       this.emitChange('start fetching');
     }
@@ -447,10 +452,40 @@ assign(Engine.prototype, Emitter.prototype, {
   vote(id, rating) {
     const c = this._commentsById[id];
 
-    this.hull.api(id + '/reviews', 'post', { rating }).then(function(r) {
+    this.hull.api(id + '/reviews', 'post', { rating }).then((r) => {
       c.votes = processCommentVotes(r.ratings.distribution);
       this.emitChange('Update comment score');
-    }.bind(this)).catch(throwErr);
+    }).catch(throwErr);
+  },
+
+
+  follow(id) {
+    this.hull.api('/following/' + id, 'put').then(() => {
+      this._followings[id] = true;
+      this.emitChange('Following User');
+    }).catch(throwErr);
+  },
+
+  unFollow(id) {
+    this.hull.api('/following/' + id, 'delete').then(() => {
+      this._followings[id] = false;
+      this.emitChange('Unfollowing User');
+    }).catch(throwErr);
+  },
+
+  getFollowings() {
+    return _.map(this._commentsById, (value) => {
+      return this.isFollowing(value.user.id);
+    });
+  },
+
+  isFollowing(id) {
+    if (this._followings.hasOwnProperty(id)) {
+      return Promise.resolve(this._followings[id]);
+    }
+    return this.hull.api('/following/' + id).then((r) => {
+      this._followings[id] = !(r===false);
+    }).catch(throwErr);
   },
 
   upVote(id) {
@@ -493,10 +528,9 @@ assign(Engine.prototype, Emitter.prototype, {
   },
 
   _processComments(comments) {
-    _.each(comments, function(raw) {
+    return _.map(comments, function(raw) {
       const c = processComment(raw);
       this._commentsById[c.id] = c;
-      this._processComments(c.children);
     }, this);
   },
 });

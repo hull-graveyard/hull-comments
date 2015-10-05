@@ -8,8 +8,7 @@
 .comment {
   display: block;
   padding: 0;
-  margin: 0;
-  margin-bottom: 35px;
+  margin: 15px 0 35px 0;
   clear: both;
 
   .comment,
@@ -18,7 +17,7 @@
     padding-left: 40px;
     .comment{
       padding-left: 0;
-      @media #{$medium-up}{
+      @media (--medium_up) {
         padding-left: 40px;
       }
       .comment{
@@ -30,7 +29,7 @@
 
 .root > {
   .avatar img{
-    @media #{$medium-up}{
+    @media (--medium_up) {
       margin-top: 0;
       max-width: 50px;
     }
@@ -39,8 +38,12 @@
   .comment,
   .container{
     padding-left: 40px;
-    @media #{$medium-up}{
+    @media (--medium_up) {
       padding-left: 60px;
     }
   }
+}
+
+.container{
+  composes: clearfix from './mixins.css';
 }

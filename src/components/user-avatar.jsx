@@ -1,6 +1,6 @@
 import React from 'react';
 import { translate } from '../lib/i18n';
-import styles from '../styles/user.scss';
+import styles from '../styles/user-avatar.css';
 import cssModules from 'react-css-modules';
 
 @cssModules(styles, {allowMultiple: true})

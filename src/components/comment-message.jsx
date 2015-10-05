@@ -1,7 +1,7 @@
 import React from 'react';
 import CommentForm from './comment-form';
 import { translate } from '../lib/i18n';
-import styles from '../styles/comment-message.scss';
+import styles from '../styles/comment-message.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
 
