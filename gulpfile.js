@@ -34,10 +34,8 @@ gulp.task('watch', function(callback) {
 });
 
 gulp.task('serve', function(callback) {
-  runSequence(['webpack:server'], callback);
+  runSequence(['webpack:server', 'ngrok'], callback);
 });
-
-
 
 // Batch, Public Tasks
 gulp.task('server', function(callback) {
