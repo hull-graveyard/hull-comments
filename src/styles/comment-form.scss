@@ -1,5 +1,12 @@
 @import "settings";
 
+.button{
+  composes: button from './mixins.scss'
+}
+.link{
+  composes: link from './mixins.scss'
+}
+
 .editor{
   display: block;
   position: relative;
@@ -51,7 +58,7 @@
 }
 
 .auth{
-  composes: auth from './login-form.scss'
+  composes: auth from './mixins.scss'
 }
 
 .right{

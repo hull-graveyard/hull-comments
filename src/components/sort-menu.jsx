@@ -17,7 +17,7 @@ export default class SortMenu extends React.Component {
   };
 
   getTitle() {
-    return <span><Icon name={ICONS[this.props.orderBy]}/>{translate(capitalize(this.props.orderBy))}</span>;
+    return <span className="link"><Icon name={ICONS[this.props.orderBy]}/>{translate(capitalize(this.props.orderBy))}</span>;
   }
 
   getOptions() {

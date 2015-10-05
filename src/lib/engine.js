@@ -1,4 +1,4 @@
-import _ from './lodash';
+import _ from 'lodash';
 import { translate } from './i18n';
 const Emitter = require('events').EventEmitter;
 import assign from 'object-assign';

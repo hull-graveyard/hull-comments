@@ -35,7 +35,7 @@ export default class CommentForm extends React.Component {
 
   componentDidMount() {
     if (this.props.focus) {
-      this.refs.textarea.getDOMNode().focus();
+      this.refs.textarea.focus();
     }
   }
 
@@ -97,17 +97,17 @@ export default class CommentForm extends React.Component {
   }
 
   renderCancelButton() {
-    return <a key="cancel" href="#" className="link" onClick={this.handleCancel}><strong>{translate('Cancel')}</strong></a>;
+    return <a key="cancel" href="#" className="link" styleName="link" onClick={this.handleCancel}><strong>{translate('Cancel')}</strong></a>;
   }
   renderUpdateButton() {
-    return <a key="update" className="button" onClick={this.handleSubmit}><strong>{translate('Update')}</strong></a>;
+    return <a key="update" styleName="button" onClick={this.handleSubmit}><strong>{translate('Update')}</strong></a>;
   }
   renderReplyButton() {
-    return <a key="reply" className="button" onClick={this.handleSubmit}><strong><Icon colorize size={12} name="reply"/>{translate('Reply')}</strong></a>;
+    return <a key="reply" styleName="button" onClick={this.handleSubmit}><strong><Icon colorize size={12} name="reply"/>{translate('Reply')}</strong></a>;
   }
   renderPostButton(user) {
     const name = (user && (user.name || user.email)) || translate('Guest');
-    return <a className="button" onClick={this.handleSubmit}><strong>{translate('Post as {name}', { name: name })}</strong></a>;
+    return <a styleName="button" onClick={this.handleSubmit}><strong>{translate('Post as {name}', { name: name })}</strong></a>;
   }
 
   renderActions(user, mode = '', allowGuest = false) {

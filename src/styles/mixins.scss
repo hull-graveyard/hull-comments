@@ -31,3 +31,28 @@
   text-overflow:ellipsis;
   overflow:hidden;
 }
+
+.button{
+  @include button($success, white);
+}
+
+.link{
+  @include button(transparent, $primary);
+}
+
+
+.auth{
+  float: left;
+  width: 100%;
+}
+
+.clearfix{
+  &:before{}
+  &:after{
+    clear: both;
+  }
+  &:after, &:before{
+    display: table;
+    content: " ";
+  }
+}

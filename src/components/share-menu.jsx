@@ -1,5 +1,5 @@
-import _ from '../lib/lodash';
-import str from 'underscore.string';
+import _ from 'lodash';
+import humanize from 'underscore.string/humanize';
 import React from 'react';
 import DropdownMenu from './dropdown-menu';
 import Icon from './icon';
@@ -28,7 +28,7 @@ export default class ShareMenu extends React.Component {
   static defaultProps = {right: false, size: 24, component: 'span'};
 
   getTitle() {
-    return this.props.title || <span><Icon colorize name="share"/>{translate('Share')}</span>;
+    return this.props.title || <span className="link"><Icon colorize name="share"/>{translate('Share')}</span>;
   }
 
   getOptions() {
@@ -36,7 +36,7 @@ export default class ShareMenu extends React.Component {
 
     return _.map(providers, (value) => {
       return {
-        label: <span><Icon size={this.props.size} style={{marginRight: 5}} colorize={false} name={value}/><span className="share-text">&nbsp;{str.humanize(value)}</span></span>,
+        label: <span><Icon size={this.props.size} style={{marginRight: 5}} colorize={false} name={value}/><span className="share-text">&nbsp;{humanize(value)}</span></span>,
         value: value.toLowerCase(),
       };
     });

@@ -20,7 +20,7 @@ export default class CommentMeta extends React.Component {
   renderReplyTo() {
     const parent = this.props.parent;
     if (parent) {
-      return <span styleName="nowrap"><Icon name="reply" colorize/>{translate('In reply to {name}', {name: parent.user.name})} </span>;
+      return <span className="light-text" styleName="reply"><Icon name="reply" colorize/>{translate('In reply to {name}', {name: parent.user.name})} </span>;
     }
   }
   render() {
@@ -35,14 +35,14 @@ export default class CommentMeta extends React.Component {
         </div>
 
         <strong>
-          <a>{user.name || translate('Guest')}</a>
+          <span className="link">{user.name || translate('Guest')}</span>
           { user.is_admin ? <span styleName="admin"> {` ${translate('Moderator')} `} </span> : null }
         </strong>
 
-        <div className="light-text">
+        <span className="light-text">
           {this.renderReplyTo()}
           <span styleName="nowrap">{` ${relativeTime(comment.created_at)} `}</span>
-        </div>
+        </span>
 
 
       </header>

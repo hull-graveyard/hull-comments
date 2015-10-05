@@ -3,8 +3,7 @@ import cx from 'classnames';
 import { translate } from '../lib/i18n';
 import Icon from './icon';
 const { Input } = require('react-input-placeholder')(React);
-import _ from '../lib/lodash';
-import styles from '../styles/main.scss';
+import styles from '../styles/email-login.scss';
 import cssModules from 'react-css-modules';
 
 
@@ -20,14 +19,6 @@ export default class EmailLogin extends React.Component {
   }
 
   state = {newUser: {}, tab: 'login'};
-
-  getTabStyle() {
-    const tab = this.state.tab;
-    return _.reduce(['login', 'register', 'recover'], function(m, t) {
-      m[t] = { display: t === tab ? 'block' : 'none' };
-      return m;
-    }, {});
-  }
 
   handleRecover = (event) => {
     event.preventDefault();
@@ -63,28 +54,26 @@ export default class EmailLogin extends React.Component {
     const isRegister = (tab === 'register');
 
     return (
-      <nav className="top-bar expanded nav-bar">
-        <section className="top-bar-section">
-          <ul className="tab-full">
-            <li className={cx({'tab-title': true, 'active': isLogin})}><a onClick={this.handleShowTab.bind(this, 'login')}>{translate('Log in')}</a></li>
-            <li className={cx({'tab-title': true, 'active': isRegister})}><a onClick={this.handleShowTab.bind(this, 'register')}>{translate('Sign up')}</a></li>
-          </ul>
-        </section>
+      <nav styleName="tab-bar">
+        <ul styleName="tab-list">
+          <li styleName={cx({'tab-link': true, 'active': isLogin})}><a className="light-text" onClick={this.handleShowTab.bind(this, 'login')}>{translate('Log in')}</a></li>
+          <li styleName={cx({'tab-link': true, 'active': isRegister})}><a className="light-text" onClick={this.handleShowTab.bind(this, 'register')}>{translate('Sign up')}</a></li>
+        </ul>
       </nav>
     );
   }
 
   renderPrefixedField(icon, field) {
     return (
-      <div className="row collapse prefix-radius">
-        <div className="small-1 columns"><Icon name={icon} size={32}/></div>
-        <div className="small-11 columns">{field}</div>
+      <div styleName="row">
+        <div styleName="icon"><Icon name={icon} size={32}/></div>
+        <div styleName="field">{field}</div>
       </div>
     );
   }
 
   renderButton(action, text) {
-    return <button className="tiny button round expand success" onClick={action}><strong>{text}</strong></button>;
+    return <button styleName="action-button" onClick={action}>{text}</button>;
   }
 
   renderEmailPasswordForm(action) {
@@ -103,7 +92,7 @@ export default class EmailLogin extends React.Component {
     let message;
     if (this.props.status && this.props.status.resetPassword) {
       message = (
-        <p className="message-block text-center">
+        <p styleName="message">
           <small>{translate(this.props.status.resetPassword.message, { email: this.state.newUser.email })}</small>
         </p>
       );
@@ -129,29 +118,28 @@ export default class EmailLogin extends React.Component {
     const isRecover = (tab === 'recover');
 
     if (this.props.error && this.props.error.provider === 'email') {
-      error = <div className="error-block">{this.props.error.message}</div>;
+      error = <div styleName="error">{this.props.error.message}</div>;
     }
 
-    const tabStyles = this.getTabStyle();
     const userField = <Input type="text" placeholder={translate('Name')} name="name" value={this.state.newUser.name} onChange={this.handleChange} />;
 
     return (
-      <div className="register" style={{clear: 'both'}}>
+      <div styleName="register">
         {this.renderNavBar()}
         {error}
 
-        <div className="tabs-content" style={{padding: '0 1rem'}}>
+        <div styleName="tabs">
 
-          <div className={cx({content: true, active: isLogin})} style={tabStyles.login}>
+          <div styleName={cx({tab: true, active: isLogin})}>
             {this.renderEmailPasswordForm(this.handleLogin)}
-            <div className="text-center"><strong><a href="#" onClick={this.handleShowTab.bind(this, 'recover')}>{translate('Forgot Password?')}</a></strong></div>
+            <div styleName="center"><strong><a className="link" href="#" onClick={this.handleShowTab.bind(this, 'recover')}>{translate('Forgot Password?')}</a></strong></div>
           </div>
 
-          <div className={cx({content: true, active: isRecover})} style={tabStyles.recover}>
+          <div styleName={cx({tab: true, active: isRecover})}>
             {this.renderRecoverForm()}
           </div>
 
-          <div className={cx({content: true, active: isRegister})} style={tabStyles.register}>
+          <div styleName={cx({tab: true, active: isRegister})}>
             {this.renderPrefixedField('user', userField)}
             {this.renderEmailPasswordForm(this.handleSignup)}
           </div>

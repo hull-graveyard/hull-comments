@@ -1,0 +1,137 @@
+@import "settings";
+
+
+.tab-bar{
+  composes: clearfix from './mixins.scss';
+  position: relative;
+  line-height: 3rem;
+  margin-bottom: 15px;
+}
+  .tab-list{
+    composes: clearfix from './mixins.scss';
+    display: block;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+    .tab-link{
+      width: 50%;
+      text-align: center;
+      padding: 0 15px;
+      box-sizing: border-box;
+      > a{
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: none;
+        width: 100%;
+        line-height: 2.7;
+        padding: 0;
+        border-radius: 100px;
+      }
+      &.active > a{
+        background: #EEEDEF;
+      }
+      float: left;
+    }
+
+.center{
+  text-align: center;
+  a{
+    text-decoration: none;
+  }
+}
+
+.action-button{
+  @include button($turquoise, white);
+  border-radius: 100px;
+  width: 25px;
+  // max-width: 200px;
+  margin: 0px auto 20px auto;
+  padding: 7px 4px 7px 9px;
+  text-align: left;
+  display: block;
+  outline: none;
+}
+
+.tabs{
+  margin-bottom: 1.5rem;
+  padding: 0 15px;
+  width: 100%;
+}
+
+  .tab{
+    display: none;
+    padding: 0 15px; 
+    &.active{
+      display: block;
+    }
+    input{
+      appearance: none;
+      background-color: #fff;
+      border: 2px solid rgba(143,156,163,.2);
+      box-shadow: none;
+      color: rgba(0,0,0,.75);
+      display: block;
+      font-size: .9375rem;
+      height: 2.375rem;
+      margin: 0 0 1rem;
+      padding: .5rem;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color .15s linear,background .15s linear;
+      border-radius: $global-radius;
+      &:focus{
+        background: #fafafa;
+        border-color: #0093e6;
+        outline: none;
+      }
+    }
+  }
+
+
+
+.cell{
+  padding:0;
+  margin: 0;
+  position: relative;  
+  box-sizing: border-box;
+}
+.row{
+  composes: clearfix from './mixins.scss';
+  display: block;
+  box-sizing:border-box;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  clear: both;
+}
+.icon{
+  composes: cell;
+  float: left;
+  width: 8.33333%;
+}
+.field{
+  composes: cell;
+  width: 91.66667%;
+  float: right;
+}
+
+
+
+.register{
+  clear: both;
+}
+.error{
+  margin: 15px 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: $alert-color;
+}
+.message{
+  text-align: center;
+}

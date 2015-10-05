@@ -5,16 +5,11 @@
   -webkit-font-smoothing: antialiased;
   font: 13px/2 'Helvetica Neue', Helvetica, Arial, verdana, sans-serif;
   margin-bottom: 200px;
-
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
   :global {
-
-    .button{
-      @include button($secondary, white);
-    }
-
-    .link{
-      @include button(transparent, $primary);
-    }
 
     .light-text{
       color: #ccc;

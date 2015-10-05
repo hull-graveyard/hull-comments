@@ -6,7 +6,7 @@ import CommentMessage from './comment-message';
 import CommentFooter from './comment-footer';
 import TopForm from './top-form';
 import Avatar from './avatar';
-import _ from '../lib/lodash';
+import _ from 'lodash';
 import styles from '../styles/comment.scss';
 import cssModules from 'react-css-modules';
 

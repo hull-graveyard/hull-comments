@@ -1,26 +1,27 @@
+@import "settings";
+
 .auth{
-  float: left;
-  width: 100%;
+  composes: auth from './mixins.scss';
+  margin-bottom: 30px;
+  line-height: 1;
 }
 
-:global(.button){
+.button{
+  composes:button from './mixins.scss';
+  color:white;
   margin: 0 5px 10px 0;
+  border-radius: 100px;
+
   &.login{
     padding: 10px;
-    .icon{
-      width:24px;
-      vertical-align:-50%;
-    }
   }
   &.email{
+    background: $primary;
     padding: 10px 20px;
-    font-size: 12px;
-    line-height: 18px;
     font-weight: 700;
-    float: left;
-    i{
-      vertical-align: -40%;
-    }
+  }
+  i{
+    vertical-align: -50%;
   }
   &.facebook     { background-color: #3b5998; }
   &.foursquare   { background-color: #f94877; }

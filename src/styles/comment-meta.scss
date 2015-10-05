@@ -4,6 +4,10 @@
   composes: nowrap from './mixins.scss';
 }
 
+.reply{
+  composes: nowrap from './mixins.scss';
+  margin-left: 10px;
+}
 .admin{
   margin-right: 10px;
 }

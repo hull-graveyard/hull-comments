@@ -4,12 +4,12 @@ import HullStyle from './hull-style';
 import styles from '../styles/main.scss';
 import cssModules from 'react-css-modules';
 
-@cssModules(styles, {allowMultiple: true})
-export default class extends React.Component {
+class App extends React.Component {
 
 
   static propTypes = {
     engine: React.PropTypes.object.isRequired,
+    styles: React.PropTypes.object,
   }
 
   static state = {}
@@ -38,3 +38,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default cssModules(App, styles, {allowMultiple: true});

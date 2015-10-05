@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import _ from './lib/lodash';
+import _ from 'lodash';
 import Engine from './lib/engine';
 import I18n from './lib/i18n';
 

@@ -33,14 +33,14 @@ export default class LoginForm extends React.Component {
   }
 
   renderEmailLogin() {
-    return <a styleName="button email" onClick={this.handleToggleForm}><Icon size={24} colorize name="send"/>{` ${translate('Email')}`}</a>;
+    return <a className="button" styleName="button email" onClick={this.handleToggleForm}><Icon size={24} colorize name="send"/>{` ${translate('Email')}`}</a>;
   }
 
   render() {
     const { providers } = this.props;
     return (
       <section styleName="auth">
-        {translate('Sign in with')}
+        <p>{translate('Sign in with')}</p>
         <div>
           {this.renderEmailLogin()}
           {this.renderSocialLogin(providers)}
