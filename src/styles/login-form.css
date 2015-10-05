@@ -14,12 +14,11 @@
   cursor: pointer;
   
   &.login{
-    padding: calc(var(--line_height)/1) 10px;
+    padding: calc(var(--line_height)/2) 18px;
   }
 
   &.email{
-    background: var(--primary);
-    padding: calc(var(--line_height)/1) 20px;
+    padding: calc(var(--line_height)/2) 18px;
     font-weight: var(--font_weight_bold);
   }
 
@@ -27,32 +26,19 @@
     vertical-align: -50%;
   }
 
-  &.facebook     { background-color: #3b5998; }
-  &.foursquare   { background-color: #f94877; }
-  &.foursquare-2 { background-color: #eeebac; }
-  &.foursquare-3 { background-color: #0cbadf; }
-  &.foursquare-4 { background-color: #8fd400; }
-  &.foursquare-5 { background-color: #ff7900; }
-  &.foursquare-6 { background-color: #ffcb00; }
-  &.foursquare-7 { background-color: #d1d4d3; }
-  &.github       { background-color: #999999; }
-  &.github-2     { background-color: #999999; }
-  &.github-3     { background-color: #666666; }
-  &.github-4     { background-color: #333333; }
-  &.github-5     { background-color: #6cc644; }
-  &.github-6     { background-color: #bd2c00; }
-  &.github-7     { background-color: #ff9933; }
-  &.google       { background-color: #dd4b39; }
-  &.instagram    { background-color: #3f729b; }
-  &.linkedin     { background-color: #0976b4; }
-  &.linkedin-2   { background-color: #000000; }
-  &.pinterest    { background-color: #cc2127; }
-  &.product-hunt { background-color: #d85536; }
-  &.readability  { background-color: #990000; }
-  &.stumbleupon  { background-color: #eb4924; }
-  &.tumblr       { background-color: #35465c; }
-  &.twitter      { background-color: #55acee; }
-  &.vine         { background-color: #00b488; }
-  &.vkontakte    { background-color: #45668e; }
+  &.facebook     {background-color: var(--facebook);  &:hover{ background-color: color(var(--facebook) lightness(-10%)); } }
+  &.foursquare   {background-color: var(--foursquare);  &:hover{ background-color: color(var(--foursquare) lightness(-10%)); } }
+  &.github       {background-color: var(--github);  &:hover{ background-color: color(var(--github) lightness(-10%)); } }
+  &.google       {background-color: var(--google);  &:hover{ background-color: color(var(--google) lightness(-10%)); } }
+  &.instagram    {background-color: var(--instagram);  &:hover{ background-color: color(var(--instagram) lightness(-10%)); } }
+  &.linkedin     {background-color: var(--linkedin);  &:hover{ background-color: color(var(--linkedin) lightness(-10%)); } }
+  &.pinterest    {background-color: var(--pinterest);  &:hover{ background-color: color(var(--pinterest) lightness(-10%)); } }
+  &.product-hunt {background-color: var(--product-hunt);  &:hover{ background-color: color(var(--product-hunt) lightness(-10%)); } }
+  &.readability  {background-color: var(--readability);  &:hover{ background-color: color(var(--readability) lightness(-10%)); } }
+  &.stumbleupon  {background-color: var(--stumbleupon);  &:hover{ background-color: color(var(--stumbleupon) lightness(-10%)); } }
+  &.tumblr       {background-color: var(--tumblr);  &:hover{ background-color: color(var(--tumblr) lightness(-10%)); } }
+  &.twitter      {background-color: var(--twitter);  &:hover{ background-color: color(var(--twitter) lightness(-10%)); } }
+  &.vine         {background-color: var(--vine);  &:hover{ background-color: color(var(--vine) lightness(-10%)); } }
+  &.vkontakte    {background-color: var(--vkontakte);  &:hover{ background-color: color(var(--vkontakte) lightness(-10%)); } }
 
 }

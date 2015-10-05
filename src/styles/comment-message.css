@@ -3,4 +3,5 @@
 .body{
   line-height: var(--large_line_height);
   font-size: var(--large_font_size);
+  color: color(var(--text_color) lightness(-20%));
 }
