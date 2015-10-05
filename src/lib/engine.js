@@ -336,9 +336,10 @@ assign(Engine.prototype, Emitter.prototype, {
         this._commentsCount = r.tree.total;
         this._comments = this._comments.concat(r.data);
         this._processComments(r.data);
-        Promise.all(this.getFollowings()).then(() => {
-          this.emitChange('fetching ok');
-        });
+        this.emitChange('fetching ok');
+        // Promise.all(this.getFollowings()).then(() => {
+        //   this.emitChange('fetching ok');
+        // });
       }, (e) => {
         this._isFetching = false;
         this.emitChange('fetching error: ' + e.message);

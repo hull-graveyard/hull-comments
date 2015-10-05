@@ -43,9 +43,11 @@ export default class UserOverlay extends React.Component {
   }
 
   renderFollowing(author, user) {
-    if (user && author && !this.props.isCurrentUser) {
-      return <a onClick={this.handleToggleFollow} styleName={cx({button: true, following: this.props.isFollowing})}>{this.props.isFollowing ? 'Unfollow' : 'Follow'}</a>;
-    }
+    return null;
+    // For now, disable this feature (need API optimizations for large amounts of comments)
+    // if (user && author && !this.props.isCurrentUser) {
+    //   return <a onClick={this.handleToggleFollow} styleName={cx({button: true, following: this.props.isFollowing})}>{this.props.isFollowing ? 'Unfollow' : 'Follow'}</a>;
+    // }
   }
 
   render() {
