@@ -74,11 +74,11 @@ export default class CommentFooter extends React.Component {
     return (
       <li key="vote" styleName="item">
         <a title={translate('Vote up')}
-          styleName={cx({ disabled: !!this.props.user, link: true, success: !!ps})}
+          styleName={cx({ disabled: !!this.props.user, vote:true, link: true, success: !!ps})}
           onClick={this.handleUpVote}>{ps} {iconUp}</a>
         {this.renderSeparator()}
         <a title={translate('Vote down')}
-          styleName={cx({ disabled: !!this.props.user, link: true, alert: !!ns})}
+          styleName={cx({ disabled: !!this.props.user, vote:true, link: true, alert: !!ns})}
           onClick={this.handleDownVote}>{iconDown} {ns}</a>
         {this.renderSeparator()}
       </li>
