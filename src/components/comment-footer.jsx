@@ -5,6 +5,7 @@ import Icon from './icon';
 import { translate } from '../lib/i18n';
 import styles from '../styles/comment-footer.scss';
 import cssModules from 'react-css-modules';
+import _ from 'lodash';
 
 
 @cssModules(styles, {allowMultiple: true})
@@ -107,7 +108,8 @@ export default class CommentFooter extends React.Component {
     );
   }
   renderShare() {
-    return <li key="share" styleName="item"><ShareMenu {...this.props} right size={24}/></li>;
+    const props = _.omit(this.props, 'styles');
+    return <li key="share" styleName="item"><ShareMenu {...props} right size={24}/></li>;
   }
 
   render() {

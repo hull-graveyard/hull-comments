@@ -54,17 +54,17 @@ export default class Comment extends React.Component {
     this.setState({ isReplying: false });
   }
 
-  renderReplyForm() {
+  renderReplyForm(props) {
     if (!this.state.isReplying) { return null; }
-    return <TopForm {...this.props} mode="reply" onCancel={this.handleCloseReply} onSubmit={this.handleCloseReply} parentId={this.props.comment.id}/>;
+    return <TopForm {...props} mode="reply" onCancel={this.handleCloseReply} onSubmit={this.handleCloseReply} parentId={props.comment.id}/>;
   }
 
-  renderReplies() {
-    const { user, comment, settings, providers, actions } = this.props;
-    const depth = this.props.depth || 0;
+  renderReplies(props) {
+    const { user, comment, settings, providers, actions } = props;
+    const depth = props.depth || 0;
 
     return _.map(comment.children, function(c, i) {
-      const props = {
+      const commentProps = {
         user,
         parent: comment,
         comment: c,
@@ -73,13 +73,14 @@ export default class Comment extends React.Component {
         providers,
         actions,
       };
-      return <Comment key={i} {...props}/>;
+      return <Comment key={i} {...commentProps}/>;
     });
   }
 
   render() {
     const comment = this.props.comment;
     const isCurrentUser = this.isCurrentUser();
+    const props = _.omit(this.props, 'styles');
 
     return (
       <div styleName={cx({comment: true, root: !this.props.depth, collapsed: this.state.isCollapsed })}>
@@ -88,28 +89,28 @@ export default class Comment extends React.Component {
         </div>
         <div styleName="container">
           <CommentMeta
-            {...this.props}
+            {...props}
             {...this.state}
             isCurrentUser={isCurrentUser}
             onToggleCollapse={this.handleToggleCollapse}
           />
           <CommentModerationStatus status={comment.moderation_status} isCurrentUser={isCurrentUser}/>
           <CommentMessage
-            {...this.props}
+            {...props}
             {...this.state}
             isCurrentUser={isCurrentUser}
             onToggleEdit={this.handleToggleEdit}
           />
           <CommentFooter
-            {...this.props}
+            {...props}
             {...this.state}
             isCurrentUser={isCurrentUser}
             onToggleEdit={this.handleToggleEdit}
             onToggleReply={this.handleToggleReply}
           />
         </div>
-        {this.renderReplyForm()}
-        {this.renderReplies(this.props)}
+        {this.renderReplyForm(props)}
+        {this.renderReplies(props)}
       </div>
     );
   }

@@ -7,6 +7,7 @@ import cx from 'classnames';
 import SVGIcon from 'svg-inline-loader/lib/component.jsx';
 import styles from '../styles/icon.scss';
 import cssModules from 'react-css-modules';
+import _ from 'lodash';
 
 
 const icons = {
@@ -58,6 +59,7 @@ export default class Icon extends React.Component {
 
   render() {
     const { name, size, style, colorize, color } = this.props;
+    const props = _.omit(this.props, 'styles');
     const src = icons[name];
     if (!src) {
       return <i/>;
@@ -66,6 +68,6 @@ export default class Icon extends React.Component {
     if (color) {
       outputStyle = assign(outputStyle, {color});
     }
-    return <SVGIcon src={src} styleName={cx({icon: true, colorized: !!colorize})} {...this.props} style={outputStyle} />;
+    return <SVGIcon src={src} styleName={cx({icon: true, colorized: !!colorize})} {...props} style={outputStyle} />;
   }
 }

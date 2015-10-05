@@ -5,6 +5,7 @@ import { translate } from '../lib/i18n';
 import relativeTime from '../lib/relative-time';
 import styles from '../styles/comment-meta.scss';
 import cssModules from 'react-css-modules';
+import _ from 'lodash';
 
 @cssModules(styles, {allowMultiple: true})
 export default class CommentMeta extends React.Component {
@@ -26,12 +27,13 @@ export default class CommentMeta extends React.Component {
   render() {
     const comment = this.props.comment;
     const user = comment.user || {};
+    const props = _.omit(this.props, 'styles');
 
     return (
       <header styleName="meta">
 
         <div styleName="actions">
-          <CommentActions {...this.props}/>
+          <CommentActions {...props}/>
         </div>
 
         <strong>

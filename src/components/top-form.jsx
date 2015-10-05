@@ -5,7 +5,7 @@ import CommentForm from './comment-form';
 import EmailLogin from './email-login';
 import styles from '../styles/top-form.scss';
 import cssModules from 'react-css-modules';
-
+import _ from 'lodash';
 
 @cssModules(styles, {allowMultiple: true})
 export default class TopForm extends React.Component {
@@ -19,15 +19,16 @@ export default class TopForm extends React.Component {
   };
 
   render() {
+    const props = _.omit(this.props, 'styles');
     return (
-      <div styleName={cx({composer: true, top: this.props.top})}>
+      <div styleName={cx({composer: true, top: props.top})}>
         <div styleName="avatar">
-          <Avatar {...this.props.user}/>
+          <Avatar {...props.user}/>
         </div>
         <div styleName="form">
-          <CommentForm {...this.props} />
+          <CommentForm {...props} />
         </div>
-        <EmailLogin {...this.props} styleName="left"/>
+        <EmailLogin {...props} styleName="left"/>
       </div>
     );
   }

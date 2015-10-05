@@ -4,6 +4,7 @@ import TopForm from './top-form';
 import { translate } from '../lib/i18n';
 import styles from '../styles/conversation.scss';
 import cssModules from 'react-css-modules';
+import _ from 'lodash';
 
 
 @cssModules(styles, {allowMultiple: true})
@@ -21,8 +22,8 @@ export default class Conversation extends React.Component {
     this.props.actions.fetchMore();
   }
 
-  renderFetchMore() {
-    if (!this.props.hasMore) { return null; }
+  renderFetchMore(props) {
+    if (!props.hasMore) { return null; }
 
     return (
       <a onClick={this.handleLoadMore} styleName="button">{translate('Load more comments')}</a>
@@ -30,15 +31,16 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    const comments = this.props.comments.map(function(comment, i) {
-      return <Comment key={`comment-${comment.id || i}`} {...this.props} comment={comment} />;
+    const props = _.omit(this.props, 'styles');
+    const comments = props.comments.map(function(comment, i) {
+      return <Comment key={`comment-${comment.id || i}`} {...props} comment={comment} />;
     }, this);
 
     return (
       <div styleName="conversation">
-        <TopForm {...this.props} top/>
+        <TopForm {...props} top/>
         {comments}
-        {this.renderFetchMore()}
+        {this.renderFetchMore(props)}
       </div>
     );
   }

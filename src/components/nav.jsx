@@ -6,11 +6,13 @@ import FavoritesButton from './favorites-button';
 import { translate } from '../lib/i18n';
 import styles from '../styles/nav.scss';
 import cssModules from 'react-css-modules';
+import _ from 'lodash';
 
 @cssModules(styles, {allowMultiple: true})
 export default class MainHeader extends React.Component {
 
   static propTypes = {
+    styles: React.PropTypes.object,
     orderBy: React.PropTypes.string,
     commentsCount: React.PropTypes.number.isRequired,
   }
@@ -32,6 +34,8 @@ export default class MainHeader extends React.Component {
   }
 
   render() {
+    const props = _.omit(this.props, 'styles');
+
     return (
       <nav styleName="nav">
         <section styleName="section">
@@ -40,16 +44,16 @@ export default class MainHeader extends React.Component {
             </li>
           </ul>
           <ul styleName="list right">
-            <UserMenu {...this.props} />
+            <UserMenu {...props} />
           </ul>
         </section>
         <section styleName="section secondary">
           <ul styleName="list">
-            <ShareMenu component="li" {...this.props} />
-            <li styleName="item"><FavoritesButton {...this.props}/></li>
+            <ShareMenu component="li" {...props} />
+            <li styleName="item"><FavoritesButton {...props}/></li>
           </ul>
           <ul styleName="list right">
-            <SortMenu component="li" {...this.props} />
+            <SortMenu component="li" {...props} />
           </ul>
         </section>
       </nav>

@@ -26,27 +26,26 @@ export default class HullStyle extends React.Component {
     // Here's where you inject your user-configurable CSS.
     // ES6 template literals (http://updates.html5rocks.com/2015/01/ES6-Template-Strings) make this a fun moment.
     return `
-      ${rootClass}{
+      .${rootClass}{
         background-color: ${background.toHex()};
         color: ${text};
       }
 
-      ${rootClass} a:not(.button),
-      ${rootClass} a.button.link {
+      .${rootClass} .link {
         color: ${link.toHex()};
       }
 
-      ${rootClass} a.button{
+      .${rootClass} .button{
         background-color: ${link.toHex()};
         color:white;
       }
 
-      ${rootClass} a.button:hover{
+      .${rootClass} .button:hover{
         background-color: ${link.darken(20).toHex()};
       }
 
-      ${rootClass} .light-text,
-      ${rootClass} a.light-text{
+      .${rootClass} .light-text,
+      .${rootClass} a.light-text{
         color: ${light.toHex()};
       }
     `;

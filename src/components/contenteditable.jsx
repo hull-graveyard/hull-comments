@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from '../styles/contenteditable.scss';
 import cssModules from 'react-css-modules';
+import _ from 'lodash';
 
 
 @cssModules(styles, {allowMultiple: true})
@@ -43,14 +44,15 @@ export default class ContentEditable extends React.Component {
   }
 
   render() {
+    const props = _.omit(this.props, 'styles');
     return (
       <div ref="contentEditor"
       styleName="textarea"
-      {...this.props}
+      {...props}
       onInput={this.handleInput}
       onBlur={this.handleBlur}
       contentEditable
-      dangerouslySetInnerHTML={{__html: this.props.html}}></div>
+      dangerouslySetInnerHTML={{__html: props.html}}></div>
     );
   }
 

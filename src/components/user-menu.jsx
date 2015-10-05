@@ -45,7 +45,7 @@ export default class UserMenu extends React.Component {
       <DropdownMenu right
         options={options}
         onSelect={this.handleChange}
-        title={<UserAvatar {...this.props}/>}/>
+        title={<UserAvatar user={this.props.user}/>}/>
       );
   }
 }

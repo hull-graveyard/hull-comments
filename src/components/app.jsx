@@ -4,7 +4,8 @@ import HullStyle from './hull-style';
 import styles from '../styles/main.scss';
 import cssModules from 'react-css-modules';
 
-class App extends React.Component {
+@cssModules(styles, {allowMultiple: true})
+export default class App extends React.Component {
 
 
   static propTypes = {
@@ -30,13 +31,9 @@ class App extends React.Component {
   render() {
     return (
       <div styleName="ship">
-        <HullStyle { ...this.state.settings} rootClass=".ship"/>
-        <div className="ship">
-          <Comments { ...this.state} actions={this.props.engine.getActions()} />
-        </div>
+        <HullStyle { ...this.state.settings} rootClass={this.props.styles.ship}/>
+        <Comments { ...this.state} actions={this.props.engine.getActions()} />
       </div>
     );
   }
 }
-
-export default cssModules(App, styles, {allowMultiple: true});

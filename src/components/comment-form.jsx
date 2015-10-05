@@ -6,6 +6,7 @@ import Icon from './icon';
 import { translate } from '../lib/i18n';
 import styles from '../styles/comment-form.scss';
 import cssModules from 'react-css-modules';
+import _ from 'lodash';
 
 
 @cssModules(styles, {allowMultiple: true})
@@ -145,7 +146,8 @@ export default class CommentForm extends React.Component {
 
   renderLoginForm() {
     if (!this.props.user && this.props.mode !== 'edit') {
-      return <LoginForm {...this.props} />;
+      const props = _.omit(this.props, 'styles');
+      return <LoginForm {...props} />;
     }
   }
 

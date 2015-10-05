@@ -2,20 +2,19 @@ import React from 'react';
 import Nav from './nav';
 import Conversation from './conversation';
 import Icon from './icon';
-import styles from '../styles/main.scss';
-import cssModules from 'react-css-modules';
+import _ from 'lodash';
 
-@cssModules(styles, {allowMultiple: true})
 export default class Comments extends React.Component {
 
   static propTypes = { isReady: React.PropTypes.bool };
 
   render() {
+    const props = _.omit(this.props, 'styles');
     if (this.props.isReady) {
       return (
         <div>
-          <Nav {...this.props} />
-          <Conversation {...this.props} />
+          <Nav {...props} />
+          <Conversation {...props} />
         </div>
       );
     }
