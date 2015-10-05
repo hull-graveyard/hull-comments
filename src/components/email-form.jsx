@@ -11,6 +11,10 @@ import cssModules from 'react-css-modules';
 export default class EmailForm extends React.Component {
 
   static propTypes = {
+    user: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.oneOf([null]),
+    ]),
     error: React.PropTypes.object,
     status: React.PropTypes.object,
     actions: React.PropTypes.object.isRequired,
@@ -110,7 +114,7 @@ export default class EmailForm extends React.Component {
 
   render() {
     let error;
-    if (!this.props.formIsOpen) { return null; }
+    if (!this.props.formIsOpen || this.props.user !== null) { return null; }
 
     const tab = this.state.tab;
     const isLogin = (tab === 'login');
