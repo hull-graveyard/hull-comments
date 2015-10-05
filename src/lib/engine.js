@@ -460,32 +460,40 @@ assign(Engine.prototype, Emitter.prototype, {
 
 
   follow(id) {
-    this.hull.api('/following/' + id, 'put').then(() => {
-      this._followings[id] = true;
-      this.emitChange('Following User');
-    }).catch(throwErr);
+    if (this._user) {
+      this.hull.api('/following/' + id, 'put').then(() => {
+        this._followings[id] = true;
+        this.emitChange('Following User');
+      }).catch(throwErr);
+    }
   },
 
   unFollow(id) {
-    this.hull.api('/following/' + id, 'delete').then(() => {
-      this._followings[id] = false;
-      this.emitChange('Unfollowing User');
-    }).catch(throwErr);
+    if (this._user) {
+      this.hull.api('/following/' + id, 'delete').then(() => {
+        this._followings[id] = false;
+        this.emitChange('Unfollowing User');
+      }).catch(throwErr);
+    }
   },
 
   getFollowings() {
-    return _.map(this._commentsById, (value) => {
-      return this.isFollowing(value.user.id);
-    });
+    if (this._user) {
+      return _.map(this._commentsById, (value) => {
+        return this.isFollowing(value.user.id);
+      });
+    }
+    return [Promise.resolve()];
   },
 
   isFollowing(id) {
     if (this._followings.hasOwnProperty(id)) {
       return Promise.resolve(this._followings[id]);
     }
-    return this.hull.api('/following/' + id).then((r) => {
-      this._followings[id] = !(r===false);
+    this._followings[id] = this.hull.api('/following/' + id).then((r) => {
+      this._followings[id] = !(r === false);
     }).catch(throwErr);
+    return this._followings[id];
   },
 
   upVote(id) {
