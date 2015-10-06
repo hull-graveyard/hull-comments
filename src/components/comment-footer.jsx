@@ -18,6 +18,9 @@ export default class CommentFooter extends React.Component {
     onToggleReply: React.PropTypes.func.isRequired,
     onToggleEdit: React.PropTypes.func.isRequired,
     isCurrentUser: React.PropTypes.bool,
+    settings: React.PropTypes.shape({
+      allow_guest: React.PropTypes.bool,
+    }).isRequired,
     comment: React.PropTypes.shape({
       deleted_at: React.PropTypes.any,
       user: React.PropTypes.object,
@@ -73,7 +76,7 @@ export default class CommentFooter extends React.Component {
   }
 
   showOverlay() {
-    return this.props.user === null && !!this.state.overVote;
+    return (this.props.user === null && !this.props.settings.allow_guest) && !!this.state.overVote;
   }
 
   renderVote() {
