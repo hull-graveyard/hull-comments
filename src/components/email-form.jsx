@@ -74,7 +74,7 @@ export default class EmailForm extends React.Component {
   renderPrefixedField(icon, field) {
     return (
       <div styleName="row">
-        <div styleName="icon"><Icon name={icon} size={32}/></div>
+        <div styleName="icon"><Icon className={this.props.styles.icon} name={icon}/></div>
         <div styleName="field">{field}</div>
       </div>
     );

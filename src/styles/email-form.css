@@ -138,6 +138,10 @@
   composes: cell;
   width: 38px;
   float: left;
+  i { 
+    width: 32px;
+    high: 32px;
+  }
 }
 .field{
   composes: cell;
