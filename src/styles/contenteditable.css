@@ -15,6 +15,9 @@
   overflow: auto;
   width: 100%;
   transition:all .2s var(--easeOutQuint);
+  &:before{
+    display:none;
+  }
 }
 
 :global(.placeholder) > .textarea:before{

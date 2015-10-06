@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styles from '../styles/contenteditable.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
@@ -16,13 +15,18 @@ export default class ContentEditable extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.html !== ReactDOM.findDOMNode(this).innerHTML;
+    // return this.props.html !== nextProps.html;
+    return this.markupHasChanged(nextProps.html);
   }
 
-  componentDidUpdate() {
-    if ( this.props.html !== ReactDOM.findDOMNode(this).innerHTML ) {
-      React.findDOMNodeDOM(this).innerHTML = this.props.html;
+  componentWillUpdate() {
+    if ( this.markupHasChanged(this.props.html) ) {
+      this.refs.contentEditor.innerHTML = this.props.html;
     }
+  }
+
+  markupHasChanged(html) {
+    return html !== this.refs.contentEditor.innerHTML;
   }
 
   handleBlur = (evt) => {
@@ -31,8 +35,7 @@ export default class ContentEditable extends React.Component {
   }
 
   handleInput = (evt) => {
-    const html = ReactDOM.findDOMNode(this).innerHTML;
-
+    const html = this.refs.contentEditor.innerHTML;
     const emit = (html === this.props.placeholder) ? '' : html;
 
     if (this.props.onChange && emit !== this.lastHtml) {
@@ -49,6 +52,7 @@ export default class ContentEditable extends React.Component {
       <div ref="contentEditor"
       styleName="textarea"
       {...props}
+      onFocus={this.handleBlur}
       onInput={this.handleInput}
       onBlur={this.handleBlur}
       contentEditable
