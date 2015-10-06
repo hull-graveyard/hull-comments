@@ -55,11 +55,16 @@ export default class DropdownMenu extends React.Component {
     this.setState({ opened: !this.state.opened });
   }
 
+  handleOnBlur = () => {
+    this.setState({ opened: false });
+  }
+
   close() {
     if (this.state.opened) {
       this.setState({ opened: false });
     }
   }
+
 
   renderOptions() {
     if (!this.props.options) { return null; }
@@ -82,7 +87,7 @@ export default class DropdownMenu extends React.Component {
     const Component = this.props.component || 'span';
 
     return (
-      <Component styleName="container">
+      <Component styleName="container" onBlur={this.handleOnBlur}>
         <a href="#" styleName="link" onClick={this.handleToggle}>{this.getTitle()}</a>
         {this.renderOptions()}
         {this.props.children}
