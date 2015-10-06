@@ -241,7 +241,7 @@ assign(Engine.prototype, Emitter.prototype, {
       };
       this.emitChange();
     }, (error) => {
-      this._error = error;
+      this.processError(error, 'email');
       delete this._status.resetPassword;
       this.emitChange();
     });
@@ -269,6 +269,18 @@ assign(Engine.prototype, Emitter.prototype, {
     this.perform('signup', user);
   },
 
+  processError(error, provider) {
+    // Quick fix...
+    if (!!error.response) {
+      error = error.response;
+    }
+    if (!!error.error) {
+      error = error.error;
+    }
+    error.provider = provider;
+    this._error = error;
+  },
+
   perform(method, options = {}) {
     const s = STATUS[method];
     const provider = options.provider || 'email';
@@ -288,16 +300,8 @@ assign(Engine.prototype, Emitter.prototype, {
       this._error = null;
       this.emitChange();
     }, (error) => {
-      // Quick fix...
-      if (error.response !== null) {
-        error = error.response;
-      }
-      if (error.error !== null) {
-        error = error.error;
-      }
+      this.processError(error, provider);
       this[s] = false;
-      error.provider = provider;
-      this._error = error;
       this.emitChange();
     });
 
