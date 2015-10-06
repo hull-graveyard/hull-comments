@@ -540,6 +540,7 @@ assign(Engine.prototype, Emitter.prototype, {
     return _.map(comments, function(raw) {
       const c = processComment(raw);
       this._commentsById[c.id] = c;
+      this._processComments(c.children);
     }, this);
   },
 });
