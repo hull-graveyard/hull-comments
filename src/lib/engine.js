@@ -133,7 +133,7 @@ assign(Engine.prototype, Emitter.prototype, {
       isReady: !!this._isReady,
       hasMore: this._hasMore,
       followings: this._followings,
-      commentsCount: this._commentsCount
+      commentsCount: this._commentsCount,
     };
   },
 

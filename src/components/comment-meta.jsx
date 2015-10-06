@@ -5,7 +5,6 @@ import Overlay from './overlay';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 import relativeTime from '../lib/relative-time';
-import cx from 'classnames';
 import styles from '../styles/comment-meta.css';
 import cssModules from 'react-css-modules';
 import _ from 'lodash';
