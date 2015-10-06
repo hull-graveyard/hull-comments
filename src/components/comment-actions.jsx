@@ -15,6 +15,7 @@ export default class CommentActions extends React.Component {
       user: React.PropTypes.object,
       id: React.PropTypes.string,
     }).isRequired,
+    onToggleEdit: React.PropTypes.func,
     actions: React.PropTypes.object,
   }
 
@@ -27,6 +28,13 @@ export default class CommentActions extends React.Component {
     event.preventDefault();
     if (this.props.comment && this.props.comment.id) {
       this.props.actions.deleteComment(this.props.comment.id);
+    }
+  }
+
+  handleEdit = (event) => {
+    event.preventDefault();
+    if (this.props.comment && this.props.comment.id) {
+      this.props.onToggleEdit();
     }
   }
 
@@ -47,13 +55,18 @@ export default class CommentActions extends React.Component {
         label: <span><Icon name="trash"/>{translate('Delete')}</span>,
         onClick: this.handleDelete,
       });
+      actions.push({
+        value: 'Edit',
+        label: <span><Icon name="pencil"/>{translate('Edit')}</span>,
+        onClick: this.handleEdit,
+      });
     }
 
     if (actions.length === 0) { return null; }
 
     return (
       <ul styleName="actions">
-        <DropdownMenu right component="li" options={actions} title={<Icon name="cog" size={16} style={{verticalAlign: '-8%'}}/>} />
+        <DropdownMenu right component="li" options={actions} title={<Icon name="cog" style={{verticalAlign: '-8%'}}/>} />
       </ul>
     );
   }

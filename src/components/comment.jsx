@@ -96,6 +96,7 @@ export default class Comment extends React.Component {
             {...this.state}
             isFollowing={isFollowing}
             isCurrentUser={isCurrentUser}
+            onToggleEdit={this.handleToggleEdit}
             onToggleCollapse={this.handleToggleCollapse}
           />
           <CommentModerationStatus status={comment.moderation_status} isCurrentUser={isCurrentUser}/>
