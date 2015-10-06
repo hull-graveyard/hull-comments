@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { translate } from '../lib/i18n';
 import Icon from './icon';
-const { Input } = require('react-input-placeholder')(React);
+const { Input } = require('./input');
 import styles from '../styles/email-form.css';
 import cssModules from 'react-css-modules';
 
@@ -11,15 +11,10 @@ import cssModules from 'react-css-modules';
 export default class EmailForm extends React.Component {
 
   static propTypes = {
-    user: React.PropTypes.oneOfType([
-      React.PropTypes.object,
-      React.PropTypes.oneOf([null]),
-    ]),
     error: React.PropTypes.object,
     status: React.PropTypes.object,
     actions: React.PropTypes.object.isRequired,
     settings: React.PropTypes.object.isRequired,
-    formIsOpen: React.PropTypes.bool,
   }
 
   state = {newUser: {}, tab: 'login'};
@@ -52,6 +47,15 @@ export default class EmailForm extends React.Component {
     this.setState({ newUser: newUser });
   }
 
+
+  isValidEmail() {
+    return this.state.newUser.email && this.state.newUser.email.indexOf('@') > -1;
+  }
+
+  isValidPassword() {
+    return !!this.state.newUser.password;
+  }
+
   renderNavBar() {
     const tab = this.state.tab;
     const isLogin = (tab === 'login');
@@ -76,18 +80,20 @@ export default class EmailForm extends React.Component {
     );
   }
 
-  renderButton(action, text) {
-    return <button styleName="action-button" onClick={action}>{text}</button>;
+  renderButton(action, text, disabled) {
+    const onClick = disabled ? function() {} : action;
+    return <button styleName={cx({button: true, disabled})} onClick={onClick}>{text}</button>;
   }
 
   renderEmailPasswordForm(action) {
     const password = <Input type="password" placeholder={translate('Password')} name="password" value={this.state.newUser.password} onChange={this.handleChange} />;
     const email = <Input type="email" placeholder={translate('Email')} name="email" value={this.state.newUser.email} onChange={this.handleChange} />;
+    const disabled = (!this.isValidEmail() || !this.isValidPassword());
     return (
       <span>
         {this.renderPrefixedField('send', email)}
         {this.renderPrefixedField('lock', password)}
-        {this.renderButton(action, <Icon name="chevron_right" settings={this.props.settings} colorize size={24}/>)}
+        {this.renderButton(action, <Icon name="chevron_right" settings={this.props.settings} colorize/>, disabled)}
       </span>
     );
   }
@@ -101,12 +107,13 @@ export default class EmailForm extends React.Component {
         </p>
       );
     }
+    const disabled = (!this.isValidEmail());
     const email = <Input type="email" placeholder={translate('Email')} name="email" value={this.state.newUser.email} onChange={this.handleChange} />;
 
     return (
       <span>
         {this.renderPrefixedField('send', email)}
-        {this.renderButton(this.handleRecover, translate('Send reset link'))}
+        {this.renderButton(this.handleRecover, translate('Send reset link'), disabled)}
         {message}
       </span>
     );
@@ -114,7 +121,6 @@ export default class EmailForm extends React.Component {
 
   render() {
     let error;
-    if (!this.props.formIsOpen || this.props.user !== null) { return null; }
 
     const tab = this.state.tab;
     const isLogin = (tab === 'login');
@@ -136,7 +142,7 @@ export default class EmailForm extends React.Component {
 
           <div styleName={cx({tab: true, active: isLogin})}>
             {this.renderEmailPasswordForm(this.handleLogin)}
-            <div styleName="center"><strong><a styleName="link" href="#" onClick={this.handleShowTab.bind(this, 'recover')}>{translate('Forgot Password?')}</a></strong></div>
+            <strong><a styleName="link" href="#" onClick={this.handleShowTab.bind(this, 'recover')}>{translate('Forgot Password?')}</a></strong>
           </div>
 
           <div styleName={cx({tab: true, active: isRecover})}>

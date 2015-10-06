@@ -8,7 +8,6 @@ const throwErr = function(err) {
 };
 
 const ACTIONS = [
-  'toggleForm',
   'signup',
   'login',
   'logout',
@@ -134,8 +133,7 @@ assign(Engine.prototype, Emitter.prototype, {
       isReady: !!this._isReady,
       hasMore: this._hasMore,
       followings: this._followings,
-      commentsCount: this._commentsCount,
-      formIsOpen: !!this._formIsOpen,
+      commentsCount: this._commentsCount
     };
   },
 
@@ -221,12 +219,6 @@ assign(Engine.prototype, Emitter.prototype, {
     }
 
     return providers;
-  },
-
-  toggleForm() {
-    this._formIsOpen = !this._formIsOpen;
-
-    this.emitChange();
   },
 
   login(options) {

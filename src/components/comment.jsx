@@ -61,12 +61,13 @@ export default class Comment extends React.Component {
   }
 
   renderReplies(props) {
-    const { user, comment, settings, providers, actions, followings } = props;
+    const {error, user, comment, settings, providers, actions, followings } = props;
     const depth = props.depth || 0;
 
     return _.map(comment.children, function(c, i) {
       const commentProps = {
         user,
+        error,
         followings: followings,
         parent: comment,
         comment: c,
