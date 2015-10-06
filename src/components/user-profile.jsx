@@ -1,6 +1,6 @@
 import React from 'react';
 import { translate } from '../lib/i18n';
-import styles from '../styles/user-overlay.css';
+import styles from '../styles/user-profile.css';
 import cssModules from 'react-css-modules';
 import Avatar from './avatar';
 

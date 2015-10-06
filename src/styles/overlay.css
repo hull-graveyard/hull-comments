@@ -1,0 +1,19 @@
+@import "settings";
+
+.overlay{
+  composes: clearfix from './main.css';
+  composes: overlay from './_overlays.css';
+  display: block;
+  opacity: 0;
+  padding: 10px;
+  text-align: center;
+  margin-left: 100px;
+  margin-top: -50px;
+  &.open{
+    opacity: 1;
+    top: 100%;
+    margin-top: -20px;
+    visibility: visible;
+    display: block;
+  }
+}

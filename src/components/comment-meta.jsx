@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentActions from './comment-actions';
-import UserOverlay from './user-overlay';
+import UserProfile from './user-profile';
+import Overlay from './overlay';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 import relativeTime from '../lib/relative-time';
@@ -46,13 +47,13 @@ export default class CommentMeta extends React.Component {
   renderOverlay(author) {
     if (!author) { return null; }
     return (
-      <div styleName={cx({overlay: true, open: this.state.overAuthor})}>
-        <UserOverlay
+      <Overlay visible={this.state.overAuthor}>
+        <UserProfile
           author={author}
           actions={this.props.actions}
           user={this.props.user}
           isFollowing={this.props.isFollowing}/>
-      </div>
+      </Overlay>
     );
   }
 
