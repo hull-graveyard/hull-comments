@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import ShareMenu from './share-menu';
+import Overlay from './overlay';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 import styles from '../styles/comment-footer.css';
@@ -27,6 +28,8 @@ export default class CommentFooter extends React.Component {
       ]),
     }).isRequired,
   }
+
+  state = {overVote: false}
 
   getNegativeScore() {
     if (!this.props.comment.votes) { return null; }
@@ -65,6 +68,14 @@ export default class CommentFooter extends React.Component {
   }
 
 
+  toggleOver = (item, status) => {
+    this.setState({ [`over${item}`]: status});
+  }
+
+  showOverlay() {
+    return this.props.user === null && !!this.state.overVote;
+  }
+
   renderVote() {
     const ps = this.getPositiveScore();
     const ns = this.getNegativeScore();
@@ -72,7 +83,8 @@ export default class CommentFooter extends React.Component {
     const iconDown = <Icon name="chevron_down" colorize />;
 
     return (
-      <li key="vote" styleName="item">
+      <li key="vote" styleName="item" onMouseEnter={this.toggleOver.bind(this, 'Vote', true)} onMouseLeave={this.toggleOver.bind(this, 'Vote', false)}>
+        <Overlay visible={this.showOverlay()}>{translate('You need to be logged in to vote')}</Overlay>
         <a title={translate('Vote up')}
           styleName={cx({ disabled: !!this.props.user, vote: true, link: true, success: !!ps})}
           onClick={this.handleUpVote}>{ps} {iconUp}</a>
