@@ -398,7 +398,7 @@ assign(Engine.prototype, Emitter.prototype, {
         created_at: d,
       };
       let i;
-      if (parentId === null) {
+      if (!parentId) {
         i = this._comments.push(c) - 1;
       } else {
         comment.parent_id = parentId;
