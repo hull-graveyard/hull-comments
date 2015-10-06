@@ -12,6 +12,7 @@ export default class EmailForm extends React.Component {
 
   static propTypes = {
     error: React.PropTypes.object,
+    styles: React.PropTypes.object,
     status: React.PropTypes.object,
     actions: React.PropTypes.object.isRequired,
     settings: React.PropTypes.object.isRequired,
