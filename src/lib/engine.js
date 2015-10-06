@@ -428,7 +428,7 @@ assign(Engine.prototype, Emitter.prototype, {
         this.emitChange();
       }).catch(throwErr);
 
-      this.emitChange('stared posting a comment...');
+      this.emitChange('started posting a comment...');
     } else {
       return false;
     }
