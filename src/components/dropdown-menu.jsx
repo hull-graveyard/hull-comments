@@ -16,7 +16,6 @@ export default class DropdownMenu extends React.Component {
       React.PropTypes.string,
       React.PropTypes.element,
     ]),
-    className: React.PropTypes.object,
     right: React.PropTypes.bool,
     children: React.PropTypes.any,
     component: React.PropTypes.oneOfType([
@@ -26,10 +25,8 @@ export default class DropdownMenu extends React.Component {
     open: React.PropTypes.bool,
   }
 
-  static defaultProps = {component: 'span', className: {} };
-
+  static defaultProps = { component: 'span' };
   state = { opened: this.props.open };
-
 
   getTitle() {
     if (this.props.title) {
@@ -82,16 +79,11 @@ export default class DropdownMenu extends React.Component {
   }
 
   render() {
-    let Component = this.props.component;
-    let ButtonComponent = 'a';
+    const Component = this.props.component || 'span';
 
-    if (this.props.component === 'button') {
-      Component = 'span';
-      ButtonComponent = 'button';
-    }
     return (
       <Component styleName="container">
-        <ButtonComponent href="#" styleName="link" onClick={this.handleToggle}>{this.getTitle()}</ButtonComponent>
+        <a href="#" styleName="link" onClick={this.handleToggle}>{this.getTitle()}</a>
         {this.renderOptions()}
         {this.props.children}
       </Component>

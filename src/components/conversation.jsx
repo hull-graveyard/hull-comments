@@ -18,7 +18,6 @@ export default class Conversation extends React.Component {
 
   handleLoadMore = (e) => {
     if (e && e.preventDefault) e.preventDefault();
-
     this.props.actions.fetchMore();
   }
 

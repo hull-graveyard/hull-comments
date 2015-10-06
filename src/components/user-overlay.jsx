@@ -2,7 +2,6 @@ import React from 'react';
 import { translate } from '../lib/i18n';
 import styles from '../styles/user-overlay.css';
 import cssModules from 'react-css-modules';
-import cx from 'classnames';
 import Avatar from './avatar';
 
 @cssModules(styles, {allowMultiple: true})
@@ -42,7 +41,7 @@ export default class UserOverlay extends React.Component {
     }
   }
 
-  renderFollowing(author, user) {
+  renderFollowing() {
     return null;
     // For now, disable this feature (need API optimizations for large amounts of comments)
     // if (user && author && !this.props.isCurrentUser) {

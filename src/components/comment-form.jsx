@@ -1,12 +1,10 @@
 import React from 'react';
 import ContentEditable from './contenteditable';
 import cx from 'classnames';
-import LoginForm from './login-form';
 import Icon from './icon';
 import { translate } from '../lib/i18n';
 import styles from '../styles/comment-form.css';
 import cssModules from 'react-css-modules';
-import _ from 'lodash';
 
 
 @cssModules(styles, {allowMultiple: true})
@@ -98,17 +96,17 @@ export default class CommentForm extends React.Component {
   }
 
   renderCancelButton() {
-    return <a key="cancel" href="#" className="link" styleName="link" onClick={this.handleCancel}><strong>{translate('Cancel')}</strong></a>;
+    return <a key="cancel" href="#" className="link" styleName="link" onClick={this.handleCancel}>{translate('Cancel')}</a>;
   }
   renderUpdateButton() {
-    return <a key="update" styleName="button" onClick={this.handleSubmit}><strong>{translate('Update')}</strong></a>;
+    return <a key="update" styleName="button" onClick={this.handleSubmit}><Icon colorize size={12} name="pencil"/>{translate('Update')}</a>;
   }
   renderReplyButton() {
-    return <a key="reply" styleName="button" onClick={this.handleSubmit}><strong><Icon colorize size={12} name="reply"/>{translate('Reply')}</strong></a>;
+    return <a key="reply" styleName="button" onClick={this.handleSubmit}><Icon colorize size={12} name="reply"/>{translate('Reply')}</a>;
   }
   renderPostButton(user) {
     const name = (user && (user.name || user.email)) || translate('Guest');
-    return <a styleName="button" onClick={this.handleSubmit}><strong>{translate('Post as {name}', { name: name })}</strong></a>;
+    return <a styleName="button" onClick={this.handleSubmit}>{translate('Post as {name}', { name: name })}</a>;
   }
 
   renderActions(user, mode = '', allowGuest = false) {
@@ -119,7 +117,7 @@ export default class CommentForm extends React.Component {
     } else if (user && mode === 'reply') {
       actions = <span>{this.renderCancelButton()} {this.renderReplyButton()}</span>;
     } else if (allowGuest || user) {
-      actions = this.renderPostButton(user);
+      actions = <span>{this.renderPostButton(user)}</span>;
     }
 
     return (
@@ -144,13 +142,6 @@ export default class CommentForm extends React.Component {
     );
   }
 
-  renderLoginForm() {
-    if (!this.props.user && this.props.mode !== 'edit') {
-      const props = _.omit(this.props, 'styles');
-      return <LoginForm {...props} />;
-    }
-  }
-
   render() {
     const { user, mode } = this.props;
     const editMode = this.props.mode === 'edit';
@@ -171,7 +162,6 @@ export default class CommentForm extends React.Component {
           {this.renderTextarea(user)}
           {this.renderActions(user, mode, this.props.settings.allow_guest)}
         </div>
-        {this.renderLoginForm()}
       </form>
     );
   }

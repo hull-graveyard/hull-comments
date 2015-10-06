@@ -7,7 +7,6 @@ import cssModules from 'react-css-modules';
 @cssModules(styles)
 export default class App extends React.Component {
 
-
   static propTypes = {
     engine: React.PropTypes.object.isRequired,
     styles: React.PropTypes.object,
@@ -32,7 +31,7 @@ export default class App extends React.Component {
     return (
       <div styleName="ship">
         <HullStyle { ...this.state.settings} styles={this.props.styles}/>
-        <Comments { ...this.state} actions={this.props.engine.getActions()} />
+        <Comments { ...this.state} styles={this.props.styles} actions={this.props.engine.getActions()} />
       </div>
     );
   }

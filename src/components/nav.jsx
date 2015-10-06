@@ -21,14 +21,6 @@ export default class MainHeader extends React.Component {
 
   state = {expanded: false, classes: {} };
 
-  componentWillMount() {
-    // styles.use();
-  }
-
-  componentWillUnmount() {
-    // styles.unuse();
-  }
-
   toggleNavBar() {
     this.setState({expanded: !this.state.expanded});
   }
@@ -53,7 +45,7 @@ export default class MainHeader extends React.Component {
             <li styleName="item"><FavoritesButton {...props}/></li>
           </ul>
           <ul styleName="list right">
-            <SortMenu component="li" {...props} />
+            <SortMenu {...props} />
           </ul>
         </section>
       </nav>
