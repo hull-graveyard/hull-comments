@@ -5,3 +5,8 @@
 .link{
   composes: light from './mixins.css';
 }
+
+.icon{
+  width: 24px;
+  height: 24px;
+}

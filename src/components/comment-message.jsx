@@ -30,9 +30,9 @@ export default class CommentMessage extends React.Component {
     } else if (comment.deleted_at) {
       content = <small styleName="light">{translate('Comment has been deleted.')}</small>;
     } else {
-      content = <div dangerouslySetInnerHTML={{__html: comment.description }} />;
+      content = <div styleName="body" dangerouslySetInnerHTML={{__html: comment.description }} />;
     }
-    return <div styleName="body">{content}</div>;
+    return <div>{content}</div>;
   }
 
 }

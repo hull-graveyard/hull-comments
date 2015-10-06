@@ -12,6 +12,9 @@
 .reply{
   composes: time;
   margin-left: 10px;
+  @media (--small_only){
+    display: block;
+  }
 }
 
 .admin{
@@ -41,7 +44,7 @@
 
 .actions{
   opacity: 0;
-  transition:all .2s ease-out;
+  transition:all .2s var(--easeOutQuint);
 }
 
 div:hover > .meta > .actions{

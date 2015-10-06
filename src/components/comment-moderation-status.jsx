@@ -20,7 +20,7 @@ export default class CommentModerationStatus extends React.Component {
 
     let message;
 
-    if (!isCurrentUser || status === null || status === 'approved') { return null; }
+    if (!isCurrentUser || !status || status === 'approved') { return null; }
 
     if (status === 'pending') {
       message = translate('Your comment is awaiting moderation');

@@ -58,13 +58,13 @@ export default class Icon extends React.Component {
   static defaultProps = {colorize: false, style: {}, size: 16 };
 
   render() {
-    const { name, size, style, colorize, color } = this.props;
+    const { name, style, colorize, color } = this.props;
     const props = _.omit(this.props, 'styles');
     const src = icons[name];
     if (!src) {
       return <i/>;
     }
-    let outputStyle = assign({width: size, height: size}, style);
+    let outputStyle = style;
     if (color) {
       outputStyle = assign(outputStyle, {color});
     }

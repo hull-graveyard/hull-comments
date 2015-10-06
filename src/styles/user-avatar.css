@@ -5,6 +5,7 @@
 .avatar{
   composes: avatar from './mixins.css';
   max-width: 20px;
+  vertical-align:-36%;
 }
 
 .user{

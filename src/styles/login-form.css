@@ -23,6 +23,8 @@
 
   i{
     vertical-align: -50%;
+    width: 24px;
+    height: 24px;
   }
 
   &.facebook     {background-color: var(--facebook);  &:hover{ background-color: color(var(--facebook) lightness(-10%)); } }
@@ -40,4 +42,8 @@
   &.vine         {background-color: var(--vine);  &:hover{ background-color: color(var(--vine) lightness(-10%)); } }
   &.vkontakte    {background-color: var(--vkontakte);  &:hover{ background-color: color(var(--vkontakte) lightness(-10%)); } }
 
+}
+
+.left{
+  float: left;
 }

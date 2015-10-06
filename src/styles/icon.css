@@ -1,7 +1,11 @@
+@import "settings";
+
 .icon {
   display: inline-block;
   width: 16px;
-  vertical-align: -10%;
+  height: 16px;
+  line-height: var(--line_height);
+  vertical-align: -20%;
   + span{
     margin-left: 3px;
   }

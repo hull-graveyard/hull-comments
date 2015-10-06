@@ -18,6 +18,7 @@ export default class ShareMenu extends React.Component {
     title: React.PropTypes.string,
     size: React.PropTypes.number,
     actions: React.PropTypes.object.isRequired,
+    styles: React.PropTypes.object,
     component: React.PropTypes.oneOfType([
       React.PropTypes.element,
       React.PropTypes.string,
@@ -36,7 +37,7 @@ export default class ShareMenu extends React.Component {
 
     return _.map(providers, (value) => {
       return {
-        label: <span><Icon size={this.props.size} style={{marginRight: 5}} colorize={false} name={value}/><span className="share-text">&nbsp;{humanize(value)}</span></span>,
+        label: <span><Icon className={this.props.styles.icon} colorize={false} name={value}/><span className="share-text">&nbsp;{humanize(value)}</span></span>,
         value: value.toLowerCase(),
       };
     });

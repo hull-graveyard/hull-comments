@@ -64,6 +64,8 @@
 
   --easeOutQuint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
 
+  --font_family: -apple-system, Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+
 
   --include-xl-html-grid-classes: true;
 
@@ -95,7 +97,7 @@
   --vkontakte    : #45668e;
 
   @custom-media --medium_up   (width >= 30em);
-  @custom-media --small-only  (width <= 30em);
+  @custom-media --small_only  (width <= 30em);
 
 }
 
@@ -105,7 +107,7 @@
   text-align: center;
   text-decoration: none;
 
-  transition: background-color .3s ease-out;
+  transition: background-color .3s var(--easeOutQuint);
   background-color: $color;
   color: $text;
 
@@ -118,13 +120,13 @@
   display: inline-block;
   position: relative;
 
-  font-family: Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+  font-family: var(--font_family);
   font-size: calc($font_size*.75);
-  font-weight: 400;
+  font-weight: var(--font_weight_bold);
   line-height: normal;
 
   &:hover{
-    color:white;
+    color:$text;
     background-color: color($color blackness(-10%));
   }
 }

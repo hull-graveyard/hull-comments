@@ -21,7 +21,6 @@
       list-style-type: none;
       width: 50%;
       text-align: center;
-      padding: 0 15px;
       box-sizing: border-box;
       > a {
         display: block;
@@ -41,40 +40,58 @@
       float: left;
     }
 
-.center{
-  text-align: center;
-  a{
-    text-decoration: none;
-  }
-}
-
-.action-button{
+.button{
   @mixin button var(--turquoise), white;
   font-size: var(--large_font_size);
   font-weight: var(--font_weight_bold);
   border-radius: 100px;
   width: 100%;
-  max-width: 250px;
-  margin: 0px auto 20px auto;
-  padding: calc(var(--line_height)/1.5) 4px calc(var(--line_height)/1.5) 9px;
-  text-align: center;
+  float: left;
   display: block;
   outline: none;
+  @media (--medium_up) {
+    max-width: 250px;
+    margin-left: 38px;
+  }
+  &.disabled{
+    box-shadow: inset 0 0 0 2px #ddd;
+    background-color: #EEEDEF;
+  }
+}
+
+.link{
+  composes: light from './mixins.css';
+  text-decoration: none;
+  padding: 12px 0;
+  line-height: var(--line_height);
+  font-weight: var(--font_weight_bold);
+  @media (--medium_up){
+    display: inline-block;
+    float: right;
+  }
+  @media (--small_only){
+    display: block;
+    text-align: center;
+    clear: both;
+  }
+}
+
+.disabled{
+  composes:light from './mixins.css';
 }
 
 .tabs{
   margin-bottom: 1.5rem;
-  padding: 0 15px;
   width: 100%;
 }
 
   .tab{
     display: none;
-    padding: 0 15px; 
     &.active{
       display: block;
     }
     input{
+      font-family: var(--font_family);
       appearance: none;
       background-color: #fff;
       border: 2px solid rgba(143,156,163,.2);
@@ -119,18 +136,14 @@
 }
 .icon{
   composes: cell;
+  width: 38px;
   float: left;
-  width: 8.33333%;
 }
 .field{
   composes: cell;
-  width: 91.66667%;
-  float: right;
+  margin-left: 38px;
 }
 
-.link{
-  composes: link from './mixins.css';
-}
 
 .light{
   composes: light from './mixins.css';

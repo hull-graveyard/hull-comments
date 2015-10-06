@@ -12,7 +12,7 @@
 .item{
   display: inline-block;
   float: left;
-  @media (--small-only) {
+  @media (--small_only) {
     .share-text{
       display: none;
     }

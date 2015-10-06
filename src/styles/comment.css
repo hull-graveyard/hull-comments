@@ -1,5 +1,11 @@
 @import "settings";
 
+.spinner {
+  > i{
+    width: 64px;
+    height: 64px;
+  }
+}
 
 .avatar{
   position: absolute;

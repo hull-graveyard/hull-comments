@@ -6,7 +6,10 @@ import _ from 'lodash';
 
 export default class Comments extends React.Component {
 
-  static propTypes = { isReady: React.PropTypes.bool };
+  static propTypes = {
+    isReady: React.PropTypes.bool,
+    styles: React.PropTypes.object,
+  };
 
   render() {
     const props = _.omit(this.props, 'styles');
@@ -18,6 +21,6 @@ export default class Comments extends React.Component {
         </div>
       );
     }
-    return <Icon name="spinner" size={64} style={{display: 'block', margin: '0 auto'}}/>;
+    return <Icon name="spinner" className={this.props.styles.spinner}/>;
   }
 }

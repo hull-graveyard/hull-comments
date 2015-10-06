@@ -33,7 +33,7 @@
     }
   }
   &.editing{
-    border:1px solid red;
+    visibility: visible;
   }
 }
 .light{

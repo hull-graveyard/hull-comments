@@ -74,11 +74,11 @@ export default class CommentFooter extends React.Component {
     return (
       <li key="vote" styleName="item">
         <a title={translate('Vote up')}
-          styleName={cx({ disabled: !!this.props.user, vote:true, link: true, success: !!ps})}
+          styleName={cx({ disabled: !!this.props.user, vote: true, link: true, success: !!ps})}
           onClick={this.handleUpVote}>{ps} {iconUp}</a>
         {this.renderSeparator()}
         <a title={translate('Vote down')}
-          styleName={cx({ disabled: !!this.props.user, vote:true, link: true, alert: !!ns})}
+          styleName={cx({ disabled: !!this.props.user, vote: true, link: true, alert: !!ns})}
           onClick={this.handleDownVote}>{iconDown} {ns}</a>
         {this.renderSeparator()}
       </li>
@@ -107,7 +107,7 @@ export default class CommentFooter extends React.Component {
   }
   renderShare() {
     const props = _.omit(this.props, 'styles');
-    return <li key="share" styleName="item"><ShareMenu {...props} right size={24}/></li>;
+    return <li key="share" styleName="item"><ShareMenu {...props} right/></li>;
   }
 
   render() {

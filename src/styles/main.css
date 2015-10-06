@@ -4,7 +4,9 @@
   all:initial;
   color: var(--text_color);
   -webkit-font-smoothing: antialiased;
-  font: 13px/2 'Helvetica Neue', Helvetica, Arial, verdana, sans-serif;
+  font-size: var(--font_size);
+  line-height:2;
+  font-family: var(--font_family);
   margin-bottom: 200px;
   box-sizing: border-box;
   * {
@@ -27,4 +29,11 @@
 }
 .link{
   composes: link from './mixins.css'
+}
+
+.spinner{
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 0 auto;
 }
