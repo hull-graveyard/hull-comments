@@ -12,6 +12,7 @@ import _ from 'lodash';
 
 const icons = {
   reply: require('svg-inline!../icons/reply.svg'),
+  key: require('svg-inline!../icons/key.svg'),
   share: require('svg-inline!../icons/share.svg'),
   heart: require('svg-inline!../icons/heart.svg'),
   cog: require('svg-inline!../icons/cog.svg'),

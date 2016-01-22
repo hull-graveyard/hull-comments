@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { translate } from './i18n';
 const Emitter = require('events').EventEmitter;
+import detectShip from './detect-ship';
 import assign from 'object-assign';
 
 const throwErr = function(err) {
@@ -9,6 +10,7 @@ const throwErr = function(err) {
 
 const ACTIONS = [
   'signup',
+  'externalLogin',
   'login',
   'logout',
   'resetPassword',
@@ -78,6 +80,11 @@ export default function Engine(deployment, hull) {
   this._deployment = deployment;
   this.resetState();
 
+  detectShip(hull, 'hull-login').then((present)=>{
+    this._hasLoginShip = present;
+    this.emitChange();
+  });
+
   this.resetUser();
 
   function onChange() {
@@ -119,6 +126,7 @@ assign(Engine.prototype, Emitter.prototype, {
       providers: this.getProviders(),
       error: this._error,
       status: this._status,
+      hasLoginShip: this._hasLoginShip,
       isInitializing: this._isInitializing,
       isWorking: this._isLoggingIn || this._isLoggingOut || this._isLinking || this._isUnlinking,
       isLoggingIn: this._isLoggingIn,
@@ -223,6 +231,10 @@ assign(Engine.prototype, Emitter.prototype, {
 
   login(options) {
     return this.perform('login', options);
+  },
+
+  externalLogin() {
+    this.hull.emit('hull.login.showDialog');
   },
 
   resetPassword(options = {}) {

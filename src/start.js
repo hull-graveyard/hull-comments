@@ -8,7 +8,6 @@ import App from './components/app';
 
 module.exports = function(element, deployment, hull) {
   const entity = hull.entity.encode(Hull.findUrl().split('#')[0]);
-
   I18n.setTranslations(deployment.ship.translations);
 
   deployment.settings = _.defaults({}, deployment.settings, {

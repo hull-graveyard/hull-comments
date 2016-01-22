@@ -27,6 +27,10 @@ export default class LoginForm extends React.Component {
     this.props.actions.login({provider: providerName}, 'login_button_facebook');
   }
 
+  handleExternalLogin = (e) => {
+    e.preventDefault();
+    this.props.actions.externalLogin();
+  }
 
   handleToggleForm = (e) => {
     e.preventDefault();
@@ -49,18 +53,30 @@ export default class LoginForm extends React.Component {
     return <EmailForm {...props}/>;
   }
 
-  render() {
+  renderLoginOptions() {
     const props = _.omit(this.props, 'styles');
     return (
-      <section styleName="auth">
+      <div styleName="auth">
         <p>{translate('Sign in with')}</p>
         <div>
           {this.renderEmailLogin()}
           {this.renderSocialLogin(props.providers)}
         </div>
         {this.renderEmailForm(props)}
-      </section>
+      </div>
     );
+  }
+
+  renderLoginModalButton() {
+    return (
+      <div styleName="auth">
+        <a className="button" styleName="button email" onClick={this.handleExternalLogin}><Icon colorize name="key"/>{` ${translate('Sign up or Log in')}`}</a>
+      </div>
+    );
+  }
+
+  render() {
+    return this.props.hasLoginShip ? this.renderLoginModalButton() : this.renderLoginOptions();
   }
 }
 
