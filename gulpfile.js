@@ -15,7 +15,7 @@ var config      = require('./config');
   // 'iconfont',
   // 'iconsprite',
   'lint',
-  'ngrok',
+  'localtunnel',
   // 'sass',
   // 'serve',
   // 'sketch',
@@ -34,7 +34,7 @@ gulp.task('watch', function(callback) {
 });
 
 gulp.task('serve', function(callback) {
-  runSequence(['webpack:server', 'ngrok'], callback);
+  runSequence(['webpack:server', 'localtunnel'], callback);
 });
 
 // Batch, Public Tasks

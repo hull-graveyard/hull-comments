@@ -188,20 +188,14 @@ var plugins = [
   }),
 ];
 
-
 /*
   ----------------------------
-  NGROK
+  LOCALTUNNEL
   ----------------------------
 */
-var ngrok;
-if(process.env.NGROK_AUTHTOKEN) {
-  ngrok = {
-    port: serverPort,
-    authtoken: process.env.NGROK_AUTHTOKEN,
-    subdomain: libName,
-  };
-}
+var localtunnel = {
+  subdomain: libName.toLowerCase().replace(/[-_]/g, ''),
+};
 
 /*
   ----------------------------
@@ -252,7 +246,7 @@ module.exports = {
   displayName: displayName,
 
   hotReload: hotReload,
-  ngrok: ngrok,
+  localtunnel: localtunnel,
   cloudfront: cloudfront,
 
   files: files,

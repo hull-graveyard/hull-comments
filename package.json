@@ -70,7 +70,7 @@
     "less-loader": "^2.2.1",
     "merge-stream": "^1.0.0",
     "moment": "^2.10.6",
-    "ngrok": "^0.2.2",
+    "localtunnel": "^1.8.1",
     "node-notifier": "^4.3.1",
     "open": "0.0.5",
     "postcss-clearfix": "^0.2.0",
